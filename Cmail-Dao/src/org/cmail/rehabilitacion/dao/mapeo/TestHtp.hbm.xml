@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.htp.TestHtp" table="htp_test">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="adolescente" lazy="false">
+      <column name="id_adolescente" not-null="true"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.FichaIngreso" name="fichaIngreso" lazy="false">
+      <column name="id_ficha" not-null="true"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.seguridad.Usuario" name="evaluador" lazy="false">
+      <column name="id_evaluador" not-null="true"/>
+    </many-to-one>
+        
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.Esquema" name="esquema" lazy="false">
+      <column name="id_esquema" not-null="true"/>
+    </many-to-one>
+    
+    <set inverse="true" name="respuestas"  cascade="all-delete-orphan" lazy="false" fetch="select">
+      <key>
+        <column name="id_test" />
+      </key>
+      <one-to-many class="org.cmail.rehabilitacion.modelo.htp.TestHtpRespuesta"/>
+    </set>
+    
+    <property name="fecha" type="java.util.Date">
+      <column name="fecha" not-null="true"/>
+    </property>
+    
+    <property name="horaInicio" type="java.util.Date">
+      <column name="horaInicio" not-null="true"/>
+    </property>
+    
+    <property name="horaFin" type="java.util.Date">
+      <column name="horaFin" not-null="true"/>
+    </property>
+    
+    <property name="edadAdolescente" type="java.lang.Integer">
+      <column name="edadAdolescente" not-null="true"/>
+    </property>
+    
+    <property name="duracionMinutos" type="java.lang.Integer">
+      <column name="duracionMinutos" not-null="true"/>
+    </property>
+        
+    <property name="tiempoLatenciaCasa" type="java.lang.Integer">
+      <column name="tiempoLatenciaCasa" not-null="true"/>
+    </property>
+    <property name="tiempoLatenciaArbol" type="java.lang.Integer">
+      <column name="tiempoLatenciaArbol" not-null="true"/>
+    </property>
+    <property name="tiempoLatenciaPersona" type="java.lang.Integer">
+      <column name="tiempoLatenciaPersona" not-null="true"/>
+    </property>
+    
+    
+    <property name="tiempoDuracionCasa" type="java.lang.Integer">
+      <column name="tiempoDuracionCasa" not-null="true"/>
+    </property>
+    <property name="tiempoDuracionArbol" type="java.lang.Integer">
+      <column name="tiempoDuracionArbol" not-null="true"/>
+    </property>
+    <property name="tiempoDuracionPersona" type="java.lang.Integer">
+      <column name="tiempoDuracionPersona" not-null="true"/>
+    </property>
+    
+    <property name="dibujoCasa" type="binary">
+      <column name="dibujoCasa" sql-type="LONGBLOB"/>
+    </property>
+    <property name="dibujoArbol" type="binary">
+      <column name="dibujoArbol" sql-type="LONGBLOB"/>
+    </property>
+    <property name="dibujoPersona" type="binary">
+      <column name="dibujoPersona" sql-type="LONGBLOB"/>
+    </property>                        
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+</hibernate-mapping>

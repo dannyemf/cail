@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:f="http://java.sun.com/jsf/core"      
+      >
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="title"></cc:attribute>
+        <cc:attribute name="value"></cc:attribute>        
+        <cc:attribute name="image" default="./resources/icono/row/row_reporte.png"></cc:attribute>
+        <cc:attribute name="fileName"></cc:attribute>
+        <cc:attribute name="mimeType" default="application/pdf"></cc:attribute>
+        <cc:attribute name="shared" default="false"></cc:attribute>
+        <cc:attribute name="lastModified" type="java.util.Date"></cc:attribute>        
+        <cc:attribute name="resource" type="com.icesoft.faces.context.Resource" required="true"></cc:attribute>                
+    </cc:interface>
+    
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>                       
+        
+        <ice:outputResource                                    
+            styleClass="ui-button-row cail-button-recurso-row ui-button ui-state-default ui-corner-all"
+            label="{text:'#{cc.attrs.value}', title:'#{cc.attrs.title}', image:'#{cc.attrs.image}'}"
+            fileName="#{cc.attrs.fileName}"                                                         
+            mimeType="#{cc.attrs.mimeType}"
+            resource="#{cc.attrs.resource}"
+            lastModified="#{cc.attrs.lastModified}"
+            shared="#{cc.attrs.shared}"
+            id="#{cc.id}"
+            rendered="#{cc.rendered}"
+            >
+        </ice:outputResource>                
+    </cc:implementation>
+</html>

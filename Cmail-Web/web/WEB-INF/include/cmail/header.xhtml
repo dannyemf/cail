@@ -1,0 +1,53 @@
+<!--
+  -->
+
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ice="http://www.icesoft.com/icefaces/component"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        class="header_container">
+    <div class="header_content">
+        <ice:form>
+        <table style="width: 100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td style="height: 101px">                    
+                    <div class="logo">
+                        <h1><a href="#"><small>#{mainController.prmSiglas}</small><span>#{mainController.prmInstitucion}</span></a></h1>
+                    </div>
+                </td>                
+                <td style="text-align: right; width: 500px" align="right">                
+                    <table cellpading="0" cellspacing="0" border="0" align="right">
+                        <tr>                            
+                            <td>
+                                <ui:include src="/WEB-INF/include/cmail/languageThemeControl.xhtml"/>
+                            </td>
+                            <td>                                
+                                <div class="cail-buttonset" style="float: right">
+                                    <ice:commandLink title="Pagina de inicio" action="#{menuController.actionHomePage}" styleClass="ui-icon-circle-arrow-w cail-button-big cail-button">
+                                        <ice:graphicImage value="./resources/icono/arrow_left.png" width="32px" height="32px"></ice:graphicImage>
+                                    </ice:commandLink>                                    
+                                    <ice:commandLink title="Cerrar Sesión" action="#{loginController.logOff}" styleClass="ui-icon-power cail-button-big cail-button">
+                                        <ice:graphicImage value="./resources/icono/sign-out.png"></ice:graphicImage>
+                                    </ice:commandLink>                           
+                                </div>
+                            </td>                                
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center" class="ui-state-default">
+                                <ice:commandLink styleClass="usuario" value="Bienvenido: [#{sessionBean.usuarioLogeado.nombres}]"></ice:commandLink>
+                            </td>                            
+                        </tr>
+                        
+                    </table>                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">                    
+                    <ui:include src="/WEB-INF/include/cmail/menu.xhtml" />
+                </td>
+            </tr>
+        </table>
+        </ice:form>
+    </div>
+</div>

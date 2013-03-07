@@ -1,0 +1,54 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     >
+    
+    <ice:form>
+        
+        <div class="opciones">
+            <ace:panel>            
+                <ice:commandLink id="btnNuevo" actionListener="#{opcionController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                <ice:commandLink id="btnEditar" actionListener="#{opcionController.eventoEditar}" disabled="#{opcionController.disableEdit}" styleClass="ui-icon-pencil cail-button" value="#{accion.editar}"></ice:commandLink>
+                <ice:commandLink id="btnEliminar" actionListener="#{opcionController.eventoEliminar}" disabled="#{opcionController.disableElim}" styleClass="ui-icon-cancel cail-button" value="#{accion.eliminar}"></ice:commandLink>
+            </ace:panel>
+        </div>      
+
+        <ace:panel styleClass="ui-state-highlight">
+            <ice:panelGroup effect="#{opcionController.valueChangeEffect}">
+                <ice:outputLabel value="Seleccionado: " style="font-weight: bold"></ice:outputLabel> 
+                <ice:outputText value="#{opcionController.selectedNodeObject.opcion.etiqueta}"></ice:outputText>                
+            </ice:panelGroup>
+        </ace:panel>
+        
+        <ace:panel>
+            <ice:tree 
+            id="tree" 
+            value="#{opcionController.model}"
+            var="item"            
+            imageDir="./xmlhttp/css/rime/css-images/"
+            immediate="true"
+            hideNavigation="false"
+            hideRootNode="false"
+            >
+                <ice:treeNode>
+                    <f:facet name="content">                                                                                    
+                        <ice:panelGroup style="display: inline">
+                                <ice:commandLink 
+                                    immediate="true" 
+                                    partialSubmit="true" 
+                                    actionListener="#{opcionController.eventoSelect}" 
+                                    value="#{item.userObject.text}">
+                                    <f:param name="opcionId" value="#{item.userObject.opcion.id}" />                                
+                                </ice:commandLink>                                                                
+                        </ice:panelGroup>
+                    </f:facet>
+                </ice:treeNode>
+            </ice:tree>
+
+        </ace:panel>
+    </ice:form>
+</div>

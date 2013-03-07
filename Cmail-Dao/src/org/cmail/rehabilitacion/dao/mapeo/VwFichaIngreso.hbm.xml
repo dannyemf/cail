@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.sira.VwFichaIngreso" table="vw_ficha_ingreso" mutable="false">    
+    
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>      
+    </id>
+    
+    <property name="cedula" type="java.lang.String">
+      <column length="45" name="cedula"/>
+    </property>
+    
+    <property name="nombres" type="java.lang.String">
+      <column length="45" name="nombres"/>
+    </property>
+    
+    <property name="apellidos" type="java.lang.String">
+      <column length="45" name="apellidos"/>
+    </property>    
+    
+    <property name="lugar" type="java.lang.String">
+      <column length="80" name="lugar"/>
+    </property>
+    
+    <property name="fecha" type="java.util.Date">
+      <column name="fecha"/>
+    </property>
+    
+    <property name="razonIngreso" type="java.lang.String">
+      <column length="255" name="razonIngreso"/>
+    </property>
+    
+    <property name="edad" type="java.lang.Integer">
+      <column name="edad"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

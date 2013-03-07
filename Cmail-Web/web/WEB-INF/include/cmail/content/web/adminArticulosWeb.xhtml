@@ -1,0 +1,173 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"     
+     >    
+
+    <ice:form id="form">            
+
+        <ice:messages id="messages"></ice:messages>
+
+        <div class="opciones">
+            <ace:panel>                
+                <ice:panelGrid columns="10">
+                    <ice:outputLabel value="#{etiqueta.criterio}"></ice:outputLabel>
+                    <ice:selectOneMenu 
+                        id="somCriterio" 
+                        partialSubmit="true" 
+                        value="#{articuloController.criterio}"
+                        immediate="true">
+                        <f:selectItem itemValue="NOMBRE" itemLabel="#{etiqueta.nombre}"></f:selectItem>
+                        <f:selectItem itemValue="FECHA" itemLabel="#{etiqueta.fecha}"></f:selectItem>
+                    </ice:selectOneMenu>
+
+                    <ice:outputLabel value="#{etiqueta.texto}" rendered="#{articuloController.renderTexto}"></ice:outputLabel>
+                    <ice:inputText 
+                        value="#{articuloController.texto}" 
+                        rendered="#{articuloController.renderTexto}"
+                        label="#{etiqueta.texto}"
+                        actionListener="#{articuloController.eventoBuscar}"
+                        >
+                    </ice:inputText>
+
+                    <ice:outputLabel value="#{etiqueta.desde}" rendered="#{articuloController.renderFecha}"></ice:outputLabel>
+                    <ice:selectInputDate renderAsPopup="true" value="#{articuloController.fechaInicial}" rendered="#{articuloController.renderFecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
+                    </ice:selectInputDate>
+
+                    <ice:outputLabel value="#{etiqueta.hasta}" rendered="#{articuloController.renderFecha}"></ice:outputLabel>
+                    <ice:selectInputDate renderAsPopup="true" value="#{articuloController.fechaFinal}" rendered="#{articuloController.renderFecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
+                    </ice:selectInputDate>                                                        
+
+                    <ice:commandLink id="btnBuscar"  actionListener="#{articuloController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
+                    <ice:commandLink id="btnNuevo" immediate="true" actionListener="#{articuloController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+
+                </ice:panelGrid>                    
+            </ace:panel>
+        </div>
+
+        <ice:dataTable id="dataTableArticulos" value="#{articuloController.model}" var="p" rows="10" scrollHeight="250px" width="100%">
+
+            <f:facet name="header">
+                <ice:columnGroup>
+
+                    <ice:headerRow>                                    
+                        <ice:column rowspan="2">
+                            <ice:outputText value=""/>
+                        </ice:column>
+
+                        <ice:column rowspan="2">
+                            <ice:outputText  value="#{etiqueta.nombre}"/>
+                        </ice:column>
+
+                        <ice:column rowspan="2">
+                            <ice:outputText  value="#{etiqueta.activo}"/>
+                        </ice:column>
+
+                        <ice:column colspan="2">
+                            <ice:outputText value="#{etiqueta.creacion}"/>
+                        </ice:column>
+
+                        <ice:column colspan="2">
+                            <ice:outputText value="#{etiqueta.actualizacion}"/>
+                        </ice:column>
+
+                        <ice:column rowspan="2">
+                            <ice:outputText value="#{etiqueta.resumen}"/>
+                        </ice:column>
+
+
+                    </ice:headerRow>
+
+                    <ice:headerRow>
+                        <ice:column>
+                            <ice:outputText value="#{etiqueta.fecha}"/>
+                        </ice:column>
+                        <ice:column>
+                            <ice:outputText value="#{etiqueta.usuario}"/>
+                        </ice:column>
+
+                        <ice:column>
+                            <ice:outputText value="#{etiqueta.fecha}"/>
+                        </ice:column>
+
+                        <ice:column>
+                            <ice:outputText value="#{etiqueta.usuario}"/>
+                        </ice:column>
+
+                    </ice:headerRow>
+
+
+                </ice:columnGroup>
+
+
+            </f:facet>
+
+            <ice:column id="column1">                                                
+                <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" title="#{mensaje.eliminar_entrada_title}" message="#{mensaje.eliminar_entrada}"  rendered="true"/>
+                <ice:panelLayout layout="flow">
+                    <ice:commandLink actionListener="#{articuloController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                        <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                    </ice:commandLink>                            
+
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{articuloController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}">
+                        <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                    </ice:commandLink>                            
+                </ice:panelLayout>                       
+            </ice:column>
+
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{p.titulo}"/>                        
+            </ice:column>
+
+            <ice:column id="column3">
+                <ice:selectBooleanCheckbox id="sbcb" value="#{p.activo}" disabled="true"/>                        
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.auditCreateDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </ice:outputText>                                
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.auditCreateUser}"/>                                
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.auditUpdateDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </ice:outputText>                           
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.auditUpdateUser}"/>                        
+            </ice:column>
+
+            <ice:column id="column4">
+
+                <ice:panelTooltip id="pttResumen" rendered="true" visible="true">                                
+                    <f:facet name="header">
+                        <ice:outputText value="#{p.titulo}"/>
+                    </f:facet>
+                    <f:facet name="body">
+                        <ice:panelGroup>
+                            <ice:outputText value="#{p.resumen}" escape="false" ></ice:outputText>
+                        </ice:panelGroup>
+                    </f:facet>
+                </ice:panelTooltip>
+
+                <ice:panelGroup panelTooltip="pttResumen" >
+                    <ice:outputText value="#{etiqueta.verResumen}">                                
+                    </ice:outputText>
+                </ice:panelGroup>                                                    
+            </ice:column>                      
+
+        </ice:dataTable>
+
+    </ice:form>
+</div>

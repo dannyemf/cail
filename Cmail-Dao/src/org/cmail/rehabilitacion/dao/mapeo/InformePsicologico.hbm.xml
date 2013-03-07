@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.htp.InformePsicologico" table="htp_inf_psicologico">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="adolescente" lazy="false">
+      <column name="id_adolescente" not-null="true"/>
+    </many-to-one>
+    
+    <!--
+    <many-to-one class="org.cmail.rehabilitacion.modelo.htp.TestHtp" name="testHtp" lazy="false">
+      <column name="id_test" not-null="true"/>
+    </many-to-one>
+    -->
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.FichaIngreso" name="fichaIngreso" lazy="false">
+      <column name="id_ficha" not-null="true"/>
+    </many-to-one>
+        
+    <property name="fecha" type="java.util.Date">
+      <column name="fecha" not-null="true"/>
+    </property>
+    
+    <property name="situacionPresente" type="java.lang.String">
+      <column name="situacionPresente" sql-type="text"/>
+    </property>
+    
+    <property name="anamnesisAntecedentes" type="java.lang.String">
+      <column name="anamnesisAntecedentes" sql-type="text"/>
+    </property>
+    
+    <property name="historiaLaboral" type="java.lang.String">
+      <column name="historiaLaboral" sql-type="text"/>
+    </property>
+    
+    <property name="historiaSalud" type="java.lang.String">
+      <column name="historiaSalud" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesIdentidadFortalezas" type="java.lang.String">
+      <column name="condicionesIdentidadFortalezas" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesIdentidadDebilidades" type="java.lang.String">
+      <column name="condicionesIdentidadDebilidades" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesSaludFortalezas" type="java.lang.String">
+      <column name="condicionesSaludFortalezas" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesSaludDebilidades" type="java.lang.String">
+      <column name="condicionesSaludDebilidades" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesEducacionFortalezas" type="java.lang.String">
+      <column name="condicionesEducacionFortalezas" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesEducacionDebilidades" type="java.lang.String">
+      <column name="condicionesEducacionDebilidades" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesVinvulosFamiliaresFortalezas" type="java.lang.String">
+      <column name="condicionesVinvulosFamiliaresFortalezas" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesVinculosFamiliaresDebilidades" type="java.lang.String">
+      <column name="condicionesVinculosFamiliaresDebilidades" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesFormacionTrabajoFortalezas" type="java.lang.String">
+      <column name="condicionesFormacionTrabajoFortalezas" sql-type="text"/>
+    </property>
+    
+    <property name="condicionesFormacionTrabajoDebilidades" type="java.lang.String">
+      <column name="condicionesFormacionTrabajoDebilidades" sql-type="text"/>
+    </property>
+        
+    <property name="examenFunciones" type="java.lang.String">
+      <column name="examenFunciones" sql-type="text"/>
+    </property>
+    
+    <property name="informacionPuebasPsicologicas" type="java.lang.String">
+      <column name="informacionPuebasPsicologicas" sql-type="text"/>
+    </property>
+    
+    <property name="informacionReactivosTest" type="java.lang.String">
+      <column name="informacionReactivosTest" sql-type="text"/>
+    </property>
+    
+    <property name="impresioesDiagnosticasPsicologo" type="java.lang.String">
+      <column name="impresioesDiagnosticasPsicologo" sql-type="text"/>
+    </property>
+    
+    <property name="planAcompaniamiento" type="java.lang.String">
+      <column name="planAcompaniamiento" sql-type="text"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

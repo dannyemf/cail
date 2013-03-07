@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.sira.Evento" table="sira_actividad">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.Agenda" name="agenda" lazy="false" foreign-key="fk_evento_agenda">
+      <column name="id_agenda" not-null="true"/>
+    </many-to-one>
+    
+    <property name="fechaEjecucion" type="java.util.Date">
+      <column name="fecha_ejecucion" not-null="true"/>
+    </property>        
+    <property name="descripcion" type="java.lang.String">
+      <column  name="descripcion" not-null="true"/>
+    </property>
+    <property name="lugar" type="java.lang.String">
+      <column name="lugar" not-null="true"/>
+    </property>
+    <property name="porcentajeEjecucion" type="java.lang.Integer">
+      <column name="porcentaje_ejecucion" not-null="true"/>
+    </property>        
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+        
+  </class>
+</hibernate-mapping>

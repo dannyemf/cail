@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3399/cail</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <!--
+    configuration pool via c3p0 (segundos)
+    <property name="c3p0.acquire_increment">1</property>
+    <property name="c3p0.idle_test_period">100</property>    
+    <property name="c3p0.max_size">100</property>
+    <property name="c3p0.min_size">10</property>
+    <property name="c3p0.timeout">100</property>    
+    <property name="c3p0.max_statements">0</property>
+    -->
+    <!-- seconds -->
+    <!-- DEPRECATED very expensive property name="c3p0.validate>-->
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Usuario.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Perfil.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Opcion.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Persona.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Parametro.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/FichaIngreso.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/FichaIngresoDocumento.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/FichaEgreso.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Agenda.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Evento.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Provincia.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Canton.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Parroquia.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/ArticuloWeb.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/ImagenWeb.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/AuditoriaEntidad.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/AuditoriaPropiedad.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Esquema.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/EsquemaPregunta.hbm.xml"/>
+    <!--Htp-->
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/TestHtp.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/TestHtpRespuesta.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml"/>    
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/InterpretacionTestHtp.hbm.xml"/>
+    
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Categoria.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Indicador.hbm.xml"/>
+    <!--Vistas-->
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/VwOpcion.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/VwFichaIngreso.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/VwIngresoSalida.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/VwInformePsicologico.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/hibernate.mapping.xml"/>
+  </session-factory>
+</hibernate-configuration>

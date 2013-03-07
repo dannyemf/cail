@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+    <class name="org.cmail.rehabilitacion.modelo.sira.FichaEgreso" table="sira_fichaegreso">
+        
+        <id name="id" type="java.lang.Long" unsaved-value="-1">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>        
+        
+        <!--Relaciones-->
+        <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" not-null="true" name="adolescente" lazy="false">
+            <column name="id_adolescente"/>
+        </many-to-one>
+        
+        <many-to-one class="org.cmail.rehabilitacion.modelo.sira.FichaIngreso" not-null="true" fetch="select" name="fichaIngreso" lazy="false">
+            <column name="id_ingreso"/>
+        </many-to-one>
+        
+        <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="autorizaEgreso" lazy="false">
+            <column name="id_aut_egreso"/>
+        </many-to-one>
+        
+        <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="responsableEgreso" lazy="false">
+            <column name="id_res_egreso"/>
+        </many-to-one>
+        
+        <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="companeroEgreso" lazy="false">
+            <column name="id_com_egreso"/>
+        </many-to-one>
+        <!--End Relaciones-->
+        
+        <!--General-->
+        <property name="lugar" type="java.lang.String">
+            <column name="lugar" not-null="true"/>
+        </property>    
+        <property name="fecha" type="java.util.Date">
+            <column name="fecha" not-null="true"/>
+        </property>            
+        <property name="tiempoPermanencia" type="java.lang.String">
+            <column name="tiempo_permanencia" not-null="true"/>
+        </property>
+        <property name="parentescoCompaneroEgreso" type="java.lang.String">                                                           
+            <column name="parentesco_companero_egreso"/>                                         
+        </property>
+        <!--End General-->
+        
+        <!--Egreso-->
+        <property name="razEgCadRetencion" type="boolean">
+            <column name="raz_eg_cad_retencion" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgTermMedida" type="boolean">
+            <column name="raz_eg_term_medida" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgCadIntPreventivo" type="boolean">
+            <column name="raz_eg_cad_intpreventivo" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgCadRetInvestigacion" type="boolean">
+            <column name="raz_eg_cad_retinvestiacion" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgCadRetComparecencia" type="boolean">
+            <column name="raz_eg_cad_retcomparecencia" sql-type="tinyint(1)"/>
+        </property>    
+        <property name="razEgDefuncion" type="boolean">
+            <column name="raz_eg_defuncion" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgResJusdicial" type="boolean">
+            <column name="raz_eg_resjudicial" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgEvasionFuga" type="boolean">
+            <column name="raz_eg_fuga" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgTrasferencia" type="boolean">
+            <column name="raz_eg_trasferencia" sql-type="tinyint(1)"/>
+        </property>
+        <property name="razEgEmbarazo" type="boolean">
+            <column name="raz_eg_embarazo" sql-type="tinyint(1)"/>
+        </property>                       
+        <property name="docsEgreso" type="java.lang.String">
+            <column name="docs_egreso" not-null="true"/>
+        </property>    
+        <property name="aceptacionSalida" type="boolean">
+            <column name="aceptacion_salida" sql-type="tinyint(1)"/>
+        </property>
+        <property name="expAceptacionSalida" type="java.lang.String">
+            <column name="exp_aceptacion_salida"/>
+        </property>
+        <property name="aceptacionPersonaSalida" type="boolean">
+            <column name="aceptacion_persalida" sql-type="tinyint(1)"/>
+        </property>
+        <property name="expAceptacionPersonaSalida" type="java.lang.String">
+            <column name="exp_aceptacion_persalida"/>
+        </property>           
+        <property name="egAmbosProgenitores" type="boolean">
+            <column name="eg_ambos_progenitores" sql-type="tinyint(1)"/>    
+        </property>
+        <property name="egPadre" type="boolean">       
+            <column name="eg_padre" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egMadre" type="boolean">       
+            <column name="eg_madre" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egRepresentante" type="boolean">       
+            <column name="eg_respresentante" sql-type="tinyint(1)"/>     
+        </property>    
+        <property name="egHermano" type="boolean">       
+            <column name="eg_hermano" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egHermana" type="boolean">       
+            <column name="eg_hermana" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egAbuelo" type="boolean">       
+            <column name="eg_abuelo" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egAbuela" type="boolean">       
+            <column name="eg_abuela" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egAmbosAbuelos" type="boolean">       
+            <column name="eg_ambosabuelos" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egTios" type="boolean">       
+            <column name="eg_tios" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egPareja" type="boolean">       
+            <column name="eg_pareja" sql-type="tinyint(1)"/>     
+        </property>
+        <property name="egSolo" type="boolean">       
+            <column name="eg_solo" sql-type="tinyint(1)"/>     
+        </property>        
+        <property name="egOtros" type="boolean">       
+            <column name="eg_otros" sql-type="tinyint(1)"/>     
+        </property>    
+        <property name="relacionEgOtros" type="java.lang.String">
+            <column name="relacion_eg_otros"/>
+        </property>        
+        <property name="condFisEgPerfectas" type="boolean">                    
+            <column name="cond_fis_eg_perfectas" sql-type="tinyint(1)"/>              
+        </property>  
+        <property name="condFisEgLastimados" type="boolean">                    
+            <column name="eg_fis_eg_lastimados" sql-type="tinyint(1)"/>              
+        </property>  
+        <property name="condFisEgMoretones" type="boolean">                    
+            <column name="cond_fis_eg_moretones" sql-type="tinyint(1)"/>              
+        </property>          
+        <property name="condEmoEgTranquilo" type="boolean">                                 
+            <column name="cond_emo_eg_tranquilo" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgAgresivo" type="boolean">                                 
+            <column name="cond_emo_eg_agresivo" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgExtrovertido" type="boolean">                                 
+            <column name="cond_emo_eg_extrovertido" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgIntrovertido" type="boolean">                                 
+            <column name="cond_emo_eg_introvertido" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgConfinado" type="boolean">                                 
+            <column name="cond_emo_eg_confinado" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgAsustado" type="boolean">                                 
+            <column name="cond_emo_eg_asustado" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgAlegre" type="boolean">                                 
+            <column name="cond_emo_eg_alegre" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgOtro" type="boolean">                                 
+            <column name="cond_emo_eg_otro" sql-type="tinyint(1)"/>                       
+        </property>  
+        <property name="condEmoEgOtroNombre" type="java.lang.String">
+            <column name="cond_emo_otro_nombre"/>   
+        </property>
+        <property name="condSaludEgTEnfermedad" type="java.lang.String">                                 
+            <column name="cond_salud_eg_enfermedad" />                       
+        </property>  
+        <property name="condSaludEgMedicinas" type="java.lang.String">
+            <column name="cond_salud_medicinas"/>   
+        </property>
+        <property name="descPertenencias" type="java.lang.String">                                 
+            <column name="desc_pertenencias" />                       
+        </property>          
+        <property name="personaQueVivira" type="java.lang.String">                                 
+            <column name="persona_vivira" />                       
+        </property>          
+        <property name="direccionTelefonoRef" type="java.lang.String">                                 
+            <column name="dir_telf_referencia" />                       
+        </property>
+        <!--End Egreso-->
+                
+         <!--Auditoria-->
+        <property name="auditCreateDate" type="java.util.Date">
+            <column name="auditCreateDate"/>
+        </property>    
+        <property name="auditUpdateDate" type="java.util.Date">
+            <column name="auditUpdateDate"/>
+        </property>    
+        <property name="auditCreateUser" type="java.lang.String">
+            <column name="auditCreateUser"  length="45"/>
+        </property>    
+        <property name="auditUpdateUser" type="java.lang.String">
+            <column name="auditUpdateUser"  length="45"/>
+        </property>
+        <!--Fin Auditoria-->
+    </class>
+</hibernate-mapping>

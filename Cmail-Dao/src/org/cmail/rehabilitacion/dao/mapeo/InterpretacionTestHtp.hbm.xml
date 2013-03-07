@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp" table="htp_interpretacion_test">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="adolescente" lazy="false">
+      <column name="id_adolescente" not-null="true"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.FichaIngreso" name="fichaIngreso" lazy="false">
+      <column name="id_ficha" not-null="true"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.htp.TestHtp" name="testHtp" lazy="false">
+      <column name="id_test" not-null="true"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.seguridad.Usuario" name="evaluador" lazy="false">
+      <column name="id_evaluador" not-null="true"/>
+    </many-to-one>            
+    
+    <property name="fecha" type="java.util.Date">
+      <column name="fecha" not-null="true"/>
+    </property>
+    
+    <property name="historiaAdolescente" type="java.lang.String">
+      <column name="historiaAdolescente" length="255"/>
+    </property>
+    
+    <property name="comentarioConducta" type="java.lang.String">
+      <column name="comentarioConducta" length="255"/>
+    </property>
+    
+    <property name="graficoProporcion" type="java.lang.String">
+      <column name="graficoProporcion" length="500"/>
+    </property>
+    
+    <property name="graficoPerspectiva" type="java.lang.String">
+      <column name="graficoPerspectiva" length="500"/>
+    </property>
+    
+    <property name="graficoDetalle" type="java.lang.String">
+      <column name="graficoDetalle" length="500"/>
+    </property>
+    
+    <property name="interrogativoPosterior" type="java.lang.String">
+      <column name="interrogativoPosterior" length="255"/>
+    </property>
+    
+    <property name="resumenPsicologo" type="java.lang.String">
+      <column name="resumenPsicologo" length="255"/>
+    </property>
+    
+    <property name="nivelRehabilitacionNombre" type="java.lang.String">
+      <column name="nivelRehabilitacionNombre" length="255"/>
+    </property>
+    
+    <property name="porcenjateRehabilitacionSistema" type="java.lang.Double">
+      <column name="porcenjateRehabilitacionSistema" not-null="true"/>
+    </property>
+    
+    <property name="porcenjateRehabilitacionEvaluador" type="java.lang.Double">
+      <column name="porcenjateRehabilitacionEvaluador" not-null="true"/>
+    </property>
+    
+    <property name="porcenjateRehabilitacion" type="java.lang.Double">
+      <column name="porcenjateRehabilitacion" not-null="true"/>
+    </property>        
+    
+    <property name="nivelRehabilitacion" type="java.lang.Integer">
+      <column name="nivelRehabilitacion" not-null="true"/>
+    </property>
+                         
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+</hibernate-mapping>

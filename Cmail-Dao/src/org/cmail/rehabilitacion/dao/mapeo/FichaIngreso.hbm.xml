@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.sira.FichaIngreso" table="sira_fichaingreso">      
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <!--Relaciones-->
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="adolescente" cascade="save-update" lazy="false">
+      <column name="id_adolescente"/>
+    </many-to-one>
+            
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.FichaEgreso" name="fichaEgreso" lazy="false">
+      <column name="id_egreso"/>
+    </many-to-one>
+                
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="representante" cascade="save-update" lazy="false">
+      <column name="id_representante" />
+    </many-to-one>
+       
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="responsableResguardoPertenencia" cascade="save-update" lazy="false">
+      <column name="id_res_pertenencia"/>
+    </many-to-one>     
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="responsableTraslado" cascade="save-update" lazy="false">
+      <column name="id_res_traslado"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" name="responsableIngreso" cascade="save-update" lazy="false">
+      <column name="id_res_ingreso"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Provincia" fetch="select" name="provinciaDetencion" lazy="false">
+        <column name="id_pro_detencion"/>
+    </many-to-one>    
+                  
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Canton" fetch="select" name="cantonDetencion" lazy="false">
+        <column name="id_can_detencion"/>
+    </many-to-one>   
+                   
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Parroquia" fetch="select" name="parroquiaDetencion" lazy="false">
+        <column name="id_par_detencion"/>
+    </many-to-one>  
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Provincia" fetch="select" name="provinciaResidencia" lazy="false">
+      <column name="id_pro_residencia"/>
+    </many-to-one>     
+                 
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Canton" fetch="select" name="cantonResidencia" lazy="false">
+      <column name="id_can_residencia"/>
+    </many-to-one> 
+                     
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Parroquia" fetch="select" name="parroquiaResidencia" lazy="false">
+      <column name="id_par_residencia"/>
+    </many-to-one>  
+    
+    <set inverse="true" name="documentos" cascade="all-delete-orphan" lazy="false">
+      <key>
+        <column name="id_ficha"/>
+      </key>
+      <one-to-many class="org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento"/>
+    </set>
+    <!--End Relaciones-->
+    
+    <!--General-->
+    <property name="lugar" type="java.lang.String">
+      <column name="lugar" />
+    </property>
+    <property name="fecha" type="java.util.Date">
+      <column name="fecha" />
+    </property>
+    <property name="razonIngreso" type="java.lang.String">
+      <column name="razonIngreso" length="255" />
+    </property>        
+    <property name="observaciones" type="java.lang.String">
+      <column name="observaciones"/>
+    </property>
+    <property name="barrioDetencion" type="java.lang.String">
+      <column name="barrio_detencion"/>
+    </property>
+    <property name="comunidadDetencion" type="java.lang.String">
+      <column name="comunidad_detencion"/>
+    </property>
+    <!--End General-->
+    
+    <!--Adolescente-->
+    <property name="estadoCivil" type="java.lang.String">
+      <column name="estado_civil"/>
+    </property>
+    <property name="edad" type="java.lang.Integer">
+      <column name="edad"/>
+    </property>
+    <property name="cedulado" type="boolean">
+      <column name="cedulado" sql-type="tinyint(1)"/>
+    </property>       
+    <property name="nivelEducativoTipo" type="java.lang.String">
+      <column name="nivel_educativo_tipo"/>
+    </property>
+    <property name="nivelEducativoNombre" type="java.lang.String">
+      <column name="nivel_educativo_nombre"/>
+    </property>    
+    <property name="autoidentificacion" type="java.lang.String">
+      <column name="autoidentificacion"/>
+    </property>
+    <property name="nacionalidad" type="java.lang.String">
+      <column name="nacionalidad"/>
+    </property>
+    <property name="idiomaCastellano" type="boolean">
+      <column name="idioma_castellano" sql-type="tinyint(1)"/>
+    </property>
+    <property name="idiomaIngles" type="boolean">
+      <column name="idioma_ingles" sql-type="tinyint(1)"/>
+    </property>
+    <property name="lenguaNativa" type="boolean">
+      <column name="lengua_nativa" sql-type="tinyint(1)"/>
+    </property>
+    <property name="lenguaNativaNombre" type="java.lang.String">
+      <column name="lengua_nativa_nombre"/>
+    </property>
+    <property name="otroLenguaje" type="boolean">
+      <column name="otro_lenguaje" sql-type="tinyint(1)"/>
+    </property>
+    <property name="otroLenguajeNombre" type="java.lang.String">
+      <column name="otro_lenguaje_nombre"/>
+    </property>    
+    <property name="tipoOcupacion" type="java.lang.String">
+      <column name="tipo_ocupacion"/>
+    </property>
+    <property name="tiempoOcupacionActual" type="java.lang.String">
+      <column name="tiempo_ocupacion_Actual"/>
+    </property>
+    <property name="tiempoResidenciaActual" type="java.lang.String">
+      <column name="tiempo_residencia_Actual"/>
+    </property>
+    <property name="telefonoResidencia" type="java.lang.String">
+      <column name="telefono_residencia"/>
+    </property>                
+    <property name="barrioResidencia" type="java.lang.String">
+      <column name="barrio_residencia"/>
+    </property>
+    <property name="comunidadResidencia" type="java.lang.String">
+      <column name="comunidad_residencia"/>
+    </property>
+    <property name="numeroHijosHombres" type="java.lang.Integer">
+      <column name="num_hijos_hombres"/>
+    </property>
+    <property name="edadesHijosHombres" type="java.lang.String">
+      <column name="edad_hijos_hombres"/>
+    </property>
+    <property name="numeroHijosMujeres" type="java.lang.Integer">
+      <column name="num_hijos_mujeres"/>
+    </property>
+    <property name="edadesHijosMujeres" type="java.lang.String">
+      <column name="edad_hijos_mujeres"/>
+    </property>
+    <property name="ingresaHijos" type="boolean">
+      <column name="ingresa_hijos" sql-type="tinyint(1)"/>
+    </property>
+    <property name="numeroHijosEdades" type="java.lang.String">
+      <column name="num_hijos_edades"/>
+    </property>    
+    <property name="nombrePersona1" type="java.lang.String">
+      <column name="nombre_persona1"/>
+    </property>
+    <property name="parentescoPersona1" type="java.lang.String">
+      <column name="parentesco_persona1"/>
+    </property>
+    <property name="telefonoPersona1" type="java.lang.String">
+      <column name="telefono_persona1"/>
+    </property>
+    <property name="nombrePersona2" type="java.lang.String">
+      <column name="nombre_persona2"/>
+    </property>
+    <property name="parentescoPersona2" type="java.lang.String">
+      <column name="parentesco_persona2"/>
+    </property>
+    <property name="telefonoPersona2" type="java.lang.String">
+      <column name="telefono_persona2"/>
+    </property>
+    <!--Adolescente-->
+    
+    <!--Ingreso-->
+    <property name="razInMedidaCautelar" type="boolean">
+      <column name="raz_in_medidacautelar" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMcRetencion" type="boolean">
+      <column name="raz_in_mc_retencion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMcInvestigacion" type="boolean">
+      <column name="raz_in_mc_investigacion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMcComparecencia" type="boolean">
+      <column name="raz_in_mc_comparecencia" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMcIntPreventivo" type="boolean">
+      <column name="raz_in_mc_intpreventivo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMedidaSocioeducativa" type="boolean">
+      <column name="raz_in_medidasocioeducativa" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsIntFinSemana" type="boolean">
+      <column name="raz_in_ms_finsemana" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsIntSemiLibertad" type="boolean">
+      <column name="raz_in_ms_semilibertad" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="razInMsIntInstitucional" type="boolean">
+      <column name="raz_in_ms_intinstitucional" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsLibAsistida" type="boolean">
+      <column name="raz_in_ms_libasistida" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsServComunidad" type="boolean">
+      <column name="raz_in_ms_servcomunidad" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsRepDanoCausado" type="boolean">
+      <column name="raz_in_ms_repdanocausado" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsOrientaApoyoFamiliar" type="boolean">
+      <column name="raz_in_ms_apoyofamiliar" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsAmonestacionImposicion" type="boolean">
+      <column name="raz_in_ms_amonestimposicion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInMsAmonestacion" type="boolean">
+      <column name="raz_in_ms_amonestacion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInReingreso" type="boolean">
+      <column name="raz_in_reingreso" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInRiMedidaCautelar" type="boolean">
+      <column name="raz_in_ri_medidacautelar" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInRiMedidaSocioeducativa" type="boolean">
+      <column name="raz_in_ri_medidasocioeducativa" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInRiOtroTipo" type="boolean">
+      <column name="raz_in_ri_otrotipo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="razInRiOtroTipoNombre" type="java.lang.String">
+      <column name="raz_in_ri_otrotipo_nombre"/>
+    </property>    
+    <property name="juez" type="java.lang.String">
+      <column name="juez"/>
+    </property>
+    <property name="tiempoMedida" type="java.lang.String">
+      <column name="tiempo_medida"/>
+    </property>
+    <property name="causalVManejarAlcoholizado" type="boolean">
+      <column name="causal_v_manejaralcoholizado" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalVHurto" type="boolean">
+      <column name="causal_v_hurto" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalVPosecionArmas" type="boolean">
+      <column name="causal_v_posesionarmas" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalVRecaptura" type="boolean">
+      <column name="causal_v_recaptura" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalVFalsificacionDoc" type="boolean">
+      <column name="causal_v_falsificaciondoc" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfHomicidio" type="boolean">
+      <column name="causal_inf_homicidio" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfIntHomicidio" type="boolean">
+      <column name="causal_inf_inthomicidio" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfAsesinato" type="boolean">
+      <column name="causal_inf_asesinato" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfLesiones" type="boolean">
+      <column name="causal_inf_lesiones" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfPlagio" type="boolean">
+      <column name="causal_inf_plagio" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfIntPlagio" type="boolean">
+      <column name="causal_inf_intplagio" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfAsalto" type="boolean">
+      <column name="causal_inf_asalto" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfTrataPersonas" type="boolean">
+      <column name="causal_inf_tratapersonas" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfTrafico" type="boolean">
+      <column name="causal_inf_trafico" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfConsumo" type="boolean">
+      <column name="causal_inf_consumo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfVenta" type="boolean">
+      <column name="causal_inf_venta" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfTrata" type="boolean">
+      <column name="causal_inf_trata" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="causalInfRobo" type="boolean">
+      <column name="causal_inf_robo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfIntentoRobo" type="boolean">
+      <column name="causal_inf_intentorobo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfAbigeato" type="boolean">
+      <column name="causal_inf_abigeato" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfEstafa" type="boolean">
+      <column name="causal_inf_estafa" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfExtorsion" type="boolean">
+      <column name="causal_inf_extorcion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfDestruccion" type="boolean">
+      <column name="causal_inf_destruccion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfViolacion" type="boolean">
+      <column name="causal_inf_violacion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfIntentoViolacion" type="boolean">
+      <column name="causal_inf_intviolacion" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfEstupro" type="boolean">
+      <column name="causal_inf_estupro" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfAtentPudor" type="boolean">
+      <column name="causal_inf_atentpudor" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfAcosoSexual" type="boolean">
+      <column name="causal_inf_acososexual" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="causalInfTrataExplotSexual" type="boolean">
+      <column name="causal_inf_trataexplotsexual" sql-type="tinyint(1)"/>
+    </property>
+    <property name="causalInfOtros" type="java.lang.String">
+      <column name="causal_inf_otros"/>
+    </property>            
+    <property name="condFisIngMoretones" type="boolean">
+      <column name="cond_fis_ing_moretones" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condFisIngLastimados" type="boolean">
+      <column name="cond_fis_ing_lastimados" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condFisIngOtros" type="boolean">
+      <column name="cond_fis_ing_otros" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condFisIngOtrosNombre" type="java.lang.String">
+      <column name="cond_fis_otros_nombre"/>
+    </property>    
+    <property name="condEmoIngTranquilo" type="boolean">
+      <column name="cond_emo_ing_tranquilo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condEmoIngExtrovertido" type="boolean">
+      <column name="cond_emo_ing_extrovertido" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condEmoIngIntrovertido" type="boolean">
+      <column name="cond_emo_ing_introvertido" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condEmoIngAgresivo" type="boolean">
+      <column name="cond_emo_ing_agresivo" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condEmoIngAsustado" type="boolean">
+      <column name="cond_emo_ing_asustado" sql-type="tinyint(1)"/>
+    </property>
+    <property name="condEmoIngOtros" type="boolean">
+      <column name="cond_emo_ing_otros" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="condEmoIngOtrosNombre" type="java.lang.String">
+      <column name="cond_emo_otros_nombre"/>
+    </property>
+    <property name="condSaludEnfermedad" type="java.lang.String">
+      <column name="cond_salud_enfermedad"/>
+    </property>
+    <property name="condSaludMedicina" type="java.lang.String">
+      <column name="cond_salud_medicina"/>
+    </property>
+    <property name="condSaludSintDroga" type="boolean">
+      <column name="cond_salud_sintoma_droga" sql-type="tinyint(1)"/>
+    </property>        
+    <property name="pertDescripcion" type="java.lang.String">
+      <column name="petenencias_descripcion"/>
+    </property>            
+    <property name="delitoFlagrante" type="boolean">
+      <column name="delito_flagrante" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="medidasCautelares" type="boolean">
+      <column name="medidas_cautelares" sql-type="tinyint(1)"/>
+    </property>    
+    <property name="medidasSocioeducativas" type="boolean">
+      <column name="medidas_socioeducativas" sql-type="tinyint(1)"/>
+    </property>
+    <!--End Ingreso-->
+            
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->    
+  </class>
+</hibernate-mapping>

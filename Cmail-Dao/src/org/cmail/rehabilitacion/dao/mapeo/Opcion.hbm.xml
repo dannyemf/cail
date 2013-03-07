@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.seguridad.Opcion" table="seg_opcion">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.seguridad.Opcion" fetch="select" name="padre" lazy="false">
+      <column name="id_padre"/>
+    </many-to-one>
+    
+    <set cascade="all-delete-orphan" name="perfiles" table="seg_opcion_perfil" lazy="false">
+      <key column="id_opcion"/>
+      <many-to-many class="org.cmail.rehabilitacion.modelo.seguridad.Perfil" column="id_perfil"/>
+    </set>
+    
+    <property name="etiqueta" type="java.lang.String">
+      <column length="45" name="etiqueta" not-null="true"/>
+    </property>    
+    <property name="url" type="java.lang.String">
+      <column length="80" name="url"/>
+    </property>
+    <property name="titulo" type="java.lang.String">
+      <column length="80" name="titulo"/>
+    </property>
+    <property name="icono" type="java.lang.String">
+      <column length="80" name="icono"/>
+    </property>        
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+</hibernate-mapping>

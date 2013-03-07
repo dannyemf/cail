@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.seguridad.VwOpcion" table="vw_opcion">    
+    
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>      
+    </id>
+    
+    <property name="idPadre" type="java.lang.Long">
+      <column length="45" name="id_padre"/>
+    </property>
+    
+    <property name="idPerfil" type="java.lang.Long">
+      <column length="45" name="id_perfil"/>
+    </property>
+    
+    <property name="etiqueta" type="java.lang.String">
+      <column length="45" name="etiqueta"/>
+    </property>    
+    
+    <property name="url" type="java.lang.String">
+      <column length="80" name="url"/>
+    </property>
+    
+    <property name="titulo" type="java.lang.String">
+      <column length="80" name="titulo"/>
+    </property>
+    
+    <property name="icono" type="java.lang.String">
+      <column length="80" name="icono"/>
+    </property>
+    
+    
+    
+  </class>
+</hibernate-mapping>

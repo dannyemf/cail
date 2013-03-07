@@ -1,0 +1,118 @@
+<div 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ice="http://www.icesoft.com/icefaces/component" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"    
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    
+    xmlns:cailcomp="http://java.sun.com/jsf/composite/cailcomp">        
+
+    <ice:form id="form">
+        <ice:messages id="messages"></ice:messages>                        
+        <br/>
+        
+        <ace:panel header="#{mensaje.infPsico1}" toggleable="true">
+            <cailcomp:outputAdolescente adolescente="#{informeController.informeEdicion.adolescente}"></cailcomp:outputAdolescente>
+        </ace:panel>
+        
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico2}" toggleable="true">
+            <ice:inputTextarea id="txtSituacionPresente" label="#{etiqueta.situacionPresente}" value="#{informeController.informeEdicion.situacionPresente}" required="true" style="width: 100%;" rows="2"></ice:inputTextarea>
+            <ice:message for="txtSituacionPresente"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico3}" toggleable="true">
+            <ice:inputTextarea id="txtAnamnesisPersonal" label="#{etiqueta.anamnesisPersonal}" value="#{informeController.informeEdicion.anamnesisAntecedentes}" required="true" style="width: 100%;" rows="22"></ice:inputTextarea>
+            <ice:message for="txtAnamnesisPersonal"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico4}" toggleable="true">
+            <ice:inputTextarea id="txtHistorialLaboral" label="#{etiqueta.historialLaboral}" value="#{informeController.informeEdicion.historiaLaboral}" style="width: 100%;" rows="2"></ice:inputTextarea>
+            <ice:message for="txtHistorialLaboral"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico5}" toggleable="true">
+            <ice:inputTextarea id="txtHistorialSalud" label="#{etiqueta.historialSalud}" value="#{informeController.informeEdicion.historiaSalud}" style="width: 100%;" rows="2"></ice:inputTextarea>
+            <ice:message for="txtHistorialSalud"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <!--Tabla de fortaleza y deb-->
+        <ace:panel header="#{mensaje.infPsico6}" toggleable="true">
+        <!--ice:inputTextarea value="#{informeController.informeEdicion.condiciones}" style="width: 100%;" rows="2"></ice:inputTextarea-->        
+
+            <ice:panelGrid columns="3">
+                <ice:outputText></ice:outputText>
+                <ice:outputText value="#{etiqueta.fortalezas}"></ice:outputText>
+                <ice:outputText value="#{etiqueta.debilidades}"></ice:outputText>
+
+                <ice:outputText value="#{etiqueta.identidadAutoestima}"></ice:outputText>                
+                <ice:inputText value="#{informeController.informeEdicion.condicionesIdentidadFortalezas}"></ice:inputText>
+                <ice:inputText value="#{informeController.informeEdicion.condicionesIdentidadDebilidades}"></ice:inputText>
+
+                <ice:outputText value="#{etiqueta.salud}"></ice:outputText>                
+                <ice:inputText value="#{informeController.informeEdicion.condicionesSaludFortalezas}"></ice:inputText>
+                <ice:inputText value="#{informeController.informeEdicion.condicionesSaludDebilidades}"></ice:inputText>
+
+                <ice:outputText value="#{etiqueta.educacion}"></ice:outputText>                
+                <ice:inputText value="#{informeController.informeEdicion.condicionesEducacionFortalezas}"></ice:inputText>
+                <ice:inputText value="#{informeController.informeEdicion.condicionesEducacionDebilidades}"></ice:inputText>
+
+                <ice:outputText value="#{etiqueta.vinculosFamiliares}"></ice:outputText>                
+                <ice:inputText value="#{informeController.informeEdicion.condicionesVinvulosFamiliaresFortalezas}"></ice:inputText>
+                <ice:inputText value="#{informeController.informeEdicion.condicionesVinculosFamiliaresDebilidades}"></ice:inputText>
+
+                <ice:outputText value="#{etiqueta.formacionTrabajo}"></ice:outputText>                
+                <ice:inputText value="#{informeController.informeEdicion.condicionesFormacionTrabajoFortalezas}"></ice:inputText>
+                <ice:inputText value="#{informeController.informeEdicion.condicionesFormacionTrabajoDebilidades}"></ice:inputText>
+            </ice:panelGrid>
+        </ace:panel>
+
+        <ace:panel header="#{mensaje.infPsico7}" toggleable="true">
+            <ice:inputTextarea id="txtExamenFunciones" label="#{etiqueta.examenFunciones}" value="#{informeController.informeEdicion.examenFunciones}" required="true" style="width: 100%;" rows="4"></ice:inputTextarea>
+            <ice:message for="txtExamenFunciones"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico8}" toggleable="true">
+            <ice:inputTextarea id="txtInformacionPruebas" label="#{etiqueta.informacionPruebas}" value="#{informeController.informeEdicion.informacionPuebasPsicologicas}" required="true" style="width: 100%;" rows="4"></ice:inputTextarea>
+            <ice:message for="txtInformacionPruebas"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico9}" toggleable="true">
+            <ice:inputTextarea id="txtInformacionTests" label="#{etiqueta.informacionTests}" value="#{informeController.informeEdicion.informacionReactivosTest}" required="true" style="width: 100%;" rows="3"></ice:inputTextarea>
+            <ice:message for="txtInformacionTests"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico10}" toggleable="true">
+            <ice:inputTextarea id="txtImpresiones" label="#{etiqueta.impresioesDiagnosticas}" value="#{informeController.informeEdicion.impresioesDiagnosticasPsicologo}" required="true" style="width: 100%;" rows="4"></ice:inputTextarea>
+            <ice:message for="txtImpresiones"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <ace:panel header="#{mensaje.infPsico11}" toggleable="true">
+            <ice:inputTextarea id="txtPlanAcom" label="#{etiqueta.planAcompañamiento}" value="#{informeController.informeEdicion.planAcompaniamiento}" style="width: 100%;" rows="4"></ice:inputTextarea>
+            <ice:message for="txtPlanAcom"></ice:message>
+        </ace:panel>
+        <br/>
+
+        <br/>
+        
+        <div class="controles">
+            <ace:panel>                 
+                <c:if test="#{informeController.informeEdicion.id==-1}">
+                    <ice:commandLink id="btnGuardar" actionListener="#{informeController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+                </c:if>                    
+                <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{informeController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+            </ace:panel>
+        </div>
+    </ice:form>    
+</div>

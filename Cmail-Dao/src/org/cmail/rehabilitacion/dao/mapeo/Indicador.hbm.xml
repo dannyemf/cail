@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+    Document   : Provincia.hbm.xml
+    Created on : 17 de mayo de 2008, 04:03 PM
+    Author     : EFCarpioG
+    Description: Purpose of the document follows.
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.htp.Indicador" table="htp_indicador">
+    
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="native"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.htp.Categoria"  name="categoria" lazy="false">
+      <column name="id_categoria"/>
+    </many-to-one>
+    
+    <property name="nombre" type="java.lang.String">
+      <column length="250" name="nombre" not-null="true"/>
+    </property>
+    
+    <property name="definicion" type="java.lang.String">
+      <column length="250" name="definicion" not-null="true"/>
+    </property>
+    
+    <property name="significaciones" type="java.lang.String">
+      <column length="500" name="significaciones" not-null="true"/>
+    </property>
+    
+    <property name="tipo">
+        <type name="org.cmail.rehabilitacion.dao.mapeo.util.EnumUserType">
+            <param name="enumClassName">org.cmail.rehabilitacion.modelo.htp.TipoIndicador</param>
+        </type>      
+    </property>
+    
+    <property name="orden" type="java.lang.Integer">
+      <column name="orden" not-null="true" default="1"/>
+    </property>
+    
+    <property name="valor" type="java.lang.Integer">
+      <column name="valor" not-null="true" default="1"/>
+    </property>
+    
+    <property name="imagen" type="binary">
+      <column name="imagen" sql-type="LONGBLOB"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

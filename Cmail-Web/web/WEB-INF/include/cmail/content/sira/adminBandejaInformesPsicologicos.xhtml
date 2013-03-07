@@ -1,0 +1,69 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:icecore="http://www.icefaces.org/icefaces/core"     
+     xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
+     xmlns:cl="http://cail.com/component"
+     >
+
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <ice:outputLabel value="#{mensaje.listaInformesPsicologicos}"></ice:outputLabel>
+            </td>
+            <td align="right">
+                <ice:selectBooleanCheckbox partialSubmit="true" id="sbcLstAllInfs" value="#{bandejaController.listarInformesPorFicha}" title="#{mensaje.filtrarTestsPorIngreso}">
+                </ice:selectBooleanCheckbox>
+                <ice:outputLabel for="sbcLstAllInfs" value="#{mensaje.filtrarPorIngreso}"></ice:outputLabel>
+            </td>
+        </tr>
+    </table>               
+
+    <ice:dataTable id="dataTableInformes" value="#{bandejaController.informesPsicologicosFiltrados}" var="f" rows="10" scrollHeight="250px" width="100%">
+
+        <ice:column>                                      
+            <ice:panelGrid columns="3">
+                <ice:commandLink actionListener="#{bandejaController.eventoEditarInforme(evt, f.informe)}" id="btnEditar" title="#{accion.editar}">
+                    <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                </ice:commandLink>
+                
+                <ice:outputText title="#{mensaje.generarReporte}">
+                    <ice:outputResource label="Pdf" 
+                                        fileName="InformePsicologico-#{f.informe.id}.pdf" 
+                                        image="/resources/icono/row/row_reporte.png" 
+                                        mimeType="application/pdf"
+                                        resource="#{f.recurso}"
+                                        lastModified="#{f.recurso.modified}"
+                                        shared="false">                            
+                    </ice:outputResource>
+                </ice:outputText>
+            </ice:panelGrid>
+
+            <f:facet name="header">
+                <ice:outputText value="#{etiqueta.opciones}"/>
+            </f:facet>
+        </ice:column>
+
+        <ice:column>
+            <ice:outputText value="#{f.informe.fecha}">
+            </ice:outputText>
+            <f:facet name="header">
+                <ice:outputText id="outputText7" value="#{etiqueta.fecha}"/>
+            </f:facet>                    
+        </ice:column>                    
+
+        <ice:column>
+            <ice:outputText value="#{f.informe.fichaIngreso.edad}">
+            </ice:outputText>
+            <f:facet name="header">
+                <ice:outputText  value="#{etiqueta.edad}"/>
+            </f:facet>                    
+        </ice:column>
+
+    </ice:dataTable>
+
+</div>

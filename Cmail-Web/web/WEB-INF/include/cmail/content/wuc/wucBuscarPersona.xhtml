@@ -1,0 +1,282 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:icecore="http://www.icefaces.org/icefaces/core"
+
+     xmlns:cailcomp="http://java.sun.com/jsf/composite/cailcomp">            
+
+    <ice:form id="frmBuscar" >
+
+        <ace:confirmationDialog 
+            modal="true"            
+            widgetVar="pnlConfEliminar"
+            showEffect="explode"
+            header="Eliminar"            
+            message="¿Desea eliminar a la persona registrada como: #{wucBuscarPersona.personaSeleccionada.nombres} #{wucBuscarPersona.personaSeleccionada.apellidos}?"
+            >                        
+
+            <div align="right">                
+                <ice:commandLink value="#{accion.eliminar}" actionListener="#{wucBuscarPersona.accionEliminarOk}" styleClass="ui-icon-trash cail-button">
+                </ice:commandLink>
+
+                <ice:commandLink value="#{accion.cancelar}" onclick="pnlConfEliminar.hide();" styleClass="ui-icon-cancel cail-button">
+                </ice:commandLink>
+
+            </div>
+        </ace:confirmationDialog>
+
+        <ace:dialog
+            modal="true"        
+            draggable="true"	
+            closable="false"
+            closeOnEscape="false"
+            header="#{accion.buscar} #{wucBuscarPersona.rol.name().toLowerCase()}..."
+            widgetVar="wucBuscarPersona"
+            width="700"        
+            >
+
+            <script type="text/javascript">
+                $j(document).ready(function(){
+                    InitEvents();
+                });
+            </script>
+            
+            
+            <ice:panelStack selectedPanel="tab#{wucBuscarPersona.selectedIndex}">
+ 
+                <ice:panelGrid id="tab0" style="width: 100%">
+
+                    <ace:panel>
+                        <ice:panelGrid columns="4">
+                            <ice:outputText value="#{etiqueta.texto}"></ice:outputText>
+                            <ice:inputText value="#{wucBuscarPersona.textoPopupBuscar}" style="width: 250px"></ice:inputText>
+                            <ice:commandLink value="#{accion.buscar}" styleClass="ui-icon-search cail-button" actionListener="#{wucBuscarPersona.accionBuscar}"></ice:commandLink>
+                            <ice:commandLink value="#{accion.nueva}" styleClass="ui-icon-document cail-button" actionListener="#{wucBuscarPersona.accionNueva}"></ice:commandLink>
+                        </ice:panelGrid>
+                    </ace:panel>
+
+                    <ace:dataTable                    
+                        var="p"
+                        value="#{wucBuscarPersona.listaPersonas}"
+                        rows="10" 
+                        paginator="#{wucBuscarPersona.listaPersonas.rowCount > 10}"
+                        >
+
+                        <ace:column headerText="#{etiqueta.opciones}">
+                            <ice:panelGrid columns="3">
+                                <ice:commandLink id="lnkSel"  actionListener="#{wucBuscarPersona.accionSeleccionar}" onclick="wucBuscarPersona.hide();">
+                                    <ice:graphicImage value="./resources/icono/row/row_seleccionar.png" alt="#{accion.seleccionar}" title="#{accion.seleccionar}"></ice:graphicImage>
+                                </ice:commandLink>
+
+                                <ice:commandLink id="lnkEdi"  actionListener="#{wucBuscarPersona.accionEditar}">
+                                    <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}" title="#{accion.editar}"></ice:graphicImage>                                    
+                                </ice:commandLink>
+
+                                <ice:commandLink id="lnkEli" actionListener="#{wucBuscarPersona.accionEliminar(p)}">
+                                    <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}" title="#{accion.eliminar}"></ice:graphicImage>
+                                </ice:commandLink>
+                            </ice:panelGrid>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.cedula}">                        
+                            <ice:outputText value="#{p.cedula}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.nombres}">                        
+                            <ice:outputText value="#{p.nombres}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.apellidos}">     
+                            <ice:outputText value="#{p.apellidos}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.sexo}">          
+                            <ice:outputText value="#{p.sexo}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.telefono}">      
+                            <ice:outputText value="#{p.telefono}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.celular}">                               
+                            <ice:outputText value="#{p.celular}"></ice:outputText>
+                        </ace:column>
+
+                        <ace:column headerText="#{etiqueta.nacimiento}">                        
+                            <ice:outputText value="#{p.fechaNacimiento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                            </ice:outputText>
+                        </ace:column>
+
+                    </ace:dataTable>                                
+
+                    <div align="center">
+                        <ice:commandLink id="closeModal"  value="#{accion.cerrar}" styleClass="ui-icon-close cail-button" onclick="wucBuscarPersona.hide();" actionListener="#{wucBuscarPersona.accionCerrar}" immediate="true"></ice:commandLink>
+                    </div>
+
+                </ice:panelGrid>
+                
+                
+                <!-- EDICION -->
+                <ice:panelGrid id="tab1" style="width: 100%">
+                    <ice:panelGroup>
+                    <table style="width: 100%">
+                        <tr>
+                            <td><ice:outputLabel for="txtCedula" value="#{etiqueta.cedula}"></ice:outputLabel></td>
+                            <td>
+                                <ice:panelGrid>
+                                    <ice:inputText id="txtCedula"                                               
+                                                   value="#{wucBuscarPersona.personaEdicion.cedula}"                                                
+                                                   validator="#{wucBuscarPersona.validarCedula}"
+                                                   required="#{wucBuscarPersona.cedulaRequired}"                                                   
+                                                   partialSubmit="true"
+                                                   label="#{etiqueta.cedula}"
+                                                   styleClass="numeric"
+                                                   maxlength="15">
+                                    </ice:inputText>
+                                    <ice:message for="txtCedula"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                            <td><ice:outputLabel for="dtpFechaNac" value="#{etiqueta.fechaNacimiento}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>                                    
+                                    <ace:dateTimeEntry
+                                        id="dtpFechaNac"                                        
+                                        validator="fechaNacimientoValidator"
+                                        converter="dateEntryConverter"                                        
+                                        locale="es"
+                                        required="true"
+                                        renderAsPopup="true"
+                                        singleSubmit="true"
+                                        navigator="true"
+                                        disableHoverStyling="true"
+                                        pattern="dd/MM/yyyy"
+                                        value="#{wucBuscarPersona.personaEdicion.fechaNacimiento}"
+                                        requiredMessage="#{mensaje.seleccioneFecha}"
+                                        timeZone="#{mainController.timeZone}">
+                                    </ace:dateTimeEntry>
+                                    <ice:message for="dtpFechaNac"></ice:message>
+                                </ice:panelGrid>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputLabel for="txtNombres" value="#{etiqueta.nombres}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>                        
+                                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{wucBuscarPersona.personaEdicion.nombres}" />
+                                    <ice:message for="txtNombres"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                            <td><ice:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}"></ice:outputLabel></td>
+                            <td>
+                                <ice:panelGrid>
+                                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{wucBuscarPersona.personaEdicion.apellidos}"></ice:inputText>
+                                    <ice:message for="txtApellidos"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputLabel for="cmbSexo" value="#{etiqueta.sexo}"></ice:outputLabel></td>
+                            <td>
+                                <ice:panelGrid>
+                                    <cailcomp:selectOneMenuSexo id="cmbSexo" value="#{wucBuscarPersona.personaEdicion.sexo}" ice="true" partialSubmit="true"></cailcomp:selectOneMenuSexo>                                    
+                                    <ice:message for="cmbSexo"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                            <td><ice:outputLabel for="txtOcupacion" value="#{etiqueta.ocupacion}"></ice:outputLabel></td>
+                            <td>
+                                <ice:panelGrid>
+                                    <ice:inputText  id="txtOcupacion" label="#{etiqueta.ocupacion}" value="#{wucBuscarPersona.personaEdicion.ocupacion}" required="true" style="width: 250px" ></ice:inputText>
+                                    <ice:message for="txtOcupacion"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputLabel for="cmbEstadoCivil" value="#{etiqueta.estadoCivil}"/></td>
+                            <td>
+                                <cailcomp:selectOneMenuEstadoCivil
+                                    id="cmbEstadoCivil" value="#{wucBuscarPersona.personaEdicion.estadoCivil}" ice="true" partialSubmit="true">
+                                </cailcomp:selectOneMenuEstadoCivil>                                
+                            </td>
+                            <td><ice:outputLabel for="txtEmail" value="#{etiqueta.email}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>
+                                    <ice:inputText  id="txtEmail" value="#{wucBuscarPersona.personaEdicion.email}" style="width: 250px" partialSubmit="true" styleClass="email">
+                                        <f:validator validatorId="emailValidator"/>
+                                    </ice:inputText>
+                                    <ice:message for="txtEmail"></ice:message>
+                                </ice:panelGrid>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputLabel for="txtCelular" value="#{etiqueta.celular}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>
+                                    <ice:inputText  id="txtCelular"  value="#{wucBuscarPersona.personaEdicion.celular}" partialSubmit="true" styleClass="numeric" maxlength="10">
+                                        <f:validator validatorId="cellPhoneValidator"/>
+                                    </ice:inputText>
+                                    <ice:message for="txtCelular"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                            <td><ice:outputLabel for="txtDireccion" value="#{etiqueta.direccion}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>
+                                    <ice:inputTextarea  id="txtDireccion" value="#{wucBuscarPersona.personaEdicion.direccion}" style="width: 250px; height: 60px" partialSubmit="true"></ice:inputTextarea>
+                                    <ice:message for="txtDireccion"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputLabel for="txtTelefono" value="#{etiqueta.telefono}"></ice:outputLabel></td>
+                            <td>                            
+                                <ice:panelGrid>
+                                    <ice:inputText  id="txtTelefono" value="#{wucBuscarPersona.personaEdicion.telefono}"  partialSubmit="true" styleClass="phone" maxlength="10">
+                                        <f:validator validatorId="phoneValidator"/>
+                                    </ice:inputText>
+                                    <ice:message for="txtTelefono"></ice:message>
+                                </ice:panelGrid>
+                            </td>
+                            <td><ice:outputLabel for="txtCargo" value="#{etiqueta.cargo}"/></td>
+                            <td>                            
+                                <ice:panelGrid>
+                                    <ice:inputText id="txtCargo" label="#{etiqueta.cargo}" value="#{wucBuscarPersona.personaEdicion.cargo}"/>                                
+                                    <ice:message for="txtCargo"/>
+                                </ice:panelGrid>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><ice:outputText value="#{etiqueta.lugarNacimiento}"></ice:outputText></td>
+                            <td colspan="3">
+                                <cailcomp:selectOneProvincia 
+                                    id="sopNacimiento"
+                                    tipo="Nacimiento"
+                                    label="#{etiqueta.nacimiento}"
+                                    required="true"
+                                    bean="#{wucBuscarPersona.personaEdicion}"
+                                    provincia="#{wucBuscarPersona.personaEdicion.provinciaNacimiento}"
+                                    canton="#{wucBuscarPersona.personaEdicion.cantonNacimiento}"
+                                    parroquia="#{wucBuscarPersona.personaEdicion.parroquiaNacimiento}">                        
+                                </cailcomp:selectOneProvincia>
+                            </td>
+                        </tr>
+                    </table>
+                    </ice:panelGroup>
+
+
+                    <br/>
+
+                    <ice:panelLayout layout="flow" style="text-align: center">
+                        <ice:commandLink value="#{accion.guardar}" styleClass="ui-icon-disk cail-button" actionListener="#{wucBuscarPersona.accionGuardar}"></ice:commandLink>
+                        <ice:commandLink value="#{accion.cancelar}" styleClass="ui-icon-close cail-button" actionListener="#{wucBuscarPersona.accionCancelar}" immediate="true"></ice:commandLink>
+                    </ice:panelLayout>
+                    
+                </ice:panelGrid> 
+                
+            </ice:panelStack>
+            
+        </ace:dialog>
+    </ice:form>
+</div>

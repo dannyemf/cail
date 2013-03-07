@@ -1,0 +1,194 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"     
+     
+     xmlns:cailcomp="http://java.sun.com/jsf/composite/cailcomp">
+    
+    <input type="hidden" id="subpath" value='#{categoriaController.categoriaEdicion.id > 0 ? accion.editar : accion.nueva}'/>    
+
+    <ice:form id="frmEditarCategoria">
+        <ace:panel header="#{etiqueta.datosGenerales}">
+        <ice:panelGrid columns="3">
+
+            <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
+            <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" value="#{categoriaController.categoriaEdicion.nombre}" required="true" maxlength="45">
+                <f:validateLength minimum="3"></f:validateLength>
+            </ice:inputText>                
+            <ice:message for="txtNombre" showDetail="true"></ice:message>
+            
+            <ice:outputLabel for="cmbTipo" value="#{etiqueta.tipo}"></ice:outputLabel>
+            <ice:selectOneMenu id="cmbTipo" value="#{categoriaController.categoriaEdicion.tipo}">
+                <f:selectItem itemValue="PROPORCION" itemLabel="#{etiqueta.proporcion}"/>
+                <f:selectItem itemValue="PERSPECTIVA" itemLabel="#{etiqueta.perspectiva}"/>
+                <f:selectItem itemValue="DETALLES" itemLabel="#{etiqueta.detalles}"/>
+            </ice:selectOneMenu>
+            <ice:message for="cmbTipo" showDetail="true"></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>          
+            <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  value="#{categoriaController.categoriaEdicion.descripcion}" maxlength="250" cols="80">                    
+            </ice:inputTextarea>
+            <ice:message for="txtDescripcion" showDetail="true"></ice:message>
+        </ice:panelGrid>                       
+        </ace:panel>
+
+        <br/>
+        
+        
+        <ice:outputText value="#{mensaje.listaIndicadores}"></ice:outputText>
+        
+        <ace:tabSet id="tabSetIndicadores" immediate="true">
+            
+            <ace:tabPane label="#{etiqueta.casa}">
+                <cailcomp:panelIndicadores 
+                    id="panelIndicadoresCasa"
+                    actionListenerNuevo="#{categoriaController.eventoNuevoIndicadorCasa}"
+                    indicadores="#{categoriaController.categoriaEdicion.indicadoresCasa}">                    
+                </cailcomp:panelIndicadores>
+            </ace:tabPane>
+            
+            <ace:tabPane label="#{etiqueta.arbol}">
+                <cailcomp:panelIndicadores 
+                    id="panelIndicadoresArol"
+                    actionListenerNuevo="#{categoriaController.eventoNuevoIndicadorArbol}"
+                    indicadores="#{categoriaController.categoriaEdicion.indicadoresArbol}">                    
+                </cailcomp:panelIndicadores>
+            </ace:tabPane>
+            
+            <ace:tabPane label="#{etiqueta.persona}">
+                <cailcomp:panelIndicadores 
+                    id="panelIndicadoresPersona"
+                    actionListenerNuevo="#{categoriaController.eventoNuevoIndicadorPersona}"
+                    indicadores="#{categoriaController.categoriaEdicion.indicadoresPersona}">                    
+                </cailcomp:panelIndicadores>
+            </ace:tabPane>
+            
+        </ace:tabSet>
+        
+        <ace:dialog
+            id="dlgEditarIndicador"
+            header="#{mensaje.editar_indicador_title}"
+            closable="false"
+            closeOnEscape="false"
+            draggable="true"
+            modal="true"
+            widgetVar="dlgEditarIndicador"   
+            rendered="#{categoriaController.indicadorEdicion != null}"
+            >
+            
+            <ice:panelGrid columns="3">
+                
+                <ice:outputText  value="#{etiqueta.nombre}"/>
+                <ice:inputText id="txtIndNombre" label="#{etiqueta.nombre}" value="#{categoriaController.indicadorEdicion.nombre}" validator="#{categoriaController.validateNombreIndicador}" required="true" requiredMessage="(*)" style="width: 380px"/>
+                <ice:message for="txtIndNombre" showDetail="true"></ice:message>
+                
+                <ice:outputText  value="#{etiqueta.valor}"/>
+                <h:selectOneMenu styleClass="iceSelOneMnu" id="cmbIndValor" label="#{etiqueta.valor}" value="#{categoriaController.indicadorEdicion.valor}">
+                    <f:selectItems value="#{categoriaController.valoresIndicadores}"></f:selectItems>
+                </h:selectOneMenu>                
+                <ice:message for="cmbValor"></ice:message>
+                
+                <ice:outputText  value="#{etiqueta.orden}"/>
+                <ice:inputText id="txtIndOrden" styleClass="integer" value="#{categoriaController.indicadorEdicion.orden}" required="true" requiredMessage="(*)"></ice:inputText>
+                <ice:message for="txtIndOrden"></ice:message>
+                
+                <ice:outputLabel  value="#{etiqueta.descripcion}" for="txtIndDef"/>
+                <ice:inputTextarea id="txtIndDefinicion" value="#{categoriaController.indicadorEdicion.definicion}" label="#{etiqueta.descripcion}" style="width: 380px"/>
+                <ice:message for="txtIndDefinicion" showDetail="true"></ice:message>
+                
+                <ice:outputLabel  value="#{etiqueta.significaciones}" for="txtIndSigni"/>
+                <ice:inputTextarea id="txtIndSignificaciones" label="#{etiqueta.significaciones}" requiredMessage="(*)" value="#{categoriaController.indicadorEdicion.significaciones}" required="true" style="width: 380px"/>
+                <ice:message for="txtIndSignificaciones" showDetail="true"></ice:message>
+            
+                <ice:outputLabel  value="#{etiqueta.imagen}"/>
+                <ice:panelGrid>                    
+                    <ice:graphicImage value="#{categoriaController.indicadorEdicion.imagen}" height="100"></ice:graphicImage>                    
+                    <ice:panelGrid columns="3">                            
+                        <ace:fileEntry fileEntryListener="#{categoriaController.listenerUploadImagenIndicador}"></ace:fileEntry>
+                        <h:commandButton value="#{accion.subir}"></h:commandButton>
+                        <ice:commandButton value="#{accion.limpiar}" actionListener="#{categoriaController.eventoLimpiarImagenIndicador}"></ice:commandButton>
+                    </ice:panelGrid>
+                </ice:panelGrid>
+                
+            </ice:panelGrid>
+            
+            <br/>
+            <hr/>
+            <center>
+                <ice:commandLink value="#{accion.guardar}" styleClass="ui-icon-disk cail-button" actionListener="#{categoriaController.eventoGuardarIndicador}"></ice:commandLink>
+                <ice:commandLink value="#{accion.cancelar}" styleClass="ui-icon-cancel cail-button" immediate="true" actionListener="#{categoriaController.eventoCancelarEditarIndicador}"></ice:commandLink>
+            </center>
+                    
+        </ace:dialog>
+        
+        <ace:dialog                     
+            id="dlgEliminarIndicador"
+            header="#{mensaje.eliminar_indicador_title}"
+            closable="true"
+            closeOnEscape="true"
+            draggable="true"
+            modal="true"
+            widgetVar="dlgEliminarIndicador"   
+            rendered="#{categoriaController.indicadorEdicion != null}">
+            
+            <ice:panelGrid columns="2">
+                <ice:graphicImage value="./resources/icono/mensaje/eliminar.png"></ice:graphicImage>
+                <ice:outputText value='#{mensaje.eliminar_indicador}'></ice:outputText>
+            </ice:panelGrid>
+            
+            <br/>            
+            <hr/>
+            
+            <center>
+                <ice:commandLink styleClass="ui-icon-trash cail-button" value="#{accion.eliminar}" actionListener="#{categoriaController.eventoEliminarIndicadorOk}"></ice:commandLink>
+                <ice:commandLink styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}" onclick="dlgEliminarIndicador.hide();"></ice:commandLink>
+            </center>
+        </ace:dialog>
+        
+        <ace:dialog                     
+            id="dlgCopiarIndicador"
+            header="#{mensaje.copiar_indicador_title}"
+            closable="true"
+            closeOnEscape="true"
+            draggable="true"
+            modal="true"
+            widgetVar="dlgCopiarIndicador"   
+            rendered="#{categoriaController.indicadorEdicion != null}">
+            
+            <ice:graphicImage value="./resources/icono/row/row_nuevo_mas.png"></ice:graphicImage>
+            <ice:outputText value="#{mensaje.copiar_indicador}"></ice:outputText>
+            
+            <ice:panelGrid columns="2">
+                
+                <ice:outputLabel value="#{etiqueta.indicador}"></ice:outputLabel>
+                <ice:inputText value="#{categoriaController.indicadorEdicion.nombre}" readonly="true"></ice:inputText>
+                
+                <ice:outputLabel value="#{accion.copiarA}"></ice:outputLabel>
+                <ice:selectManyCheckbox immediate="true" partialSubmit="true" value="#{categoriaController.tiposIndicadorSeleccionados}">
+                    <f:selectItems value="#{categoriaController.tiposIndicadores}"></f:selectItems>
+                </ice:selectManyCheckbox>
+            </ice:panelGrid>
+            
+            <br/>            
+            <hr/>
+            
+            <center>
+                <ice:commandLink immediate="true" styleClass="ui-icon-trash cail-button" value="#{accion.copiar}" actionListener="#{categoriaController.eventoCopiarIndicadorOk}"></ice:commandLink>
+                <ice:commandLink immediate="true" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}" actionListener="#{categoriaController.eventoCancelarCopiarIndicador}"></ice:commandLink>
+            </center>
+        </ace:dialog>
+
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar" actionListener="#{categoriaController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{categoriaController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+
+    </ice:form>
+    
+</div>

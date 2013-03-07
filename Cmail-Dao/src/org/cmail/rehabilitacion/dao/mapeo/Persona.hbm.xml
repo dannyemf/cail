@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.Persona" table="sira_persona">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>    
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="padre" lazy="false">
+      <column name="id_padre"/>
+    </many-to-one>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.Persona" fetch="select" name="madre" lazy="false">
+      <column name="id_madre"/>
+    </many-to-one>                   
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Provincia" fetch="select" name="provinciaNacimiento" lazy="false">
+      <column name="id_provincia_nacimiento"/>
+    </many-to-one>    
+                  
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Canton" fetch="select" name="cantonNacimiento" lazy="false">
+      <column name="id_canton_nacimiento"/>
+    </many-to-one>    
+                  
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Parroquia" fetch="select" name="parroquiaNacimiento" lazy="false">
+      <column name="id_parroquia_nacimiento"/>
+    </many-to-one>
+    
+    <property name="cedula" type="java.lang.String">
+      <column length="45" name="cedula" unique="false"/>
+    </property>    
+    <property name="nombres" type="java.lang.String">
+      <column length="45" name="nombres" not-null="true"/>
+    </property>
+    <property name="apellidos" type="java.lang.String">
+      <column length="45" name="apellidos" not-null="true"/>
+    </property>    
+    <property name="sexo" type="java.lang.String">
+      <column length="1" name="sexo" not-null="true"/>
+    </property>    
+    <property name="direccion" type="java.lang.String">
+      <column length="45" name="direccion"/>
+    </property>
+    <property name="telefono" type="java.lang.String">
+      <column name="telefono"/>
+    </property>
+    <property name="celular" type="java.lang.String">
+      <column name="celular"/>
+    </property>
+    <property name="email" type="java.lang.String">
+      <column name="email"/>
+    </property>
+    <property name="ocupacion" type="java.lang.String">
+      <column name="ocupacion"/>
+    </property>
+    <property name="parentesco" type="java.lang.String">
+      <column name="parentesco"/>
+    </property>    
+    <property name="fechaNacimiento" type="java.util.Date">
+      <column name="fecha_nacimiento" not-null="true"/>
+    </property>    
+    <property name="fechaRegistro" type="java.util.Date">
+      <column name="fecha_registro" />
+    </property>
+    <property name="cargo" type="java.lang.String">
+      <column name="cargo" />
+    </property>
+    <property name="roles" type="java.lang.String">
+      <column name="roles" />
+    </property>    
+    <property name="estadoCivil" type="java.lang.String">
+      <column name="estado_civil"/>
+    </property>
+    
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+</hibernate-mapping>

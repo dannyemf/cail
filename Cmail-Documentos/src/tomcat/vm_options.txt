@@ -1,0 +1,4 @@
+Poner en:
+Prestaciones/Propiedades tomcat/Plataforma/VM OPTIONS
+
+-Xms128m -Xmx512m -XX:MaxPermSize=256m

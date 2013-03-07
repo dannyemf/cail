@@ -1,0 +1,152 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     >    
+    
+    <input type="hidden" id="subpath" value='#{opcionController.opcionEdicion.id > 0 ? accion.editar : accion.nueva}'/>
+    
+    <ice:form xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+        <ace:panel header="#{etiqueta.datosGenerales}">
+        <ice:panelGrid columns="3">
+
+            <ice:outputLabel value="#{etiqueta.etiqueta}"></ice:outputLabel>
+            <ice:inputText id="txtEtiqueta"
+                           style="width: 300px"
+                           value="#{opcionController.opcionEdicion.etiqueta}" required="true"> </ice:inputText>
+            <ice:message id="msgEtiqueta" for="txtEtiqueta" ></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.ruta}"></ice:outputLabel>
+            <ice:inputText id="txtURL"  
+                           style="width: 300px"
+                           value="#{opcionController.opcionEdicion.url}"> </ice:inputText>
+            <ice:message id="msgURL" for="txtURL"></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.padre}"></ice:outputLabel>
+            <c:if test="#{opcionController.opcionEdicion.padre != null}">
+                <ice:inputText 
+                    style="width: 300px"
+                    value="#{opcionController.opcionEdicion.padre.etiqueta}" disabled="true"></ice:inputText>
+            </c:if>
+            <c:if test="#{opcionController.opcionEdicion.padre == null}">
+                <ice:inputText 
+                    style="width: 300px"
+                    value="#{etiqueta._ninguno_}" disabled="true"></ice:inputText>
+            </c:if>
+            <ice:message id="msgPadre" for="txtPadre"></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.titulo}"></ice:outputLabel>
+            <ice:inputText id="txtTitulo"  
+                           style="width: 300px"
+                           value="#{opcionController.opcionEdicion.titulo}" > </ice:inputText>
+            <ice:message id="msgTitulo" for="txtTitulo"></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.icono}"></ice:outputLabel>
+            <ice:inputText id="txtIcono"  
+                           style="width: 300px"
+                           value="#{opcionController.opcionEdicion.icono}" > </ice:inputText>
+            <ice:message id="msgIcono" for="txtIcono"></ice:message>
+
+        </ice:panelGrid>
+
+        </ace:panel>
+
+        <br/>           
+
+        <ace:panel header="#{mensaje.seleccionPerfiles}">           
+
+        <!-- Modal Panel Popup -->
+        <ice:panelPopup id="modalPnlPop" draggable="true" modal="true" visible="#{opcionController.dialogoConfirmPerfiles}" styleClass="corePopup">
+            <f:facet name="header">
+                <ice:panelGroup styleClass="popupHeaderWrapper">
+                    <ice:outputText value="#{etiqueta.perfiles}" styleClass="popupHeaderText"/>
+                    <ice:commandButton id="modalPnlCloseBtn"  immediate="true" partialSubmit="true" actionListener="#{opcionController.eventoGuardarConfirmPerfilesCancel}" styleClass="popupHeaderImage" title="#{accion.cerrar}" alt="X"/>
+                </ice:panelGroup>
+            </f:facet>
+            <f:facet name="body">
+                <ice:panelGroup styleClass="popupBody">                        
+                    <ice:outputText value="#{mensaje.opcion_perfiles_asignados}"/>
+                    <br/>
+                    <ice:outputText value="#{mensaje.opcion_perfiles_cascada}"/>
+                    <br/>
+                    <ice:outputLabel value="#{mensaje.opcion_perfiles_remover}"></ice:outputLabel>
+                    <ice:dataTable id="dtPerRem" var="p" value="#{opcionController.perfilesHijos}">
+                        <ice:column>
+                            <center>
+                                <ice:outputText id="perNom"  value="#{p.nombre}"/>
+                            </center>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText2" value="#{etiqueta.nombre}"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column>
+                            <center>
+                                <ice:outputText id="perDesc"  value="#{p.descripcion}"/>
+                            </center>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText2Des" value="#{etiqueta.descripcion}"/>
+                            </f:facet>
+                        </ice:column>
+                    </ice:dataTable>
+
+                    <br/>
+                    <ice:outputLabel value="#{mensaje.opcion_perfiles_proceso}"/>
+                    <br/>
+                    <br/>
+                    <ice:panelGroup style="text-align: center">
+
+                        <ice:commandButton id="modalPnlCloseButton" immediate="true" actionListener="#{opcionController.eventoGuardarConfirmPerfiles}" style="margin-right: 20px" styleClass="ui-button-text-icons">
+                            <span class="ui-button-icon-primary ui-icon ui-icon-disk"></span><span class="ui-button-text">Guardar</span>
+                        </ice:commandButton>
+
+                        <ice:commandButton id="modalPnlCloseButtonCancel" immediate="true" actionListener="#{opcionController.eventoGuardarConfirmPerfilesCancel}" styleClass="ui-button-text-icons">
+                            <span class="ui-button-icon-primary ui-icon ui-icon-cancel"></span><span class="ui-button-text">Cancelar</span>
+                        </ice:commandButton>
+
+                    </ice:panelGroup>
+
+                </ice:panelGroup>
+            </f:facet>
+
+        </ice:panelPopup>
+
+        <ice:dataTable id="dataTable1" value="#{opcionController.opcionEdicion.perfiles}" var="perfil" rows="10" scrollHeight="250px">
+            <ice:column id="column1">
+                <center>
+                    <ice:selectBooleanCheckbox id="sbcbSeleccionado"  value="#{perfil.seleccionado}"/>
+                </center>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="#{accion.activar}/#{accion.desactivar}"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{perfil.nombre}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="#{etiqueta.nombre}"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3">
+                <ice:outputText id="outputText5" value="#{perfil.descripcion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="#{etiqueta.descripcion}"/>
+                </f:facet>
+            </ice:column>                    
+        </ice:dataTable>
+
+        </ace:panel>
+
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar" actionListener="#{opcionController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{opcionController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+
+    </ice:form>
+
+</div>

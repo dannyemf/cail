@@ -1,0 +1,35 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     class="ui-corner-all">               
+    
+     <ice:form id="frm">                  
+         
+         <ice:panelSeries var="c" value="#{homeController.entradasHome}">
+             
+             <ace:panel header="#{c.titulo}" toggleable="true">
+                 <ice:outputText value="#{c.resumen}" escape="false" nospan="true"></ice:outputText>
+                 
+                 <br/>
+                 
+                 <ice:commandLink value="Leer más..." rendered="#{c.leerMas}"
+                                  title="Leer el artículo completo..."  
+                                  actionListener="#{homeController.eventoLeerEntrada}" 
+                                  styleClass="ui-icon-circle-plus cail-button">                     
+                     <f:param name="contenidoId" value="#{c.id}"></f:param>
+                 </ice:commandLink>
+             </ace:panel>                          
+             
+             <br/>             
+             
+         </ice:panelSeries>
+         
+         <div style="clear: both"></div>
+               
+     </ice:form>
+
+</div>

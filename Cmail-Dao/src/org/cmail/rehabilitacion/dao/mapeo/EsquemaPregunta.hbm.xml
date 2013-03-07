@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta" table="sira_esquema_pregunta">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.sira.Esquema" name="esquema" lazy="false">
+      <column name="id_esquema" not-null="true"/>
+    </many-to-one>
+          
+    <property name="enunciado" type="java.lang.String">
+      <column  name="enunciado" not-null="true"/>
+    </property>
+    
+    <property name="tipo" type="java.lang.String">
+      <column name="tipo" not-null="true"/>
+    </property>
+    
+    <property name="grupo" type="java.lang.String">
+      <column name="grupo" not-null="true"/>
+    </property>
+    
+    <property name="numero" type="java.lang.Integer">
+      <column name="numero" not-null="true" default="0"/>
+    </property>
+    
+    <property name="requerida" type="boolean">
+      <column name="requerida" sql-type="tinyint(1)" default="0"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

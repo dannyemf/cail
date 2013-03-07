@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.sira.VwIngresoSalida" table="vw_ingreso_salida" mutable="false">    
+    
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>      
+    </id>
+    
+    <property name="fechaIngreso" type="java.util.Date">
+      <column name="fechaIngreso"/>
+    </property>
+    
+    <property name="fechaEgreso" type="java.util.Date">
+      <column name="fechaEgreso"/>
+    </property>
+    
+    <property name="nombres" type="java.lang.String">
+      <column length="45" name="nombres"/>
+    </property>
+    
+    <property name="apellidos" type="java.lang.String">
+      <column length="45" name="apellidos"/>
+    </property>
+    
+    <property name="razonIngreso" type="java.lang.String">
+      <column length="255" name="razonIngreso"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

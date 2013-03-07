@@ -1,0 +1,104 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"     
+     >    
+
+    <ice:form id="form">            
+
+        <ice:messages id="messages"></ice:messages>
+
+        <div class="opciones">
+            <ace:panel>                
+                <ice:panelGrid columns="10">
+                    
+                    <ice:outputLabel value="#{etiqueta.texto}"></ice:outputLabel>
+                    <ice:inputText 
+                        value="#{galeriaController.texto}"                         
+                        label="#{etiqueta.texto}"
+                        actionListener="#{galeriaController.eventoBuscar}">
+                    </ice:inputText>                                                                        
+
+                    <ice:commandLink id="btnBuscar"  actionListener="#{galeriaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
+                    <ice:commandLink id="btnNuevo" immediate="true" actionListener="#{galeriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+
+                </ice:panelGrid>                    
+            </ace:panel>
+        </div>
+
+        <ice:dataTable id="dataTableGaleria" value="#{galeriaController.model}" var="p" rows="10" scrollHeight="250px" width="100%">
+            
+            <ice:column>
+                <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" title="#{mensaje.eliminar_entrada_title}" message="#{mensaje.eliminar_entrada}"  rendered="true"/>
+                <ice:panelLayout layout="flow">
+                    <ice:commandLink actionListener="#{galeriaController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                        <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                    </ice:commandLink>                            
+
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{galeriaController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}">
+                        <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                    </ice:commandLink>                            
+                </ice:panelLayout> 
+                
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.opciones}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.nombre}"/>                        
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.nombre}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+            
+            <ice:column>
+                <ice:outputText value="#{p.orden}"/>                        
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.orden}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+            
+            <ice:column>
+                <ice:outputText value="#{p.estado ? etiqueta.activo:etiqueta.inactivo}"/>                        
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.estado}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+            
+            <ice:column>
+                <ice:outputText value="#{p.mimeType}"/>                        
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.tipo}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+
+        </ice:dataTable>
+        
+        <!-- Paginator with page controls -->        
+        <ice:dataPaginator id="dataScrollGaleria" for="dataTableGaleria" paginator="true" fastStep="#{accion.fastStep}" paginatorMaxPages="#{accion.paginatorMaxPages}">
+            <f:facet name="first">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;" title="#{accion.first}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="last">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;" title="#{accion.last}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="previous">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;" title="#{accion.previous}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="next">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;" title="#{accion.next}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastforward">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;" title="#{accion.fastforward}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastrewind">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;" title="#{accion.fastrewind}"></ice:graphicImage>
+            </f:facet>
+        </ice:dataPaginator>
+
+    </ice:form>
+</div>

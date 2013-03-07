@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.AuditoriaPropiedad" table="aud_propiedad">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.AuditoriaEntidad"  name="auditoria" lazy="false">
+      <column name="id_auditoria"/>
+    </many-to-one>
+    
+    <property name="nombre" type="java.lang.String">
+      <column  name="nombre"/>
+    </property>
+    
+    <property name="valor" type="java.lang.String">
+      <column  name="valor"/>
+    </property>
+    
+    <property name="estado" type="java.lang.String">
+      <column  name="estado"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

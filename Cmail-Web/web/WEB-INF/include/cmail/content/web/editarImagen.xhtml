@@ -1,0 +1,87 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"     
+     
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    <input type="hidden" id="subpath" value='#{galeriaController.imagenEdicion.id > 0 ? accion.editar : accion.nuevo}'/>
+
+    <ice:form id="formImage">
+        
+        <div style="padding: 3px" class="ui-state-highlight">
+            <ice:panelGrid columns="2">
+                <span class="ui-icon-info cail-button"></span>
+                <ice:outputText style="font-weight: bold;" value="#{mensaje.imagen_galeria_size} #{galeriaController.parametroSize.valor}"></ice:outputText>
+            </ice:panelGrid>
+        </div>        
+        <br/>
+        
+        <ace:panel header="#{etiqueta.datosGenerales}">
+        <ice:panelGrid columns="3">
+
+            <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
+            <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" 
+                           style="width: 300px"
+                           value="#{galeriaController.imagenEdicion.nombre}" required="true" disabled="true">
+                <f:validateLength minimum="1"></f:validateLength>
+            </ice:inputText>                
+            <ice:message for="txtNombre" showDetail="true"  ></ice:message>      
+            
+            <ice:outputLabel for="txtOrden" value="#{etiqueta.orden}"></ice:outputLabel>
+            <ice:inputText id="txtOrden" label="#{etiqueta.orden}" 
+                           style="width: 300px"
+                           styleClass="integer"
+                           value="#{galeriaController.imagenEdicion.orden}">
+            </ice:inputText>                
+            <ice:message for="txtOrden" showDetail="true"  ></ice:message>
+            
+            <ice:outputLabel for="chkEstado" value="#{etiqueta.estado}"></ice:outputLabel>
+            <ice:selectBooleanCheckbox id="chkEstado" value="#{galeriaController.imagenEdicion.estado}"></ice:selectBooleanCheckbox>
+            <ice:message for="chkEstado"></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>
+            <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  
+                               style="width: 300px"
+                               value="#{galeriaController.imagenEdicion.descripcion}" required="true" maxlength="80">
+                <f:validateLength minimum="3"></f:validateLength>
+            </ice:inputTextarea>
+            <ice:message for="txtDescripcion" showDetail="true"></ice:message>
+            
+            <ice:outputLabel value="#{etiqueta.imagen}"></ice:outputLabel>            
+            <ice:panelGrid>
+                <c:if test="#{galeriaController.imagenEdicion.data eq null}">
+                    <ice:graphicImage value="./resources/icono/nosubido.png"></ice:graphicImage>
+                </c:if>
+                <ice:graphicImage value="#{galeriaController.imagenEdicion.data}"></ice:graphicImage>
+                <ice:panelGrid columns="2">
+                    <ace:fileEntry id="feImagen" 
+                                   useOriginalFilename="true"                            
+                                   label="Imagen"
+                                   fileEntryListener="#{galeriaController.listenerUpload}">                    
+                    </ace:fileEntry>
+                    <h:commandButton value="Subir"></h:commandButton>
+                </ice:panelGrid>
+            </ice:panelGrid>
+            <ice:message for="feImagen" showDetail="true"></ice:message>
+            
+            
+            
+        </ice:panelGrid>                       
+
+        </ace:panel>
+
+        <br/>
+
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar" actionListener="#{galeriaController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{galeriaController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+        
+    </ice:form>
+    
+</div>

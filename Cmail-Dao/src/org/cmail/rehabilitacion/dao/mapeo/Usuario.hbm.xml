@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.seguridad.Usuario" table="seg_usuario">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <set cascade="save-update" name="perfiles" table="seg_usuario_perfil" lazy="false">
+      <key column="id_usuario"/>
+      <many-to-many class="org.cmail.rehabilitacion.modelo.seguridad.Perfil" column="id_perfil"/>
+    </set>
+    
+    <property name="cedula" type="java.lang.String">
+      <column length="10" name="cedula" not-null="true" unique="true"/>
+    </property>
+    <property name="login" type="java.lang.String">
+      <column length="15" name="login" not-null="true" unique="true"/>
+    </property>
+    <property name="clave" type="java.lang.String">
+      <column length="45" name="clave" not-null="true"/>
+    </property>    
+    <property name="nombres" type="java.lang.String">
+      <column length="80" name="nombres" not-null="true"/>
+    </property>
+    <property name="apellidos" type="java.lang.String">
+      <column length="80" name="apellidos" not-null="true"/>
+    </property>
+    <property name="localidad" type="java.lang.String">
+      <column length="80" name="localidad" not-null="true" default="'Loja'"/>
+    </property>
+    
+    <property name="activo" type="boolean">
+      <column name="activo" sql-type="tinyint(1)"/>
+    </property>
+    
+    <property name="fechaRegistro" type="java.util.Date">
+      <column name="fecha_registro" not-null="true"/>
+    </property>
+    
+    <property name="temaUi" type="java.lang.String">
+      <column length="45" name="temaUi" not-null="true" default="'start'"/>
+    </property>        
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+  
+    <database-object>
+      <create>
+          CREATE OR REPLACE VIEW vw_test AS SELECT u.id, u.cedula, u.login FROM seg_usuario u ORDER BY u.login DESC;
+      </create>
+      <drop>drop view vw_test;</drop>
+      <dialect-scope name="org.hibernate.dialect.MySQLDialect"></dialect-scope>
+      <dialect-scope name="org.hibernate.dialect.MySQLInnoDBDialect"></dialect-scope>        
+      <dialect-scope name="org.hibernate.dialect.MySQL5Dialect"></dialect-scope>
+      <dialect-scope name="org.hibernate.dialect.MySQL5InnoDBDialect"></dialect-scope>
+    </database-object>
+</hibernate-mapping>

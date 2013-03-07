@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+    Document   : Canton.hbm.xml
+    Created on : 17 de mayo de 2008, 04:05 PM
+    Author     : EFCarpioG
+    Description:
+        Purpose of the document follows.
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.localizacion.Canton" table="loc_canton">
+    
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="native"/>
+    </id>
+    
+    <many-to-one class="org.cmail.rehabilitacion.modelo.localizacion.Provincia" name="provincia" lazy="false">
+      <column name="id_provincia"/>
+    </many-to-one>
+    
+    <set inverse="true" name="parroquias" cascade="all-delete-orphan" lazy="false" order-by="nombre asc">
+      <key>
+        <column name="id_canton"/>
+      </key>
+      <one-to-many class="org.cmail.rehabilitacion.modelo.localizacion.Parroquia"/>
+    </set>
+    
+    <property name="nombre" type="java.lang.String">
+      <column length="30" name="nombre"/>
+    </property>   
+    
+    <property name="activo" type="boolean">
+      <column name="activo" sql-type="tinyint(1)"/>
+    </property>            
+    
+  </class>
+</hibernate-mapping>

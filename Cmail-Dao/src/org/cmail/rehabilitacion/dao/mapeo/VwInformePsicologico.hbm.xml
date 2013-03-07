@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.htp.VwInformePsicologico" table="vw_informe_psicologico" mutable="false">    
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>      
+    </id>
+    
+    <property name="fechaTest" type="java.util.Date">
+      <column name="fechaTest"/>
+    </property>
+    
+    <property name="fechaInforme" type="java.util.Date">
+      <column name="fechaInforme"/>
+    </property>
+    
+    <property name="cedula" type="java.lang.String">
+      <column name="cedula"/>
+    </property>
+    
+    <property name="adolescente" type="java.lang.String">
+      <column name="adolescente"/>
+    </property>
+    
+    <property name="evaluador" type="java.lang.String">
+      <column name="evaluador"/>
+    </property>    
+    
+    <property name="lugar" type="java.lang.String">
+      <column name="lugar"/>
+    </property>
+    
+    <property name="edad" type="java.lang.Integer">
+      <column name="edad"/>
+    </property>
+    
+    <property name="estadoCivil" type="java.lang.String">
+      <column name="estadoCivil"/>
+    </property>
+    
+    <property name="nivelInstruccion" type="java.lang.String">
+      <column name="nivelInstruccion"/>
+    </property>
+    
+    <property name="motivoIngreso" type="java.lang.String">
+      <column name="motivoIngreso"/>
+    </property>
+    
+    <property name="resultadoTest" type="java.lang.String">
+      <column name="resultadoTest"/>
+    </property>        
+    
+  </class>
+</hibernate-mapping>

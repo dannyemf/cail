@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    
+-->
+<hibernate-mapping>
+    
+  <class name="org.cmail.rehabilitacion.modelo.sira.ImagenWeb" table="web_imagen">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <property name="nombre" type="java.lang.String">        
+      <column name="nombre" not-null="true"/>
+    </property>
+    
+    <property name="descripcion" type="java.lang.String">
+      <column name="descripcion"/>
+    </property>
+    
+    <property name="tipo">
+        <type name="org.cmail.rehabilitacion.dao.mapeo.util.EnumUserType">
+            <param name="enumClassName">org.cmail.rehabilitacion.modelo.sira.TipoImagenWeb</param>
+        </type>      
+    </property>
+    
+    <property name="estado" type="boolean">
+      <column name="estado" sql-type="tinyint(1)" default="1"/>
+    </property>
+    
+    <property name="orden" type="java.lang.Integer">
+      <column name="orden" default="0"/>
+    </property>
+    
+    <property name="rutaAbsoluta" type="java.lang.String">
+      <column name="rutaAbsoluta" not-null="true"/>
+    </property>
+    
+    <property name="mimeType" type="java.lang.String">
+      <column name="mimeType" not-null="true"/>
+    </property>
+    
+    <property name="data" type="binary">
+      <column name="data" sql-type="LONGBLOB"/>
+    </property>        
+    
+    
+  </class>
+</hibernate-mapping>

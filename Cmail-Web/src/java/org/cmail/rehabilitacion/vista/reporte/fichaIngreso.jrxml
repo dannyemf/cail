@@ -1,0 +1,3205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1664"/>
+	<parameter name="PRM_INSTITUCION" class="java.lang.String"/>
+	<parameter name="PRM_VISTO" class="java.lang.String"/>
+	<parameter name="PRM_FICHA" class="org.cmail.rehabilitacion.modelo.sira.FichaIngreso"/>
+	<parameter name="PRM_JUEZ" class="java.lang.String"/>
+	<parameter name="PRM_LUGAR_DIA_FECHA" class="java.lang.String"/>
+	<parameter name="OTROS_CUAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Otros - ¿Cuál? "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRM_LOGO" class="java.lang.String"/>
+	<parameter name="PRM_ESCUDO" class="java.lang.String"/>
+	<parameter name="PRM_HUELLA" class="java.awt.Image"/>
+	<parameter name="PRM_FIRMA_RESPONSABLE" class="java.awt.Image"/>
+	<parameter name="PRM_FIRMA_PERSONA" class="java.awt.Image"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement x="210" y="0" width="154" height="60"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="6" y="63" width="563" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_INSTITUCION}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="197" y="77" width="181" height="12" backcolor="#CCCCFF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="204" y="77" width="166" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[FICHA DE INGRESO DE ADOLESCENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="92" width="87" height="11"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LUGAR, DÍA Y FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="92" width="395" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_LUGAR_DIA_FECHA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="495" y="92" width="28" height="11"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA:]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="523" y="92" width="51" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_FICHA}.getFecha()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="106" width="85" height="11"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REG. 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="106" width="383" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COORDINADOR - COORDINADORA O INSPECTOR NOCTURNO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="702" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 1. RAZÓN DEL INGRESO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="10" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="700"/>
+			</line>
+			<line>
+				<reportElement x="574" y="0" width="1" height="700"/>
+			</line>
+			<rectangle>
+				<reportElement x="6" y="17" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="17" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMedidaCautelar()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="18" y="15" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.1 Medida cautelar:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="30" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="30" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcRetencion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="18" y="28" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.1.1 Retención]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="43" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="43" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcInvestigacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="18" y="41" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.1.2 Investigación]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="56" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="56" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcComparecencia()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="18" y="54" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.1.3 Asegurar comparecencia]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="69" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcIntPreventivo()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="6" y="69" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="67" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.1.4 Internamiento preventivo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="191" y="11" width="1" height="136"/>
+			</line>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="17" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMedidaSocioeducativa()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="197" y="17" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="210" y="15" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2 Medida socioeducativa:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="30" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="30" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsIntFinSemana()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="28" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.1 Internamiento de fin de semana]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="43" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsIntSemiLibertad()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="197" y="43" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="210" y="41" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.2 Internamiento de régimen de semi libretad]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="56" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsIntInstitucional()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="197" y="56" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="210" y="54" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.3 Internamiento institucional]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="69" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="69" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsLibAsistida()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="67" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.4 Libertad asistida]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="82" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="82" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsServComunidad()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="80" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.5 Servicio a la comunidad]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="95" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="95" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsRepDanoCausado()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="93" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.6 Reparación del daño causado]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="108" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsOrientaApoyoFamiliar()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="197" y="108" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="210" y="106" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.7 Orientación y apoyo familiar]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="121" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="121" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsAmonestacionImposicion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="119" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.8 Amonestación e imposición de reglas de conducta]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="197" y="134" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="197" y="134" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMsAmonestacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="132" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.2.9 Amonestación]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="11" width="1" height="136"/>
+			</line>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="389" y="17" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInReingreso()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="389" y="17" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="402" y="15" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3 Reingreso:]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="389" y="30" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInRiMedidaCautelar()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="389" y="30" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="402" y="28" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Medida cautelar]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="389" y="43" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="389" y="43" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInRiMedidaSocioeducativa()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="402" y="41" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Medida socioeducativa]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="389" y="56" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="389" y="56" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInRiOtroTipo()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="402" y="54" width="170" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[(Identifique tipo de medida)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="402" y="67" width="170" height="75"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRazInRiOtroTipoNombre()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="147" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="151" width="164" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Juez que dicta la medida (nombre y ciudad):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="173" y="151" width="397" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getJuez()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="166" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="170" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.4 Tiempo para el cual fue dada la medida:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="170" width="390" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTiempoMedida()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="185" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="189" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.5 Causal de la medida:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="204" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Varios:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="219" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[1. Manejar con grado alcohólico no permitido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="232" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Hurto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="245" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Posesión de armas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="258" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4. Recaptura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="271" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5. Falsificación de documentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="286" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Infracciones contra las personas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="301" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[6. Homicidio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="314" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[7. Intento de homicidio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="327" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[8. Asesinato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="340" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[9. Lesiones que causan incapacidad física]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="353" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[10. Plagio (secuestro)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="366" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[11. Intento de plagio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="379" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[12. Asalto contra la propiedad privada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="392" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[13. Trata de personas]]></text>
+			</staticText>
+			<line>
+				<reportElement x="191" y="186" width="1" height="222"/>
+			</line>
+			<staticText>
+				<reportElement x="198" y="189" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Infracciones por drogas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="204" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[14. Tráfico de drogas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="217" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[15. Consumo y posición ilícita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="230" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[16. Venta de drogas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="243" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[17. Trata con fines de tráfico de drogas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="259" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Infracciones contra la propiedad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="274" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[18. Robo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="287" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[19. Intento de robo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="300" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[20. Abigeato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="313" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[21. Estafa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="326" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[22. Extorsión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="339" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[23. Destrucción a la propiedad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="186" width="1" height="222"/>
+			</line>
+			<staticText>
+				<reportElement x="392" y="189" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Infracciones de tipo sexual:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="204" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[24. Violación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="217" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[25. Intento de violación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="230" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[26. Estupro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="243" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[27. Atentado al pudor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="256" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[28. Acoso sexual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="269" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[29. Trata con fines de explotación sexual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="288" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Otros - Especifique:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="408" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 2. DATOS DE IDENTIFICACIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="408" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="418" width="573" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="392" y="301" width="171" height="99"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_JUEZ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="422" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.1 Nombres y apellidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="422" width="267" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getNombres() + " " + $P{PRM_FICHA}.getAdolescente().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="437" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado civil:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="7" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getEstadoCivil().equals("VIUDO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="22" y="452" width="42" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Viudo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="84" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="84" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getEstadoCivil().equals("SOLTERO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="98" y="452" width="42" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Soltero]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="163" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="163" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getEstadoCivil().equals("CASADO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="177" y="452" width="42" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Casado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="241" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="241" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getEstadoCivil().equals("DIVORCIADO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="256" y="452" width="42" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dovorciado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="319" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="319" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getEstadoCivil().equals("UNION_LIBRE")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="333" y="452" width="42" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Unión libre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="483" width="55" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Huella digital:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="419" width="1" height="104"/>
+			</line>
+			<staticText>
+				<reportElement x="389" y="422" width="76" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="390" y="439" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="390" y="439" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAdolescente().getSexo().equals("F")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="404" y="437" width="30" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[F]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="453" y="439" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="453" y="439" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAdolescente().getSexo().equals("M")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="467" y="437" width="30" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[M]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="390" y="454" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="390" y="454" width="10" height="8">
+					<printWhenExpression><![CDATA[($P{PRM_FICHA}.getAdolescente().getSexo().equals("F") || $P{PRM_FICHA}.getAdolescente().getSexo().equals("M")) == false]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="404" y="452" width="30" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Otro]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="523" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="527" width="106" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.2 Cédula de Ciudadanía:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="7" y="544" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="544" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCedulado()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="22" y="542" width="49" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Si   Número:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="542" width="113" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getCedula()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="196" y="544" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="196" y="544" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCedulado() == false]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="542" width="40" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="557" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="561" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.3 Lugar de procedencia donde fue retenido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="561" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="424" y="575" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getComunidadDetencion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="575" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Parroquia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="44" y="575" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getParroquiaDetencion().getNombre()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="590" width="573" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="44" y="609" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_FICHA}.getEdad()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="594" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.4 Lugar y fecha de nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="609" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="234" y="561" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getProvinciaResidencia().getNombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="561" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCantonDetencion().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="561" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cantón:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="234" y="575" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getBarrioDetencion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="195" y="575" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Barrio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="575" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Comunidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="44" y="624" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getProvinciaNacimiento().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="195" y="624" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cantón:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="424" y="624" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getParroquiaNacimiento().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="624" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="624" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Parroquia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="234" y="624" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getCantonNacimiento().getNombre()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="639" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="643" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.5 Nivel educativo aprobado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="658" width="40" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Básico - Nivel:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="660" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="660" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getNivelEducativoTipo().equals("BASICO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="64" y="658" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{PRM_FICHA}.getNivelEducativoTipo().equals("BASICO") ? $P{PRM_FICHA}.getNivelEducativoNombre() : "")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="658" width="92" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Bachillerato - Nivel:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="267" y="660" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="267" y="660" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getNivelEducativoTipo().equals("BACHILLERATO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="379" y="658" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{PRM_FICHA}.getNivelEducativoTipo().equals("BACHILLERATO") ? $P{PRM_FICHA}.getNivelEducativoNombre() : "")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="673" width="40" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ninguno:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="675" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getNivelEducativoTipo().equals("NINGUNO")]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="675" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getNivelEducativoTipo().equals("NINGUNO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="64" y="673" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{PRM_FICHA}.getNivelEducativoTipo().equals("NINGUNO") ? $P{PRM_FICHA}.getNivelEducativoNombre() : "")]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="267" y="675" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="267" y="675" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getNivelEducativoTipo().equals("ESPECIAL")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="282" y="673" width="92" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Especial - Ámbito y nivel:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="379" y="673" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{PRM_FICHA}.getNivelEducativoTipo().equals("ESPECIAL") ? $P{PRM_FICHA}.getNivelEducativoNombre() : "")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="699" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="15" y="230" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalVManejarAlcoholizado()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<break>
+				<reportElement x="0" y="700" width="100" height="1"/>
+			</break>
+			<line>
+				<reportElement x="15" y="243" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalVHurto()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="256" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalVPosecionArmas()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="269" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalVRecaptura()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="282" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalVFalsificacionDoc()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="312" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfHomicidio()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="325" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfIntHomicidio()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="351" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfLesiones()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="338" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfAsesinato()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="364" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfPlagio()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="377" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfIntPlagio()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="390" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfAsalto()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="15" y="403" width="161" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfTrataPersonas()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="215" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfTrafico()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="254" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfTrata()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="241" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfVenta()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="228" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfConsumo()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="285" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfRobo()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="297" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfIntentoRobo()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="311" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfAbigeato()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="324" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfEstafa()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="337" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfExtorsion()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="212" y="350" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfDestruccion()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="215" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfViolacion()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="228" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfIntentoViolacion()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="241" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfEstupro()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="253" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfAtentPudor()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="267" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfAcosoSexual()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="405" y="280" width="158" height="1">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCausalInfTrataExplotSexual()]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="822">
+			<line>
+				<reportElement x="1" y="0" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="574" y="0" width="1" height="820"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="820"/>
+			</line>
+			<line>
+				<reportElement x="1" y="819" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="4" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.6 Autoidentificación:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="21" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="21" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAutoidentificacion().equals("BLANCO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="21" y="19" width="64" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Blanco]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="135" y="21" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="135" y="21" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAutoidentificacion().equals("MESTIZO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="150" y="19" width="64" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mestizo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="263" y="21" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="263" y="21" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAutoidentificacion().equals("ANFROECUATORIANO")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="278" y="19" width="64" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Anfroecuatoriano]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="392" y="21" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="392" y="21" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.getAutoidentificacion().equals("INDIGENA")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="407" y="19" width="64" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Indígena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="34" width="148" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nacionalidad o pueblo al que pertenece:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="391" y="34" width="177" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getNacionalidad()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="49" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="53" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.7 Idioma:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="70" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="70" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isIdiomaCastellano()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="21" y="68" width="70" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Castellano]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="6" y="85" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isIdiomaIngles()]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="6" y="85" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isIdiomaIngles()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="21" y="83" width="70" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Inglés]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="133" y="70" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="133" y="70" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isLenguaNativa()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="148" y="68" width="70" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lengua Nativa]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="133" y="85" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="133" y="85" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isOtroLenguaje()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="148" y="83" width="70" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Otro (especifique):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="231" y="83" width="240" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getOtroLenguajeNombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="68" width="210" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getLenguaNativaNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="68" width="25" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cuál?]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="98" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="102" width="183" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.8 Ocupación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="117" width="74" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tipo de ocupación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="117" width="479" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTipoOcupacion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="132" width="138" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Desde cuándo realiza esta ocupación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="132" width="414" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTiempoOcupacionActual()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="151" width="162" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.9 Dirección del domicilio/residencia:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="147" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="191" y="151" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Desde cuándo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="151" width="217" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTiempoResidenciaActual()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="166" width="86" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono de referencia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="97" y="166" width="71" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTelefonoResidencia()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="166" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="166" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getProvinciaResidencia().getNombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="165" width="132" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCantonResidencia().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="369" y="165" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cantón:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="181" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getParroquiaResidencia().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="181" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Parroquia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="181" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getBarrioResidencia()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="181" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Barrio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="180" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getComunidadResidencia()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="369" y="180" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Comunidad:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="196" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="200" width="150" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.10 Hijos del o la adolescente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="200" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. mujeres:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="200" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. hombres:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="215" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="215" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Edades:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="215" width="60" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Edades:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="259" y="215" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getEdadesHijosMujeres()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="215" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getEdadesHijosHombres()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="230" width="99" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ingresa con su o sus hijos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="230" width="29" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Si]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="232" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcInvestigacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="110" y="232" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isIngresaHijos()]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="207" y="230" width="29" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="192" y="232" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="192" y="232" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isIngresaHijos() == false]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="6" y="245" width="99" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cuántos y de qué edades:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="245" width="431" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getNumeroHijosEdades()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="260" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="264" width="99" height="21"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.11 Persona o personas con quien vive:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="264" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="264" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Parentesco:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="264" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="126" y="279" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getNombrePersona1()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="294" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getNombrePersona2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="294" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getParentescoPersona2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="279" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getParentescoPersona1()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="293" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTelefonoPersona2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="278" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getTelefonoPersona1()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="309" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 3. DATOS FAMILIARES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="309" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="319" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="323" width="87" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1 Nombre del padre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="97" y="323" width="161" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getNombres() + " " + $P{PRM_FICHA}.getAdolescente().getPadre().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="263" y="323" width="21" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CC:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="323" width="57" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getCedula()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="323" width="43" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ocupación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="323" width="161" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getOcupacion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="338" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="338" width="115" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getTelefono()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="166" y="337" width="133" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección del domicilio o del trabajo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="338" width="265" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getDireccion()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="353" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="357" width="97" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.2 Nombre de la madre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="357" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getMadre().getNombres() + " " + $P{PRM_FICHA}.getAdolescente().getMadre().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="263" y="357" width="21" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CC:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="357" width="57" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getCedula()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="357" width="43" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ocupación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="357" width="161" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getOcupacion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="372" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="372" width="115" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getTelefono()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="166" y="371" width="133" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección del domicilio o del trabajo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="372" width="265" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getAdolescente().getPadre().getDireccion()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="387" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="391" width="121" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1 Nombre del representante:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="391" width="127" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRepresentante().getNombres() + " " + $P{PRM_FICHA}.getRepresentante().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="263" y="391" width="21" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CC:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="391" width="57" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRepresentante().getCedula()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="391" width="43" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ocupación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="391" width="161" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRepresentante().getOcupacion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="406" width="36" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="406" width="115" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRepresentante().getTelefono()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="166" y="405" width="133" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección del domicilio o del trabajo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="406" width="265" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getRepresentante().getDireccion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="421" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 4. CONDICIONES DE INGRESO DEL O LA ADOLESCENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="421" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="431" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="435" width="121" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.1 Físicas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="450" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Moretones]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="7" y="452" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="452" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondFisIngMoretones()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="7" y="467" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="467" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondFisIngLastimados()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="22" y="465" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lastimados]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="7" y="482" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="482" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondFisIngOtros()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="22" y="480" width="105" height="25"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCondFisIngOtrosNombre()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="130" y="432" width="1" height="76"/>
+			</line>
+			<rectangle>
+				<reportElement x="135" y="452" width="10" height="8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="135" y="467" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="135" y="452" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngTranquilo()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="150" y="450" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tranquila/o]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="435" width="121" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.2 Emocional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="465" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Extrovertida/o]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="135" y="467" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngExtrovertido()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="150" y="480" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Introvertida/o]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="135" y="482" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="135" y="482" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngIntrovertido()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="465" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Asustada/o]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="215" y="467" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="230" y="450" width="56" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Agresiva/o]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="215" y="482" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="215" y="467" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngAsustado()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="215" y="452" width="10" height="8"/>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="215" y="452" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngAgresivo()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="215" y="482" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondEmoIngOtros()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="230" y="480" width="105" height="25"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCondEmoIngOtrosNombre()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="338" y="432" width="1" height="76"/>
+			</line>
+			<staticText>
+				<reportElement x="342" y="465" width="77" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Medicinas que toma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="450" width="119" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Alguna enfermedad (Identifique):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="480" width="178" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Presenta síntomas de haber consumido drogas o]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="435" width="119" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.3 Salubridad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="494" width="14" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Si]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="397" y="496" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="472" y="494" width="13" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="457" y="496" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcInvestigacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="397" y="496" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondSaludSintDroga()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="457" y="496" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isCondSaludSintDroga() == false]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="342" y="494" width="50" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[alcohol]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="466" y="450" width="102" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCondSaludEnfermedad()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="465" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getCondSaludMedicina()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="508" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 5. PERTENENCIAS CON LAS QUE INGRESA (Describa)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="508" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="518" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="522" width="72" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5.1 (Descripción):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="522" width="485" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getPertDescripcion()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="537" width="573" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="230" y="541" width="338" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_JUEZ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="541" width="219" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5.2 ¿Quién guarda o a quién se le entrega las pertenecias?:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="556" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="560" width="347" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5.2 Firma del o la adolescente, certificando que esas son sus pertenecias y a quién las entrega:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="358" y="560" width="210" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_JUEZ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="575" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 6. DOCUMETOS CON LOS QUE INGRESA EL O LA ADOLESCENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="575" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="585" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="589" width="303" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[6.1 Documentación necesaria para la adminisión de un adolescente (Art. 378)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="7" y="606" width="10" height="8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="22" y="604" width="165" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delito flagrante (Art. 326)]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="606" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isDelitoFlagrante()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="192" y="604" width="1" height="96"/>
+			</line>
+			<line>
+				<reportElement x="393" y="604" width="1" height="96"/>
+			</line>
+			<staticText>
+				<reportElement x="214" y="604" width="165" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medidas cautelares (Art. 328 y 329)]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="199" y="606" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcInvestigacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="199" y="606" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isMedidasCautelares()]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Left">
+				<reportElement stretchType="RelativeToTallestObject" x="399" y="606" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isRazInMcInvestigacion()]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_VISTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="399" y="606" width="10" height="8">
+					<printWhenExpression><![CDATA[$P{PRM_FICHA}.isMedidasSocioeducativas()]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="414" y="604" width="155" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medidas socioeducativas (Art. 369)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="619" width="181" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Parte policial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="634" width="181" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Certificado médico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="619" width="181" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Resolución del Juez con la medida cautelar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="634" width="191" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- (boleta de internamiento preventivo o por 24 horas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="649" width="185" height="22"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Copia de acta de audiencia de calificación de fragancia y formulación de cargos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="674" width="181" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Copia del parte policial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="689" width="181" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Certificado médico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="619" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Resolución del Juez y la medida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="634" width="167" height="22"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[socioeducativa dispuesta cuando sea pertinente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="659" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Copia del parte policial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="674" width="171" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Certificado médico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="704" width="573" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 7. OBSERVACIONES ADICIONALES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="704" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="714" width="573" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="6" y="718" width="561" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getObservaciones()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="733" width="286" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 8. RESPONSABLE DEL TRASLADO AL CENTRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="288" y="733" width="286" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ 9. PERSONA QUE LO INGRESA AL CENTRO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="733" width="573" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="743" width="573" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="747" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="762" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="777" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Firma:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="747" width="236" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getResponsableTraslado().getNombres() + " " + $P{PRM_FICHA}.getResponsableTraslado().getApellidos()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="287" y="734" width="1" height="85"/>
+			</line>
+			<textField>
+				<reportElement x="45" y="762" width="236" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getResponsableTraslado().getCargo()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="777" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Firma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="747" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="332" y="762" width="236" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getResponsableTraslado().getCargo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="747" width="236" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_FICHA}.getResponsableIngreso().getNombres() + " " + $P{PRM_FICHA}.getResponsableIngreso().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="762" width="34" height="12"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="259" y="200" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_FICHA}.getNumeroHijosMujeres()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="200" width="103" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_FICHA}.getNumeroHijosHombres()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
