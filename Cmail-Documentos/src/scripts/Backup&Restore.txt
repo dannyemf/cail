@@ -1,0 +1,11 @@
+// Respaldar la base de datos actviso
+// 1. local
+mysqldump --opt activos > /home/rupert/Desktop/db-dump-file.sql
+// 2. del servidor
+mysqldump -h 192.168.0.10 -u root -p --opt activos > /home/rupert/Desktop/activos.sql
+
+
+//restaurar
+mysql -h host-name -u user-id -psupersecretpassword < total-db-dump-file.sql
+mysql database-name -h host-name -u user-id -psupersecretpassword < db-dump-file.sql
+mysql cail -h localhost -u root -p < /home/desarrollador/NetBeansProjects/cail/Cmail-Documentos/src/scripts/cail_08-03-2013.sql 
