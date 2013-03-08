@@ -974,15 +974,16 @@ div.verticalAlignMdl{
     font:bold 40px/1.2em Arial, Helvetica, sans-serif;
 }
 
-.logo h1 span {
-    color:#4799dc;
-    font:bold 40px/1.2em Arial, Helvetica, sans-serif;
+.logo h1 span {    
+    color:rgb(220, 71, 71);
+    font:bold 30px/1.2em Arial, Helvetica, sans-serif;
+    padding-left: 15px;
 }
 
 .logo h1 small {
     display:block;
     margin:-4px 0;
-    padding:0 0 0 134px;
+    padding:0 0 0 15px;
     font:normal 15px/1.2em Arial, Helvetica, sans-serif;
     letter-spacing:normal;
 }
