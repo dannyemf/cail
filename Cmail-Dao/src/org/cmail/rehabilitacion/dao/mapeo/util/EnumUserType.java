@@ -63,7 +63,11 @@ public class EnumUserType implements EnhancedUserType, ParameterizedType {
       if (value == null) {
          st.setNull(index, Types.VARCHAR);
       } else {
-         st.setString(index, ((Enum) value).name());
+          if (value instanceof String) {              
+              st.setString(index, value.toString());
+          }else{
+              st.setString(index, ((Enum) value).name());
+          }
       }
    }
 
