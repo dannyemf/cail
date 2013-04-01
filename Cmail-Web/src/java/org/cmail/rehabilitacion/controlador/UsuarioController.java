@@ -18,6 +18,7 @@ import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
 import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
+import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
@@ -80,11 +81,23 @@ public class UsuarioController  extends Controller{
     }
     
     public void eventoGuardar(ActionEvent evt) {
-        boolean b = new UsuarioServicio().guardar(getUsuarioEdicion(), getUsuarioLogeado());
-        showMessageSaved(b);
         
-        if (b) {            
-            FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_USUARIO);            
+        boolean tienePerfil = false;
+        for (Iterator<Perfil> it = getUsuarioEdicion().getPerfiles().iterator(); it.hasNext();) {
+            if(it.next().isSeleccionado()){
+                tienePerfil = true;
+            }            
+        }
+        
+        if(!tienePerfil){
+            showMensaje(TipoNotificacion.Error, mensajeBundle("val_perfil_seleccione"));            
+        }else{        
+            boolean b = new UsuarioServicio().guardar(getUsuarioEdicion(), getUsuarioLogeado());
+            showMessageSaved(b);
+
+            if (b) {            
+                FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_USUARIO);            
+            }
         }
     }
     
