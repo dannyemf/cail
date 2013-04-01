@@ -45,13 +45,29 @@ public class PersonaServicio extends GenericServicio<Persona> {
 
        
 
-    public List<Persona> listarAdolescentes(String cedula, String nombres, String apellidos) {        
-        String hql = HqlUtil.getAllByAndLikePropertys(Persona.class, 
-            new KProperty("cedula", cedula),
-            new KProperty("nombres", nombres),
-            new KProperty("apellidos", apellidos),
-            new KProperty("roles", PersonaRol.ADOLESCENTE.ADOLESCENTE)
-        );        
+    public List<Persona> listarAdolescentes(String cedula, String nombres, String apellidos, boolean incluirOtrosRoles) {        
+        KProperty[] props = new KProperty[incluirOtrosRoles ? 3 : 4];
+        props[0]=new KProperty("cedula", cedula);
+        props[1]=new KProperty("nombres", nombres);
+        props[2]=new KProperty("apellidos", apellidos);
+        if(!incluirOtrosRoles){
+            props[3]=new KProperty("roles", PersonaRol.ADOLESCENTE);
+        }
+        
+        String hql = HqlUtil.getAllByAndLikePropertys(Persona.class, props);        
+        return super.listarPorHql(hql);
+    }
+    
+    public List<Persona> listarEmpleados(String cedula, String nombres, String apellidos, boolean incluirOtrosRoles) {        
+        KProperty[] props = new KProperty[incluirOtrosRoles ? 3 : 4];
+        props[0]=new KProperty("cedula", cedula);
+        props[1]=new KProperty("nombres", nombres);
+        props[2]=new KProperty("apellidos", apellidos);
+        if(!incluirOtrosRoles){
+            props[3]=new KProperty("roles", PersonaRol.EMPLEADO);
+        }
+        
+        String hql = HqlUtil.getAllByAndLikePropertys(Persona.class, props);        
         return super.listarPorHql(hql);
     }
    

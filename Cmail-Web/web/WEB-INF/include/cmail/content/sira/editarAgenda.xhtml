@@ -74,6 +74,7 @@
         <ice:panelConfirmation 
             acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" 
             draggable="false" id="pc_eliminarActividades" 
+            styleClass="icePnlCnfEliminar"
             title="#{mensaje.eliminar_actividades_planificacion_title}" 
             message="#{mensaje.eliminar_actividades_planificacion}"  rendered="true"/>
         
@@ -89,7 +90,7 @@
                             width="100%"                           
                             >
                 <ice:column>
-                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminarActividad" message="#{mensaje.eliminar_actividad}"  rendered="true"/>
+                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminarActividad" styleClass="icePnlCnfEliminar" message="#{mensaje.eliminar_actividad}"  rendered="true"/>
                     
                     <ice:commandLink panelConfirmation="pc_eliminarActividad" partialSubmit="true"  immediate="true" actionListener="#{agendaController.eventoRemoverEvento}">
                         <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="Remover" title="Remover"></ice:graphicImage>

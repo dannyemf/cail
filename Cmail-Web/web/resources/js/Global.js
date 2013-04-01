@@ -65,9 +65,9 @@ function InitPanelConfirmacion(){
     });
     
     //Agrega la imagen a la parte izquierda
-    $j('.icePnlCnf .icePnlCnfBody').each(function(){
+    $j('.icePnlCnfEliminar .icePnlCnfBody').each(function(){
         $j(this).html('<img src="./resources/icono/mensaje/eliminar.png" alt="Eliminar" style="text-align: left; float: left;"/>' + $j(this).text());
-    }); 
+    });        
 };
 
 function _InitButton(button, disabled){

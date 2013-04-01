@@ -12,11 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
-import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
+import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
 import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
@@ -38,12 +38,13 @@ public class AdolescenteController extends Controller {
     
     private CmailListDataModel<Persona> modelList = new CmailListDataModel<Persona>();    
     private Persona adolescente;
+    private boolean incluirOtrosRoles;
 
     public AdolescenteController() {
     }   
     
     public void eventoBuscar(ActionEvent evt) {
-        List<Persona> lista = new PersonaServicio().listarAdolescentes(cedula, nombres, apellidos);        
+        List<Persona> lista = new PersonaServicio().listarAdolescentes(cedula, nombres, apellidos, incluirOtrosRoles);        
         setModelList(new CmailListDataModel<Persona>(lista));
         showMessageResultList(lista);
     }
@@ -65,7 +66,7 @@ public class AdolescenteController extends Controller {
         initAudit(p);
         adolescente = p;        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ADOLESCENTE);        
-    }
+    }        
     
     public void eventoEliminar(ActionEvent evt) {
         Persona persona = modelList.getRowData();        
@@ -95,14 +96,19 @@ public class AdolescenteController extends Controller {
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)                                       
         boolean v = true;
         
-        if(getAdolescente().equals(getAdolescente().getPadre())){
+        if(getAdolescente().getPadre() == null && getAdolescente().getMadre() == null){
             v = false;
-            errorMessage("frmEditAdolescente:sopPadre:txtCedula", "Padre: Seleccione otra persona que no sea el mismmo adolescente");
+            errorMessage("frmEditAdolescente:sopPadre:txtCedula", mensajeBundle("seleccionePadreMadre"));
         }
         
-        if(getAdolescente().equals(getAdolescente().getMadre())){
+        if(getAdolescente().getPadre() != null && getAdolescente().equals(getAdolescente().getPadre())){
             v = false;
-            errorMessage("frmEditAdolescente:sopMadre:txtCedula", "Madre: Seleccione otra persona que no sea el mismmo adolescente");
+            errorMessage("frmEditAdolescente:sopPadre:txtCedula", mensajeBundle("seleccionePadreNoMismoAdo"));
+        }
+        
+        if(getAdolescente().getMadre() != null && getAdolescente().equals(getAdolescente().getMadre())){
+            v = false;
+            errorMessage("frmEditAdolescente:sopMadre:txtCedula", mensajeBundle("seleccioneMadreNoMismoAdo"));
         }
         
         if(v){
@@ -189,10 +195,10 @@ public class AdolescenteController extends Controller {
         if (b) {
             boolean bi = new FichaIngresoServicio().existePersonaByCedula(value.toString(), getAdolescente());
             if (bi) {                
-                errorMessage(cmp.getClientId(), "Cedula ya registrada");
+                errorMessage(cmp.getClientId(), mensajeBundle("val_cedula_registrada"));
             }
         } else {
-            errorMessage(cmp.getClientId(), "Cédula Incorrecta");            
+            errorMessage(cmp.getClientId(), mensajeBundle("val_cedula_incorrecta"));            
         }
     }    
 
@@ -253,6 +259,20 @@ public class AdolescenteController extends Controller {
     public Persona getAdolescente() {
         return adolescente;
     }        
+
+    /**
+     * @return the incluirOtrosRoles
+     */
+    public boolean isIncluirOtrosRoles() {
+        return incluirOtrosRoles;
+    }
+
+    /**
+     * @param incluirOtrosRoles the incluirOtrosRoles to set
+     */
+    public void setIncluirOtrosRoles(boolean incluirOtrosRoles) {
+        this.incluirOtrosRoles = incluirOtrosRoles;
+    }
     
    
 }

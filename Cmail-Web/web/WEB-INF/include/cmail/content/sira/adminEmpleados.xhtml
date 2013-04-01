@@ -18,25 +18,28 @@
                             <ice:outputLabel for="txtCedula" value="#{etiqueta.cedula}"></ice:outputLabel>
                         </td>
                         <td>
-                            <ice:inputText id="txtCedula" value="#{adolescenteController.cedula}"></ice:inputText>
+                            <ice:inputText id="txtCedula" value="#{empleadoController.cedula}"></ice:inputText>
                         </td>
                         <td>
                             <ice:outputLabel for="txtNombres" value="#{etiqueta.nombres}"></ice:outputLabel>
                         </td>
                         <td>
-                            <ice:inputText id="txtNombres" value="#{adolescenteController.nombres}"></ice:inputText>
+                            <ice:inputText id="txtNombres" value="#{empleadoController.nombres}"></ice:inputText>
                         </td>
                         <td>
                             <ice:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}"></ice:outputLabel>
                         </td>
                         <td>
-                            <ice:inputText id="txtApellidos" value="#{adolescenteController.apellidos}"></ice:inputText>
+                            <ice:inputText id="txtApellidos" value="#{empleadoController.apellidos}"></ice:inputText>
                         </td>
                         <td>
-                            <ice:commandLink id="btnBuscar" actionListener="#{adolescenteController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
+                            <ice:selectBooleanCheckbox value="#{empleadoController.incluirOtrosRoles}" title="#{mensaje.incluirOtrosRolesTitle}">#{etiqueta.incluirOtrosRoles}</ice:selectBooleanCheckbox>
                         </td>
                         <td>
-                            <ice:commandLink id="btnNuevo" actionListener="#{adolescenteController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+                            <ice:commandLink id="btnBuscar" actionListener="#{empleadoController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
+                        </td>
+                        <td>
+                            <ice:commandLink id="btnNuevo" actionListener="#{empleadoController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
                         </td>
                     </tr>
                 </table>
@@ -46,34 +49,45 @@
 
         <br/>
         
-        <ice:dataTable id="dataTable1" value="#{adolescenteController.modelList}" var="f" rows="10" scrollHeight="250px" width="100%">
+        <ice:dataTable id="dataTable1" value="#{empleadoController.modelList}" var="f" rows="10" scrollHeight="250px" width="100%">
             <ice:column id="column1">
                 
                 <ice:panelConfirmation 
                     id="pc_eliminar"
                     styleClass="icePnlCnfEliminar"
-                    title="#{mensaje.eliminar_adolescente_title}"
+                    title="#{mensaje.eliminar_empleado_title}"
                     acceptLabel="#{accion.eliminar}"
                     autoCentre="true"
                     cancelLabel="#{accion.cancelar}"
                     draggable="false"                    
-                    message="#{mensaje.eliminar_adolescente}"  rendered="true">                    
+                    message="#{mensaje.eliminar_empleado}"  rendered="true">                    
+                </ice:panelConfirmation>
+                
+                <ice:panelConfirmation 
+                    id="pc_rol"
+                    styleClass="icePnlCnfRol"
+                    title="#{mensaje.enrrolar_title}"
+                    acceptLabel="#{accion.asignarRol}"
+                    autoCentre="true"
+                    cancelLabel="#{accion.cancelar}"
+                    draggable="false"                    
+                    message="#{mensaje.enrrolar_mensaje}"  rendered="true">                    
                 </ice:panelConfirmation>
                 
                 <ice:panelGrid columns="4">
 
-                    <ice:commandLink actionListener="#{adolescenteController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink actionListener="#{empleadoController.eventoEditar}" id="btnEditar" title="#{accion.editar}" rendered="#{f.empleado}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>
                     
-                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{adolescenteController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}">
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{empleadoController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}" rendered="#{f.empleado}">
                         <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                     </ice:commandLink>
                     
-                    <ice:commandLink actionListener="#{bandejaController.eventoBandeja(evt, f)}" id="btnBandeja" title="#{accion.bandeja}">
-                        <ice:graphicImage value="/resources/icono/row/row_bandeja.png" alt="#{accion.bandeja}"></ice:graphicImage>
-                    </ice:commandLink>  
-
+                    <ice:commandLink panelConfirmation="pc_rol" actionListener="#{empleadoController.eventoEnrrolar}" id="btnAsignarRol" title="#{accion.asignarRol}" rendered="#{!f.empleado}">
+                        <ice:graphicImage value="/resources/icono/row/row_people.png" alt="#{accion.asignarRol}"></ice:graphicImage>
+                    </ice:commandLink>
+                    
                 </ice:panelGrid>
 
                 <f:facet name="header">

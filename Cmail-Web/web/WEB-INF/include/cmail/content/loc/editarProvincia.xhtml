@@ -53,7 +53,7 @@
                 
                 <ice:column>
                     
-                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" message="#{mensaje.eliminar_canton}" title="#{mensaje.eliminar_canton_title}"  rendered="true"/>
+                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" styleClass="icePnlCnfEliminar" message="#{mensaje.eliminar_canton}" title="#{mensaje.eliminar_canton_title}"  rendered="true"/>
                     
                     <ice:panelLayout layout="flow">
                         <ice:commandLink actionListener="#{divisionController.eventoEditarCanton}" id="btnEditar" title="#{accion.editar}">

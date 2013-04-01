@@ -22,7 +22,7 @@
             <ice:dataTable id="dataTableProvincias" value="#{divisionController.modelProvincias}" var="p" rows="10" scrollHeight="250px" width="100%">
 
                 <ice:column>                        
-                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar"
+                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" styleClass="icePnlCnfEliminar"
                                            title="#{mensaje.eliminar_provincia_title}"
                                            message="#{mensaje.eliminar_provincia}"  rendered="true"/>
 

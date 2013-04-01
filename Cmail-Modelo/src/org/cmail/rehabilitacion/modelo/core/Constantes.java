@@ -37,6 +37,7 @@ public class Constantes {
     public static final String MB_PARAMETRO             = "parametroController";
     public static final String MB_FICHAINGRESO          = "fichaIngresoController";   
     public static final String MB_ADOLESCENTES          = "adolescenteController";
+    public static final String MB_EMPLEADOS              = "empleadoController";
     public static final String MB_BANDEJA               = "bandejaController";
     public static final String MB_FICHAEGRESO           = "fichaEgresoController";
     public static final String MB_ESQUEMA               = "esquemaController";
@@ -66,6 +67,10 @@ public class Constantes {
     
     public static final String VW_ADM_ADOLESCENTE    = "sira/adminAdolescentes.xhtml";
     public static final String VW_EDT_ADOLESCENTE    = "sira/editarAdolescente.xhtml";
+    
+    //EMPLEADOS
+    public static final String VW_ADM_EMPLEADOS    = "sira/adminEmpleados.xhtml";
+    public static final String VW_EDT_EMPLEADO    = "sira/editarEmpleado.xhtml";
     
     //FICHAS DE EGRESO    
     public static final String VW_EDT_FICHAEGRESO    = "sira/editarFichaEgreso.xhtml";

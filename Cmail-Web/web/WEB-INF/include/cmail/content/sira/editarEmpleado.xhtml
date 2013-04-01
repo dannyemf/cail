@@ -6,10 +6,9 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:c="http://java.sun.com/jsp/jstl/core"
      xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
-     >
-    <ui:include src="/WEB-INF/include/cmail/content/wuc/wucBuscarPersona.xhtml"/>    
+     >    
 
-    <input type="hidden" id="subpath" value='#{adolescenteController.adolescente.id > 0 ? accion.editar : accion.nuevo}'/>
+    <input type="hidden" id="subpath" value='#{empleadoController.empleado.id > 0 ? accion.editar : accion.nuevo}'/>
 
     <ice:form id="frmEditAdolescente">
 
@@ -19,36 +18,37 @@
 
             <ace:tabPane label="#{etiqueta.datosPersonale}">
                 <ice:panelGrid columns="3">
-                    <ice:outputLabel for="txtCedula" value="#{etiqueta.cedula}"></ice:outputLabel>                
+                    <cail:outputLabel for="txtCedula" value="#{etiqueta.cedula}" info="(*)"></cail:outputLabel>                    
                     <ice:inputText id="txtCedula"                                               
-                                   value="#{adolescenteController.adolescente.cedula}"                                                
-                                   validator="#{adolescenteController.validarCedulaAdolescente}"
+                                   value="#{empleadoController.empleado.cedula}"                                                
+                                   validator="#{empleadoController.validarCedulaEmpleado}"
                                    partialSubmit="true"                                    
                                    label="#{etiqueta.cedula}"
                                    styleClass="numeric"
                                    maxlength="15"
+                                   required="true"
                                    >
                     </ice:inputText>
                     <ice:message for="txtCedula"></ice:message>                                
 
                     <cail:outputLabel for="txtNombres" value="#{etiqueta.nombres}" info="(*)"></cail:outputLabel>
-                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{adolescenteController.adolescente.nombres}" />
+                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{empleadoController.empleado.nombres}" />
                     <ice:message for="txtNombres"></ice:message>                
 
                     <cail:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}" info="(*)"></cail:outputLabel>                
-                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{adolescenteController.adolescente.apellidos}"></ice:inputText>
+                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{empleadoController.empleado.apellidos}"></ice:inputText>
                     <ice:message for="txtApellidos"></ice:message>                
 
                     <cail:outputLabel for="cmbSexo:som" value="#{etiqueta.sexo}"></cail:outputLabel>                                                        
-                    <cail:selectOneMenuSexo id="cmbSexo" value="#{adolescenteController.adolescente.sexo}" partialSubmit="true"></cail:selectOneMenuSexo>
+                    <cail:selectOneMenuSexo id="cmbSexo" value="#{empleadoController.empleado.sexo}" partialSubmit="true"></cail:selectOneMenuSexo>
                     <ice:message for="cmbSexo:som"></ice:message>
 
                     <ice:outputLabel for="cmbEstadoCivil:som" value="#{etiqueta.estadoCivil}"/>
-                    <cail:selectOneMenuEstadoCivil id="cmbEstadoCivil"  value="#{adolescenteController.adolescente.estadoCivil}" partialSubmit="true"></cail:selectOneMenuEstadoCivil>
+                    <cail:selectOneMenuEstadoCivil id="cmbEstadoCivil"  value="#{empleadoController.empleado.estadoCivil}" partialSubmit="true"></cail:selectOneMenuEstadoCivil>
                     <ice:message for="cmbEstadoCivil:som"></ice:message>
 
                     <cail:outputLabel for="dtpFechaNac" value="#{etiqueta.fechaNacimiento}" info="(*)"></cail:outputLabel>
-                    <ice:selectInputDate  id="dtpFechaNac" renderMonthAsDropdown="true"  required="true" requiredMessage="#{mensaje.seleccioneFecha}" renderAsPopup="true" renderYearAsDropdown="true" value="#{adolescenteController.adolescente.fechaNacimiento}" partialSubmit="true">
+                    <ice:selectInputDate  id="dtpFechaNac" renderMonthAsDropdown="true"  required="true" requiredMessage="#{mensaje.seleccioneFecha}" renderAsPopup="true" renderYearAsDropdown="true" value="#{empleadoController.empleado.fechaNacimiento}" partialSubmit="true">
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
                     </ice:selectInputDate>
                     <ice:message for="dtpFechaNac"></ice:message>
@@ -57,10 +57,10 @@
                     <cail:selectOneProvincia
                         id="sopNacimiento"                        
                         tipo="Nacimiento" label="#{etiqueta.nacimiento}" required="true"
-                        bean="#{adolescenteController.adolescente}"
-                        provincia="#{adolescenteController.adolescente.provinciaNacimiento}"
-                        canton="#{adolescenteController.adolescente.cantonNacimiento}"
-                        parroquia="#{adolescenteController.adolescente.parroquiaNacimiento}">
+                        bean="#{empleadoController.adolescente}"
+                        provincia="#{empleadoController.empleado.provinciaNacimiento}"
+                        canton="#{empleadoController.empleado.cantonNacimiento}"
+                        parroquia="#{empleadoController.empleado.parroquiaNacimiento}">
                     </cail:selectOneProvincia>                    
 
                 </ice:panelGrid>
@@ -70,18 +70,18 @@
                 <ice:panelGrid columns="3">
 
                     <cail:outputLabel for="txtOcupacion" value="#{etiqueta.ocupacion}" info="(*)"></cail:outputLabel>                    
-                    <ice:inputText  id="txtOcupacion" label="#{etiqueta.ocupacion}" value="#{adolescenteController.adolescente.ocupacion}" required="true" style="width: 250px" ></ice:inputText>                
+                    <ice:inputText  id="txtOcupacion" label="#{etiqueta.ocupacion}" value="#{empleadoController.empleado.ocupacion}" required="true" style="width: 250px" ></ice:inputText>                
                     <ice:message for="txtOcupacion"></ice:message>                
 
                     <ice:outputLabel for="txtEmail" value="#{etiqueta.email}"></ice:outputLabel>                
-                    <ice:inputText  id="txtEmail" value="#{adolescenteController.adolescente.email}" style="width: 250px" partialSubmit="true" styleClass="email">
+                    <ice:inputText  id="txtEmail" value="#{empleadoController.empleado.email}" style="width: 250px" partialSubmit="true" styleClass="email">
                         <f:validator validatorId="emailValidator"/>
                     </ice:inputText>                
                     <ice:message for="txtEmail"></ice:message>
 
                     <ice:outputLabel for="txtCelular" value="#{etiqueta.celular}"></ice:outputLabel>                
                     <ice:panelGrid columns="2">
-                        <ice:inputText  id="txtCelular"  value="#{adolescenteController.adolescente.celular}" partialSubmit="true" styleClass="numeric" maxlength="10">
+                        <ice:inputText  id="txtCelular"  value="#{empleadoController.empleado.celular}" partialSubmit="true" styleClass="numeric" maxlength="10">
                             <f:validator validatorId="cellPhoneValidator"/>
                         </ice:inputText>
                         <cail:outputLabelInfo value="Ejm: 0993939393"></cail:outputLabelInfo>
@@ -90,7 +90,7 @@
 
                     <ice:outputLabel for="txtTelefono" value="#{etiqueta.telefono}"></ice:outputLabel>                
                     <ice:panelGrid columns="2">
-                        <ice:inputText  id="txtTelefono" value="#{adolescenteController.adolescente.telefono}"  partialSubmit="true" styleClass="phone" maxlength="10">
+                        <ice:inputText  id="txtTelefono" value="#{empleadoController.empleado.telefono}"  partialSubmit="true" styleClass="phone" maxlength="10">
                             <f:validator validatorId="phoneValidator"/>
                         </ice:inputText>
                         <cail:outputLabelInfo value="Ejm: 072-545454"></cail:outputLabelInfo>
@@ -98,35 +98,11 @@
                     <ice:message for="txtTelefono"></ice:message>                
 
                     <ice:outputLabel for="txtDireccion" value="#{etiqueta.direccion}"></ice:outputLabel>                
-                    <ice:inputTextarea  id="txtDireccion" value="#{adolescenteController.adolescente.direccion}" style="width: 250px; height: 60px" partialSubmit="true"></ice:inputTextarea>                
+                    <ice:inputTextarea  id="txtDireccion" value="#{empleadoController.empleado.direccion}" style="width: 250px; height: 60px" partialSubmit="true"></ice:inputTextarea>                
                     <ice:message for="txtDireccion"></ice:message>                
 
                 </ice:panelGrid>
-            </ace:tabPane>
-
-            <ace:tabPane label="#{etiqueta.datosPadre}">
-                <cail:selectOnePerson 
-                    id="sopPadre"
-                    required="false"
-                    requiredMessage="#{mensaje.seleccionePadre}"
-                    person="#{adolescenteController.adolescente.padre}"
-                    actionListenerSelect="#{adolescenteController.accionBuscarPadre}"
-                    actionListenerEdit="#{adolescenteController.accionEditarPadre}"
-                    actionListenerClean="#{adolescenteController.accionLimpiarPadre}"
-                    ></cail:selectOnePerson>
-            </ace:tabPane>
-
-            <ace:tabPane label="#{etiqueta.datosMadre}">
-                <cail:selectOnePerson 
-                    id="sopMadre"
-                    required="false"
-                    requiredMessage="#{mensaje.seleccioneMadre}"
-                    person="#{adolescenteController.adolescente.madre}"
-                    actionListenerSelect="#{adolescenteController.accionBuscarMadre}"
-                    actionListenerEdit="#{adolescenteController.accionEditarMadre}"
-                    actionListenerClean="#{adolescenteController.accionLimpiarMadre}"
-                    ></cail:selectOnePerson>
-            </ace:tabPane>
+            </ace:tabPane>           
 
         </ace:tabSet>                
 
@@ -135,8 +111,8 @@
 
         <div class="controles">
             <ace:panel>
-                <ice:commandLink id="btnGuardar"  actionListener="#{adolescenteController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
-                <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{adolescenteController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+                <ice:commandLink id="btnGuardar"  actionListener="#{empleadoController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
+                <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{empleadoController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
             </ace:panel>
         </div>
 

@@ -101,7 +101,15 @@ public class Persona extends AuditEntity implements Cloneable{
         if(rol != null && roles.contains(rol.name()) == false){
             roles = roles.length() > 0 ? roles + ";" + rol.name() : rol.name();
         }
-    }       
+    }    
+    
+    public boolean isEmpleado(){
+        return roles.contains(PersonaRol.EMPLEADO.name());
+    }
+    
+    public boolean isAdolescente(){
+        return roles.contains(PersonaRol.ADOLESCENTE.name());
+    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
