@@ -5,9 +5,12 @@
 package org.cmail.rehabilitacion.servicio;
 
 import java.util.List;
+import org.cmail.rehabilitacion.dao.Dao;
 import org.cmail.rehabilitacion.dao.GanericDao;
 import org.cmail.rehabilitacion.dao.HqlUtil;
+import org.cmail.rehabilitacion.dao.hql.K;
 import org.cmail.rehabilitacion.dao.hql.KProperty;
+import org.cmail.rehabilitacion.dao.hql.KQuery;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 
@@ -69,6 +72,16 @@ public class PersonaServicio extends GenericServicio<Persona> {
         
         String hql = HqlUtil.getAllByAndLikePropertys(Persona.class, props);        
         return super.listarPorHql(hql);
+    }
+    
+    public List<Persona> listarPersonas(String texto, PersonaRol rol) {                
+        
+        KProperty propsx = K.like("roles", rol.name()).and(
+                K.like("cedula", texto).or(K.like("nombres", texto)).or(K.like("apellidos",texto)).or(K.like("(nombres||' '||apellidos)", texto))
+            );
+        
+        
+        return super.from().where(propsx).list();
     }
    
 }

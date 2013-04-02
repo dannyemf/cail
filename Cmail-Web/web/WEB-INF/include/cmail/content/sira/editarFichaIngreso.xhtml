@@ -278,6 +278,7 @@
                 <ace:panel header="#{etiqueta.datosPadre}">
                     <cail:selectOnePerson
                         id="sopPadre"
+                        required="false"
                         person="#{fichaIngresoController.adolescente.padre}"
                         actionListenerSelect="#{fichaIngresoController.accionBuscarPadre}"
                         actionListenerEdit="#{fichaIngresoController.accionEditarPadre}"
@@ -290,6 +291,7 @@
                 <ace:panel header="#{etiqueta.datosMadre}">
                     <cail:selectOnePerson
                         id="sopMadre"
+                        required="false"
                         person="#{fichaIngresoController.adolescente.madre}"
                         actionListenerSelect="#{fichaIngresoController.accionBuscarMadre}"
                         actionListenerEdit="#{fichaIngresoController.accionEditarMadre}"

@@ -50,6 +50,15 @@ public class MensajeBundleUtil {
         return xx;
     }
     
+    
+    public static String getAccion(String key){
+        String xx = getBundle(RUTA_ACCIONES).getString(key);
+        if(xx == null || xx.equals("")){
+            return "¿¿¿"+key+"???";
+        }
+        return xx;
+    }
+    
 
     public static ResourceBundle getBundle(String bundle){                
         

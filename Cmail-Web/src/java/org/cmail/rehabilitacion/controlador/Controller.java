@@ -46,8 +46,12 @@ public class Controller implements Serializable{
         return MensajeBundleUtil.getMensaje(key);
     }
     
-     public String etiquetaBundle(String key){
+    public String etiquetaBundle(String key){
         return MensajeBundleUtil.getEtiqueta(key);
+    }
+    
+    public String accionBundle(String key){
+        return MensajeBundleUtil.getAccion(key);
     }
     
     public <T extends Object> T getBean(Class<? extends T> type, String name){

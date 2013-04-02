@@ -15,12 +15,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
-import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.CmailList;
+import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
@@ -102,14 +102,11 @@ public class FichaIngresoController extends Controller {
             v=false;
         }
         
-        if (getFichaIngresoEdicion().getAdolescente().getPadre() == null) {
+        if (getFichaIngresoEdicion().getAdolescente().getPadre() == null && getFichaIngresoEdicion().getAdolescente().getMadre() == null) {
             errorMessage("form:txtCedulaPadre", "Ingrese los datos del Padre");
             v=false;
         }
-        if (getFichaIngresoEdicion().getAdolescente().getMadre() == null) {
-            errorMessage("form:txtCedulaMadre", "Ingrese los datos de la Madre");
-            v=false;
-        }
+        
         if (getFichaIngresoEdicion().getRepresentante() == null) {
             errorMessage("form:txtCedulaRepresentante", "Ingrese los datos del Representante");
             v=false;

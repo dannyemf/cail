@@ -47,6 +47,18 @@ public class WucBuscarPersonaController extends Controller{
     
     public WucBuscarPersonaController() {    
         
+    }    
+    
+    public String getPopupTitle(){
+        String t = "";
+        
+        if(selectedIndex == 0){
+            t = accionBundle("buscar") + " " + this.rol.name().toLowerCase();
+        }else{
+            t = accionBundle("editar") + " " + this.rol.name().toLowerCase();
+        }
+        
+        return t;
     }
     
     /**======================ACCIONES=================================*/
@@ -74,7 +86,7 @@ public class WucBuscarPersonaController extends Controller{
     
     public void accionBuscar(ActionEvent e){        
         try {
-            CmailList<Persona> lst = new GenericServicio<Persona>(Persona.class).listarPorPropiedadesOr(textoPopupBuscar, "cedula","nombres","apellidos","(nombres||' '||apellidos)");
+            List<Persona> lst = new PersonaServicio().listarPersonas(textoPopupBuscar, rol);
             this.setListaPersonas(new CmailListDataModel<Persona>(lst));
         } catch (Exception ex) {
             this.setListaPersonas(new CmailListDataModel<Persona>());
@@ -215,6 +227,12 @@ public class WucBuscarPersonaController extends Controller{
         this.listenerSeleccionar = listener;        
         selectedIndex = 0;        
         renderPopupBuscar = true;
+        
+        //Limpia la lista cuando cambia de rol
+        if(!this.rol.equals(rol)){
+            this.listaPersonas = new CmailListDataModel<Persona>();
+        }
+        
         this.rol = rol;        
         
         runScript("wucBuscarPersona.show();"); 
