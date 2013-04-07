@@ -7,7 +7,7 @@ function Init(){
         InitButtons();
         InitPanelConfirmacion();
     }catch(e){
-        alert("Init: " +e );
+        alert("Global.Init(): " +e );
     }
 };
 
@@ -17,7 +17,7 @@ function InitMin(){
         InitButtons();
         InitPanelConfirmacion();
     }catch(e){
-        alert("Init: " +e );
+        alert("Global.InitMin(): " +e );
     }
 };
 
@@ -36,7 +36,7 @@ function InitHandlers(){
 function InitButtons(){    
     //menus
     
-    $j('.opciones,').addClass('ui-widget ui-widget-header ui-corner-all ui-state-focus');
+    $j('.opciones').addClass('ui-widget ui-widget-header ui-corner-all ui-state-focus');
     $j('.controles').addClass('ui-widget ui-widget-header ui-corner-all ui-state-highlight');
         
     //boton activo

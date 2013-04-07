@@ -4,6 +4,13 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
+import java.awt.AlphaComposite;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,12 +19,18 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.imageio.ImageIO;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.CmailList;
+import org.cmail.rehabilitacion.modelo.seguridad.Parametro;
+import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 import org.cmail.rehabilitacion.modelo.sira.ArticuloWeb;
 import org.cmail.rehabilitacion.modelo.sira.ImagenWeb;
 import org.cmail.rehabilitacion.servicio.GenericServicio;
 import org.cmail.rehabilitacion.servicio.ImagenWebServicio;
+import org.cmail.rehabilitacion.servicio.ParametroServicio;
 import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
@@ -32,13 +45,23 @@ public class HomeController extends Controller implements Serializable{
     
     private List<ImagenWeb> imagenesGaleria = new ArrayList<ImagenWeb>();
     private CmailList<ArticuloWeb> entradasHome = new CmailList<ArticuloWeb>();
+    private Parametro parametroSize;
 
     public HomeController() {
     }
     
+    final String CARPETA_THUMBAILS = "/" + "documentos" + "/" + "galeria" + "/";
+    
     @PostConstruct
     public void init(){
+        parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Dimension);
+        
         imagenesGaleria = new ImagenWebServicio().listarGaleriaHomePage();
+        for (Iterator<ImagenWeb> it = imagenesGaleria.iterator(); it.hasNext();) {
+            ImagenWeb imagenWeb = it.next();
+            imageResized(imagenWeb);
+        }
+        
         entradasHome = new GenericServicio<ArticuloWeb>(ArticuloWeb.class).listarPorPropiedad("activo", true);
         initImages();
     }
@@ -50,6 +73,63 @@ public class HomeController extends Controller implements Serializable{
             new ImageFile(im);
         }
     }   
+    
+    public void imageResized(ImagenWeb img){        
+               
+        String folder = FacesUtils.getExternalContext().getRealPath("/") + CARPETA_THUMBAILS;
+        File f = new File(folder);
+        if(!f.exists()){
+            f.mkdirs();
+        }
+        
+        String realPathThum=  folder + img.getNombre();
+        
+        
+        File fileThum = new File(realPathThum);
+        
+        Dimension d = parametroSize.toDimension();
+        int IMG_WIDTH = d.width;
+        int IMG_HEIGHT = d.height;
+        
+        try {            
+            boolean create = true;
+            
+            if(fileThum.exists()){
+                BufferedImage eb = ImageIO.read(fileThum);
+                if(IMG_WIDTH == eb.getWidth() || IMG_HEIGHT == eb.getHeight()){
+                    create = false;
+                }
+            }
+            
+            if(create){
+                fileThum.createNewFile();            
+                
+                
+                BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(img.getData()));
+                
+                Thumbnails.of(originalImage).size(IMG_WIDTH, IMG_HEIGHT).crop(Positions.CENTER).toFile(fileThum);
+                
+                /*BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g = resizedImage.createGraphics();
+                g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+                
+                g.dispose();	
+                g.setComposite(AlphaComposite.Src);
+
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                ImageIO.write(resizedImage, "jpg", fileThum);
+                * */
+                
+                //Thumbnails.of(ob).crop().size(100,100).outputFormat("jpg").toFile(fileThum);
+            }
+            
+        } catch (Exception e) {
+            log().error(img.getNombre(), e);            
+        }
+    }
     
     public void eventoLeerEntrada(ActionEvent evt) {        
         String pr = FacesUtils.getRequestParameter("contenidoId");
@@ -84,6 +164,20 @@ public class HomeController extends Controller implements Serializable{
      */
     public void setEntradasHome(CmailList<ArticuloWeb> entradasHome) {
         this.entradasHome = entradasHome;
+    }
+
+    /**
+     * @return the parametroSize
+     */
+    public Parametro getParametroSize() {
+        return parametroSize;
+    }
+
+    /**
+     * @param parametroSize the parametroSize to set
+     */
+    public void setParametroSize(Parametro parametroSize) {
+        this.parametroSize = parametroSize;
     }
     
 }

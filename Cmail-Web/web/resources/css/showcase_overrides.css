@@ -37,7 +37,7 @@ ul {
 
 li {
     list-style: none;
-    background: url( '../icono/bullet.gif' ) no-repeat 0 3px;
+    background: url(../icono/bullet.gif) no-repeat 0 3px;
     padding-left: 22px;
     padding-bottom: 3px;
 }

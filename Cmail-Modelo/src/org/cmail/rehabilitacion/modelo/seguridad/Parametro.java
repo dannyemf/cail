@@ -4,6 +4,7 @@
  */
 package org.cmail.rehabilitacion.modelo.seguridad;
 
+import java.awt.Dimension;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
@@ -33,6 +34,15 @@ public class Parametro extends AuditEntity{
             return Double.parseDouble(valor);
         } catch (Exception e) {
             return -1;
+        }
+    }
+    
+    public Dimension toDimension(){
+        try {
+            String[] sps = valor.split("x");
+            return new Dimension(Integer.parseInt(sps[0]), Integer.parseInt(sps[1]));
+        } catch (Exception e) {
+            return new Dimension(0,0);
         }
     }
 

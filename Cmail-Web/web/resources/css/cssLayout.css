@@ -15,7 +15,7 @@
 /**Encabezado de página*/
 #header {
     height: 140px;    
-    background: url('imagen/bg.jpg') repeat-x;    
+    background: url('home/images/header_bg.jpg') repeat-x;    
 }
 
 #header h1 {
@@ -62,7 +62,7 @@
 #footer {
     position: relative;
     margin: 0 auto;
-    background: url(footer.jpg) no-repeat;
+    background: url(home/images/bg.jpg) no-repeat;
     background-color: #2e3242;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
 }

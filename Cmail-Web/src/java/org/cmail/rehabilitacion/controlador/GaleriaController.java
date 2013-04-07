@@ -43,7 +43,7 @@ public class GaleriaController extends Controller {
     
     @PostConstruct
     public void init(){
-        parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Cadena);
+        parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Dimension);
     }
 
     public void eventoEditar(ActionEvent evt) {

@@ -188,12 +188,12 @@ public class MenuController  extends Controller{
         return "";
     }
     
-    public String homeChangeEvent() {
+    public String homeChangeEvent(String include, String tit) {
         //redirectHome();
         FacesContext context = FacesContext.getCurrentInstance();
-        Map map = context.getExternalContext().getRequestParameterMap();
-        String include = (String) map.get("includePath");
-        String tit = FacesUtils.getRequestParameter("titulo");        
+        //Map map = context.getExternalContext().getRequestParameterMap();
+        //String include = (String) map.get("includePath");
+        //String tit = FacesUtils.getRequestParameter("titulo");        
         redirectHome(include);
         setTitulo(tit);
         return null;

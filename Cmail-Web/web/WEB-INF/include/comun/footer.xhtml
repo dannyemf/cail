@@ -1,0 +1,39 @@
+<!--
+  -->
+
+<div    xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ice="http://www.icesoft.com/icefaces/component"
+        class="footer_container">
+    <div id="footer" class="footer_content">
+        <center>
+            <table style="width: 1000px">
+            <tr>
+                <td colspan="3" style="text-align: center">
+                    <i>
+                    <a href="http://www.unl.edu.ec/" target="_blank">
+                        <ice:outputText value="#{etiqueta['template.producto']}" nospan="true" escape="false" /></a>
+                    </i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ice:outputText value="#{etiqueta['template.copyright']}" nospan="true" escape="false"/>
+                    <a href="http://www.unl.edu.ec/" target="_blank">
+                        <ice:outputText value="#{etiqueta['template.empresa']}" nospan="true" escape="false" />
+                    </a>
+                </td>
+                <td>
+                    
+                </td>
+                <td style="text-align: right">
+                    <i><ice:outputText value="#{etiqueta['template.desarrolladopor']}" nospan="true" escape="false" />
+                    <a href="http://www.unl.edu.ec/" target="_blank">
+                    <ice:outputText value="#{etiqueta['template.desarrolladores']}" nospan="true" escape="false" /></a></i>
+                </td>
+            </tr>
+        </table>
+        </center>
+    </div>
+</div>

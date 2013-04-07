@@ -12,5 +12,6 @@ public enum TipoParametro {
     Cadena,
     Entero,
     Decimal,
-    Porcentaje
+    Porcentaje,
+    Dimension
 }

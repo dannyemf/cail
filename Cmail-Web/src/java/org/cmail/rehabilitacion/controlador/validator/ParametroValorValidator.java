@@ -58,6 +58,14 @@ public class ParametroValorValidator implements Validator{
                     mensaje = MensajeBundleUtil.getMensaje("val_parametro_decimal");
                 }
                 break;
+            case Dimension:
+                try {
+                    String sps[] = valor.split("x");
+                    Integer.parseInt(sps[0]);
+                    Integer.parseInt(sps[1]);                    
+                } catch (Exception e) {
+                    mensaje = MensajeBundleUtil.getMensaje("val_parametro_dimension");
+                }
         }
         
         if(mensaje != null){

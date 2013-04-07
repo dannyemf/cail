@@ -9,252 +9,117 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:icecore="http://www.icefaces.org/icefaces/core"
       >
-    
+
     <f:view locale="es" contentType="text/html">
-        
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
-        
-        <link href="./resources/css/ftdblue/styles.css" rel="stylesheet" type="text/css" media="screen" />
-        <link rel="stylesheet" href="./resources/css/ftdblue/nivo-slider.css" type="text/css" media="screen" />
-        <!--
-        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
-        -->
-        <link href="./resources/css/controles-ice.css" rel="stylesheet" type="text/css" />        
-        <!--
-        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        -->
-        <ui:include src="theme-rename.xhtml"></ui:include>
-        
-        <title>#{mainController.prmSiglas} - Home</title>
-        
-        <script type="text/javascript" src="./resources/js/jquery/jquery-1.5.1.js"></script>        
-        <script type="text/javascript" src="./resources/js/jquery/ui/jquery-ui-1.8.11.custom.js"></script>
-        <script type="text/javascript" src="./resources/js/jquery/jquery.nivo.slider.pack.js"></script>
-        <script type="text/javascript" src="./resources/js/Global.js"></script>
-        
-        <style type="text/css">
-            .auto-style1 {
-                    font-style: italic;
-                    color: #F8FAF7;
-                    text-transform: lowercase;
-            }
-        </style>
-        
-        <script type="text/javascript">
-            var $j = jQuery.noConflict();
-        </script>
-        
-        <script type="text/javascript">
+
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />                
+
+            <link href="./resources/css/style.css" rel="stylesheet" type="text/css" />
+            <link href="./resources/css/home/home_layout.css" rel="stylesheet" type="text/css" />
+            <link href="./resources/css/home/nivo-slider.css" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="./resources/css/home/themes/default/default.css" type="text/css" media="screen" />
             
-            function InitHomeMenu(){
-                var lnks = $j('#menu .iceCmdLnk').click(function(){
-                    $j('#menu .iceCmdLnk').removeClass('ui-state-highlight');
-                    $j(this).addClass('ui-state-highlight');
-                });
-                
-                var homeInclude = $j('#homeInclude').val().split('/');                
-                var page = homeInclude[homeInclude.length - 1];                
-                
-                $j(lnks).each(function(){
-                    var s = $j(this).attr('onclick').toString();                    
-                    //alert(page + " - " + s.indexOf(page) +" --> "+ s);
-                    if(s.indexOf(page) > 0){                        
+            <link href="./resources/css/controles-ice.css" rel="stylesheet" type="text/css" />
+            <ui:include src="theme-rename.xhtml"></ui:include>
+
+            <title>#{mainController.prmSiglas} - Home</title>
+
+            <script type="text/javascript" src="./resources/js/jquery/jquery-1.9.1.js"></script>                                
+            <script type="text/javascript" src="./resources/js/jquery/jquery-ui.min.js"></script>
+            
+            <script type="text/javascript" src="./resources/js/jquery/jquery.nivo.slider.js"></script>
+            
+            <script type="text/javascript">
+                var $j = jQuery.noConflict();
+            </script>
+            <script type="text/javascript" src="./resources/js/Global.js"></script>                
+
+            
+
+            <script type="text/javascript">
+            
+                function InitHomeMenu(){
+                    /*var lnks = $j('#menu .iceCmdLnk').click(function(){
+                        $j('#menu .iceCmdLnk').removeClass('ui-state-highlight');
                         $j(this).addClass('ui-state-highlight');
-                    }
-                });
+                    });
                 
-                $j('#menu').buttonset();                
-            };
+                    var homeInclude = $j('#homeInclude').val().split('/');                
+                    var page = homeInclude[homeInclude.length - 1];                
+                
+                    $j(lnks).each(function(){
+                        var s = $j(this).attr('onclick').toString();                    
+                        //alert(page + " - " + s.indexOf(page) +" --> "+ s);
+                        if(s.indexOf(page) > 0){                        
+                            $j(this).addClass('ui-state-highlight');
+                        }
+                    });
+                
+                    $j('#menu').buttonset();   
+                    */
+                };
             
-            function InitHome(){
-                try{
-                    InitHomeMenu();                    
-                    
-                    //Cuando está vacio lanza excepcion
+                function InitHome(){
                     try{
-                        $j('#slider').nivoSlider();
-                    }catch(ex){}
+                        //InitHomeMenu();                    
                     
-                }catch(e){
-                    alert('initHome: ' + e);
-                }
-            };
-        </script>
-        
-        
-        
-    </h:head>
+                        //Cuando está vacio lanza excepcion
+                        try{
+                            $j('#slider').nivoSlider({
+                                controlNav: false,
+                                afterLoad: function(){
+                                    //$j('.nivo-nextNav').click();
+                                }
+                            });
+                        }catch(ex){
+                            alert("slider init: "+ex);
+                        }
+                    
+                    }catch(e){
+                        alert('initHome: ' + e);
+                    }
+                };
+            </script>
 
-    <h:body>
-                
-        <icecore:config mandatoryResource="@all"></icecore:config>
-        
-        <div id="content" class="">
-            
-        <div class="header_text">
-            <div id="logo" class="ui-widget-header ui-corner-all">                        
-            <ice:form>
-                <table style="width: 100%">
-                    <tr>
-                        <td>
-                            <h1>#{mainController.prmInstitucion}</h1>
-                            <h2><a href="#">L<span class="auto-style1">#{mainController.prmSlogan}</span></a></h2>
-                        </td>
-                        <td style="width: 20px"></td>
-                        
-                        <td>
-                            <table align="right">
-                                <tr>
-                                    <c:if test="#{sessionBean.usuarioLogeado != null}">                                        
-                                        <td align="right">
-                                            <div class="cail-buttonset">
-                                                <ice:commandLink action="#{menuController.actionCamilPage}" title="Ir a la aplicación" styleClass="ui-icon-circle-arrow-e cail-button-big cail-button">
-                                                    <ice:graphicImage value="./resources/icono/arrow_right.png" width="32px" height="32px"></ice:graphicImage>
-                                                </ice:commandLink>
-                                                <ice:commandLink title="Cerrar Sesión" action="#{loginController.logOff}" styleClass="ui-icon-power cail-button-big cail-button">
-                                                    <ice:graphicImage value="./resources/icono/sign-out.png"></ice:graphicImage>
-                                                </ice:commandLink>
-                                            </div>
-                                        </td>                                        
-                                    </c:if>
 
-                                    <c:if test="#{sessionBean.usuarioLogeado == null}">
-                                        <td>
-                                            <ice:commandLink  onclick="dlgLogin.show();" title="Iniciar Sesión" styleClass="ui-icon-person cail-button-big cail-button">
-                                                <ice:graphicImage value="./resources/icono/sign-in.png"></ice:graphicImage>                                                
-                                            </ice:commandLink>
-                                        </td>
-                                    </c:if>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <c:if test="#{sessionBean.usuarioLogeado != null}">
-                                            <h2>
-                                                <ice:commandLink styleClass="usuario" action="#{menuController.actionCamilPage}" value="Bienvenido: #{sessionBean.usuarioLogeado.nombres} #{sessionBean.usuarioLogeado.apellidos}" style="font-size: 12px"></ice:commandLink>
-                                            </h2>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </ice:form>
-        </div>
-    </div>
+
+        </h:head>
+
+        <h:body>
+
+            <icecore:config mandatoryResource="@all"></icecore:config>
             
-    <div id="back">
-        <!-- header begins -->
-        <div id="header" class="ui-widget ui-widget-header ui-corner-all" style="padding-top: 5px"> 
-            <div class="header_image">
+            <div id="main">
                 
-                <div id="wrapper">
-                    <div id="slider-wrapper">        
-                        <div id="slider" class="nivoSlider">
-                            <ui:repeat var="img" value="#{homeController.imagenesGaleria}">
-                                <ice:graphicImage width="799px" height="599px" value="#{img.data}" alt="#{img.nombre}" title="#{img.descripcion}"></ice:graphicImage>
-                            </ui:repeat>                            
-                        </div>        
-                    </div>
-                </div>                
-            </div>    
-            <ice:form>                
+                <ui:insert name="header">
+                    <ui:include src="/WEB-INF/include/home/header.xhtml"></ui:include>
+                </ui:insert>
                 
-                <div id="menu" class="ui-state-active ui-corner-all">
-                                        
-                    <ice:commandLink value="Home" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-home cail-button">                        
-                        <f:param name="includePath" value="home.xhtml" />
-                        <f:param name="titulo" value="Cmail - Home" />
-                    </ice:commandLink>                        
-                    
-                    <ice:commandLink value="Antecedentes" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-note cail-button">
-                      <f:param name="includePath" value="antecedentes.xhtml" />
-                      <f:param name="titulo" value="Cmail - Antecedentes" />
-                    </ice:commandLink>
-                    
-                    <ice:commandLink value="Actividades" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-note cail-button">
-                      <f:param name="includePath" value="actividades.xhtml" />
-                      <f:param name="titulo" value="Cmail - Actividades" />
-                    </ice:commandLink>
-                    
-                    <ice:commandLink value="Misión" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-note cail-button">
-                      <f:param name="includePath" value="mision.xhtml" />
-                      <f:param name="titulo" value="Cmail - Misión" />
-                    </ice:commandLink>
-                    
-                    <ice:commandLink value="Visión" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-note cail-button">
-                      <f:param name="includePath" value="vision.xhtml" />
-                      <f:param name="titulo" value="Cmail - Visión" />
-                    </ice:commandLink>
-                    
-                    <ice:commandLink value="Objetivos" actionListener="#{menuController.homeChangeEvent}" styleClass="ui-icon-note cail-button">
-                      <f:param name="includePath" value="objetivo.xhtml" />
-                      <f:param name="titulo" value="Cmail - Objetivos" />
-                    </ice:commandLink>                                    
+                <ui:insert name="banner">
+                    <ui:include src="/WEB-INF/include/home/banner.xhtml"></ui:include>
+                </ui:insert>
+                
+                <ui:insert name="menu">
+                    <ui:include src="/WEB-INF/include/home/menu.xhtml"></ui:include>
+                </ui:insert>                                                       
+                
+                <div id="content">
+                    <div id="right" class="ui-widget">
+                        <ui:insert name="content">Content</ui:insert>
+                    </div>            
                 </div>
-                
-            </ice:form>
-        </div>
-        <!-- header ends -->
-        <!-- content begins -->
-        <div id="main">
-            <div id="right" class="ui-widget ui-widget-content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
-            <ace:accordion></ace:accordion>
-            <!--
-            <div id="left">                
-                <ice:form>
-                    
-                    <ace:accordion style="height: 300px">
-                        <ace:accordionPane title="Entradas">
-                            
-                            <ul>                                
-                            <ice:panelSeries var="c" value="#{webController.entradasHome}">                            
-                                <li>
-                                <ice:commandLink value="#{c.titulo}" actionListener="#{webController.eventoLeerEntrada}">
-                                    <f:param name="contenidoId" value="#{c.id}"></f:param>
-                                </ice:commandLink>                            
-                                </li>
-                            </ice:panelSeries>
-                            </ul>
-                            
-                        </ace:accordionPane>
-                        <ace:accordionPane title="Cmail">
-                            <p>Centro mixto de adolescentes infractores de Loa. <a href="#">Más...</a></p>
-                            <br />
-                        </ace:accordionPane>
-                    </ace:accordion>
-                   
-                </ice:form>
-                <br />
-            </div>
-            -->
-                
-                
-            <!--content ends -->
-            <!--footer begins -->
-        </div>
-            
-            
-        <div id="footer">
-            <p>Copyright  2011. <!-- Do not remove -->Design by <a href="http://www.flashtemplatesdesign.com/" title="Free Flash Templates">Free Flash Templates</a><!-- end --></p>
-            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a></p>
-        </div>
-        
-        <div style="clear: both"></div>
-    </div>
 
-</div>
-<!-- footer ends-->
-        
-        
-        
-    </h:body>
-        
+                <div style="clear: both"></div>
+                
+            </div>
+                
+            <ui:insert name="footer">            
+                <ui:include src="/WEB-INF/include/comun/footer.xhtml"/>
+            </ui:insert>
+
+        </h:body>
+
     </f:view>
-    
+
 </html>

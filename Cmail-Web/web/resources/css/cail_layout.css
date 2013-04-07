@@ -1,0 +1,22 @@
+#header{
+    width : 1000px;    
+    margin-left : auto;
+    margin-right : auto;
+    padding : 0;
+    border : 5px solid #ccc;    
+    border-radius: 4px;        
+    background: #fff url(home/images/header_bg.jpg) repeat;
+    color: #666;
+}
+
+#logo .title{        
+    color: #CB392C;    
+}
+
+#logo .slogan{    
+    color: #392ccb;
+}
+
+#logo .usuario{    
+    color: #f4ecec;
+}

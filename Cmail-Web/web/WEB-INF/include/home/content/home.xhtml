@@ -11,7 +11,10 @@
          
          <ice:panelSeries var="c" value="#{homeController.entradasHome}">
              
-             <ace:panel header="#{c.titulo}" toggleable="true">
+             <div class="article" header="#{c.titulo}" toggleable="true">
+                 
+                 <h2 class="title">#{c.titulo}</h2>
+                 
                  <ice:outputText value="#{c.resumen}" escape="false" nospan="true"></ice:outputText>
                  
                  <br/>
@@ -22,7 +25,7 @@
                                   styleClass="ui-icon-circle-plus cail-button">                     
                      <f:param name="contenidoId" value="#{c.id}"></f:param>
                  </ice:commandLink>
-             </ace:panel>                          
+             </div>                          
              
              <br/>             
              

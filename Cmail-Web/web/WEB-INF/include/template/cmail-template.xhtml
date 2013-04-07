@@ -25,11 +25,11 @@
         <link href="./resources/css/imagen/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="./resources/css/imagen/favicon.ico" rel="icon" type="image/x-icon"/>
         
-        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>        
-        <link rel='stylesheet' type='text/css' href='./resources/css/showcase_style.css'/>
-        <link rel='stylesheet' type='text/css' href='./resources/css/showcase_overrides.css'/>
-        <link rel='stylesheet' type='text/css' href='./resources/css/showcase_layout.css'/>        
-        <link rel='stylesheet' type='text/css' href='./resources/css/controles-ice.css'/>        
+        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/cail_layout.css"/>                        
+        <link rel='stylesheet' type='text/css' href='./resources/css/controles-ice.css'/>      
+        
         <ui:include src="theme-rename.xhtml"></ui:include>
         
         <script type="text/javascript" src="./resources/js/jquery/jquery-1.5.1.js"></script>
@@ -81,43 +81,36 @@
         <ui:insert name="header">            
             <ui:include src="/WEB-INF/include/cmail/header.xhtml"/>
         </ui:insert>
+        
+        <div id="main">
+            <div id="content" class="body_container">
+                <div class="body_content">               
 
-        <div class="body_container">
+                    <div class="contentContainer" style="min-height: 400px">
 
-            <div class="body_content">
-               
-                <!--
-                <div class="navigationContainer">
-                    <ui:insert name="navigation">                                                
-                        <ui:include src="/WEB-INF/include/cmail/navigation.xhtml"/>                          
-                    </ui:insert>
-                </div>
-                -->
+                        <!--
+                           Main Component content;
+                           controls which content to display for the respective navigation
+                        -->
+                        <div class="ui-widget" style="">
+                            <h2 id="path">                                                        
+                                <b>Usted está aquí:  </b> #{menuController.currentPath} #{menuController.currentAction}
+                            </h2>
+                        </div>
 
-                <div class="contentContainer" style="min-height: 400px">
+                        <cail:outputNotification></cail:outputNotification>
 
-                    <!--
-                       Main Component content;
-                       controls which content to display for the respective navigation
-                    -->
-                    <div class="ui-widget" style="">
-                        <h2 id="path">                                                        
-                            <b>Usted está aquí:  </b> #{menuController.currentPath} #{menuController.currentAction}
-                        </h2>
+                        <ui:insert name="page-content"/>
+                        <ice:panelGroup styleClass="clearer"/>
+
                     </div>
-                    
-                    <cail:outputNotification></cail:outputNotification>
-                    
-                    <ui:insert name="page-content"/>
-                    <ice:panelGroup styleClass="clearer"/>
-                    
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </div>                
 
         <ui:insert name="footer">            
-            <ui:include src="/WEB-INF/include/cmail/footer.xhtml"/>
+            <ui:include src="/WEB-INF/include/comun/footer.xhtml"/>
         </ui:insert>
     </h:body>    
  </f:view>   
