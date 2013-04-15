@@ -4,7 +4,10 @@
      xmlns:ice="http://www.icesoft.com/icefaces/component"
      >            
     
-    <ice:form>        
+    <ice:form> 
+        
+        <ice:outputText value="Posteado por: #{sessionBean.parrafoEdicion.auditCreateUser}"></ice:outputText>
+        
         <ice:outputText 
             value="#{sessionBean.parrafoEdicion.descripcion}" 
             escape="false"

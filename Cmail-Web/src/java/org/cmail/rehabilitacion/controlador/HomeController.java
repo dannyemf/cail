@@ -4,10 +4,7 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
-import java.awt.AlphaComposite;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -22,6 +19,7 @@ import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
+import org.cmail.rehabilitacion.dao.hql.K;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.CmailList;
 import org.cmail.rehabilitacion.modelo.seguridad.Parametro;
@@ -45,6 +43,7 @@ public class HomeController extends Controller implements Serializable{
     
     private List<ImagenWeb> imagenesGaleria = new ArrayList<ImagenWeb>();
     private CmailList<ArticuloWeb> entradasHome = new CmailList<ArticuloWeb>();
+    private CmailList<ArticuloWeb> entradasMenu = new CmailList<ArticuloWeb>();
     private Parametro parametroSize;
 
     public HomeController() {
@@ -62,7 +61,9 @@ public class HomeController extends Controller implements Serializable{
             imageResized(imagenWeb);
         }
         
-        entradasHome = new GenericServicio<ArticuloWeb>(ArticuloWeb.class).listarPorPropiedad("activo", true);
+        entradasHome = new GenericServicio<ArticuloWeb>(ArticuloWeb.class).listarPorPropiedadesValores(K.eq("activo", true), K.eq("paginaPrincipal", false));
+        entradasMenu = new GenericServicio<ArticuloWeb>(ArticuloWeb.class).listarPorPropiedadesValores(K.eq("activo", true), K.eq("paginaPrincipal", true));
+        
         initImages();
     }
     
@@ -178,6 +179,20 @@ public class HomeController extends Controller implements Serializable{
      */
     public void setParametroSize(Parametro parametroSize) {
         this.parametroSize = parametroSize;
+    }
+
+    /**
+     * @return the entradasMenu
+     */
+    public CmailList<ArticuloWeb> getEntradasMenu() {
+        return entradasMenu;
+    }
+
+    /**
+     * @param entradasMenu the entradasMenu to set
+     */
+    public void setEntradasMenu(CmailList<ArticuloWeb> entradasMenu) {
+        this.entradasMenu = entradasMenu;
     }
     
 }

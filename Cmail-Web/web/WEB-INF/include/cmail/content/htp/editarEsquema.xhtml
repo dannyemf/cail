@@ -6,9 +6,7 @@
     xmlns:ace="http://www.icefaces.org/icefaces/components"
     xmlns:ui="http://java.sun.com/jsf/facelets"    
     xmlns:c="http://java.sun.com/jsf/core"    
-    >        
-    
-    <input type="hidden" id="subpath" value='#{esquemaController.esquemaEdicion.id > 0 ? "Editar" : "Nuevo"}'/>
+    >       
 
     <ice:form id="form">
         
@@ -69,6 +67,7 @@
                 <ice:commandLink id="btnNuevo" partialSubmit="true" immediate="true" actionListener="#{esquemaController.eventoNuevaPregunta}" styleClass="ui-icon-plus cail-button" value="#{accion.nueva}"></ice:commandLink>
             </ace:panel>        
 
+            <div style="overflow: auto">
             <ice:dataTable id="dataTablePreguntas" rows="10" value="#{esquemaController.preguntas}" var="pregunta" scrollHeight="250px"
                             binding="#{esquemaController.table}"
                             >
@@ -134,6 +133,7 @@
                 </ice:column>
 
             </ice:dataTable>
+            </div>
 
             <!-- Paginator with page controls -->
             <ice:dataPaginator id="dataScrollPreguntas" for="dataTablePreguntas" paginator="true" fastStep="#{accion.fastStep}" paginatorMaxPages="#{accion.paginatorMaxPages}">

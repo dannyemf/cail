@@ -13,7 +13,8 @@ import org.cmail.rehabilitacion.modelo.AuditEntity;
 public class ArticuloWeb extends AuditEntity{
     
     private String titulo;
-    private boolean activo;    
+    private boolean activo;
+    private boolean paginaPrincipal;
     private String resumen = "";
     private String descripcion = "";
 
@@ -81,6 +82,20 @@ public class ArticuloWeb extends AuditEntity{
      */
     public void setResumen(String resumen) {
         this.resumen = resumen;
+    }
+
+    /**
+     * @return the paginaPrincipal
+     */
+    public boolean isPaginaPrincipal() {
+        return paginaPrincipal;
+    }
+
+    /**
+     * @param paginaPrincipal the paginaPrincipal to set
+     */
+    public void setPaginaPrincipal(boolean paginaPrincipal) {
+        this.paginaPrincipal = paginaPrincipal;
     }
     
     

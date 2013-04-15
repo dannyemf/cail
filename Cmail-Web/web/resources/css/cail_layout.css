@@ -5,7 +5,7 @@
     padding : 0;
     border : 5px solid #ccc;    
     border-radius: 4px;        
-    background: #fff url(home/images/header_bg.jpg) repeat;
+    background: rgb(133, 209, 216) url(home/images/header_bg.png) repeat;
     color: #666;
 }
 

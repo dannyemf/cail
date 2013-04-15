@@ -43,14 +43,14 @@ public class DivisionPoliticalController  extends Controller{
         
         FacesUtils.getSessionBean().setProvinciaEdicion(p);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PROVINCIA);
-        FacesUtils.getMenuController().addRoute("Nueva");
+        this.addRoute("nueva_provincia");
     }
     
     public void eventoEditarProvincia(ActionEvent evt) {
         Provincia p = modelProvincias.getRowData();           
         FacesUtils.getSessionBean().setProvinciaEdicion(p);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PROVINCIA);
-        FacesUtils.getMenuController().addRoute("Editar");
+        this.addRoute("editar_provincia");
     }
     
     public void eventoEliminarProvincia(ActionEvent evt) {
@@ -87,13 +87,13 @@ public class DivisionPoliticalController  extends Controller{
         
         FacesUtils.getSessionBean().setCantonEdicion(c);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CANTON);
-        FacesUtils.getMenuController().addRoute("Cantones / Nuevo");
+        this.addRoute("nuevo_canton");
     }
     
     public void eventoEditarCanton(ActionEvent evt) {
         FacesUtils.getSessionBean().setCantonEdicion(modelCantones.getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CANTON);
-        FacesUtils.getMenuController().addRoute("Cantones / Editar");
+        this.addRoute("editar_canton");
     }
 
     public void eventoEliminarCanton(ActionEvent evt) {
@@ -142,13 +142,13 @@ public class DivisionPoliticalController  extends Controller{
         
         FacesUtils.getSessionBean().setParroquiaEdicion(c);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PARROQUIA);
-        FacesUtils.getMenuController().addRoute("Parroquias / Nueva");
+        this.addRoute("nueva_parroquia");
     }
     
     public void eventoEditarParroquia(ActionEvent evt) {
         FacesUtils.getSessionBean().setParroquiaEdicion(modelParroquias.getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PARROQUIA);
-        FacesUtils.getMenuController().addRoute("Parroquias / Editar");
+        this.addRoute("editar_parroquia");
     }
 
     public void eventoEliminarParroquia(ActionEvent evt) {

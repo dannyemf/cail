@@ -14,21 +14,13 @@
 
                 <ace:menuItem value="Home" actionListener="#{menuController.homeChangeEvent('home.xhtml','Cmail - Home')}" icon="ui-icon ui-icon-home">                                
                 </ace:menuItem> 
-
-                <ace:menuItem value="Antecedentes" actionListener="#{menuController.homeChangeEvent('antecedentes.xhtml','Cmail - Antecedentes')}" icon="ui-icon ui-icon-note">
-                </ace:menuItem>
-
-                <ace:menuItem value="Actividades" actionListener="#{menuController.homeChangeEvent('actividades.xhtml','Cmail - Actividades')}" icon="ui-icon ui-icon-note">
-                </ace:menuItem>
-
-                <ace:menuItem value="Misión" actionListener="#{menuController.homeChangeEvent('mision.xhtml','Cmail - Misión')}" icon="ui-icon  ui-icon-note">
-                </ace:menuItem>
-
-                <ace:menuItem value="Visión" actionListener="#{menuController.homeChangeEvent('vision.xhtml','Cmail - Visión')}" icon="ui-icon ui-icon-note">
-                </ace:menuItem>
-
-                <ace:menuItem value="Objetivos" actionListener="#{menuController.homeChangeEvent('objetivo.xhtml','Cmail - Objetivos')}" icon="ui-icon ui-icon-note">
-                </ace:menuItem>
+                
+                
+                <c:forEach var="item" items="#{homeController.entradasMenu}">
+                    <ace:menuItem value="#{item.titulo}" actionListener="#{homeController.eventoLeerEntrada}" icon="ui-icon ui-icon-note">
+                        <f:param name="contenidoId" value="#{item.id}"></f:param>
+                    </ace:menuItem>
+                </c:forEach>                
 
             </ace:menuBar>                                                          
 

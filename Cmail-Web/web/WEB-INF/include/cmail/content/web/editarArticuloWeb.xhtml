@@ -30,6 +30,10 @@
                 <ice:outputLabel for="sbcActivo" value="#{etiqueta.activo}"></ice:outputLabel>
                 <ice:selectBooleanCheckbox id="sbcActivo" value="#{articuloController.articuloEdicion.activo}"></ice:selectBooleanCheckbox>
                 <ice:message for="sbcActivo"></ice:message>
+                
+                <ice:outputLabel for="sbcPagina" value="#{etiqueta.paginaPrincipal}"></ice:outputLabel>
+                <ice:selectBooleanCheckbox id="sbcPagina" value="#{articuloController.articuloEdicion.paginaPrincipal}"></ice:selectBooleanCheckbox>
+                <ice:message for="sbcPagina"></ice:message>
 
             </ice:panelGrid>
         </ace:panel>

@@ -19,6 +19,10 @@
       <column name="activo" sql-type="tinyint(1)"/>
     </property>
     
+    <property name="paginaPrincipal" type="boolean">
+      <column name="paginaPrincipal" sql-type="tinyint(1)"/>
+    </property>    
+    
     <property name="resumen" type="java.lang.String">
       <column name="resumen" sql-type="text" />
     </property>
