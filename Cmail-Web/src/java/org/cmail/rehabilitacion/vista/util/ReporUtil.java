@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -44,8 +45,9 @@ public class ReporUtil {
     
     public static final Logger log = Logger.getLogger(ReporUtil.class);
     
+    public static final String FS = File.separator;
     public  static final String PATH_PLANTILLA = "/org/cmail/rehabilitacion/vista/reporte/";
-    public static final String PATH_IMAGEN = "resources\\icono\\reporte\\";
+    public static final String PATH_IMAGEN = "resources"+FS+"icono"+FS+"reporte"+FS;
     public static final String SUFIJO_PLANTILLA = ".jrxml";
     public static final String SUFIJO_PLANTILLA_PRINT = ".jasper";
     
@@ -274,16 +276,17 @@ public class ReporUtil {
     }
     
     public static String getImage(String img){
-        return System.getProperty("user.dir") + "\\web\\resources\\icono\\reporte\\"+img;
+        return System.getProperty("user.dir") + FS + "web" + FS+"resources"+FS+"icono"+FS+"reporte"+FS+img;
     }
     
     public static void main(String arg[]){
         //reporteInformePsicologico();
         try {
-            preCompileTemplate("informePsicologico");
+            //preCompileTemplate("informePsicologico");
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println(String.format("%s es %s", "x","y"));
     }
     
     public static BufferedImage getBufferedImage(byte[] data, int w, int h){

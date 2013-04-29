@@ -8,7 +8,7 @@
         <table>
             <tr>
                 <td>
-                    <h:graphicImage width="60px" value="./resources/icono/reporte/logo.png"></h:graphicImage>
+                    <h:graphicImage width="75px" value="./resources/icono/reporte/logo-institucion.png"></h:graphicImage>
                 </td>
                 <td>
                     <h1 class="title">#{mainController.prmInstitucion}</h1>
@@ -16,7 +16,7 @@
 
                     <c:if test="#{sessionBean.usuarioLogeado != null}">
                         <h2 class="usuario">
-                            <ice:outputText styleClass="usuario" action="#{menuController.actionCamilPage}" value="Bienvenido: #{sessionBean.usuarioLogeado.nombres} #{sessionBean.usuarioLogeado.apellidos}" style="font-size: 12px"></ice:outputText>
+                            <ice:outputText styleClass="usuario" action="#{menuController.actionCamilPage}" value="#{mensaje.bienvenido}: #{sessionBean.usuarioLogeado.nombres} #{sessionBean.usuarioLogeado.apellidos}" style="font-size: 12px"></ice:outputText>
                         </h2>
                     </c:if>
                 </td>
