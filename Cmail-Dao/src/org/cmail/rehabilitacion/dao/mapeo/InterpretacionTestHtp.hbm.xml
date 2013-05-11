@@ -32,11 +32,11 @@
     </property>
     
     <property name="historiaAdolescente" type="java.lang.String">
-      <column name="historiaAdolescente" length="255"/>
+      <column name="historiaAdolescente" length="500"/>
     </property>
     
     <property name="comentarioConducta" type="java.lang.String">
-      <column name="comentarioConducta" length="255"/>
+      <column name="comentarioConducta" length="500"/>
     </property>
     
     <property name="graficoProporcion" type="java.lang.String">
@@ -52,15 +52,15 @@
     </property>
     
     <property name="interrogativoPosterior" type="java.lang.String">
-      <column name="interrogativoPosterior" length="255"/>
+      <column name="interrogativoPosterior" sql-type="text"/>
     </property>
     
     <property name="resumenPsicologo" type="java.lang.String">
-      <column name="resumenPsicologo" length="255"/>
+      <column name="resumenPsicologo" length="500"/>
     </property>
     
     <property name="nivelRehabilitacionNombre" type="java.lang.String">
-      <column name="nivelRehabilitacionNombre" length="255"/>
+      <column name="nivelRehabilitacionNombre" length="500"/>
     </property>
     
     <property name="porcenjateRehabilitacionSistema" type="java.lang.Double">
