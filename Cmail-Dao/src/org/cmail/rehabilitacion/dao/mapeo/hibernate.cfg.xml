@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cail</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
@@ -25,6 +25,7 @@
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Usuario.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Perfil.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Opcion.hbm.xml"/>
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Permiso.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Persona.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Parametro.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/FichaIngreso.hbm.xml"/>
@@ -44,9 +45,8 @@
     <!--Htp-->
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/TestHtp.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/TestHtpRespuesta.hbm.xml"/>
-    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml"/>    
+    <mapping resource="org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/InterpretacionTestHtp.hbm.xml"/>
-    
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Categoria.hbm.xml"/>
     <mapping resource="org/cmail/rehabilitacion/dao/mapeo/Indicador.hbm.xml"/>
     <!--Vistas-->

@@ -25,7 +25,7 @@ public class HibernateSessionFactory {
         }
     }
 
-    private HibernateSessionFactory() {
+    private HibernateSessionFactory() {        
     }
         
 

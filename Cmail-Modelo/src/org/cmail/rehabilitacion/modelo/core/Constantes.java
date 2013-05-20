@@ -33,6 +33,7 @@ public class Constantes {
     public static final String MB_WUC_ACTIVIDAD         = "wucActividad";    
     public static final String MB_OPCION                = "opcionController";    
     public static final String MB_USUARIO               = "usuarioController";
+    public static final String MB_PERMISO               = "permisoController";
     public static final String MB_PERFIL                = "perfilController";
     public static final String MB_PARAMETRO             = "parametroController";
     public static final String MB_FICHAINGRESO          = "fichaIngresoController";   
@@ -59,6 +60,8 @@ public class Constantes {
     public static final String VW_EDT_PERFIL    = "seguridad/editarPerfil.xhtml";
     public static final String VW_ADM_PARAMETRO = "seguridad/adminParametros.xhtml";
     public static final String VW_EDT_PARAMETRO = "seguridad/editarParametro.xhtml";
+    public static final String VW_ADM_PERMISO   = "seguridad/adminPermisos.xhtml";
+    public static final String VW_EDT_PERMISO   = "seguridad/editarPermiso.xhtml";    
     
     //FICHAS DE INGRESO    
     public static final String VW_EDT_FICHAINGRESO    = "sira/editarFichaIngreso.xhtml";

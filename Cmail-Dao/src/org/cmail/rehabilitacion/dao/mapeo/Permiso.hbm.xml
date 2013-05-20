@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--    
+-->
+<hibernate-mapping>
+  <class name="org.cmail.rehabilitacion.modelo.seguridad.Permiso" table="seg_permiso">
+      
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>    
+    
+    <set cascade="save-update" name="perfiles" table="seg_permiso_perfil" lazy="false">
+      <key column="id_permiso"/>
+      <many-to-many class="org.cmail.rehabilitacion.modelo.seguridad.Perfil" column="id_perfil"/>
+    </set>
+    
+    <property name="nombre" type="java.lang.String">
+      <column length="45" name="nombre" not-null="true" unique="true"/>
+    </property>    
+    
+    <property name="descripcion" type="java.lang.String">
+      <column length="255" name="descripcion"/>
+    </property>    
+    
+    <!--Auditoria-->
+    <property name="auditCreateDate" type="java.util.Date">
+      <column name="auditCreateDate"/>
+    </property>
+    
+    <property name="auditUpdateDate" type="java.util.Date">
+      <column name="auditUpdateDate"/>
+    </property>
+    
+    <property name="auditCreateUser" type="java.lang.String">
+      <column name="auditCreateUser"  length="45"/>
+    </property>
+    
+    <property name="auditUpdateUser" type="java.lang.String">
+      <column name="auditUpdateUser"  length="45"/>
+    </property>
+    <!--Fin Auditoria-->
+    
+  </class>
+</hibernate-mapping>

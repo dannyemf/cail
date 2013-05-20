@@ -24,6 +24,7 @@ import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 import org.cmail.rehabilitacion.modelo.seguridad.Opcion;
 import org.cmail.rehabilitacion.modelo.seguridad.Parametro;
 import org.cmail.rehabilitacion.modelo.seguridad.Perfil;
+import org.cmail.rehabilitacion.modelo.seguridad.Permiso;
 import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.modelo.sira.Agenda;
 import org.cmail.rehabilitacion.modelo.sira.ArticuloWeb;
@@ -64,6 +65,7 @@ public class SessionBean implements Serializable {
    
     private Categoria categoriaEdicion;
     private Parametro parametroEdicion;
+    private Permiso permisoEdicion;
     
     private Persona personaEdicion;
     
@@ -389,6 +391,20 @@ public class SessionBean implements Serializable {
 
     public void setTipoNotificacion(String tipoNotificacion) {
         this.tipoNotificacion = tipoNotificacion;
+    }
+
+    /**
+     * @return the permisoEdicion
+     */
+    public Permiso getPermisoEdicion() {
+        return permisoEdicion;
+    }
+
+    /**
+     * @param permisoEdicion the permisoEdicion to set
+     */
+    public void setPermisoEdicion(Permiso permisoEdicion) {
+        this.permisoEdicion = permisoEdicion;
     }
     
     
