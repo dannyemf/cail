@@ -9,10 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.cmail.rehabilitacion.controlador.bean.SessionBean;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.seguridad.Perfil;
 import org.cmail.rehabilitacion.modelo.seguridad.Permiso;
@@ -32,11 +34,18 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @ViewScoped
 public class PermisoController  extends Controller{
 
+    @ManagedProperty(value="#{"+ Constantes.MB_SESSION +"}")
+    private SessionBean sessionBean;
+    
     private CmailListDataModel<Permiso> model;    
     
     /** Creates a new instance of AdminUsuariosController */
     public PermisoController() {
     }
+
+    public void setSessionBean(SessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }        
 
     public CmailListDataModel<Permiso> getModel() {
         List<Permiso> lst = new PermisoServicio().listarTodos();
@@ -134,20 +143,22 @@ public class PermisoController  extends Controller{
         return FacesUtils.getSessionBean().getPermisoEdicion();
     }
     
-    public boolean checkPermiso(String permiso){        
-        Permiso p = new PermisoServicio().obtenerPrimerPor("nombre", permiso);        
-        if(p != null){
-            Usuario us = getUsuarioLogeado();
-            for (Iterator<Perfil> it = p.getPerfiles().iterator(); it.hasNext();) {
-                Perfil perfil = it.next();
-                if(us.getPerfiles().contains(perfil)){
-                    return false;
-                }
+    public boolean checkPermiso(String permiso){
+        Permiso objPermiso = null;
+        List<Permiso> permisos = sessionBean.getPermisosUsuario();
+        for (Iterator<Permiso> it = permisos.iterator(); it.hasNext();) {
+            Permiso p = it.next();
+            if(p.getNombre().equals(permiso)){
+                objPermiso = p;
+                break;
             }
-            
-            return true;
-        }else{        
+        }
+        
+        
+        if(objPermiso != null){
             return false;
+        }else{        
+            return true;
         }
     }
     

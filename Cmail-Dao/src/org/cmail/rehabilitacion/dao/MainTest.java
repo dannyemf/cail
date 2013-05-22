@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.cmail.rehabilitacion.dao.hql.KQuery;
+import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.modelo.sira.ImagenWeb;
 
 import org.hibernate.Criteria;
@@ -71,10 +72,8 @@ return m2.matches();
 }
 
     public static void main(String[] aas) {
-       List<ImagenWeb> lst = KQuery.from(ImagenWeb.class).list();
-        for (Iterator<ImagenWeb> it = lst.iterator(); it.hasNext();) {
-            ImagenWeb m = it.next();
-            System.out.println(m.getTipo());            
-        }
+        Usuario u = (Usuario)HibernateSessionFactory.getSession().get(Usuario.class, 1L);                
+        System.out.println(u);
+        System.out.println(new PermisoDao().obtenerPermisos(u));
     }
 }

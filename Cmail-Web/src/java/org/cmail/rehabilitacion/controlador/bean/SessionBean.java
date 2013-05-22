@@ -10,10 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
+import org.cmail.rehabilitacion.dao.PermisoDao;
 import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.htp.Categoria;
@@ -71,6 +73,7 @@ public class SessionBean implements Serializable {
     
     private String mensajeNotificacion;
     private String tipoNotificacion = TipoNotificacion.Aviso.toString();
+    private List<Permiso> permisosUsuario = new ArrayList<Permiso>();
 
     /** Creates a new instance of SessionBean */
     public SessionBean() {
@@ -110,7 +113,8 @@ public class SessionBean implements Serializable {
      */
     public void setUsuarioLogeado(Usuario usuarioLogeado) {
         this.usuarioLogeado = usuarioLogeado;
-        FacesUtils.getStyleBean().setAceTheme(usuarioLogeado.getTemaUi());
+        FacesUtils.getStyleBean().setAceTheme(usuarioLogeado.getTemaUi());        
+        this.permisosUsuario = new PermisoDao().obtenerPermisos(usuarioLogeado);
     }
 
     /**
@@ -405,6 +409,20 @@ public class SessionBean implements Serializable {
      */
     public void setPermisoEdicion(Permiso permisoEdicion) {
         this.permisoEdicion = permisoEdicion;
+    }
+
+    /**
+     * @return the permisosUsuario
+     */
+    public List<Permiso> getPermisosUsuario() {
+        return permisosUsuario;
+    }
+
+    /**
+     * @param permisosUsuario the permisosUsuario to set
+     */
+    public void setPermisosUsuario(List<Permiso> permisosUsuario) {
+        this.permisosUsuario = permisosUsuario;
     }
     
     
