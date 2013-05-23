@@ -11,9 +11,9 @@
         
         <div class="opciones">
             <ace:panel>            
-                <ice:commandLink id="btnNuevo" actionListener="#{opcionController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
-                <ice:commandLink id="btnEditar" actionListener="#{opcionController.eventoEditar}" disabled="#{opcionController.disableEdit}" styleClass="ui-icon-pencil cail-button" value="#{accion.editar}"></ice:commandLink>
-                <ice:commandLink id="btnEliminar" actionListener="#{opcionController.eventoEliminar}" disabled="#{opcionController.disableElim}" styleClass="ui-icon-cancel cail-button" value="#{accion.eliminar}"></ice:commandLink>
+                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('opcion.crear')}" actionListener="#{opcionController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                <ice:commandLink id="btnEditar" actionListener="#{opcionController.eventoEditar}" disabled="#{opcionController.disableEdit or permisoController.checkPermiso('opcion.editar')}" styleClass="ui-icon-pencil cail-button" value="#{accion.editar}"></ice:commandLink>
+                <ice:commandLink id="btnEliminar" actionListener="#{opcionController.eventoEliminar}" disabled="#{opcionController.disableElim or permisoController.checkPermiso('opcion.eliminar')}" styleClass="ui-icon-cancel cail-button" value="#{accion.eliminar}"></ice:commandLink>
             </ace:panel>
         </div>      
 

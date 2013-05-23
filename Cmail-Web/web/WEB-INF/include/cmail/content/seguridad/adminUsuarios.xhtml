@@ -10,7 +10,7 @@
     <ice:form  xmlns:c="http://java.sun.com/jsp/jstl/core">          
         <div class="opciones">
             <ace:panel>                    
-                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('usuario_crear')}" actionListener="#{usuarioController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('usuario.crear')}" actionListener="#{usuarioController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
             </ace:panel>
         </div>
 
@@ -88,11 +88,11 @@
                 
                 <ice:panelGrid columns="2">
 
-                    <ice:commandLink actionListener="#{usuarioController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink disabled="#{permisoController.checkPermiso('usuario.editar')}" actionListener="#{usuarioController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>                            
                     </ice:commandLink>
 
-                    <ice:commandLink panelConfirmation="pc_eliminar" id="btnEliminar" title="#{accion.eliminar}" actionListener="#{usuarioController.eventoEliminar}">
+                    <ice:commandLink disabled="#{permisoController.checkPermiso('usuario.eliminar')}" panelConfirmation="pc_eliminar" id="btnEliminar" title="#{accion.eliminar}" actionListener="#{usuarioController.eventoEliminar}">
                         <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                     </ice:commandLink>
 

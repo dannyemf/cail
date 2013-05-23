@@ -1,6 +1,7 @@
 
 function Init(){
     try{
+        $j('.iceCmdLnk-dis').css('opacity',0.5);
         InitHandlers();
         InitEvents();
         InitPath();
