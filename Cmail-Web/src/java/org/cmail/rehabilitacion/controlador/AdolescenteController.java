@@ -96,19 +96,28 @@ public class AdolescenteController extends Controller {
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)                                       
         boolean v = true;
         
+        //Verifica que tenga padre o madre
         if(getAdolescente().getPadre() == null && getAdolescente().getMadre() == null){
             v = false;
             errorMessage("frmEditAdolescente:sopPadre:txtCedula", mensajeBundle("seleccionePadreMadre"));
         }
         
+        //Verifica que el padre no sea si mismo
         if(getAdolescente().getPadre() != null && getAdolescente().equals(getAdolescente().getPadre())){
             v = false;
             errorMessage("frmEditAdolescente:sopPadre:txtCedula", mensajeBundle("seleccionePadreNoMismoAdo"));
         }
         
+        //Verifica que la madre no sea si mismo
         if(getAdolescente().getMadre() != null && getAdolescente().equals(getAdolescente().getMadre())){
             v = false;
             errorMessage("frmEditAdolescente:sopMadre:txtCedula", mensajeBundle("seleccioneMadreNoMismoAdo"));
+        }
+        
+        //Verifica que el padre y la madre no sea iguales
+        if(getAdolescente().getPadre() != null && getAdolescente().getMadre() != null && getAdolescente().getPadre().equals(getAdolescente().getMadre())){
+            v = false;
+            errorMessage("frmEditAdolescente:sopMadre:txtCedula", mensajeBundle("seleccioneMadreNoMismoPad"));
         }
         
         if(v){

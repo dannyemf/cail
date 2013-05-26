@@ -10,6 +10,7 @@
     <cc:interface>
         <cc:attribute name="title"></cc:attribute>
         <cc:attribute name="value"></cc:attribute>
+        <cc:attribute name="disabled" default="false"></cc:attribute>
         <cc:attribute name="image"></cc:attribute>
         <cc:attribute name="actionListener"  method-signature="void actionListener(javax.faces.event.ActionEvent)"></cc:attribute>        
     </cc:interface>
@@ -23,6 +24,7 @@
             actionListener="#{cc.attrs.actionListener}" 
             rendered="#{cc.rendered}"
             id="#{cc.id}"
+            disabled="#{cc.attrs.disabled}"
             title="#{cc.attrs.title}">
             <ice:graphicImage value="#{cc.attrs.image}" alt="#{cc.attrs.value}"></ice:graphicImage>
             <span>#{cc.attrs.value}</span>

@@ -39,7 +39,7 @@
                             <ice:commandLink id="btnBuscar" actionListener="#{empleadoController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
                         </td>
                         <td>
-                            <ice:commandLink id="btnNuevo" actionListener="#{empleadoController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+                            <ice:commandLink id="btnNuevo" actionListener="#{empleadoController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('empleado.crear')}"></ice:commandLink>
                         </td>
                     </tr>
                 </table>
@@ -76,15 +76,15 @@
                 
                 <ice:panelGrid columns="4">
 
-                    <ice:commandLink actionListener="#{empleadoController.eventoEditar}" id="btnEditar" title="#{accion.editar}" rendered="#{f.empleado}">
+                    <ice:commandLink actionListener="#{empleadoController.eventoEditar}" id="btnEditar" title="#{accion.editar}" rendered="#{f.empleado}" disabled="#{permisoController.checkPermiso('empleado.editar')}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>
                     
-                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{empleadoController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}" rendered="#{f.empleado}">
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{empleadoController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}" rendered="#{f.empleado}" disabled="#{permisoController.checkPermiso('empleado.eliminar')}">
                         <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                     </ice:commandLink>
                     
-                    <ice:commandLink panelConfirmation="pc_rol" actionListener="#{empleadoController.eventoEnrrolar}" id="btnAsignarRol" title="#{accion.asignarRol}" rendered="#{!f.empleado}">
+                    <ice:commandLink panelConfirmation="pc_rol" actionListener="#{empleadoController.eventoEnrrolar}" id="btnAsignarRol" title="#{accion.asignarRol}" rendered="#{!f.empleado}" disabled="#{permisoController.checkPermiso('empleado.enrrolar')}">
                         <ice:graphicImage value="/resources/icono/row/row_people.png" alt="#{accion.asignarRol}"></ice:graphicImage>
                     </ice:commandLink>
                     

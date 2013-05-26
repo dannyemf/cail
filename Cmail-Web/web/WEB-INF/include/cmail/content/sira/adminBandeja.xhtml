@@ -45,13 +45,15 @@
                             <!--Editar Ficha Ingreso-->
                             <cail:buttonRow
                                 id="btnEditar" value="#{accion.editar}" title="#{accion.editar}"
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.editar')}"
                                 image="/resources/icono/row/row_editar.png"
                                 actionListener="#{bandejaController.eventoEditarFichaIngreso}">
                             </cail:buttonRow>
                             
                             <!--Ficha Ingreso Pdf-->
                             <cail:buttonRowResource 
-                                value="Pdf" title="#{mensaje.generarReporte}"                                
+                                value="Pdf" title="#{mensaje.generarReporte}"  
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.pdf')}"
                                 fileName="FichaIngreso-#{bandejaController.fichaIngreso.fichaIngreso.id}.pdf"
                                 resource="#{bandejaController.fichaIngreso.recurso}"
                                 lastModified="#{bandejaController.fichaIngreso.recurso.modified}">
@@ -60,6 +62,7 @@
                             <!--Copiar Ficha Ingreso (Solo cuando no haya fichas abiertas)-->
                             <cail:buttonRow
                                 id="btnFichaNueva" value="#{accion.copiar}" title="#{mensaje.generarFichaIngreso}"
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.copiar')}"
                                 image="/resources/icono/row/row_nuevo_mas.png" rendered="#{bandejaController.renderBotonNuevoIngreso}"                                
                                 actionListener="#{eventoGenerarNuevaFichaIngreso.eventoGenerarNueva(evt, bandejaController.fichaIngreso)}">
                             </cail:buttonRow>
@@ -67,6 +70,7 @@
                             <!--Crea Nuevo Test HTP-->
                             <cail:buttonRow
                                 id="btnTest" value="#{accion.test}" title="#{mensaje.generarTestHtp}"
+                                disabled="#{permisoController.checkPermiso('testHtp.crear')}"
                                 image="/resources/icono/row/row_test.png" rendered="#{bandejaController.fichaIngreso.renderedTest}"                                
                                 actionListener="#{bandejaController.eventoNuevoTest}">
                             </cail:buttonRow>
@@ -74,6 +78,7 @@
                             <!--Crea Nuevo Informe Psicológico-->
                             <cail:buttonRow
                                 id="btnInformePsicologico" value="#{accion.infPsicologico}" title="#{mensaje.generarInformePsicologico}"
+                                disabled="#{permisoController.checkPermiso('informePsicologico.crear')}"
                                 image="/resources/icono/row/row_test.png" rendered="#{bandejaController.fichaIngreso.renderInformePsicologico}"
                                 actionListener="#{bandejaController.eventoNuevoInforme}">
                             </cail:buttonRow>
@@ -81,6 +86,7 @@
                             <!--Genera Ficha Egreso (Solo cuando esté abierta)-->
                             <cail:buttonRow
                                 id="btnFichaEgreso" value="#{accion.egreso}" title="#{mensaje.generarFichaEgreso}"
+                                disabled="#{permisoController.checkPermiso('fichaEgreso.crear')}"
                                 image="/resources/icono/row/row_egreso.png" rendered="#{bandejaController.fichaIngreso.renderedFichaEgreso}"
                                 actionListener="#{bandejaController.eventoGenerarFichaEgreso}">
                             </cail:buttonRow>

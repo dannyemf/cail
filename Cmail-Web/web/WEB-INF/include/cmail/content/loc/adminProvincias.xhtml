@@ -10,7 +10,7 @@
 
         <div class="opciones">
             <ace:panel>
-                <ice:commandLink id="btnNuevo" actionListener="#{divisionController.eventoNuevaProvincia}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('division_politica.crear')}" actionListener="#{divisionController.eventoNuevaProvincia}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
             </ace:panel>
         </div>
 
@@ -27,11 +27,11 @@
                                            message="#{mensaje.eliminar_provincia}"  rendered="true"/>
 
                     <ice:panelLayout layout="flow">
-                        <ice:commandLink actionListener="#{divisionController.eventoEditarProvincia}" id="btnEditar" title="#{accion.editar}">
+                        <ice:commandLink actionListener="#{divisionController.eventoEditarProvincia}" id="btnEditar" disabled="#{permisoController.checkPermiso('division_politica.editar')}" title="#{accion.editar}">
                             <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                         </ice:commandLink>                            
 
-                        <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{divisionController.eventoEliminarProvincia}" id="btnEliminar" title="#{accion.eliminar}">
+                        <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{divisionController.eventoEliminarProvincia}" id="btnEliminar" disabled="#{permisoController.checkPermiso('division_politica.eliminar')}" title="#{accion.eliminar}">
                             <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                         </ice:commandLink>
 

@@ -1,10 +1,10 @@
 
 function Init(){
-    try{
-        $j('.iceCmdLnk-dis').css('opacity',0.5);
+    try{        
         InitHandlers();
         InitEvents();
         InitPath();
+        InitLinks();
         InitButtons();
         InitPanelConfirmacion();
     }catch(e){
@@ -15,11 +15,16 @@ function Init(){
 function InitMin(){
     try{
         InitEvents();
+        InitLinks();
         InitButtons();
         InitPanelConfirmacion();
     }catch(e){
         alert("Global.InitMin(): " +e );
     }
+};
+
+function InitLinks(){
+    $j('.iceCmdLnk-dis').css('opacity',0.5);
 };
 
 function InitHandlers(){

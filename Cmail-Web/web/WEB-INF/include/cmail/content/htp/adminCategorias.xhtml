@@ -21,7 +21,7 @@
                     <ice:outputText value="#{etiqueta.texto}"></ice:outputText>
                     <ice:inputText value="#{categoriaController.texto}"></ice:inputText>
                     <ice:commandLink id="btnBuscar" actionListener="#{categoriaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
-                    <ice:commandLink id="btnNuevo" actionListener="#{categoriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+                    <ice:commandLink id="btnNuevo" actionListener="#{categoriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('config_test.crear')}"></ice:commandLink>
                     
                     <ace:tooltip for="btnHelp" value="#{etiqueta.ayuda}..."></ace:tooltip>
                     
@@ -40,11 +40,11 @@
                                        title="#{mensaje.eliminar_interpretacin_title}"
                                        message="#{mensaje.eliminar_interpretacin}"  rendered="true"/>
                 <ice:panelLayout layout="flow">
-                    <ice:commandLink actionListener="#{categoriaController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink actionListener="#{categoriaController.eventoEditar}" id="btnEditar" title="#{accion.editar}" disabled="#{permisoController.checkPermiso('config_test.editar')}">
                         <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>                            
 
-                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{categoriaController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}">
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{categoriaController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}" disabled="#{permisoController.checkPermiso('config_test.eliminar')}">
                         <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                     </ice:commandLink>
 

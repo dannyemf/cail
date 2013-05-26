@@ -10,20 +10,19 @@ import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.cmail.rehabilitacion.controlador.bean.SessionBean;
+import org.cmail.rehabilitacion.dao.hql.K;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.seguridad.Perfil;
 import org.cmail.rehabilitacion.modelo.seguridad.Permiso;
-import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
 import org.cmail.rehabilitacion.servicio.PermisoServicio;
 import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
-import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
@@ -31,38 +30,62 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
  * @author Usuario
  */
 @ManagedBean (name= Constantes.MB_PERMISO) 
-@ViewScoped
+@SessionScoped
 public class PermisoController  extends Controller{
 
     @ManagedProperty(value="#{"+ Constantes.MB_SESSION +"}")
     private SessionBean sessionBean;
+    private String nombre = "";
     
-    private CmailListDataModel<Permiso> model;    
+    private CmailListDataModel<Permiso> model;
+    private Permiso permisoEdicion;
     
-    /** Creates a new instance of AdminUsuariosController */
+    /** Creates a new instance of PermisoController */
     public PermisoController() {
     }
 
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
+    } 
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }        
 
-    public CmailListDataModel<Permiso> getModel() {
-        List<Permiso> lst = new PermisoServicio().listarTodos();
-        model = new CmailListDataModel<Permiso>(lst);
+    public CmailListDataModel<Permiso> getModel() {        
         return model;
+    }
+
+    public void setModel(CmailListDataModel<Permiso> model) {
+        this.model = model;
+    }      
+        
+    
+    public void eventoBuscar(ActionEvent evt) {
+        List<Permiso> lst = new PermisoServicio().from().where(K.like("nombre", nombre)).orderBy(K.asc("nombre")).list();
+        showMessageResultList(lst);
+        model = new CmailListDataModel<Permiso>(lst);
     }
     
     public void eventoEditar(ActionEvent evt) {        
         Permiso permiso = model.getRowData();        
         editar(permiso);
-        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PERMISO);        
+        
+        //FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PERMISO);        
+        runScript("dlgEditarPermiso.show();");
     }
     
     public void eventoNuevo(ActionEvent evt) {        
         Permiso permiso = new Permiso();
         editar(permiso);
-        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PERMISO);        
+        
+        
+        //FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PERMISO);        
+        runScript("dlgEditarPermiso.show();");
     }
     
     public void eventoEliminar(ActionEvent evt) {
@@ -75,7 +98,7 @@ public class PermisoController  extends Controller{
     public void editar(Permiso permiso) {
         initAudit(permiso);        
         
-        FacesUtils.getSessionBean().setPermisoEdicion(permiso);        
+        this.setPermisoEdicion(permiso);   
         
         for (Iterator<Perfil> it = permiso.getPerfiles().iterator(); it.hasNext();) {
             it.next().setSeleccionado(true);
@@ -106,14 +129,17 @@ public class PermisoController  extends Controller{
         }
         
         if(!tienePerfil){
-            showMensaje(TipoNotificacion.Error, mensajeBundle("val_perfil_seleccione"));            
+            FacesUtils.addErrorMessage(mensajeBundle("val_perfil_seleccione"));
+            //showMensaje(TipoNotificacion.Error, mensajeBundle("val_perfil_seleccione"));            
+            getPermisoEdicion().setPerfiles(perfiles);
         }else{        
             
             boolean b = new PermisoServicio().guardar(getPermisoEdicion());
             showMessageSaved(b);
 
             if (b) {            
-                FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERMISO);            
+                //FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERMISO);            
+                runScript("dlgEditarPermiso.hide();");
             }else{
                 getPermisoEdicion().setPerfiles(perfiles);
             }
@@ -122,7 +148,8 @@ public class PermisoController  extends Controller{
     
     public void eventoCancelar(ActionEvent evt) {
         new UsuarioServicio().refrescar(getPermisoEdicion());        
-        FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERMISO);        
+        //FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERMISO);        
+        runScript("dlgEditarPermiso.hide();");
     }   
 
     /**
@@ -136,12 +163,7 @@ public class PermisoController  extends Controller{
         if (b) {
             validationMessage(mensajeBundle("val_nombre_existe"));
         }
-    }
-    
-    
-    public Permiso getPermisoEdicion() {
-        return FacesUtils.getSessionBean().getPermisoEdicion();
-    }
+    }    
     
     public boolean checkPermiso(String permiso){
         Permiso objPermiso = null;
@@ -160,6 +182,20 @@ public class PermisoController  extends Controller{
         }else{        
             return true;
         }
+    }
+
+    /**
+     * @param permisoEdicion the permisoEdicion to set
+     */
+    public void setPermisoEdicion(Permiso permisoEdicion) {
+        this.permisoEdicion = permisoEdicion;
+    }
+
+    /**
+     * @return the permisoEdicion
+     */
+    public Permiso getPermisoEdicion() {
+        return permisoEdicion;
     }
     
 }

@@ -19,6 +19,7 @@
                 <ice:commandLink id="btnNuevo" 
                                  actionListener="#{bandejaController.eventoNuevaFichaIngreso}" 
                                  rendered="#{bandejaController.renderBotonNuevoIngreso}"
+                                 disabled="#{permisoController.checkPermiso('fichaIngreso.crear')}"
                                  styleClass="ui-icon-document cail-button" value="#{accion.nueva}">
                 </ice:commandLink>
             </td>

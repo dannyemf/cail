@@ -11,7 +11,7 @@
         <div class="opciones">
             <ace:panel>
                 <ice:commandLink id="btnBuscar" actionListener="#{esquemaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
-                <ice:commandLink id="btnNuevo" actionListener="#{esquemaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                <ice:commandLink id="btnNuevo" actionListener="#{esquemaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}" disabled="#{permisoController.checkPermiso('esquema.crear')}"></ice:commandLink>
             </ace:panel>
         </div>
 
@@ -21,7 +21,7 @@
 
             <ice:column id="column1">                  
                 <ice:panelLayout layout="flow" >
-                    <ice:commandLink actionListener="#{esquemaController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink actionListener="#{esquemaController.eventoEditar}" id="btnEditar" disabled="#{permisoController.checkPermiso('esquema.editar')}" title="#{accion.editar}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>                                               
                 </ice:panelLayout>

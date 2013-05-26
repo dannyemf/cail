@@ -32,7 +32,7 @@
                 </ice:selectInputDate>
 
                 <ice:commandLink id="btnBuscar"  actionListener="#{agendaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
-                <ice:commandLink id="btnNuevo" actionListener="#{agendaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('agenda.crear')}" actionListener="#{agendaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
             </ice:panelGrid>
             </ace:panel>
         </div>
@@ -42,11 +42,11 @@
         <ice:dataTable id="dataTable1" value="#{agendaController.modelAgendas}" var="p" rows="10" width="100%" scrollHeight="250px">
             <ice:column id="column1">                        
                 <ice:panelLayout layout="flow">
-                    <ice:commandLink actionListener="#{agendaController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink actionListener="#{agendaController.eventoEditar}" id="btnEditar" title="#{accion.editar}" disabled="#{permisoController.checkPermiso('agenda.editar')}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>
 
-                    <ice:commandLink id="btnFinalizar" disabled="#{p.estadoFinalizado}" title="#{accion.finalizar}" actionListener="#{agendaController.eventoFinalizar}">
+                    <ice:commandLink id="btnFinalizar" disabled="#{not p.estadoFinalizado and permisoController.checkPermiso('agenda.finalizar')}" title="#{accion.finalizar}" actionListener="#{agendaController.eventoFinalizar}">
                         <ice:graphicImage value='/resources/icono/row/#{(p.estadoFinalizado == false ? "row_cerrar.png":"row_cerrar_disabled.png")}' alt="#{accion.finalizar}"></ice:graphicImage>
                     </ice:commandLink>                    
                     

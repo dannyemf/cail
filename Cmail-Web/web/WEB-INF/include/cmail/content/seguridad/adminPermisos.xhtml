@@ -6,11 +6,19 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"     
      xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
      >    
+        
+    <ace:dialog header="#{permisoController.permisoEdicion.id > 0 ? accion.editar : accion.nuevo} permiso" modal="true" widgetVar="dlgEditarPermiso">
+        <ui:include src="editarPermiso.xhtml"></ui:include>
+    </ace:dialog>
+    
     
     <ice:form  xmlns:c="http://java.sun.com/jsp/jstl/core">          
         <div class="opciones">
             <ace:panel>                    
-                <ice:commandLink id="btnNuevo" actionListener="#{permisoController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('permiso.crear')}"></ice:commandLink>
+                <ice:outputLabel value="#{etiqueta.nombre}: "></ice:outputLabel>
+                <ice:inputText value="#{permisoController.nombre}"></ice:inputText>
+                <ice:commandLink id="btnBuscar" actionListener="#{permisoController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>                
+                <ice:commandLink id="btnNuevo" actionListener="#{permisoController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('permiso.crear')}"></ice:commandLink>                
             </ace:panel>
         </div>
 

@@ -97,37 +97,63 @@ public class FichaIngresoController extends Controller {
         FichaIngreso f = getFichaIngresoEdicion();
         boolean v = true;        
         
-        if (getFichaIngresoEdicion().getAdolescente() == null || (getFichaIngresoEdicion().getAdolescente() != null && getFichaIngresoEdicion().getAdolescente().getId() <= 0)) {
-            errorMessage("form:txtCedulaAdolescente", "Ingrese los datos del Adolescente");
+        //Verifica que tenga padre o madre
+        if (f.getAdolescente().getPadre() == null && f.getAdolescente().getMadre() == null) {
+            errorMessage("form:sopPadre:txtCedula", mensajeBundle("seleccionePadreMadre"));
             v=false;
         }
         
-        if (getFichaIngresoEdicion().getAdolescente().getPadre() == null && getFichaIngresoEdicion().getAdolescente().getMadre() == null) {
-            errorMessage("form:txtCedulaPadre", "Ingrese los datos del Padre");
+        //Verifica el representante
+        if (f.getRepresentante() == null) {
+            errorMessage("form:sopRepresentante:txtCedula", mensajeBundle("seleccioneRepresentante"));
             v=false;
         }
         
-        if (getFichaIngresoEdicion().getRepresentante() == null) {
-            errorMessage("form:txtCedulaRepresentante", "Ingrese los datos del Representante");
+        //Verifica el responsable de ingresp
+        if (f.getResponsableIngreso() == null) {
+            errorMessage("form:sopResponsableIngreso:txtCedula", mensajeBundle("seleccionePersonaIngresaCentro"));
             v=false;
         }
         
-        if (getFichaIngresoEdicion().getResponsableIngreso() == null) {
-            errorMessage("form:txtCedulaResponsableIngreso", "Ingrese los datos del Responsable de Ingreso");
+        //Verifica el responsable de traslado
+        if (f.getResponsableTraslado() == null) {
+            errorMessage("form:sopResponsableTraslado:txtCedula", mensajeBundle("seleccioneResponsableTraslado"));
             v=false;
         }
-        if (getFichaIngresoEdicion().getResponsableTraslado() == null) {
-            errorMessage("form:txtCedulaResponsableTraslado", "Ingrese los datos del Responsable del Traslado al centro");
+        
+        //Verifica el responsable de resguado pertenecias
+        if (f.getResponsableResguardoPertenencia() == null) {
+            errorMessage("form:sopPersonaPertenecias:txtCedula", mensajeBundle("seleccionePersonaPertenencias"));            
             v=false;
         }
-        if (getFichaIngresoEdicion().getResponsableResguardoPertenencia() == null) {
-            errorMessage("form:txtCedulaResponsablePertenencia", "Ingrese los datos del Responsable del Resguardo de las Pertenencias");
-            v=false;
+        
+        //Verifica que el padre no sea si mismo
+        if(f.getAdolescente().getPadre() != null && f.getAdolescente().getPadre().equals(f.getAdolescente()) ){
+            errorMessage("form:sopPadre:txtCedula", mensajeBundle("seleccionePadreNoMismoAdo"));
+            v = false;
+        }
+        
+        //Verifica que el madre no sea si mismo
+        if(f.getAdolescente().getMadre() != null && f.getAdolescente().getMadre().equals(f.getAdolescente()) ){
+            errorMessage("form:sopMadre:txtCedula", mensajeBundle("seleccioneMadreNoMismoAdo"));
+            v = false;
+        }
+        
+        //Verifica que el padre y la madre no sea iguales
+        if(f.getAdolescente().getPadre() != null && f.getAdolescente().getMadre() != null && f.getAdolescente().getPadre().equals(f.getAdolescente().getMadre())){
+            v = false;
+            errorMessage("form:sopMadre:txtCedula", mensajeBundle("seleccioneMadreNoMismoPad"));
+        }
+        
+        //Verifica que el representante no sea si mismo
+        if(f.getRepresentante() != null && f.getRepresentante().equals(f.getAdolescente()) ){
+            errorMessage("form:sopRepresentante:txtCedula", mensajeBundle("seleccioneRepreNoMismoAdo"));
+            v = false;
         }
 
         return v;
     }
-
+    
     public void eventoGuardar(ActionEvent evt) {
         //falta controlar que el padre y la madre no sean los mismosss
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)

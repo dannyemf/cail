@@ -28,15 +28,15 @@
         <ice:column>                                      
             <ice:panelGrid columns="5">
 
-                <ice:commandLink actionListener="#{bandejaController.eventoEditarTest(evt, f.testHtp)}" id="btnEditar" title="#{accion.ver}">
+                <ice:commandLink actionListener="#{bandejaController.eventoEditarTest(evt, f.testHtp)}" id="btnEditar" title="#{accion.ver}" disabled="#{permisoController.checkPermiso('testHtp.ver')}">
                     <ice:graphicImage value="/resources/icono/row/row_ver.png" alt="#{accion.editar}"></ice:graphicImage>
                 </ice:commandLink>
 
-                <ice:commandLink rendered="#{f.informe eq null}" actionListener="#{bandejaController.eventoGenerarInterpretacion(evt, f.testHtp)}" id="btnInterpretacionCrear" title="#{mensaje.crearInterpretacionHtp}">
+                <ice:commandLink rendered="#{f.informe eq null}" actionListener="#{bandejaController.eventoGenerarInterpretacion(evt, f.testHtp)}" id="btnInterpretacionCrear" title="#{mensaje.crearInterpretacionHtp}" disabled="#{permisoController.checkPermiso('interpretacionHtp.crear')}">
                     <ice:graphicImage value="/resources/icono/row/row_emitir.png" alt="#{accion.emitir}"></ice:graphicImage>
                 </ice:commandLink>
                 
-                <ice:commandLink rendered="#{f.informe  != null}" actionListener="#{bandejaController.eventoVerInterpretacion(evt, f.testHtp)}" id="btnInterpretacionVer" title="#{mensaje.verInterpretacionHtp}">
+                <ice:commandLink rendered="#{f.informe  != null}" actionListener="#{bandejaController.eventoVerInterpretacion(evt, f.testHtp)}" id="btnInterpretacionVer" title="#{mensaje.verInterpretacionHtp}" disabled="#{permisoController.checkPermiso('interpretacionHtp.ver')}">
                     <ice:graphicImage value="/resources/icono/row/row_ver_interpretacion.png" alt="#{accion.emitir}"></ice:graphicImage>
                 </ice:commandLink>
 
@@ -57,6 +57,7 @@
                 
                 <ice:outputText title="#{mensaje.generarReporteInformeHtp}">
                     <ice:outputResource label="Pdf" 
+                                        disabled="#{permisoController.checkPermiso('testHtp.informeHtp')}"
                                         fileName="InformeTestHtp-#{f.testHtp.id}.pdf" 
                                         image="/resources/icono/row/row_informe.png" 
                                         mimeType="application/pdf"
@@ -69,7 +70,8 @@
                 </ice:outputText>
                 
                 <ice:outputText title="#{mensaje.generarReporteEvolucionHtp}">
-                    <ice:outputResource label="Pdf" 
+                    <ice:outputResource label="Pdf"
+                                        disabled="#{permisoController.checkPermiso('testHtp.evolucionHtp')}"
                                         fileName="EvoluciónPsicológica-#{f.testHtp.id}.pdf" 
                                         image="/resources/icono/row/row_evolucion.png" 
                                         mimeType="application/pdf"

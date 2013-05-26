@@ -27,12 +27,13 @@
 
         <ice:column>                                      
             <ice:panelGrid columns="3">
-                <ice:commandLink actionListener="#{bandejaController.eventoEditarInforme(evt, f.informe)}" id="btnEditar" title="#{accion.editar}">
+                <ice:commandLink actionListener="#{bandejaController.eventoEditarInforme(evt, f.informe)}" id="btnEditar" title="#{accion.editar}" disabled="#{permisoController.checkPermiso('informePsicologico.editar')}">
                     <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                 </ice:commandLink>
                 
                 <ice:outputText title="#{mensaje.generarReporte}">
-                    <ice:outputResource label="Pdf" 
+                    <ice:outputResource label="Pdf"
+                                        disabled="#{permisoController.checkPermiso('informePsicologico.pdf')}"
                                         fileName="InformePsicologico-#{f.informe.id}.pdf" 
                                         image="/resources/icono/row/row_reporte.png" 
                                         mimeType="application/pdf"

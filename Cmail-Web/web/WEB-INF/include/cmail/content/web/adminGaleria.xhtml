@@ -23,7 +23,7 @@
                     </ice:inputText>                                                                        
 
                     <ice:commandLink id="btnBuscar"  actionListener="#{galeriaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
-                    <ice:commandLink id="btnNuevo" immediate="true" actionListener="#{galeriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+                    <ice:commandLink id="btnNuevo" immediate="true" actionListener="#{galeriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('galeria.crear')}"></ice:commandLink>
 
                 </ice:panelGrid>                    
             </ace:panel>
@@ -34,11 +34,11 @@
             <ice:column>
                 <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" styleClass="icePnlCnfEliminar" title="#{mensaje.eliminar_entrada_title}" message="#{mensaje.eliminar_entrada}"  rendered="true"/>
                 <ice:panelLayout layout="flow">
-                    <ice:commandLink actionListener="#{galeriaController.eventoEditar}" id="btnEditar" title="#{accion.editar}">
+                    <ice:commandLink actionListener="#{galeriaController.eventoEditar}" id="btnEditar" title="#{accion.editar}" disabled="#{permisoController.checkPermiso('galeria.editar')}">
                         <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>                            
 
-                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{galeriaController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}">
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{galeriaController.eventoEliminar}" id="btnEliminar" title="#{accion.eliminar}" disabled="#{permisoController.checkPermiso('galeria.eliminar')}">
                         <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
                     </ice:commandLink>                            
                 </ice:panelLayout> 

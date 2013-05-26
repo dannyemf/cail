@@ -10,7 +10,8 @@
     <!-- INTERFACE -->
     <cc:interface>
         <cc:attribute name="title"></cc:attribute>
-        <cc:attribute name="value"></cc:attribute>        
+        <cc:attribute name="value"></cc:attribute>
+        <cc:attribute name="disabled" default="false"></cc:attribute>
         <cc:attribute name="image" default="./resources/icono/row/row_reporte.png"></cc:attribute>
         <cc:attribute name="fileName"></cc:attribute>
         <cc:attribute name="mimeType" default="application/pdf"></cc:attribute>
@@ -24,7 +25,7 @@
     <cc:implementation>                       
         
         <ice:outputResource                                    
-            styleClass="ui-button-row cail-button-recurso-row ui-button ui-state-default ui-corner-all"
+            styleClass="ui-button-row cail-button-recurso-row ui-button #{cc.attrs.disabled ? 'ui-state-disabled':'ui-state-default'} ui-corner-all"
             label="{text:'#{cc.attrs.value}', title:'#{cc.attrs.title}', image:'#{cc.attrs.image}'}"
             fileName="#{cc.attrs.fileName}"                                                         
             mimeType="#{cc.attrs.mimeType}"
@@ -33,6 +34,7 @@
             shared="#{cc.attrs.shared}"
             id="#{cc.id}"
             rendered="#{cc.rendered}"
+            disabled="#{cc.attrs.disabled}"
             >
         </ice:outputResource>                
     </cc:implementation>
