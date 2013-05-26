@@ -56,6 +56,13 @@
             </ice:column>
             
             <ice:column>
+                <ice:outputText value="#{p.descripcion}"/>                        
+                <f:facet name="header">
+                    <ice:outputText value="#{etiqueta.descripcion}"></ice:outputText>
+                </f:facet>
+            </ice:column>
+            
+            <ice:column>
                 <ice:outputText value="#{p.orden}"/>                        
                 <f:facet name="header">
                     <ice:outputText value="#{etiqueta.orden}"></ice:outputText>
