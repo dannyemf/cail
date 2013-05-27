@@ -58,6 +58,7 @@
                 <ice:outputText title="#{mensaje.generarReporteInformeHtp}">
                     <ice:outputResource label="Pdf" 
                                         disabled="#{permisoController.checkPermiso('testHtp.informeHtp')}"
+                                        styleClass="#{permisoController.checkPermiso('testHtp.informeHtp') ? 'iceCmdLnk-dis':''}"
                                         fileName="InformeTestHtp-#{f.testHtp.id}.pdf" 
                                         image="/resources/icono/row/row_informe.png" 
                                         mimeType="application/pdf"
@@ -72,6 +73,7 @@
                 <ice:outputText title="#{mensaje.generarReporteEvolucionHtp}">
                     <ice:outputResource label="Pdf"
                                         disabled="#{permisoController.checkPermiso('testHtp.evolucionHtp')}"
+                                        styleClass="#{permisoController.checkPermiso('testHtp.evolucionHtp') ? 'iceCmdLnk-dis':''}"
                                         fileName="EvoluciónPsicológica-#{f.testHtp.id}.pdf" 
                                         image="/resources/icono/row/row_evolucion.png" 
                                         mimeType="application/pdf"

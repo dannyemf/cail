@@ -40,7 +40,8 @@
                                         mimeType="application/pdf"
                                         resource="#{f.recurso}"
                                         lastModified="#{f.recurso.modified}"
-                                        shared="false"                                            
+                                        shared="false"
+                                        styleClass="#{permisoController.checkPermiso('fichaEgreso.pdf') ? 'iceCmdLnk-dis':''}"
                                         >                            
                     </ice:outputResource>
                 </ice:outputText>

@@ -34,6 +34,7 @@
                 <ice:outputText title="#{mensaje.generarReporte}">
                     <ice:outputResource label="Pdf"
                                         disabled="#{permisoController.checkPermiso('informePsicologico.pdf')}"
+                                        styleClass="#{permisoController.checkPermiso('informePsicologico.pdf') ? 'iceCmdLnk-dis':''}"
                                         fileName="InformePsicologico-#{f.informe.id}.pdf" 
                                         image="/resources/icono/row/row_reporte.png" 
                                         mimeType="application/pdf"
