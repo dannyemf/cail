@@ -130,14 +130,19 @@
                             parroquia="#{fichaIngresoController.fichaIngresoEdicion.parroquiaDetencion}">                        
                         </cail:selectOneProvincia>
 
-                        <ice:panelGrid columns="3" rowClasses="rowsPanelGrid">                        
+                        <ice:panelGrid columns="2" rowClasses="rowsPanelGrid">                        
                             <ice:outputLabel value="#{etiqueta.barrio}"/>
-                            <ice:inputText id="txtBarrioDetencion" required="true" size="40" label="#{etiqueta.barrio}" value="#{fichaIngresoController.fichaIngresoEdicion.barrioDetencion}" />
-                            <ice:message for="txtBarrioDetencion"></ice:message>
+                            
+                            <ice:panelGrid>
+                                <ice:inputText id="txtBarrioDetencion" required="true" size="40" label="#{etiqueta.barrio}" value="#{fichaIngresoController.fichaIngresoEdicion.barrioDetencion}" />
+                                <ice:message for="txtBarrioDetencion"></ice:message>
+                            </ice:panelGrid>
 
                             <ice:outputLabel value="#{etiqueta.comunidad}"/>
-                            <ice:inputText id="txtComunidadDetencion" required="true" size="40" label="#{etiqueta.comunidad}" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadDetencion}" />
-                            <ice:message for="txtComunidadDetencion"/>                                 
+                            <ice:panelGrid>
+                                <ice:inputText id="txtComunidadDetencion" required="true" size="40" label="#{etiqueta.comunidad}" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadDetencion}" />
+                                <ice:message for="txtComunidadDetencion"/>                                 
+                            </ice:panelGrid>
                         </ice:panelGrid>
 
                     </ice:panelGrid>
@@ -198,7 +203,7 @@
                     </ice:panelGrid>
 
                     <cail:separador value="#{etiqueta.direccionDomicilioResidencia}"></cail:separador>
-                    <ice:panelGrid columns="3" width="100%" columnClasses="columnsPanelGrid">
+                    <ice:panelGrid columns="2" width="100%" columnClasses="columnsPanelGrid">
 
                         <cail:selectOneProvincia
                             id="sopResidencia"
@@ -209,13 +214,17 @@
                             parroquia="#{fichaIngresoController.fichaIngresoEdicion.parroquiaResidencia}">                        
                         </cail:selectOneProvincia>
 
-                        <ice:panelGrid columns="4" >
+                        <ice:panelGrid columns="2" >
 
                             <ice:outputLabel value="#{etiqueta.barrio}"/> 
                             <ice:inputText  id="txtBarrioResidencia" value="#{fichaIngresoController.fichaIngresoEdicion.barrioResidencia}" />
 
                             <ice:outputLabel value="#{etiqueta.comunidad}"/> 
                             <ice:inputText  id="txtComunidadResidencia" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadResidencia}" />
+
+                        </ice:panelGrid>
+                        
+                        <ice:panelGrid columns="4" >                            
 
                             <ice:outputLabel value="#{etiqueta.telefono}"/> 
                             <ice:inputText  id="txtTelefonoResidencia" styleClass="numeric" label="#{etiqueta.telefono}" value="#{fichaIngresoController.fichaIngresoEdicion.telefonoResidencia}"></ice:inputText>                        

@@ -21,7 +21,7 @@
             <ice:panelGrid id="pnlGridDatos" columns="3">
 
                 <ice:outputLabel value="#{etiqueta.nombre}"></ice:outputLabel>
-                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{articuloController.articuloEdicion.titulo}" required="true" maxlength="255" partialSubmit="true" immediate="true">
+                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{articuloController.articuloEdicion.titulo}" required="true" maxlength="255">
                     <f:validateLength minimum="5"></f:validateLength>
                 </ice:inputText>
                 <ice:message for="txtNombre"></ice:message>
@@ -32,7 +32,7 @@
                 <ice:message for="sbcActivo"></ice:message>
                 
                 <ice:outputLabel for="sbcPagina" value="#{etiqueta.paginaPrincipal}"></ice:outputLabel>
-                <ice:selectBooleanCheckbox id="sbcPagina" value="#{articuloController.articuloEdicion.paginaPrincipal}"></ice:selectBooleanCheckbox>
+                <ice:selectBooleanCheckbox id="sbcPagina" partialSubmit="true" value="#{articuloController.articuloEdicion.paginaPrincipal}"></ice:selectBooleanCheckbox>
                 <ice:message for="sbcPagina"></ice:message>
 
             </ice:panelGrid>
@@ -40,17 +40,17 @@
 
         <br/>
         
-        <ace:tabSet id="tabs" immediate="true" tabChangeListener="#{articuloController.eventoSelTab}" >
+        <ace:tabSet id="tabs" immediate="true" clientSide="true" selectedIndex="#{articuloController.selectedTab}" tabChangeListener="#{articuloController.eventoSelTab}" >
             
-            <ace:tabPane label="#{etiqueta.resumenPortada}" >
+            <ace:tabPane label="#{etiqueta.resumenPortada}" rendered="#{!articuloController.articuloEdicion.paginaPrincipal}">
                 <ice:panelGrid width="100%">
                     <!--onclick="wucMultimedia.show();"-->
                     <ice:commandButton 
                         id="btnImgResumen" 
-                        image="./resources/icono/imagenes.png"
-                        title="#{mensaje.imagen_agregar_resumen}"                            
                         immediate="true"
-                        actionListener="#{articuloController.seleccionarImagenResumen}">
+                        image="./resources/icono/imagenes.png"
+                        title="#{mensaje.imagen_agregar_resumen}"                                                                            
+                        actionListener="#{articuloController.seleccionarImagenResumen}">                        
                     </ice:commandButton>                                      
 
                     <ace:richTextEntry
@@ -58,12 +58,8 @@
                         requiredMessage="#{mensaje.resumenRequerido}"
                         saveOnSubmit="true" 
                         width="100%" height="400px"                             
-                        value="#{articuloController.articuloEdicion.resumen}"
-                        partialSubmit="true"
-                        immediate="true"
-                        required="true"
-                        >                             
-
+                        value="#{articuloController.articuloEdicion.resumen}"                        
+                        immediate="true">
                     </ace:richTextEntry>
 
                 </ice:panelGrid>
@@ -72,11 +68,12 @@
             <ace:tabPane label="Pagina Web">
                 <ice:panelGrid width="100%">
 
-                    <ice:commandButton id="btnSelImgCont"
+                    <ice:commandButton 
+                        id="btnSelImgCont"
+                        immediate="true"
                         image="./resources/icono/imagenes.png"
                         title="#{mensaje.imagen_agregar_contenido}"
                         actionListener="#{articuloController.seleccionarImagenContenido}"
-                        immediate="true"                        
                         >
                     </ice:commandButton>
 
@@ -84,10 +81,8 @@
                         id="txtDescripcion"
                         saveOnSubmit="true" 
                         width="100%" height="700px" 
-                        value="#{articuloController.articuloEdicion.descripcion}"                            
-                        partialSubmit="true"
-                        immediate="true"                            
-                        > 
+                        value="#{articuloController.articuloEdicion.descripcion}"                        
+                        immediate="true"> 
                     </ace:richTextEntry>
 
                 </ice:panelGrid>

@@ -259,7 +259,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, this.getAdolescente().getMadre());
     }
 
     public void accionBuscarMadre(ActionEvent evt) {
@@ -272,7 +272,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, getAdolescente().getPadre());
     }
 
     public void accionBuscarRepresentante(ActionEvent evt) {
@@ -285,7 +285,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, this.getAdolescente());
     }
 
     public void accionBuscarResponsableTraslado(ActionEvent evt) {

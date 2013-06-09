@@ -13,10 +13,14 @@
             try{
                 var editor = CKEDITOR.instances[richId];
                 if(editor != null){                    
-                    var dat = editor.getData();
-                    document.getElementById(richId).value = dat+img;
+                    //var dat = editor.getData();                                        
+                    //document.getElementById(richId).value = dat+img;
                     //renderEditor(richId, "Default", 'es', "default", '700px', '100%', '', true);
-                    ice.ace.richtextentry.renderEditor(richId, "Default", 'es', "default", '700px', '100%', '', true);
+                    //ice.ace.richtextentry.renderEditor(richId, "Default", 'es', "default", '700px', '100%', '', true);
+                    
+                    var imgHtml = CKEDITOR.dom.element.createFromHtml(img);
+                    editor.insertElement(imgHtml);
+                    //editor.getCommand('save').exec(editor);
                 }else{
                     alert(richId + " --> " + img)
                 }
@@ -47,7 +51,7 @@
                         fileEntryListener="#{wucMultimedia.listenerUpload}"
                         useOriginalFilename="true"
                         id="inpImageUp"
-                        rendered="true"                        
+                        rendered="true"
                         >
                     </ace:fileEntry>
                     <ice:outputText value="#{accion.reemplazar}"></ice:outputText>

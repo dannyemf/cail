@@ -2,8 +2,10 @@ package org.cmail.rehabilitacion.controlador;
 
 import com.icesoft.faces.component.ext.HtmlInputText;
 import com.icesoft.faces.component.ext.HtmlInputTextarea;
-import com.icesoft.faces.component.selectinputdate.SelectInputDate;
+import com.icesoft.faces.util.ArrayUtils;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -13,12 +15,11 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
-import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
-import org.cmail.rehabilitacion.modelo.core.CmailList;
+import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.servicio.GenericServicio;
 import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
@@ -40,10 +41,15 @@ public class WucBuscarPersonaController extends Controller{
     private String textoPopupBuscar;        
     private Persona personaEdicion = new Persona();
     private Persona personaEdicionOldState = new Persona();
-    private int selectedIndex = 0;        
-    private PersonaRol rol = PersonaRol.GENERAL;            
+    private int selectedIndex = 0;            
     private boolean notificarBuscar = true;            
-    private Persona personaSeleccionada = null;    
+    private Persona personaSeleccionada = null;
+    
+    /**
+     * Filtros de la busqueda
+     */
+    private PersonaRol rol = PersonaRol.GENERAL;
+    private List<Persona> notIn = new ArrayList<Persona>();
     
     public WucBuscarPersonaController() {    
         
@@ -87,7 +93,8 @@ public class WucBuscarPersonaController extends Controller{
     public void accionBuscar(ActionEvent e){        
         try {
             List<Persona> lst = new PersonaServicio().listarPersonas(textoPopupBuscar, rol);
-            this.setListaPersonas(new CmailListDataModel<Persona>(lst));
+            lst = this.depurarLista(lst);
+            this.setListaPersonas(new CmailListDataModel<Persona>(lst));            
         } catch (Exception ex) {
             this.setListaPersonas(new CmailListDataModel<Persona>());
         }                
@@ -97,7 +104,8 @@ public class WucBuscarPersonaController extends Controller{
         personaEdicion = listaPersonas.getRowData();        
         iniciarlizar(personaEdicion);        
         selectedIndex = 1;
-        notificarBuscar = true;        
+        notificarBuscar = true;    
+        runScript("wucBuscarPersona.show();");
         //FacesContext.getCurrentInstance().renderResponse();
     }        
     
@@ -116,7 +124,58 @@ public class WucBuscarPersonaController extends Controller{
         }
         
         runScript("pnlConfEliminar.hide();");
-    }        
+    }    
+    
+    public void accionNueva(ActionEvent e){
+        personaEdicion = new PersonaServicio().crearPersona();
+        
+        initAudit(personaEdicion);        
+        iniciarlizar(personaEdicion);
+        selectedIndex = 1;    
+        notificarBuscar = true;
+        
+        runScript("wucBuscarPersona.show();");
+        //FacesContext.getCurrentInstance().renderResponse();
+    }
+    
+    public void accionCancelar(ActionEvent e){ 
+        if(notificarBuscar){
+            personaEdicion = null;
+            selectedIndex = 0;
+            runScript("wucBuscarPersona.show();");
+        }else{            
+            accionNotificarEdicion(personaEdicion, ActionListenerWucBuscarPersona.Tipo.EdicionCancelado, e);
+            runScript("wucBuscarPersona.hide();");
+        }
+    } 
+    
+    public void accionGuardar(ActionEvent e){
+        
+        if(personaEdicion != null){
+            boolean add =  personaEdicion.getId().longValue() == -1 ? true : false;
+            
+            //Agrega los roles respectivos            
+            personaEdicion.addRol(rol);
+            
+            boolean b = new PersonaServicio().guardar(personaEdicion);
+            
+            if(b){   
+                if(notificarBuscar){
+                    if(add) {
+                        List<Persona> lst = listaPersonas.getData();
+                        lst.add(0, personaEdicion);
+                        listaPersonas = new CmailListDataModel<Persona>(lst);
+                    }                
+                    personaEdicion = null;
+                    selectedIndex = 0;
+                    
+                    runScript("wucBuscarPersona.show();");
+                }else{
+                    accionNotificarEdicion(personaEdicion,ActionListenerWucBuscarPersona.Tipo.EdicionGuardado, e);
+                }
+            }
+        }
+    }
     
     public void iniciarlizar(Persona p){
         
@@ -154,28 +213,6 @@ public class WucBuscarPersonaController extends Controller{
         sompar.setSubmittedValue(p.getParroquiaNacimiento());
     }
     
-    
-    
-    public void accionNueva(ActionEvent e){
-        personaEdicion = new PersonaServicio().crearPersona();
-        
-        initAudit(personaEdicion);        
-        iniciarlizar(personaEdicion);
-        selectedIndex = 1;    
-        notificarBuscar = true;
-        //FacesContext.getCurrentInstance().renderResponse();
-    }
-    
-    public void accionCancelar(ActionEvent e){ 
-        if(notificarBuscar){
-            personaEdicion = null;
-            selectedIndex = 0;        
-        }else{            
-            accionNotificarEdicion(personaEdicion, ActionListenerWucBuscarPersona.Tipo.EdicionCancelado, e);
-            runScript("wucBuscarPersona.hide();");
-        }
-    }       
-    
     public void restaurarEstado(){
         try {
             personaEdicion.setCedula(personaEdicionOldState.getCedula());
@@ -197,33 +234,13 @@ public class WucBuscarPersonaController extends Controller{
         }
     }
     
-    public void accionGuardar(ActionEvent e){
-        
-        if(personaEdicion != null){
-            boolean add =  personaEdicion.getId().longValue() == -1 ? true : false;
-            
-            //Agrega los roles respectivos            
-            personaEdicion.addRol(rol);
-            
-            boolean b = new PersonaServicio().guardar(personaEdicion);
-            
-            if(b){   
-                if(notificarBuscar){
-                    if(add) {
-                        List<Persona> lst = listaPersonas.getData();
-                        lst.add(0, personaEdicion);
-                        listaPersonas = new CmailListDataModel<Persona>(lst);
-                    }                
-                    personaEdicion = null;
-                    selectedIndex = 0;
-                }else{
-                    accionNotificarEdicion(personaEdicion,ActionListenerWucBuscarPersona.Tipo.EdicionGuardado, e);
-                }
-            }
-        }
+    private List<Persona> depurarLista(List<Persona> listaActual){                                        
+        List<Persona> listaFinal = new ArrayList<Persona>(listaActual);
+        listaFinal.removeAll(this.notIn);
+        return listaFinal;
     }
     
-    public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol){        
+    public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol, Persona... notIn){        
         this.listenerSeleccionar = listener;        
         selectedIndex = 0;        
         renderPopupBuscar = true;
@@ -232,11 +249,19 @@ public class WucBuscarPersonaController extends Controller{
         if(!this.rol.equals(rol)){
             this.listaPersonas = new CmailListDataModel<Persona>();
         }
-        
-        this.rol = rol;        
+        this.rol = rol;
+                
+        //Limpia la lista
+        this.notIn = new ArrayList<Persona>();
+        for (Persona p : notIn) {
+            if(p != null){
+                this.notIn.add(p);
+            }
+        } 
+        this.listaPersonas = new CmailListDataModel<Persona>(this.depurarLista(this.listaPersonas.getData()));
         
         runScript("wucBuscarPersona.show();"); 
-    }
+    }        
     
     public void mostrarEditor(Persona p, PersonaRol rol, ActionListenerWucBuscarPersona listener){
         this.personaEdicion = p;        
@@ -418,6 +443,20 @@ public class WucBuscarPersonaController extends Controller{
      */
     public void setPersonaEdicionOldState(Persona personaEdicionOldState) {
         this.personaEdicionOldState = personaEdicionOldState;
+    }
+
+    /**
+     * @return the notIn
+     */
+    public List<Persona> getNotIn() {
+        return notIn;
+    }
+
+    /**
+     * @param notIn the notIn to set
+     */
+    public void setNotIn(List<Persona> notIn) {
+        this.notIn = notIn;
     }
     
     

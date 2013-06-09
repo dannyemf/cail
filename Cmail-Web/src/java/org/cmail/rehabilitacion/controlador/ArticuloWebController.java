@@ -25,6 +25,7 @@ import org.cmail.rehabilitacion.servicio.ImagenWebServicio;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
 import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
+import org.icefaces.ace.component.richtextentry.RichTextEntry;
 
 /**
  *
@@ -39,7 +40,7 @@ public class ArticuloWebController extends Controller {
     private String criterio = "NOMBRE";
     private String texto = "";
     private Date fechaInicial = new Date();
-    private Date fechaFinal = new Date();
+    private Date fechaFinal = new Date();    
     
 
     /** Creates a new instance of PerfilController */
@@ -56,12 +57,14 @@ public class ArticuloWebController extends Controller {
     
     public void eventoSelTab(ValueChangeEvent e){
         getWucMultimedia().accionCerrar(new ActionEvent(e.getComponent()));
+        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
     }        
 
     public void eventoEditar(ActionEvent evt) {
         ArticuloWeb e = model.getRowData();
         initAudit(e);        
         FacesUtils.getSessionBean().setParrafoEdicion(e);
+        setSelectedTab(0);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
     }
 
@@ -70,6 +73,7 @@ public class ArticuloWebController extends Controller {
         super.initAudit(e);
         
         FacesUtils.getSessionBean().setParrafoEdicion(e);
+        setSelectedTab(0);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
         FacesUtils.getMenuController().addRoute("Nuevo");
     }
@@ -98,7 +102,22 @@ public class ArticuloWebController extends Controller {
         showMessageDeleted(bs.eliminar(p));
     }
     
-    public void eventoGuardar(ActionEvent evt) {        
+    public void eventoGuardar(ActionEvent evt) {
+        
+        if(getArticuloEdicion().isPaginaPrincipal() == false){
+            if(getArticuloEdicion().getResumen() == null || (getArticuloEdicion().getResumen() != null && getArticuloEdicion().getResumen().trim().length() == 0)){
+                errorMessage("form:txtResumen", mensajeBundle("resumenRequerido"));
+                return;
+            }
+        }
+        
+        if(getArticuloEdicion().isPaginaPrincipal()){
+            if((getArticuloEdicion().getDescripcion() == null || (getArticuloEdicion().getDescripcion() != null && getArticuloEdicion().getDescripcion().trim().length() == 0))){
+                errorMessage("form:txtDescripcion", mensajeBundle("descripRequerido"));
+                return;
+            }
+        }
+        
         boolean b = new BaseServicio().guardar(getArticuloEdicion());
         showMessageSaved(b);
         
@@ -131,7 +150,7 @@ public class ArticuloWebController extends Controller {
             @Override
             public void processAction(ActionEvent ae) throws AbortProcessingException {
                 log().info(this.getImgTag());
-                getArticuloEdicion().setResumen(getArticuloEdicion().getResumen() + this.getImgTag());                
+                //getArticuloEdicion().setResumen(getArticuloEdicion().getResumen() + this.getImgTag());                                
             }                   
         },"form:txtResumen", "Insertar al resumen");
     }
@@ -139,8 +158,8 @@ public class ArticuloWebController extends Controller {
     public void seleccionarImagenContenido(ActionEvent e){ 
         getWucMultimedia().mostar(new ActionListenerWucMultimedia(){
             @Override
-            public void processAction(ActionEvent ae) throws AbortProcessingException {
-                getArticuloEdicion().setDescripcion(getArticuloEdicion().getDescripcion() + this.getImgTag());
+            public void processAction(ActionEvent ae) throws AbortProcessingException {                                
+                //getArticuloEdicion().setDescripcion(getArticuloEdicion().getDescripcion() + this.getImgTag());
             }                   
         },"form:txtDescripcion","Insertar a la página");
     }
@@ -218,5 +237,21 @@ public class ArticuloWebController extends Controller {
         }
         return false;
     }
+    
+    public int getSelectedTab(){
+        Integer s = (Integer)getSessionBean().getSessionMap("currentTabArticulo");
+        if (s == null){
+            s = 0;
+            getSessionBean().addSessionMap("currentTabArticulo", s);
+        }
+        
+        return s;
+    }
+    
+    public void setSelectedTab(int s){
+        getSessionBean().addSessionMap("currentTabArticulo", s);
+    }
+    
+    
   
 }

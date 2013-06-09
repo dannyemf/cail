@@ -141,7 +141,7 @@ public class AdolescenteController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, getAdolescente().getMadre());
     }
 
     public void accionBuscarMadre(ActionEvent evt) {
@@ -154,7 +154,7 @@ public class AdolescenteController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, this.getAdolescente().getPadre());
     }       
 
     public void accionEditarPadre(ActionEvent evt) {
