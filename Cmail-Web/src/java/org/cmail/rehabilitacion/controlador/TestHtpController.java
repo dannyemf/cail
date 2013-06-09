@@ -440,7 +440,7 @@ public class TestHtpController extends Controller {
                     
                 }
             }
-        }, PersonaRol.ADOLESCENTE);
+        }, PersonaRol.ADOLESCENTE, null);
     }
     
     public byte[] getFileData(FileEntryEvent event){

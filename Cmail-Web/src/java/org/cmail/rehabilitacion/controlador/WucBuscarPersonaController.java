@@ -50,6 +50,7 @@ public class WucBuscarPersonaController extends Controller{
      */
     private PersonaRol rol = PersonaRol.GENERAL;
     private List<Persona> notIn = new ArrayList<Persona>();
+    private PersonaRol notRol = null;
     
     public WucBuscarPersonaController() {    
         
@@ -92,7 +93,7 @@ public class WucBuscarPersonaController extends Controller{
     
     public void accionBuscar(ActionEvent e){        
         try {
-            List<Persona> lst = new PersonaServicio().listarPersonas(textoPopupBuscar, rol);
+            List<Persona> lst = new PersonaServicio().listarPersonas(textoPopupBuscar, rol, notRol);
             lst = this.depurarLista(lst);
             this.setListaPersonas(new CmailListDataModel<Persona>(lst));            
         } catch (Exception ex) {
@@ -240,16 +241,17 @@ public class WucBuscarPersonaController extends Controller{
         return listaFinal;
     }
     
-    public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol, Persona... notIn){        
+    public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol, PersonaRol notRol, Persona... notIn){        
         this.listenerSeleccionar = listener;        
         selectedIndex = 0;        
         renderPopupBuscar = true;
         
         //Limpia la lista cuando cambia de rol
-        if(!this.rol.equals(rol)){
+        if(this.rol != rol || this.notRol != notRol){
             this.listaPersonas = new CmailListDataModel<Persona>();
         }
         this.rol = rol;
+        this.notRol = notRol;
                 
         //Limpia la lista
         this.notIn = new ArrayList<Persona>();
@@ -457,6 +459,20 @@ public class WucBuscarPersonaController extends Controller{
      */
     public void setNotIn(List<Persona> notIn) {
         this.notIn = notIn;
+    }
+
+    /**
+     * @return the notRol
+     */
+    public PersonaRol getNotRol() {
+        return notRol;
+    }
+
+    /**
+     * @param notRol the notRol to set
+     */
+    public void setNotRol(PersonaRol notRol) {
+        this.notRol = notRol;
     }
     
     

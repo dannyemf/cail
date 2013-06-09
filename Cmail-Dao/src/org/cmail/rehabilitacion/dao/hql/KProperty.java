@@ -73,7 +73,8 @@ public class KProperty {
                 
             case like: 
             case lLike: 
-            case rLike: 
+            case rLike:
+            case notLike:
                 
                 String v = valor != null ? valor.toString() : "";
                 
@@ -85,13 +86,18 @@ public class KProperty {
                     v = v + "%";
                 }
                 
-                if(operador == KOperador.like){
+                if(operador == KOperador.like || operador == KOperador.notLike){
                     v = v.length() == 0 ? "%" : "%" + v + "%";
                 }
                 
                 parametros.add(v);
                 
-                return " Like ?";
+                if(operador == KOperador.notLike){
+                    return " Not Like ?";
+                }else{
+                    return " Like ?";
+                }
+                
                 
             default: return "<<noop>>";
         }

@@ -74,11 +74,17 @@ public class PersonaServicio extends GenericServicio<Persona> {
         return super.listarPorHql(hql);
     }
     
-    public List<Persona> listarPersonas(String texto, PersonaRol rol) {                
+    public List<Persona> listarPersonas(String texto, PersonaRol rol, PersonaRol noRol) {                
         
-        KProperty propsx = K.like("roles", rol.name()).and(
-                K.like("cedula", texto).or(K.like("nombres", texto)).or(K.like("apellidos",texto)).or(K.like("(nombres||' '||apellidos)", texto))
-            );
+        KProperty roles = K.like("roles", rol.name());
+        
+        if(noRol != null){
+            roles.and(K.notLike("roles", noRol.name()));
+        }
+        
+        KProperty propsx = roles.and(
+            K.like("cedula", texto).or(K.like("nombres", texto)).or(K.like("apellidos",texto)).or(K.like("(nombres||' '||apellidos)", texto))
+        );
         
         
         return super.from().where(propsx).list();

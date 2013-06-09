@@ -24,6 +24,11 @@ public class K {
         return k;
     }
     
+    public static KProperty notLike(String propiedad, Object valor){
+        KProperty k = new KProperty(propiedad, valor, KOperador.notLike);        
+        return k;
+    }
+    
     public static KProperty rlike(String propiedad, Object valor){
         KProperty k = new KProperty(propiedad, valor, KOperador.rLike);        
         return k;

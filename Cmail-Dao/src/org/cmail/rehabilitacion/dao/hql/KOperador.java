@@ -21,4 +21,5 @@ public enum KOperador {
     like,
     rLike,
     lLike,    
+    notLike,
 }

@@ -117,7 +117,7 @@ public class AgendaController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, null);
     }
 
     public void accionEditarResponsable(ActionEvent evt) {

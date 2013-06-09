@@ -259,7 +259,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL, this.getAdolescente().getMadre());
+        }, PersonaRol.GENERAL, PersonaRol.ADOLESCENTE, this.getAdolescente().getMadre());
     }
 
     public void accionBuscarMadre(ActionEvent evt) {
@@ -272,7 +272,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL, getAdolescente().getPadre());
+        }, PersonaRol.GENERAL,PersonaRol.ADOLESCENTE, getAdolescente().getPadre());
     }
 
     public void accionBuscarRepresentante(ActionEvent evt) {
@@ -285,7 +285,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL, this.getAdolescente());
+        }, PersonaRol.GENERAL, PersonaRol.ADOLESCENTE, this.getAdolescente());
     }
 
     public void accionBuscarResponsableTraslado(ActionEvent evt) {
@@ -299,7 +299,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.EMPLEADO);
+        }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
 
     public void accionBuscarResponsableIngreso(ActionEvent evt) {
@@ -312,7 +312,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.EMPLEADO);
+        }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
 
     public void accionBuscarResponsablePertenencia(ActionEvent evt) {
@@ -326,7 +326,7 @@ public class FichaIngresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.EMPLEADO);
+        }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
 
     public void accionEditarPadre(ActionEvent evt) {

@@ -156,7 +156,7 @@ public class FichaEgresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.EMPLEADO);
+        }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
     public void accionBuscarAutorizaEgreso(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
@@ -169,7 +169,7 @@ public class FichaEgresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.EMPLEADO);
+        }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
     public void accionBuscarCompaneroEgreso(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
@@ -182,7 +182,7 @@ public class FichaEgresoController extends Controller {
                     this.getWuc().accionCerrar(ae);
                 }
             }
-        }, PersonaRol.GENERAL);
+        }, PersonaRol.GENERAL, PersonaRol.ADOLESCENTE);
     }
 
     public void accionEditarResponsableEgreso(ActionEvent evt) {
