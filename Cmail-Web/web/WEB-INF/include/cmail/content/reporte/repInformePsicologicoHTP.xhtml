@@ -47,7 +47,7 @@
             </ice:outputText>
         </ace:panel>
 
-        <ice:dataTable id="dataTable1" value="#{reporteController.listaIngresosSalidas}" var="p" rows="10" scrollHeight="250px" width="100%">
+        <ice:dataTable id="dataTable1" varStatus="ps" value="#{reporteController.listaIngresosSalidas}" var="p" rows="10" scrollHeight="250px" width="100%">
 
             <f:facet name="header">
                 <ice:columnGroup>                        
@@ -80,7 +80,7 @@
             </f:facet>
 
             <ice:column>
-
+                <ice:outputText value="#{ps.index + 1}"/>
             </ice:column>
 
             <ice:column>

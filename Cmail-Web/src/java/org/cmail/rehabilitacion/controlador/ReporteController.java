@@ -90,7 +90,7 @@ public class ReporteController  extends Controller{
         
         for (Iterator<InformePsicologico> it = lst.iterator(); it.hasNext();) {
             InformePsicologico vw = it.next();
-            lista.add(new ItemInformePsicologico(vw));
+            lista.add(new ItemInformePsicologico(vw, getUsuarioLogeado()));
         }
         
         listaInformes = lista;
@@ -131,6 +131,8 @@ public class ReporteController  extends Controller{
         recursoIngreso = new ReporteResource("ingresoAdolescentes");        
         recursoIngreso.addParam("PRM_DESDE", desde);
         recursoIngreso.addParam("PRM_HASTA", hasta);
+        recursoIngreso.addParam("PRM_FECHA", new Date());
+        recursoIngreso.addParam("PRM_USUARIO", String.format("%s %s", getUsuarioLogeado().getNombres(), getUsuarioLogeado().getApellidos()));
         recursoIngreso.setDatos(listaIngresos);
         
         return recursoIngreso;
@@ -193,6 +195,9 @@ public class ReporteController  extends Controller{
         recursoIngresoSalida = new ReporteResource("reporteGeneral");        
         recursoIngresoSalida.addParam("PRM_DESDE", desde);
         recursoIngresoSalida.addParam("PRM_HASTA", hasta);
+        recursoIngresoSalida.addParam("PRM_FECHA", new Date());
+        recursoIngresoSalida.addParam("PRM_USUARIO", String.format("%s %s",getUsuarioLogeado().getNombres(), getUsuarioLogeado().getApellidos()));
+        
         recursoIngresoSalida.setDatos(listaIngresosSalidas);
         
         return recursoIngresoSalida;

@@ -124,7 +124,7 @@ public class BandejaAdolescenteController extends Controller{
             informesPsicologicos = new ArrayList<ItemInformePsicologico>();
             for (Iterator<InformePsicologico> it = lista.iterator(); it.hasNext();) {
                 InformePsicologico informe = it.next();
-                informesPsicologicos.add(new ItemInformePsicologico(informe));
+                informesPsicologicos.add(new ItemInformePsicologico(informe, getUsuarioLogeado()));
             }            
         }
     }

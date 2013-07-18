@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="60"/>
-	<property name="ireport.y" value="1392"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="PRM_INSTITUCION" class="java.lang.String"/>
 	<parameter name="PRM_VISTO" class="java.lang.String"/>
 	<parameter name="PRM_MODEL" class="org.cmail.rehabilitacion.modelo.htp.InformePsicologico"/>
@@ -13,7 +13,8 @@
 	</parameter>
 	<parameter name="PRM_LOGO" class="java.lang.String"/>
 	<parameter name="PRM_ESCUDO" class="java.lang.String"/>
-	
+	<parameter name="PRM_USUARIO" class="java.lang.String"/>
+	<parameter name="PRM_FECHA" class="java.util.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -54,6 +55,34 @@
 				</textElement>
 				<text><![CDATA[(Psicóloga/o)]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="10" y="93" width="47" height="13"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="95" width="79" height="13"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="57" y="94" width="104" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="96" width="251" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_USUARIO}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
@@ -139,14 +168,14 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getFichaIngreso().getNivelEducativoTipo()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="53" width="77" height="12"/>
+				<reportElement x="6" y="53" width="94" height="12"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Dirección y Teléfono:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="87" y="53" width="485" height="12"/>
+				<reportElement x="100" y="53" width="472" height="12"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>

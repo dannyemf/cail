@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="17"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="457"/>
+	<property name="ireport.y" value="55"/>
 	<parameter name="PRM_INSTITUCION" class="java.lang.String"/>
 	<parameter name="PRM_LOGO" class="java.lang.String"/>
 	<parameter name="PRM_ESCUDO" class="java.lang.String"/>
 	<parameter name="PRM_DESDE" class="java.util.Date"/>
 	<parameter name="PRM_HASTA" class="java.util.Date"/>
+	<parameter name="PRM_FECHA" class="java.util.Date"/>
+	<parameter name="PRM_USUARIO" class="java.lang.String"/>
 	<field name="fechaIngreso" class="java.util.Date"/>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="apellidos" class="java.lang.String"/>
@@ -47,7 +49,7 @@
 				<text><![CDATA[DESDE:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="41" y="92" width="452" height="11"/>
+				<reportElement x="41" y="92" width="169" height="11"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -61,11 +63,39 @@
 				<text><![CDATA[HASTA:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="41" y="105" width="452" height="11"/>
+				<reportElement x="41" y="105" width="169" height="11"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_HASTA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="229" y="92" width="70" height="11"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="105" width="70" height="11"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="307" y="105" width="260" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="307" y="92" width="260" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_FECHA}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -174,7 +204,7 @@
 	<columnFooter>
 		<band height="13">
 			<staticText>
-				<reportElement x="1" y="0" width="176" height="12"/>
+				<reportElement x="1" y="0" width="164" height="12"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
