@@ -23,7 +23,7 @@
                 <ice:message for="lugarCentro"/> 
                 
                 <ice:outputLabel value="#{etiqueta.fecha}" for="sidFecha"  />
-                <ice:selectInputDate renderAsPopup="true"  renderMonthAsDropdown="true" renderYearAsDropdown="true" id="fecha"  value="#{fichaIngresoController.fichaIngresoEdicion.fecha}" required="true">
+                <ice:selectInputDate label="#{etiqueta.fecha}" renderAsPopup="true"  renderMonthAsDropdown="true" renderYearAsDropdown="true" id="fecha"  value="#{fichaIngresoController.fichaIngresoEdicion.fecha}" required="true">
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy HH:mm" />
                 </ice:selectInputDate>
                 <ice:message for="fecha"/> 

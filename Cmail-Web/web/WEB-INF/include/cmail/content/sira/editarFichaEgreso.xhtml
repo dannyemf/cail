@@ -37,7 +37,7 @@
                     <ice:message for="lugarCentro"/>          
                 </ice:panelLayout>                                   
                 <ice:outputLabel value="#{etiqueta.fechaEgreso}" for="fechaEgreso" />
-                <ice:selectInputDate id="fechaEgreso"  value="#{fichaEgresoController.fichaEgresoEdicion.fecha}" renderAsPopup="true" renderMonthAsDropdown="true" renderYearAsDropdown="true">
+                <ice:selectInputDate id="fechaEgreso" label="#{etiqueta.fechaEgreso}"  value="#{fichaEgresoController.fichaEgresoEdicion.fecha}" renderAsPopup="true" renderMonthAsDropdown="true" renderYearAsDropdown="true">
                     <f:convertDateTime timeZone="#{fichaEgresoController.timeZone}" pattern="dd/MM/yy hh:mm:ss" />
                 </ice:selectInputDate>
                 <ice:outputLabel value="#{etiqueta.tiempoPermanenciaCentro}" for="tiempoPermanencia" />
