@@ -14,47 +14,62 @@
     <ice:form id="frmEditActividad">
         
         <ace:panel header="#{etiqueta.datosGenerales}" toggleable="true">
-            <ice:panelGrid columns="6" style="text-align: top;"> 
+            <ice:panelGrid columns="4" style="text-align: top;"> 
 
                 <ice:outputLabel value="#{etiqueta.fechaInicio}"></ice:outputLabel>                
-                <ice:selectInputDate id="sidFechaInicio" 
+                <h:panelGrid>
+                    <ice:selectInputDate id="sidFechaInicio" 
                                         value="#{agendaController.agendaEdicion.fechaInicio}" 
+                                        label="#{etiqueta.fechaInicio}"
                                         renderAsPopup="true" 
                                         renderMonthAsDropdown="true" 
                                         renderYearAsDropdown="true" 
                                         required="true"
                                         requiredMessage="(*)">
-                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
-
-                <ice:message for="sidFechaInicio"/> 
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                    </ice:selectInputDate>
+                    <ice:message for="sidFechaInicio"/> 
+                </h:panelGrid>                
 
                 <ice:outputLabel value="#{etiqueta.fechaFin}"></ice:outputLabel>                
-                <ice:selectInputDate id="sidFechaFin" 
+                <h:panelGrid>
+                    <ice:selectInputDate id="sidFechaFin" 
                                         value="#{agendaController.agendaEdicion.fechaFin}" 
+                                        label="#{etiqueta.fechaFin}"                                        
                                         renderAsPopup="true" 
                                         renderMonthAsDropdown="true"                                      
                                         renderYearAsDropdown="true"                                     
                                         required="true"
                                         requiredMessage="(*)">
-                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                    </ice:selectInputDate>
+                    <ice:message for="sidFechaFin"/> 
+                </h:panelGrid>                
                 
-                <ice:message for="sidFechaFin"/> 
+                
                 <ice:outputLabel value="Objetivo"></ice:outputLabel>
-                <ice:inputTextarea id="txtObjetivo" style="width:250px;" rows="1" label="#{etiqueta.objetivo}" required="true" value="#{agendaController.agendaEdicion.objetivo}" > </ice:inputTextarea>
-
-                <ice:message for="txtObjetivo" showDetail="true"  ></ice:message>
+                <h:panelGrid>
+                    <ice:inputTextarea id="txtObjetivo" style="width:250px;" rows="1" label="#{etiqueta.objetivo}" required="true" value="#{agendaController.agendaEdicion.objetivo}" > </ice:inputTextarea>
+                    <ice:message for="txtObjetivo" showDetail="true"  ></ice:message>
+                </h:panelGrid>
+                
                 <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>
-
-                <ice:inputTextarea id="txtDescripcion" style="width:250px;" rows="1" label="#{etiqueta.descripcion}" required="true" value="#{agendaController.agendaEdicion.descripcion}" > </ice:inputTextarea>
-                <ice:message for="txtDescripcion" showDetail="true"  ></ice:message>
+                <h:panelGrid>
+                    <ice:inputTextarea id="txtDescripcion" style="width:250px;" rows="1" label="#{etiqueta.descripcion}" required="true" value="#{agendaController.agendaEdicion.descripcion}" > </ice:inputTextarea>
+                    <ice:message for="txtDescripcion" showDetail="true"  ></ice:message>
+                </h:panelGrid>
+                
                 <ice:outputLabel value="#{etiqueta.participantes}"></ice:outputLabel>
-                <ice:inputTextarea id="txtParticipantes" style="width:250px;" rows="1" label="#{etiqueta.participantes}" required="true" value="#{agendaController.agendaEdicion.participantes}" > </ice:inputTextarea>
-                <ice:message for="txtParticipantes" showDetail="true"  ></ice:message>                    
+                <h:panelGrid>
+                    <ice:inputTextarea id="txtParticipantes" style="width:250px;" rows="1" label="#{etiqueta.participantes}" required="true" value="#{agendaController.agendaEdicion.participantes}" > </ice:inputTextarea>
+                    <ice:message for="txtParticipantes" showDetail="true"  ></ice:message>                    
+                </h:panelGrid>
+                
                 <ice:outputLabel value="#{etiqueta.observaciones}"></ice:outputLabel>
-                <ice:inputTextarea id="txtObservaciones"  label="#{etiqueta.observaciones}" style="width:250px;" rows="1" required="true" value="#{agendaController.agendaEdicion.observaciones}" > </ice:inputTextarea>
-                <ice:message for="txtObservaciones" showDetail="true"  ></ice:message>
+                <h:panelGrid>
+                    <ice:inputTextarea id="txtObservaciones"  label="#{etiqueta.observaciones}" style="width:250px;" rows="1" required="true" value="#{agendaController.agendaEdicion.observaciones}" > </ice:inputTextarea>
+                    <ice:message for="txtObservaciones" showDetail="true"  ></ice:message>
+                </h:panelGrid>
             </ice:panelGrid>
         </ace:panel>
         
@@ -101,9 +116,10 @@
                     </f:facet>
                 </ice:column>
                 <ice:column>                    
-                    <ice:selectInputDate value="#{actividad.fechaEjecucion}" renderAsPopup="true">
+                    <ice:selectInputDate id="sidActFecEje" label="#{etiqueta.fecha}" value="#{actividad.fechaEjecucion}" renderAsPopup="true">
                         <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy"/>
                     </ice:selectInputDate>
+                    <ice:message for="sidActFecEje"></ice:message>
                     <f:facet name="header">
                         <ice:outputText value="#{etiqueta.fecha}"/>
                     </f:facet>

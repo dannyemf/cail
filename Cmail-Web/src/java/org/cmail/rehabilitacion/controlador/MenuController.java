@@ -82,14 +82,14 @@ public class MenuController  extends Controller{
         
         MenuItem mih = new MenuItem();
         mih.setId("menuitem-home");
-        mih.setValue("Home");
+        mih.setValue("Página Inicio");
         mih.setIcon("ui-icon ui-icon-home");
         si.getChildren().add(mih);
         mih.setActionExpression(createMethodExpressionForAction("#{menuController.actionHomePage}"));
         
         MenuItem mim = new MenuItem();
         mim.setId("menuitem-main");
-        mim.setValue("Main");
+        mim.setValue("Bienvenida");
         mim.setIcon("ui-icon ui-icon-contact");
         si.getChildren().add(mim);
         mim.setActionExpression(createMethodExpressionForAction("#{menuController.actionCamilPage}"));

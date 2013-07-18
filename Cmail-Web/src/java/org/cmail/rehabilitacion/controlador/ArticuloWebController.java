@@ -4,6 +4,7 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
+import com.icesoft.faces.component.selectinputdate.SelectInputDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -25,7 +26,6 @@ import org.cmail.rehabilitacion.servicio.ImagenWebServicio;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
 import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
-import org.icefaces.ace.component.richtextentry.RichTextEntry;
 
 /**
  *
@@ -58,7 +58,16 @@ public class ArticuloWebController extends Controller {
     public void eventoSelTab(ValueChangeEvent e){
         getWucMultimedia().accionCerrar(new ActionEvent(e.getComponent()));
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
-    }        
+    } 
+        
+    public void eventoChangeCriterio(ValueChangeEvent e){
+        //Setea la ultima fecha fijada para evitar que coja las validaciones y se renderize las fechas (ocultar cuando estén en error)
+        SelectInputDate cf1 =  (SelectInputDate)e.getComponent().getParent().findComponent("form:sidFechaDesde");
+        SelectInputDate cf2 =  (SelectInputDate)e.getComponent().getParent().findComponent("form:sidFechaHasta");
+        
+        cf1.setSubmittedValue(cf1.formatDate(fechaInicial));
+        cf2.setSubmittedValue(cf2.formatDate(fechaInicial));                
+    }
 
     public void eventoEditar(ActionEvent evt) {
         ArticuloWeb e = model.getRowData();

@@ -13,23 +13,31 @@
             <ace:panel>
             <ice:panelGrid columns="6">                     
                 <ice:outputLabel value="#{etiqueta.desde}"/>
-                <ice:selectInputDate
+                <h:panelGrid>
+                    <ice:selectInputDate
                     id="sidFechaDesde"
                     value="#{agendaController.fechaDesde}"
+                    label="#{etiqueta.desde}"                    
                     renderAsPopup="true"                         
                     >
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                    </ice:selectInputDate>
+                    <ice:message for="sidFechaDesde"></ice:message>
+                </h:panelGrid>
 
                 <ice:outputLabel value="#{etiqueta.hasta}"/>
-
-                <ice:selectInputDate
-                    id="sidFechaHasta" 
-                    value="#{agendaController.fechaHasta}"
-                    renderAsPopup="true"                        
-                    >
-                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                
+                <h:panelGrid>
+                    <ice:selectInputDate
+                        id="sidFechaHasta" 
+                        label="#{etiqueta.hasta}"
+                        value="#{agendaController.fechaHasta}"
+                        renderAsPopup="true"                        
+                        >
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                    </ice:selectInputDate>
+                    <ice:message for="sidFechaHasta"></ice:message>
+                </h:panelGrid>
 
                 <ice:commandLink id="btnBuscar"  actionListener="#{agendaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
                 <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('agenda.crear')}" actionListener="#{agendaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>

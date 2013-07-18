@@ -11,15 +11,21 @@
         <div class="opciones">
             <ace:panel>
                 <ice:panelGrid columns="5">
-            <ice:outputText value="Desde"></ice:outputText>
-            <ice:selectInputDate value="#{reporteController.desde}" renderAsPopup="true">
-                <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-            </ice:selectInputDate>
+                <ice:outputText value="#{etiqueta.desde}"></ice:outputText>
+                <h:panelGrid>
+                    <ice:selectInputDate id="sidDesde" label="#{etiqueta.desde}" value="#{reporteController.desde}" renderAsPopup="true">
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                    </ice:selectInputDate>
+                    <ice:message for="sidDesde"></ice:message>
+                </h:panelGrid>
 
-            <ice:outputText value="Hasta"></ice:outputText>
-            <ice:selectInputDate value="#{reporteController.hasta}" renderAsPopup="true">
-                <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-            </ice:selectInputDate>
+                <ice:outputText value="#{etiqueta.hasta}"></ice:outputText>
+                <h:panelGrid>
+                    <ice:selectInputDate id ="sidHasta" label="#{etiqueta.hasta}" value="#{reporteController.hasta}" renderAsPopup="true">
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                    </ice:selectInputDate>
+                    <ice:message for="sidHasta"></ice:message>
+                </h:panelGrid>
 
             <ice:commandLink id="btnBuscar" actionListener="#{reporteController.eventoBuscarIngresos}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
 

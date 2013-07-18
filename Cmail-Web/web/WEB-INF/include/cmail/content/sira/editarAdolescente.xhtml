@@ -18,9 +18,10 @@
         <ace:tabSet clientSide="true">
 
             <ace:tabPane label="#{etiqueta.datosPersonale}">
-                <ice:panelGrid columns="3">
+                <ice:panelGrid columns="2">
                     <ice:outputLabel for="txtCedula" value="#{etiqueta.cedula}"></ice:outputLabel>                
-                    <ice:inputText id="txtCedula"                                               
+                    <h:panelGrid columns="2">
+                        <ice:inputText id="txtCedula"                                               
                                    value="#{adolescenteController.adolescente.cedula}"                                                
                                    validator="#{adolescenteController.validarCedulaAdolescente}"
                                    partialSubmit="true"                                    
@@ -28,31 +29,42 @@
                                    styleClass="numeric"
                                    maxlength="15"
                                    >
-                    </ice:inputText>
-                    <ice:message for="txtCedula"></ice:message>                                
+                        </ice:inputText>
+                        <ice:message for="txtCedula"></ice:message>
+                    </h:panelGrid>                                
 
                     <cail:outputLabel for="txtNombres" value="#{etiqueta.nombres}" info="(*)"></cail:outputLabel>
-                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{adolescenteController.adolescente.nombres}" />
-                    <ice:message for="txtNombres"></ice:message>                
+                    <h:panelGrid columns="2">
+                        <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{adolescenteController.adolescente.nombres}" />
+                        <ice:message for="txtNombres"></ice:message>                
+                    </h:panelGrid>
 
                     <cail:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}" info="(*)"></cail:outputLabel>                
-                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{adolescenteController.adolescente.apellidos}"></ice:inputText>
-                    <ice:message for="txtApellidos"></ice:message>                
-
+                    <h:panelGrid columns="2">
+                        <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{adolescenteController.adolescente.apellidos}"></ice:inputText>
+                        <ice:message for="txtApellidos"></ice:message>                
+                    </h:panelGrid>
+                    
                     <cail:outputLabel for="cmbSexo:som" value="#{etiqueta.sexo}"></cail:outputLabel>                                                        
-                    <cail:selectOneMenuSexo id="cmbSexo" value="#{adolescenteController.adolescente.sexo}" partialSubmit="true"></cail:selectOneMenuSexo>
-                    <ice:message for="cmbSexo:som"></ice:message>
+                    <h:panelGrid columns="2">
+                        <cail:selectOneMenuSexo id="cmbSexo" value="#{adolescenteController.adolescente.sexo}" partialSubmit="true"></cail:selectOneMenuSexo>
+                        <ice:message for="cmbSexo:som"></ice:message>
+                    </h:panelGrid>
 
                     <ice:outputLabel for="cmbEstadoCivil:som" value="#{etiqueta.estadoCivil}"/>
-                    <cail:selectOneMenuEstadoCivil id="cmbEstadoCivil"  value="#{adolescenteController.adolescente.estadoCivil}" partialSubmit="true"></cail:selectOneMenuEstadoCivil>
-                    <ice:message for="cmbEstadoCivil:som"></ice:message>
-
+                    <h:panelGrid columns="2">
+                        <cail:selectOneMenuEstadoCivil id="cmbEstadoCivil"  value="#{adolescenteController.adolescente.estadoCivil}" partialSubmit="true"></cail:selectOneMenuEstadoCivil>
+                        <ice:message for="cmbEstadoCivil:som"></ice:message>
+                    </h:panelGrid>
+                    
                     <cail:outputLabel for="dtpFechaNac" value="#{etiqueta.fechaNacimiento}" info="(*)"></cail:outputLabel>
-                    <ice:selectInputDate  id="dtpFechaNac" renderMonthAsDropdown="true"  required="true" requiredMessage="#{mensaje.seleccioneFecha}" renderAsPopup="true" renderYearAsDropdown="true" value="#{adolescenteController.adolescente.fechaNacimiento}" partialSubmit="true">
-                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
-                    </ice:selectInputDate>
-                    <ice:message for="dtpFechaNac"></ice:message>
-
+                    <h:panelGrid columns="2">
+                        <ice:selectInputDate  id="dtpFechaNac" label="#{etiqueta.fechaNacimiento}" renderMonthAsDropdown="true"  required="true" requiredMessage="#{mensaje.seleccioneFecha}" renderAsPopup="true" renderYearAsDropdown="true" value="#{adolescenteController.adolescente.fechaNacimiento}" partialSubmit="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
+                        </ice:selectInputDate>
+                        <ice:message for="dtpFechaNac"></ice:message>
+                    </h:panelGrid>
+                    
                     <cail:outputLabel value="#{etiqueta.lugarNacimiento}" info="(*)"></cail:outputLabel>                    
                     <cail:selectOneProvincia
                         id="sopNacimiento"                        

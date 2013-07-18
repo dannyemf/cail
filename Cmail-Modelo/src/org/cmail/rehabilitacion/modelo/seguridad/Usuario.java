@@ -18,7 +18,7 @@ public class Usuario extends AuditEntity {
 	private String apellidos = "";
 	private String login = "";
 	private String clave = "";	
-	private boolean activo = false;
+	private boolean activo = true;
         private String localidad = "";
         private String temaUi = "start";
         
