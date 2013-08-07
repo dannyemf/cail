@@ -1,0 +1,133 @@
+<div xmlns="http://www.w3.org/1999/xhtml"     
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"        
+     xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"     
+     >   
+    
+    <ice:form>
+        
+        <f:event type="preRenderComponent" listener="#{bandejaController.preRenderBandeja}"></f:event>
+        
+        <ace:panel id="pnl" header="#{etiqueta.adolescente}" toggleable="true" widgetVar="panel">
+            <cail:outputAdolescente adolescente="#{bandejaController.adolescente}"></cail:outputAdolescente>
+        </ace:panel>
+
+        <br/>
+        
+        <c:if test="#{bandejaController.fichaIngreso != null}">
+            <ace:panel header="#{mensaje.fichaIngresoSeleccionada}">
+                <ice:panelGrid columns="4">
+                    
+                    <ice:outputLabel value="#{etiqueta.fecha}"></ice:outputLabel>
+                    <ice:outputText value="#{bandejaController.fichaIngreso.fichaIngreso.fecha}"></ice:outputText>
+                    
+                    <ice:outputLabel value="#{etiqueta.lugar}"></ice:outputLabel>
+                    <ice:outputText value="#{bandejaController.fichaIngreso.fichaIngreso.lugar}"></ice:outputText>
+                    
+                    <ice:outputLabel value="#{etiqueta.lugarDetencion}"></ice:outputLabel>
+                    <ice:outputText value="#{bandejaController.fichaIngreso.fichaIngreso.provinciaDetencion.nombre}-#{bandejaController.fichaIngreso.fichaIngreso.cantonDetencion.nombre}-#{bandejaController.fichaIngreso.fichaIngreso.parroquiaDetencion.nombre}"></ice:outputText>
+                    
+                    <ice:outputLabel value="#{etiqueta.razonIngreso}"></ice:outputLabel>
+                    <ice:outputText value="#{bandejaController.fichaIngreso.fichaIngreso.razonIngreso}"></ice:outputText>
+                    
+                </ice:panelGrid>
+                
+                <br/>
+                
+                <center>
+                    <ice:panelGrid columns="5" styleClass="ui-state-highlight ui-corner-top">                    
+
+                        <c:if test="#{bandejaController.fichaIngreso != null}">
+                            
+                            <!--Editar Ficha Ingreso-->
+                            <cail:buttonRow
+                                id="btnEditar" value="#{accion.editar}" title="#{accion.editar}"
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.editar')}"
+                                image="/resources/icono/row/row_editar.png"
+                                actionListener="#{bandejaController.eventoEditarFichaIngreso}">
+                            </cail:buttonRow>
+                            
+                            <!--Ficha Ingreso Pdf-->
+                            <cail:buttonRowResource 
+                                value="Pdf" title="#{mensaje.generarReporte}"  
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.pdf')}"
+                                fileName="FichaIngreso-#{bandejaController.fichaIngreso.fichaIngreso.id}.pdf"
+                                resource="#{bandejaController.fichaIngreso.recurso}"
+                                lastModified="#{bandejaController.fichaIngreso.recurso.modified}">
+                            </cail:buttonRowResource>
+
+                            <!--Copiar Ficha Ingreso (Solo cuando no haya fichas abiertas)-->
+                            <cail:buttonRow
+                                id="btnFichaNueva" value="#{accion.copiar}" title="#{mensaje.generarFichaIngreso}"
+                                disabled="#{permisoController.checkPermiso('fichaIngreso.copiar')}"
+                                image="/resources/icono/row/row_nuevo_mas.png" rendered="#{bandejaController.renderBotonNuevoIngreso}"                                
+                                actionListener="#{eventoGenerarNuevaFichaIngreso.eventoGenerarNueva(evt, bandejaController.fichaIngreso)}">
+                            </cail:buttonRow>
+                            
+                            <!--Crea Nuevo Test HTP-->
+                            <cail:buttonRow
+                                id="btnTest" value="#{accion.test}" title="#{mensaje.generarTestHtp}"
+                                disabled="#{permisoController.checkPermiso('testHtp.crear')}"
+                                image="/resources/icono/row/row_test.png" rendered="#{bandejaController.fichaIngreso.renderedTest}"                                
+                                actionListener="#{bandejaController.eventoNuevoTest}">
+                            </cail:buttonRow>
+                            
+                            <!--Crea Nuevo Informe Psicológico-->
+                            <cail:buttonRow
+                                id="btnInformePsicologico" value="#{accion.infPsicologico}" title="#{mensaje.generarInformePsicologico}"
+                                disabled="#{permisoController.checkPermiso('informePsicologico.crear')}"
+                                image="/resources/icono/row/row_test.png" rendered="#{bandejaController.fichaIngreso.renderInformePsicologico}"
+                                actionListener="#{bandejaController.eventoNuevoInforme}">
+                            </cail:buttonRow>
+                            
+                            <!--Genera Ficha Egreso (Solo cuando esté abierta)-->
+                            <cail:buttonRow
+                                id="btnFichaEgreso" value="#{accion.egreso}" title="#{mensaje.generarFichaEgreso}"
+                                disabled="#{permisoController.checkPermiso('fichaEgreso.crear')}"
+                                image="/resources/icono/row/row_egreso.png" rendered="#{bandejaController.fichaIngreso.renderedFichaEgreso}"
+                                actionListener="#{bandejaController.eventoGenerarFichaEgreso}">
+                            </cail:buttonRow>
+                        </c:if>
+
+                    </ice:panelGrid>
+                </center>
+                
+            </ace:panel>
+            <br/>
+        </c:if>
+        
+        <ace:tabSet>
+            
+            <ace:tabPane label="#{etiqueta.bandejaIngresos}">
+                <ui:include src="adminBandejaIngresos.xhtml"></ui:include>
+            </ace:tabPane>
+            
+            <ace:tabPane label="#{etiqueta.bandejaEgresos}">
+                <ui:include src="adminBandejaEgresos.xhtml"></ui:include>
+            </ace:tabPane>    
+            
+            <ace:tabPane label="#{etiqueta.bandejaTests}">                                
+                <ui:include src="adminBandejaTests.xhtml"></ui:include>
+            </ace:tabPane>
+            
+            <ace:tabPane label="#{etiqueta.informesPsicologicos}">
+                <ui:include src="adminBandejaInformesPsicologicos.xhtml"></ui:include>
+            </ace:tabPane>
+            
+        </ace:tabSet>
+        
+        <br/>
+        <br/>
+        
+        <div class="controles">
+            <ace:panel>                
+                <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{bandejaController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+            </ace:panel>
+        </div>
+
+    </ice:form>
+    
+</div>

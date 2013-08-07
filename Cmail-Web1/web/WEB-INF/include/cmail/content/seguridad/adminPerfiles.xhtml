@@ -1,0 +1,141 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     >    
+    
+    <ice:form> 
+        <div class="opciones">
+            <ace:panel>
+                <ice:commandLink id="btnNuevo" disabled="#{permisoController.checkPermiso('perfil.crear')}" actionListener="#{perfilController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}"></ice:commandLink>
+            </ace:panel>
+        </div>
+
+        <ice:dataTable id="dataTablePerfiles" value="#{perfilController.modelPerfiles}" var="perfil" rows="10" scrollHeight="250px" width="100%">
+
+            <f:facet name="header">
+                <ice:columnGroup>
+                    <ice:headerRow>
+                        <ice:column rowspan="2">                                
+                        </ice:column>
+
+                        <ice:column rowspan="2">                                
+                            <ice:outputText value="#{etiqueta.nombre}"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column rowspan="2">                                
+                            <ice:outputText value="#{etiqueta.descripcion}"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column colspan="2">                                
+                            <ice:outputText value="Creación"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column colspan="2">                                
+                            <ice:outputText value="#{etiqueta.actualizacion}"></ice:outputText>
+                        </ice:column>
+
+                    </ice:headerRow>
+
+                    <ice:headerRow>
+                        <ice:column>                                
+                            <ice:outputText value="#{etiqueta.fecha}"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="#{etiqueta.usuario}"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="#{etiqueta.fecha}"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="#{etiqueta.usuario}"></ice:outputText>
+                        </ice:column>
+
+                    </ice:headerRow>
+
+                </ice:columnGroup>
+            </f:facet>
+
+            <ice:column id="column1">                        
+                
+                <ice:panelConfirmation 
+                    title="#{mensaje.eliminar_perfil_title}" 
+                    acceptLabel="#{accion.eliminar}" autoCentre="true" 
+                    cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar"
+                    styleClass="icePnlCnfEliminar"
+                    message="#{mensaje.eliminar_perfil}"  rendered="true"/>
+                
+                <ice:panelGrid columns="2">
+                    <ice:commandLink actionListener="#{perfilController.eventoEditar}" id="btnEditar" disabled="#{permisoController.checkPermiso('perfil.editar')}" title="#{accion.editar}">
+                        <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                    </ice:commandLink>                            
+
+                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{perfilController.eventoEliminar}" id="btnEliminar" disabled="#{permisoController.checkPermiso('perfil.eliminar')}" title="#{accion.eliminar}">
+                        <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                    </ice:commandLink>
+                </ice:panelGrid>
+            </ice:column>
+
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{perfil.nombre}"/>                    
+            </ice:column>
+
+            
+            <ice:column id="column3">
+                <ice:outputText id="outputText5" value="#{perfil.descripcion}"/>                    
+            </ice:column>
+
+            <!--Auditoria-->                
+            <ice:column>
+                <ice:outputText value="#{perfil.auditCreateDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </ice:outputText>                    
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{perfil.auditCreateUser}"></ice:outputText>                   
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{perfil.auditUpdateDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </ice:outputText>
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{perfil.auditUpdateUser}"></ice:outputText>
+            </ice:column>
+            <!--Fin Auditoria-->
+
+        </ice:dataTable>
+        
+        <!-- Paginator with page controls -->
+        <ice:dataPaginator id="dataScrollPerfiles" for="dataTablePerfiles" paginator="true" fastStep="#{accion.fastStep}" paginatorMaxPages="#{accion.paginatorMaxPages}">
+            <f:facet name="first">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;" title="#{accion.first}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="last">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;" title="#{accion.last}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="previous">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;" title="#{accion.previous}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="next">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;" title="#{accion.next}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastforward">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;" title="#{accion.fastforward}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastrewind">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;" title="#{accion.fastrewind}"></ice:graphicImage>
+            </f:facet>
+        </ice:dataPaginator>
+
+    </ice:form>
+    
+</div>

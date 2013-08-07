@@ -1,0 +1,21 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">        
+           
+    <div id="banner" class="slider-wrapper theme-default">
+                    
+        <div id="slider" class="nivoSlider">
+            <ui:repeat var="img" value="#{homeController.imagenesGaleria}">
+                <ice:graphicImage value="./documentos/galeria/#{img.nombre}" alt="#{img.nombre}" title="#{img.descripcion}"></ice:graphicImage>                            
+            </ui:repeat>                            
+        </div>
+
+        <div id="htmlcaption" class="nivo-html-caption">
+            <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>. 
+        </div>
+
+    </div>
+</div>   

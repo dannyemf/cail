@@ -1,0 +1,243 @@
+<div 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ice="http://www.icesoft.com/icefaces/component" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"    
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    
+    xmlns:cailcomp="http://java.sun.com/jsf/composite/cailcomp">
+    
+    <ice:form id="form">
+        
+        <ice:messages id="messages"></ice:messages>                        
+        <br/>
+        
+        <ace:panel header="#{etiqueta.adolescente}" toggleable="true">
+            <cailcomp:outputAdolescente adolescente="#{formHtpController.formEdicion.adolescente}"></cailcomp:outputAdolescente>
+        </ace:panel>        
+
+        <br/>
+
+        <ace:panel header="Dibujos" toggleable="true">
+            
+            <ice:panelGrid columns="3">
+
+                <ice:panelGrid style="border: dotted 1px green;" styleClass="subir">
+                    <ice:outputText value="DIBUJO CASA"></ice:outputText>
+                    <ice:graphicImage alt="Imagen1" width="250" height="250" value="#{formHtpController.dibujoCasa}"></ice:graphicImage>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Latencia:"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoLatenciaCasa}" disabled="true"></ice:inputText>
+                    </ice:panelLayout>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Duración:"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoDuracionCasa}" disabled="true"></ice:inputText>
+                    </ice:panelLayout>                    
+
+                </ice:panelGrid>
+
+                <ice:panelGrid style="border: dotted 1px green" styleClass="subir">
+                    <ice:outputText value="DIBUJO ÁRBOL"></ice:outputText>
+                    <ice:graphicImage alt="Imagen2" width="250" height="250" value="#{formHtpController.dibujoArbol}"></ice:graphicImage>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Latencia"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoLatenciaArbol}" disabled="true"></ice:inputText>                
+                    </ice:panelLayout>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Duración"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoDuracionArbol}" disabled="true"></ice:inputText>
+                    </ice:panelLayout>
+
+                </ice:panelGrid>
+
+                <ice:panelGrid style="border: dotted 1px green" styleClass="subir">
+                    <ice:outputText value="DIBUJO PERSONA"></ice:outputText>
+                    <ice:graphicImage alt="Imagen3" width="250" height="250" value="#{formHtpController.dibujoPersona}"></ice:graphicImage>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Latencia"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoLatenciaPersona}" disabled="true"></ice:inputText>                                
+                    </ice:panelLayout>
+
+                    <ice:panelLayout layout="flow">
+                        <ice:outputLabel value="Tiempo Duración"/>
+                        <ice:inputText value="#{formHtpController.formEdicion.tiempoDuracionPersona}" disabled="true"></ice:inputText>
+                    </ice:panelLayout>
+
+                </ice:panelGrid>
+
+            </ice:panelGrid>
+        </ace:panel>            
+
+        <br/>
+
+        <ace:tabSet immediate="true">
+
+            <ace:tabPane label="Casa">                                        
+
+                <c:forEach var="cat" items="#{formHtpController.itemIntCasa.categroias}" >
+
+                    <br/>
+
+                    <table border="1" cellspacing="0" cellpadding="3" class="tableInt">
+                        <col width="30"></col>
+                        <col width="200"></col>
+                        <col width="180"></col>
+                        <col width="400"></col>                        
+
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="th1" style="text-align: left">
+                                    <ice:outputText value="#{cat.categoria.nombre} (#{formHtpController.etiquetaBundle(cat.categoria.tipo.toString().toLowerCase())})"></ice:outputText>
+                                    <br/>
+                                    <ice:inputHidden id="casa#{cat.categoria.id}"></ice:inputHidden>
+                                    <ice:message for="casa#{cat.categoria.id}"></ice:message>                                    
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="th2"></th>
+                                <th class="th2">Nombre</th>
+                                <th class="th2">Imagen</th>                                
+                                <th class="th2">Definición</th>
+                                <!--
+                                <th class="th2">Significaciones</th>
+                                -->
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach var="i" items="#{cat.indicadores}">                            
+                                <tr>
+                                    <td><ice:selectBooleanCheckbox id="chkInd#{i.indicador.id}" partialSubmit="true" value="#{i.seleccionado}"></ice:selectBooleanCheckbox></td>
+                                    <td><ice:outputLabel for="chkInd#{i.indicador.id}" value="#{i.indicador.nombre}"></ice:outputLabel></td>                                    
+                                    <td><ice:graphicImage value="#{i.indicador.imagen}" width="128px" height="128px"></ice:graphicImage></td>                                    
+                                    <td><ice:outputText value="#{i.indicador.definicion}"></ice:outputText></td>
+                                    <!--
+                                    <td><ice:outputText value="#{i.indicador.significaciones}"></ice:outputText></td>
+                                    -->
+                                </tr>                                    
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:forEach>
+
+            </ace:tabPane>
+
+            <ace:tabPane label="Árbol">
+
+                <c:forEach var="cat" items="#{formHtpController.itemIntArbol.categroias}" >
+
+                    <br/>
+
+                    <table border="1" cellspacing="0" cellpadding="3" class="tableInt">
+                        <col width="30"></col>
+                        <col width="200"></col>
+                        <col width="180"></col>
+                        <col width="400"></col>                        
+
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="th1" style="text-align: left">
+                                    <ice:outputText value="#{cat.categoria.nombre} (#{formHtpController.etiquetaBundle(cat.categoria.tipo.toString().toLowerCase())})"></ice:outputText>
+                                    <br/>
+                                    <ice:inputHidden id="arbol#{cat.categoria.id}"></ice:inputHidden>
+                                    <ice:message for="arbol#{cat.categoria.id}"></ice:message>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="th2"></th>
+                                <th class="th2">Nombre</th>
+                                <th class="th2">Imagen</th>                                
+                                <th class="th2">Definición</th>
+                                <!--
+                                <th class="th2">Significaciones</th>
+                                -->
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach var="i" items="#{cat.indicadores}">                            
+                                <tr>
+                                    <td><ice:selectBooleanCheckbox id="chkInd#{i.indicador.id}" partialSubmit="true" value="#{i.seleccionado}"></ice:selectBooleanCheckbox></td>
+                                    <td><ice:outputLabel for="chkInd#{i.indicador.id}" value="#{i.indicador.nombre}"></ice:outputLabel></td>
+                                    <td><ice:graphicImage value="#{i.indicador.imagen}" width="128px" height="128px"></ice:graphicImage></td>                                    
+                                    <td><ice:outputText value="#{i.indicador.definicion}"></ice:outputText></td>
+                                    <!--
+                                    <td><ice:outputText value="#{i.indicador.significaciones}"></ice:outputText></td>
+                                    -->
+                                </tr>                                    
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:forEach>
+
+            </ace:tabPane>
+
+            <ace:tabPane label="Persona">
+
+                <c:forEach var="cat" items="#{formHtpController.itemIntPersona.categroias}" >
+
+                    <br/>
+
+                    <table border="1" cellspacing="0" cellpadding="3" class="tableInt">
+                        <col width="30"></col>
+                        <col width="200"></col>
+                        <col width="180"></col>
+                        <col width="400"></col>                           
+
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="th1" style="text-align: left">
+                                    <ice:outputText value="#{cat.categoria.nombre} (#{formHtpController.etiquetaBundle(cat.categoria.tipo.toString().toLowerCase())})"></ice:outputText>
+                                    <br/>
+                                    <ice:inputHidden id="persona#{cat.categoria.id}"></ice:inputHidden>
+                                    <ice:message for="persona#{cat.categoria.id}"></ice:message>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="th2"></th>
+                                <th class="th2">Nombre</th>
+                                <th class="th2">Imagen</th>                                
+                                <th class="th2">Definición</th>
+                                <!--
+                                <th class="th2">Significaciones</th>
+                                -->
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach var="i" items="#{cat.indicadores}">                            
+                                <tr>
+                                    <td><ice:selectBooleanCheckbox id="chkInd#{i.indicador.id}" partialSubmit="true" value="#{i.seleccionado}"></ice:selectBooleanCheckbox></td>
+                                    <td><ice:outputLabel for="chkInd#{i.indicador.id}" value="#{i.indicador.nombre}"></ice:outputLabel></td>
+                                    <td><ice:graphicImage value="#{i.indicador.imagen}" width="128px" height="128px"></ice:graphicImage></td>                                    
+                                    <td><ice:outputText value="#{i.indicador.definicion}"></ice:outputText></td>
+                                    <!--
+                                    <td><ice:outputText value="#{i.indicador.significaciones}"></ice:outputText></td>
+                                    -->
+                                </tr>                                    
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:forEach>
+
+            </ace:tabPane>
+
+        </ace:tabSet>
+
+        <br/>
+
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar"  actionListener="#{formHtpController.eventoCrearInterpretacion}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{formHtpController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+    </ice:form>    
+</div>

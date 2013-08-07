@@ -1,0 +1,113 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:icecore="http://www.icefaces.org/icefaces/core"     
+     xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
+     xmlns:cl="http://cail.com/component"
+     >
+
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <ice:outputLabel value="#{mensaje.listaTestsHtp}"></ice:outputLabel>
+            </td>
+            <td align="right">
+                <ice:selectBooleanCheckbox partialSubmit="true" id="sbcLstAllTest" value="#{bandejaController.listarTestPorFicha}" title="#{mensaje.filtrarTestsPorIngreso}">
+                </ice:selectBooleanCheckbox>
+                <ice:outputLabel for="sbcLstAllTest" value="#{mensaje.filtrarPorIngreso}"></ice:outputLabel>
+            </td>
+        </tr>
+    </table>               
+
+    <ice:dataTable id="dataTableTest" value="#{bandejaController.testsHtpFiltrados}" var="f" rows="10" scrollHeight="250px" width="100%">
+
+        <ice:column>                                      
+            <ice:panelGrid columns="5">
+
+                <ice:commandLink actionListener="#{bandejaController.eventoEditarTest(evt, f.testHtp)}" id="btnEditar" title="#{accion.ver}" disabled="#{permisoController.checkPermiso('testHtp.ver')}">
+                    <ice:graphicImage value="/resources/icono/row/row_ver.png" alt="#{accion.editar}"></ice:graphicImage>
+                </ice:commandLink>
+
+                <ice:commandLink rendered="#{f.informe eq null}" actionListener="#{bandejaController.eventoGenerarInterpretacion(evt, f.testHtp)}" id="btnInterpretacionCrear" title="#{mensaje.crearInterpretacionHtp}" disabled="#{permisoController.checkPermiso('interpretacionHtp.crear')}">
+                    <ice:graphicImage value="/resources/icono/row/row_emitir.png" alt="#{accion.emitir}"></ice:graphicImage>
+                </ice:commandLink>
+                
+                <ice:commandLink rendered="#{f.informe  != null}" actionListener="#{bandejaController.eventoVerInterpretacion(evt, f.testHtp)}" id="btnInterpretacionVer" title="#{mensaje.verInterpretacionHtp}" disabled="#{permisoController.checkPermiso('interpretacionHtp.ver')}">
+                    <ice:graphicImage value="/resources/icono/row/row_ver_interpretacion.png" alt="#{accion.emitir}"></ice:graphicImage>
+                </ice:commandLink>
+
+                <!--
+                <ice:outputText title="#{mensaje.generarReporteTestHtp}">
+                    <ice:outputResource label="Pdf" 
+                                        fileName="InformePsicologico-#{f.testHtp.id}.pdf" 
+                                        image="/resources/icono/row/row_reporte.png" 
+                                        mimeType="application/pdf"
+                                        resource="#{f.recursoTest}"
+                                        lastModified="#{f.recursoTest.modified}"
+                                        shared="false"
+                                        rendered="#{f.renderedReporte}"
+                                        >                            
+                    </ice:outputResource>
+                </ice:outputText>
+                -->
+                
+                <ice:outputText title="#{mensaje.generarReporteInformeHtp}">
+                    <ice:outputResource label="Pdf" 
+                                        disabled="#{permisoController.checkPermiso('testHtp.informeHtp')}"
+                                        styleClass="#{permisoController.checkPermiso('testHtp.informeHtp') ? 'iceCmdLnk-dis':''}"
+                                        fileName="InformeTestHtp-#{f.testHtp.id}.pdf" 
+                                        image="/resources/icono/row/row_informe.png" 
+                                        mimeType="application/pdf"
+                                        resource="#{f.recursoInforme}"
+                                        lastModified="#{f.recursoInforme.modified}"
+                                        shared="false"
+                                        rendered="#{f.renderedReporte}"
+                                        >                            
+                    </ice:outputResource>
+                </ice:outputText>
+                
+                <ice:outputText title="#{mensaje.generarReporteEvolucionHtp}">
+                    <ice:outputResource label="Pdf"
+                                        disabled="#{permisoController.checkPermiso('testHtp.evolucionHtp')}"
+                                        styleClass="#{permisoController.checkPermiso('testHtp.evolucionHtp') ? 'iceCmdLnk-dis':''}"
+                                        fileName="EvoluciónPsicológica-#{f.testHtp.id}.pdf" 
+                                        image="/resources/icono/row/row_evolucion.png" 
+                                        mimeType="application/pdf"
+                                        resource="#{f.recursoEvolucion}"
+                                        lastModified="#{f.recursoEvolucion.modified}"
+                                        shared="false"
+                                        rendered="#{f.renderedReporte}"
+                                        >                            
+                    </ice:outputResource>
+                </ice:outputText>
+
+
+            </ice:panelGrid>
+
+            <f:facet name="header">
+                <ice:outputText value="#{etiqueta.opciones}"/>
+            </f:facet>
+        </ice:column>
+
+        <ice:column>
+            <ice:outputText value="#{f.testHtp.fecha}">
+            </ice:outputText>
+            <f:facet name="header">
+                <ice:outputText id="outputText7" value="#{etiqueta.fecha}"/>
+            </f:facet>                    
+        </ice:column>                    
+
+        <ice:column>
+            <ice:outputText value="#{f.testHtp.edadAdolescente}">
+            </ice:outputText>
+            <f:facet name="header">
+                <ice:outputText  value="#{etiqueta.edad}"/>
+            </f:facet>                    
+        </ice:column>
+
+    </ice:dataTable>
+</div>

@@ -1,0 +1,51 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"     
+     >
+    
+    <input type="hidden" id="subpath" value='#{perfilController.perfilEdicion.id > 0 ? accion.editar : accion.nuevo}'/>
+    
+    <ice:form>
+
+        <ace:panel header="#{etiqueta.datosGenerales}">
+
+        <ice:panelGrid columns="3">
+
+            <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
+            <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" value="#{perfilController.perfilEdicion.nombre}"
+                           validator="#{perfilController.validarNombre}" 
+                           required="true"
+                           maxlength="45"
+                           partialSubmit="true"
+                           style="width: 250px"
+                           >
+                <f:validateLength minimum="5" maximum="45"></f:validateLength>
+            </ice:inputText>                
+            <ice:message for="txtNombre" showDetail="true"  ></ice:message>
+
+            <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>          
+            <ice:inputText id="txtDescripcion" label="#{etiqueta.descripcion}"  
+                           style="width: 250px"
+                           value="#{perfilController.perfilEdicion.descripcion}" required="true" maxlength="80">
+                <f:validateLength minimum="5"></f:validateLength>
+            </ice:inputText>
+            <ice:message for="txtDescripcion" showDetail="true"></ice:message>
+        </ice:panelGrid>     
+
+        </ace:panel>
+
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar"  actionListener="#{perfilController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{perfilController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+
+    </ice:form>
+    
+</div>

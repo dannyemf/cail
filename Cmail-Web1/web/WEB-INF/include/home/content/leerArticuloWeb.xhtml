@@ -1,0 +1,31 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     >            
+    
+    <ice:form> 
+        
+        <ice:outputText value="Posteado por: #{sessionBean.parrafoEdicion.auditCreateUser}"></ice:outputText>
+        
+        <ice:outputText 
+            value="#{sessionBean.parrafoEdicion.descripcion}" 
+            escape="false"
+            rendered="true"
+            >
+        </ice:outputText>
+        
+        <div style="clear: both;"></div>
+        
+        <br></br>       
+        
+        <ice:commandLink
+            rendered="#{!sessionBean.parrafoEdicion.paginaPrincipal}"
+            value="Regresar..."
+            title="Regresar..." 
+            actionListener="#{homeController.eventoCancelarLeerEntrada}" 
+            styleClass="ui-icon-circle-arrow-w cail-button">
+        </ice:commandLink>        
+    </ice:form>    
+    
+</div>

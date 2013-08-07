@@ -1,0 +1,40 @@
+<!--
+  -->
+
+<div xmlns="http://www.w3.org/1999/xhtml"    
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    class="ui-icon-pencil cail-button">
+    
+    
+    <span>Tema:</span>
+    <ice:selectOneMenu id="currentStyle" value="#{styleBean.aceTheme}" valueChangeListener="#{styleBean.changeTheme}" partialSubmit="true">
+        <f:selectItem itemLabel="default" itemValue="default"/>
+        <f:selectItem itemLabel="default-blue" itemValue="default-blue"/>        
+        <f:selectItem itemLabel="black-tie" itemValue="black-tie"/>
+        <f:selectItem itemLabel="blitzer" itemValue="blitzer"/>
+        <f:selectItem itemLabel="cupertino" itemValue="cupertino"/>
+        <f:selectItem itemLabel="dark-hive" itemValue="dark-hive"/>
+        <f:selectItem itemLabel="dot-luv" itemValue="dot-luv"/>
+        <f:selectItem itemLabel="eggplant" itemValue="eggplant"/>
+        <f:selectItem itemLabel="excite-bike" itemValue="excite-bike"/>                
+        <f:selectItem itemLabel="flick" itemValue="flick"/>                
+        <f:selectItem itemLabel="hot-sneaks" itemValue="hot-sneaks"/>
+        <f:selectItem itemLabel="humanity" itemValue="humanity"/>
+        <f:selectItem itemLabel="le-frog" itemValue="le-frog"/>
+        <f:selectItem itemLabel="mint-choc" itemValue="mint-choc"/>
+        <f:selectItem itemLabel="overcast" itemValue="overcast"/>
+        <f:selectItem itemLabel="pepper-grinder" itemValue="pepper-grinder"/>
+        <f:selectItem itemLabel="redmond" itemValue="redmond"/>
+        <f:selectItem itemLabel="smoothness" itemValue="smoothness"/>                
+        <f:selectItem itemLabel="south-street" itemValue="south-street"/>
+        <f:selectItem itemLabel="start" itemValue="start"/>
+        <f:selectItem itemLabel="sunny" itemValue="sunny"/>                
+        <f:selectItem itemLabel="swanky-purse" itemValue="swanky-purse"/>
+        <f:selectItem itemLabel="trontastic" itemValue="trontastic"/>
+        <f:selectItem itemLabel="ui-darkness" itemValue="ui-darkness"/>
+        <f:selectItem itemLabel="ui-lightness" itemValue="ui-lightness"/>
+        <f:selectItem itemLabel="vader" itemValue="vader"/>
+    </ice:selectOneMenu>
+    <input type="hidden" value="#{styleBean.aceTheme}" id="currentStyleTxt"/>
+</div>

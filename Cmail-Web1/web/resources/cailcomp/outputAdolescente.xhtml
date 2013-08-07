@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="adolescente" required="true" type="org.cmail.rehabilitacion.modelo.Persona"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ice:panelGrid id="#{cc.id}" columns="2">
+                
+            <ice:outputLabel value="#{etiqueta.cedula}"></ice:outputLabel>
+                <ice:inputText value="#{cc.attrs.adolescente.cedula}" readonly="true"></ice:inputText>
+                
+                <ice:outputLabel value="#{etiqueta.fechaNacimiento}"></ice:outputLabel>
+                <ice:inputText value="#{cc.attrs.adolescente.fechaNacimiento}" readonly="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </ice:inputText>
+                
+                <ice:outputLabel value="#{etiqueta.nombres}"></ice:outputLabel>
+                <ice:inputText value="#{cc.attrs.adolescente.nombres} #{cc.attrs.adolescente.apellidos}" size="80" readonly="true"></ice:inputText>                                
+                
+                <ice:outputLabel value="#{etiqueta.madre}"></ice:outputLabel>
+                <ice:inputText value="#{cc.attrs.adolescente.madre.nombres} #{cc.attrs.adolescente.madre.apellidos}" size="80" readonly="true"></ice:inputText>
+                
+                <ice:outputLabel value="#{etiqueta.padre}"></ice:outputLabel>
+                <ice:inputText value="#{cc.attrs.adolescente.padre.nombres} #{cc.attrs.adolescente.padre.apellidos}" size="80" readonly="true"></ice:inputText>
+            </ice:panelGrid>
+    </cc:implementation>
+</html>

@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ice="http://www.icesoft.com/icefaces/component"
+        xmlns:ace="http://www.icefaces.org/icefaces/components"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        >    
+    <div style="width: 100%">
+        <div style="">
+            <c:if test="#{sessionBean.usuarioLogeado != null}"> 
+                <!--
+                <ace:menuBar id="menuBarCamil" autoSubmenuDisplay="true">
+                    <ace:menuItem value="Home" url="http://www.icefaces.org" target="_blank" icon="ui-icon ui-icon-home" />
+                    <ace:submenu id="file" label="File" icon="ui-icon ui-icon-document">
+                        
+                        actionlistener
+                        <ace:menuItem id="window" value="Window">
+                                <ace:ajax event="activate" execute="@this" render="message" />
+                        </ace:menuItem>
+                        
+                    </ace:submenu>
+                </ace:menuBar>
+                -->                
+                <ace:menuBar id="menuBarB" model="#{menuController.menuesAplicacion}" autoSubmenuDisplay="false" styleClass="ui-state-active">                    
+                </ace:menuBar>
+                <!--
+                <ace:menuBar id="menuBarC" model="{menuBean.model}">
+                </ace:menuBar>
+                <ice:outputText value="{menuBean.mensaje}"></ice:outputText>
+                -->
+            </c:if>            
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+
+
