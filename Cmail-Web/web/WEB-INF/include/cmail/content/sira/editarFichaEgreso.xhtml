@@ -1,0 +1,427 @@
+<div xmlns="http://www.w3.org/1999/xhtml" 
+     xmlns:h="http://java.sun.com/jsf/html" 
+     xmlns:f="http://java.sun.com/jsf/core" 
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:include src="/WEB-INF/include/cmail/content/wuc/wucBuscarPersona.xhtml"/>        
+
+    <ice:form >
+        <ice:messages/>        
+        <ace:panel header="#{etiqueta.datosGenerales}">
+            <ice:panelGrid columns="4"> 
+                <ice:outputLabel value="#{etiqueta.nombres}" for="nombresAdolescente"/>
+                <ice:panelLayout layout="flow"> 
+                    <ice:inputText id="nombresAdolescente" disabled="true" label="#{etiqueta.nombre}" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.adolescente.nombres}" />
+                    <ice:message for="nombresAdolescente"/>                         
+                </ice:panelLayout>
+                <ice:outputLabel value="#{etiqueta.apellidos}" for="apellidosAdolescente" />
+                <ice:panelLayout layout="flow"> 
+                    <ice:inputText id="apellidosAdolescente" disabled="true" label="Apellido" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.adolescente.apellidos}" />
+                    <ice:message for="apellidosAdolescente"/> 
+                </ice:panelLayout>                                            
+                <ice:outputLabel value="#{etiqueta.cedula}" for="cedulaAdolescente"/>
+                <ice:panelLayout layout="flow"> 
+                    <ice:inputText id="cedulaAdolescente" disabled="true" label="#{etiqueta.nombre}" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.adolescente.cedula}" />
+                    <ice:message for="cedulaAdolescente"/>                         
+                </ice:panelLayout>
+                <ice:outputLabel value="#{etiqueta.fechaNacimiento}" for="fechaNacAdolescente" />
+                <ice:panelLayout layout="flow"> 
+                    <ice:outputText id="fechaNacAdolescente"  value="#{fichaEgresoController.fichaEgresoEdicion.adolescente.fechaNacimiento}" />
+                    <ice:message for="fechaNacAdolescente"/> 
+                </ice:panelLayout>                                            
+                <ice:outputLabel value="#{etiqueta.lugar}" for="lugarCentro" />
+                <ice:panelLayout layout="flow"> 
+                    <ice:inputText id="lugarCentro" label="Lugar" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.lugar}" />
+                    <ice:message for="lugarCentro"/>          
+                </ice:panelLayout>                                   
+                <ice:outputLabel value="#{etiqueta.fechaEgreso}" for="fechaEgreso" />
+                <ice:selectInputDate id="fechaEgreso" label="#{etiqueta.fechaEgreso}"  value="#{fichaEgresoController.fichaEgresoEdicion.fecha}" renderAsPopup="true" renderMonthAsDropdown="true" renderYearAsDropdown="true">
+                    <f:convertDateTime timeZone="#{fichaEgresoController.timeZone}" pattern="dd/MM/yy hh:mm:ss" />
+                </ice:selectInputDate>
+                <ice:outputLabel value="#{etiqueta.tiempoPermanenciaCentro}" for="tiempoPermanencia" />
+                <ice:panelLayout layout="flow"> 
+                    <ice:inputText id="tiempoPermanencia" label="#{etiqueta.tiempoPermanencia}" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.tiempoPermanencia}" />
+                    <ice:message for="tiempoPermanencia"/>
+                </ice:panelLayout>                                         
+            </ice:panelGrid>
+        </ace:panel>
+        
+        <br/>
+        
+        <ace:tabSet id="panelTabFichaEgreso" width="80%" immediate="true"  partialSubmit="true">
+            <ace:tabPane id="tabRazonEgreso" label="RAZÓN DE EGRESO" >
+                <ice:panelGrid columns="3">
+                    <ice:panelGrid columns="2" width="100%"> 
+                        <ice:selectBooleanCheckbox id="razEgCadRetencion" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgCadRetencion}" />
+                        <ice:outputLabel value="Caducidad de la retención" for="razEgCadRetencion"/>
+                        <ice:selectBooleanCheckbox id="razEgTermMedida" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgTermMedida}" />
+                        <ice:outputLabel value="Terminación del tiempo de la medidda socioeducativa" for="razEgTermMedida"/>
+                        <ice:selectBooleanCheckbox id="razEgcadIntPreventivo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgCadIntPreventivo}" />
+                        <ice:outputLabel value="Caducidad del internamiento preventivo" for="razEgcadIntPreventivo"/>
+                        <ice:selectBooleanCheckbox id="razEgCadRetInvestigacion" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgCadRetInvestigacion}" />
+                        <ice:outputLabel value="Caducidad de la retención para investigación" for="razEgCadRetInvestigacion"/>
+                        <ice:selectBooleanCheckbox id="razEgCadRetComparecencia" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgCadRetComparecencia}" />
+                        <ice:outputLabel value="Caducidad de la retención para comparecencia" for="razEgCadRetComparecencia"/>
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2" width="100%">
+                        <ice:selectBooleanCheckbox id="razEgDefuncion" partialSubmit="true"  value="#{fichaEgresoController.fichaEgresoEdicion.razEgDefuncion}" />
+                        <ice:outputLabel value="Defunción" for="razEgDefuncion"/>
+                        <ice:selectBooleanCheckbox id="razEgResJudicial" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgResJusdicial}" />
+                        <ice:outputLabel value="Resolución Judicial" for="razEgResJudicial"/>
+                        <ice:selectBooleanCheckbox id="razEgEvasionFuga" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgEvasionFuga}" />
+                        <ice:outputLabel value="Evasión y Fuga" for="razEgEvasionFuga"/>
+                        <ice:selectBooleanCheckbox id="razEgTrasferencia" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgTrasferencia}" />
+                        <ice:outputLabel value="Trasferencia" for="razEgTrasferencia"/>
+                        <ice:selectBooleanCheckbox id="razEgEmbarazo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.razEgEmbarazo}" />
+                        <ice:outputLabel value="Embarazo" for="razEgEmbarazo"/>                
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2" width="100%">
+                    </ice:panelGrid>
+                </ice:panelGrid>
+
+                <div class="separador">AUTORIZACIÓN DEL EGRESO</div>
+                <!--
+                    <ice:outputLabel value="Nombre y cargo de la persona que autoriza"/>
+                    <ice:inputText id="personaAutEgreso" label="Autorización" size="50" value="#{fichaEgresoController.fichaEgresoEdicion.personaAutEgreso}"/>
+                    <ice:message for="personaAutEgreso"/> 
+                -->
+                <ice:panelGrid columns="2">
+                    <ice:outputLabel value="#{etiqueta.cedula}" for="txtCedulaResponsableIngreso"/>
+                    <ice:panelGrid columns="6" style="border: 1px solid #c0c0c0; background: #cccccc; width: auto">
+                        <ice:inputText id="txtCedulaAutorizaEgreso" 
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.autorizaEgreso.cedula}" 
+                                        style="height: 24px; margin: 0; padding: 0;" disabled="true">
+                        </ice:inputText>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionBuscarAutorizaEgreso}" image="./resources/icono/btn/btn-buscar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="#{accion.buscar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionEditarAutorizaEgreso}" image="./resources/icono/btn/btn-editar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionLimpiarAutorizaEgreso}" image="./resources/icono/btn/btn-limpiar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="#{accion.nuevo}"/>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.nombres}" for="txtNombresAutorizaEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtNombresAutorizaEgreso" 
+                                        label="#{etiqueta.nombres}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.autorizaEgreso.nombres}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtNombresAutorizaEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.apellidos}" for="txtApellidosAutorizaEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtApellidosAutorizaEgreso" 
+                                        label="#{etiqueta.apellidos}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.autorizaEgreso.apellidos}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtApellidosAutorizaEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="Cargo" for="txtCargoAutorizaEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtCargoAutorizaEgreso" 
+                                        label="#{etiqueta.nombres}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.autorizaEgreso.cargo}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtCargoAutorizaEgreso"></ice:message>
+                    </ice:panelGrid>
+                </ice:panelGrid>
+
+                <ice:panelGrid columns="3">
+                    <ice:outputLabel value="Documento/s que avaliza/n la autorización para el Egreso del CAI (adjunte)">                                                         
+                    </ice:outputLabel>
+                    <ice:inputTextarea id="docsEgreso" label="Doc. Egreso" required="true" rows="4" cols="50" value="#{fichaEgresoController.fichaEgresoEdicion.docsEgreso}"/>
+                    <ice:message for="docsEgreso"/>                   
+                </ice:panelGrid>
+            </ace:tabPane>
+
+            <ace:tabPane id="tabDatosCondiciones" label="CONDICIONES DEL O LA ADOLESCENTE" >
+                <div class="separador">ACTITUD DEL O LA ADOLESCENTE</div>
+                <ice:panelGrid columns="5"> 
+                    <ice:outputLabel value="Aceptación de Salir"/>    
+                    <ice:selectOneRadio id="radAceptacionSalida" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.aceptacionSalida}"> 
+                        <f:selectItem itemLabel="SI"  itemValue="true"/>
+                        <f:selectItem itemLabel="NO" itemValue="false"/>
+                    </ice:selectOneRadio>
+                        <!--ice:selectBooleanCheckbox id="aceptacionSalida" value="#{fichaEgresoController.fichaEgresoEdicion.aceptacionSalida}" /-->
+                    <ice:outputLabel value="¿Explique por qué?" for="txtExpAceptacionSalida"/>
+                    <ice:inputText id="txtExpAceptacionSalida" required="true" label="Explique" value="#{fichaEgresoController.fichaEgresoEdicion.expAceptacionSalida}"/>
+                    <ice:message for="txtExpAceptacionSalida"> 
+                    </ice:message>
+                    <ice:outputLabel value="Aceptación de irse con la persona autorizada para llevarle"/>
+                    <!--ice:selectBooleanCheckbox id="aceptacionPersonaSalida" value="#{fichaEgresoController.fichaEgresoEdicion.aceptacionPersonaSalida}" /-->
+                    <ice:selectOneRadio id="radAceptacionPersonaSalida" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.aceptacionPersonaSalida}"> 
+                        <f:selectItem itemLabel="SI" itemValue="true"/>
+                        <f:selectItem itemLabel="NO" itemValue="false"/>
+                    </ice:selectOneRadio>
+                    <ice:outputLabel value="¿Explique por qué?" for="txtExpAceptacionPersonaSalida"/>
+                    <ice:inputText id="txtExpAceptacionPersonaSalida" label="Explique" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.expAceptacionPersonaSalida}"/>
+                    <ice:message for="txtExpAceptacionPersonaSalida"> 
+                    </ice:message>
+                </ice:panelGrid>
+
+                <div class="separador">PERSONA CON LA CUAL EGRESA</div>
+                <ice:panelGrid columns="5" width="100%" > 
+                    <ice:panelGrid columns="2">
+                        <ice:selectBooleanCheckbox id="egAmbosProgenitores" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egAmbosProgenitores}" />
+                        <ice:outputLabel value="Ambos Progenitores" for="egAmbosProgenitores"/>
+                        <ice:selectBooleanCheckbox id="egHermano" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egHermano}" />
+                        <ice:outputLabel value="Hermano" for="egHermano"/>  
+                        <ice:selectBooleanCheckbox id="egAmbosAbuelos" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egAmbosAbuelos}" />
+                        <ice:outputLabel value="Ambos Abuelos" for="egAmbosAbuelos"/> 
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2"> 
+                        <ice:selectBooleanCheckbox id="egPadre" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egPadre}" />
+                        <ice:outputLabel value="Padre" for="egPadre"/> 
+                        <ice:selectBooleanCheckbox id="egHermana" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egHermana}" />
+                        <ice:outputLabel value="Hermana" for="egHermana"/>  
+                        <ice:selectBooleanCheckbox id="egTios" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egTios}" />
+                        <ice:outputLabel value="Tios/as" for="egTios"/>
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2">
+                        <ice:selectBooleanCheckbox id="egMadre" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egMadre}" />
+                        <ice:outputLabel value="Madre" for="egMadre"/> 
+                        <ice:selectBooleanCheckbox id="egAbuelo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egAbuelo}" />
+                        <ice:outputLabel value="Abuelo" for="egAbuelo"/>
+                        <ice:selectBooleanCheckbox id="egPareja" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egPareja}" />
+                        <ice:outputLabel value="Pareja" for="egPareja"/> 
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2"> 
+                        <ice:selectBooleanCheckbox id="egRepresentante" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egRepresentante}" />
+                        <ice:outputLabel value="Respresentante" for="egRepresentante"/>                                
+                        <ice:selectBooleanCheckbox id="egAbuela" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egAbuela}" />
+                        <ice:outputLabel value="Abuela" for="egAbuela"/>                                                        
+                        <ice:selectBooleanCheckbox id="egSolo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egSolo}" />
+                        <ice:outputLabel value="Solo" for="egSolo"/>
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2"> 
+                        <ice:selectBooleanCheckbox id="egOtros" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.egOtros}" />
+                        <ice:outputLabel value="Otros - Indique relación" for="egOtros"/>
+                        <ice:outputLabel/>
+                        <ice:inputText id="realcionEgOtros" value="#{fichaEgresoController.fichaEgresoEdicion.relacionEgOtros}" />
+                    </ice:panelGrid>  
+                </ice:panelGrid>
+
+
+                <div class="separador">CONDICIONES DE EGRESO DEL O LA ADOLESCENTE</div>
+                <ice:panelGrid columns="3" width="100%" columnClasses="columnsPanelGrid"> 
+                    <ice:outputLabel value="Físicas" style="font-weight: bold; font-size: 12px;"/>                                         
+                    <ice:outputLabel value="Emocional" style="font-weight: bold; font-size: 12px;"/>                                         
+                    <ice:outputLabel value="Salubridad" style="font-weight: bold; font-size: 12px;"/>                                         
+
+                    <ice:panelGrid columns="2"> 
+                        <ice:selectBooleanCheckbox id="condFisEgPerfectas" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condFisEgPerfectas}"/>
+                        <ice:outputLabel value="Perfectas" for="condFisEgPerfectas"/>
+                        <ice:selectBooleanCheckbox id="condFisEgLastimados" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condFisEgLastimados}"/>
+                        <ice:outputLabel value="Lastimados" for="condFisEgLastimados"/>
+                        <ice:selectBooleanCheckbox id="condFisEgMoretones" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condFisEgMoretones}"/>
+                        <ice:outputLabel value="Moretones" for="condFisEgMoretones"/>
+                    </ice:panelGrid>
+
+                    <ice:panelGrid columns="2"> 
+                        <ice:selectBooleanCheckbox id="condEmoEgTranquilo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgTranquilo}"/>
+                        <ice:outputLabel value="Tranquilo/a" for="condEmoEgTranquilo"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgAgresivo" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgAgresivo}"/>
+                        <ice:outputLabel value="Agresivo/a" for="condEmoEgAgresivo"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgExtrovertido" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgExtrovertido}"/>
+                        <ice:outputLabel value="Extrovertido/a" for="condEmoEgExtrovertido"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgIntrovertido" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgIntrovertido}"/>
+                        <ice:outputLabel value="Introvertido/a" for="condEmoEgIntrovertido"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgConfinado" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgConfinado}"/>
+                        <ice:outputLabel value="Confinado/a" for="condEmoEgConfinado"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgAsustado" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgAsustado}"/>
+                        <ice:outputLabel value="Asustado/a" for="condEmoEgAsustado"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgAlegre" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgAlegre}"/>
+                        <ice:outputLabel value="Alegre" for="condEmoEgAlegre"/>
+                        <ice:selectBooleanCheckbox id="condEmoEgOtro" partialSubmit="true" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgOtro}"/>
+                        <ice:outputLabel value="Otro - Especifique" for="condEmoEgOtro"/>
+                        <ice:outputLabel  />
+                        <ice:inputText id="condEmoEgOtros_" value="#{fichaEgresoController.fichaEgresoEdicion.condEmoEgOtroNombre}"/>
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="3"> 
+                        <ice:outputLabel value="Tipo de Enfermedad"/>
+                        <ice:inputText id="condSaludEfEnfermedad" required="true" label="Enfermedad" value="#{fichaEgresoController.fichaEgresoEdicion.condSaludEgTEnfermedad}"/>
+                        <ice:message for="condSaludEfEnfermedad"/>                             
+                        <ice:outputLabel value="Medicinas que toma"/>
+                        <ice:inputTextarea  id="condSaludEgMedicina" rows="5" required="true" label="Medicinas" value="#{fichaEgresoController.fichaEgresoEdicion.condSaludEgMedicinas}"/>
+                        <ice:message for="condSaludEgMedicina"/>                             
+                    </ice:panelGrid>
+                </ice:panelGrid>
+            </ace:tabPane>
+
+            <ace:tabPane id="tabInformacionAdicional" label="INFORMACIÓN ADICIONAL">
+                <div class="separador">PERTENENCIAS CON LAS QUE EGRESA</div>
+                <ice:panelGrid columns="3"> 
+                    <ice:outputLabel value="#{etiqueta.descripcion}"/>                     
+                    <ice:inputTextarea id="txtDescPertenencias" cols="50" rows="5" required="true" label="Pertenencias" value="#{fichaEgresoController.fichaEgresoEdicion.descPertenencias}"/>
+                    <ice:message for="txtDescPertenencias"/>                         
+                </ice:panelGrid> 
+                <div class="separador">DATOS DE REFERENCIA DEL O LA ADOLESCENTE</div>
+                <ice:panelGrid columns="3"> 
+                    <ice:outputLabel value="Con quién vivirá (nombre - parentesco)"/>                               
+                    <ice:inputText id="txtPersonaVivir" size="100" required="true" label="#{etiqueta.nombre}" value="#{fichaEgresoController.fichaEgresoEdicion.personaQueVivira}"/>
+                    <ice:message for="txtPersonaVivir"/> 
+                    <ice:outputLabel value="Dirección y teléfono de referencia del lugar donde vivirá"/>
+                    <ice:inputText id="txtdireccionTelef" size="100" required="true" label="Dirección" value="#{fichaEgresoController.fichaEgresoEdicion.direccionTelefonoRef}"/>
+                    <ice:message for="txtdireccionTelef"/> 
+                </ice:panelGrid>
+
+
+
+                <div class="separador">RESPONSABLE DEL EGRESO</div>  
+
+                <ice:panelGrid columns="2">
+                    <ice:outputLabel value="#{etiqueta.cedula}" for="txtCedulaResponsableEgreso"/>
+                    <ice:panelGrid columns="6" style="border: 1px solid #c0c0c0; background: #cccccc; width: auto">
+                        <ice:inputText id="txtCedulaResponsableEgreso" 
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.responsableEgreso.cedula}" 
+                                        style="height: 24px; margin: 0; padding: 0;" disabled="true">
+                        </ice:inputText>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionBuscarResponsableEgreso}" image="./resources/icono/btn/btn-buscar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="#{accion.buscar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionEditarResponsableEgreso}" image="./resources/icono/btn/btn-editar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionLimpiarResponsableEgreso}" image="./resources/icono/btn/btn-limpiar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="#{accion.nuevo}"/>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.nombres}" for="txtNombresResponsableEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtNombresResponsableEgreso" 
+                                        label="#{etiqueta.nombres}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.responsableEgreso.nombres}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtNombresResponsableEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.apellidos}" for="txtApellidosResponsableEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtApellidosResponsableEgreso" 
+                                        label="#{etiqueta.apellidos}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.responsableEgreso.apellidos}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtApellidosResponsableEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.cargo}" for="txtCargoResponsableEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtCargoResponsableEgreso" 
+                                        label="Cargo"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.responsableEgreso.cargo}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtCargoResponsableEgreso"></ice:message>
+                    </ice:panelGrid>
+                </ice:panelGrid>
+
+                <div class="separador">PERSONA CON LA QUE EGRESA EL O LA ADOLESCENTE</div>
+
+                <ice:panelGrid columns="2">
+                    <ice:outputLabel value="#{etiqueta.cedula}" for="txtCedulaCompaneroEgreso"/>
+                    <ice:panelGrid columns="6" style="border: 1px solid #c0c0c0; background: #cccccc; width: auto">
+                        <ice:inputText id="txtCedulaCompaneroEgreso" 
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.cedula}" 
+                                        style="height: 24px; margin: 0; padding: 0;" disabled="true">
+                        </ice:inputText>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionBuscarCompaneroEgreso}" image="./resources/icono/btn/btn-buscar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="#{accion.buscar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionEditarCompaneroEgreso}" image="./resources/icono/btn/btn-editar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
+                        <ice:commandButton  actionListener="#{fichaEgresoController.accionLimpiarCompaneroEgreso}" image="./resources/icono/btn/btn-limpiar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="#{accion.nuevo}"/>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.nombres}" for="txtNombresCompaneroEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtNombresCompaneroEgreso" 
+                                        label="#{etiqueta.nombres}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.nombres}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtNombresCompaneroEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.apellidos}" for="txtApellidosCompaneroEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtApellidosCompaneroEgreso" 
+                                        label="#{etiqueta.apellidos}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.apellidos}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtApellidosCompaneroEgreso"></ice:message>
+                    </ice:panelGrid>
+                    <ice:outputLabel value="#{etiqueta.direccion}" for="txtApellidosCompaneroEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtDireccionCompaneroEgreso" 
+                                        label="#{etiqueta.apellidos}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.direccion}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtDireccionCompaneroEgreso"></ice:message>
+                    </ice:panelGrid>
+                    <ice:outputLabel value="Teléfono" for="txtApellidosCompaneroEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtTelefonoCompaneroEgreso" 
+                                        label="#{etiqueta.apellidos}"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.telefono}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtTelefonoCompaneroEgreso"></ice:message>
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="Cargo" for="txtCargoCompaneroEgreso"/>
+                    <ice:panelGrid columns="2">
+                        <ice:inputText id="txtCargoCompaneroEgreso" 
+                                        label="Cargo"
+                                        value="#{fichaEgresoController.fichaEgresoEdicion.companeroEgreso.cargo}" 
+                                        required="true"
+                                        disabled="true">
+                        </ice:inputText>
+                        <ice:message for="txtCargoCompaneroEgreso"></ice:message>
+                    </ice:panelGrid>
+                </ice:panelGrid>                    
+                <ice:panelGrid columns="3"> 
+                    <ice:outputLabel value="Parentezco"/>
+                    <ice:inputText id="txtParentescoCompEgreso" required="true" label="Parentezco" value="#{fichaEgresoController.fichaEgresoEdicion.parentescoCompaneroEgreso}"/>
+                    <ice:message for="txtParentescoCompEgreso"/>
+                </ice:panelGrid>
+
+                <!--
+                <ice:panelGrid columns="3"> 
+                    <ice:outputLabel value="Nombre, parentesco y cargo"/>
+                    <ice:inputText id="txtnombre_parent_cargo" required="true" label="#{etiqueta.nombre}" value="#{fichaEgresoController.fichaEgresoEdicion.nombre_parentesco_cargo_pe}"/>
+                    <ice:message for="txtnombre_parent_cargo"/>                         
+                    <ice:outputLabel value="#{etiqueta.cedula}"/>
+                    <ice:inputText id="txtCedulaPe" required="true" label="#{etiqueta.cedula}" value="#{fichaEgresoController.fichaEgresoEdicion.cedula_pe}"/>
+                    <ice:message for="txtCedulaPe"/> 
+                    <ice:outputLabel value="Dirección domicilio"/>
+                    <ice:inputText id="txtDomicilio" required="true" label="Dirección" value="#{fichaEgresoController.fichaEgresoEdicion.direccion_pe}"/>
+                    <ice:message for="txtDomicilio"/> 
+                    <ice:outputLabel value="Teléfonos"/>
+                    <ice:inputText id="txttelefonosPe" required="true" label="Telefónos" value="#{fichaEgresoController.fichaEgresoEdicion.telefono_pe}"/>
+                    <ice:message for="txttelefonosPe"/> 
+                </ice:panelGrid>
+                -->
+            </ace:tabPane>
+        </ace:tabSet>
+
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar" actionListener="#{fichaEgresoController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{fichaEgresoController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>                
+        </ace:panel>
+        </div>
+    </ice:form>
+    
+</div>

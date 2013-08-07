@@ -1,0 +1,101 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"     
+     >
+
+        <ice:form>
+            <ace:panel header="#{etiqueta.datosProvincia}">
+            <ice:panelGrid columns="2">
+                
+                <ice:outputLabel for="txtCodigo" value="#{etiqueta.codigoRegion}"></ice:outputLabel>
+                <ice:panelGrid>
+                    <ice:inputText id="txtCodigo" label="#{etiqueta.codigo}"  value="#{divisionController.provinciaEdicion.codigoRegion}" required="true" > </ice:inputText>
+                    <ice:message for="txtCodigo" showDetail="true"  ></ice:message>
+                </ice:panelGrid>
+                
+                <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
+                <ice:panelGrid>
+                    <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{divisionController.provinciaEdicion.nombre}" required="true"> </ice:inputText>
+                    <ice:message for="txtNombre" showDetail="true"  ></ice:message>
+                </ice:panelGrid>
+                
+                <ice:outputLabel for="txtCapital" value="#{etiqueta.capital}"></ice:outputLabel>
+                <ice:panelGrid>
+                    <ice:inputText id="txtCapital" label="#{etiqueta.capital}"  value="#{divisionController.provinciaEdicion.capital}" > </ice:inputText>
+                    <ice:message for="txtCapital" showDetail="true"  ></ice:message>
+                </ice:panelGrid>
+                
+                <ice:outputLabel for="sbcActiva" value="#{etiqueta.activa}"></ice:outputLabel>
+                <ice:panelGrid>
+                    <ice:selectBooleanCheckbox label="#{etiqueta.activa}" id="sbcActiva" value="#{divisionController.provinciaEdicion.activa}"/>
+                    <ice:message for="sbcActiva" showDetail="true"  ></ice:message>
+                </ice:panelGrid>
+                
+            </ice:panelGrid>
+            </ace:panel>
+            
+            <br/>
+            
+            <ace:panel header="#{mensaje.listadoCantones}">
+                
+                <br/>
+                
+                <ice:commandLink actionListener="#{divisionController.eventoNuevoCanton}"  styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('division_politica.crear')}"></ice:commandLink>
+                
+            
+            
+            <ice:dataTable var="c" value="#{divisionController.modelCantones}">
+                
+                <ice:column>
+                    
+                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" styleClass="icePnlCnfEliminar" message="#{mensaje.eliminar_canton}" title="#{mensaje.eliminar_canton_title}"  rendered="true"/>
+                    
+                    <ice:panelLayout layout="flow">
+                        <ice:commandLink actionListener="#{divisionController.eventoEditarCanton}" id="btnEditar" disabled="#{permisoController.checkPermiso('division_politica.editar')}" title="#{accion.editar}">
+                            <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                        </ice:commandLink>                            
+
+                        <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{divisionController.eventoEliminarCanton}" id="btnEliminar" disabled="#{permisoController.checkPermiso('division_politica.eliminar')}" title="#{accion.eliminar}">
+                            <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                        </ice:commandLink>
+
+                    </ice:panelLayout>
+                    
+                    <f:facet name="header">
+                        <ice:outputText  value="#{etiqueta.opciones}"/>
+                    </f:facet>
+                </ice:column>
+                
+                <ice:column>
+                    <ice:outputText value="#{c.nombre}"/>
+                    <f:facet name="header">
+                        <ice:outputText  value="#{etiqueta.nombre}"/>
+                    </f:facet>
+                </ice:column>
+                
+                <ice:column>
+                    <ice:selectBooleanCheckbox id="sbcb" value="#{c.activo}" disabled="true"/>
+                    <f:facet name="header">
+                        <ice:outputText  value="#{etiqueta.activo}"/>
+                    </f:facet>
+                </ice:column>
+                
+            </ice:dataTable>
+                
+            </ace:panel>
+            
+            <br/>
+            
+            <div class="controles">
+            <ace:panel>
+                <ice:commandLink id="btnGuardar"  actionListener="#{divisionController.eventoGuardarProvincia}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>
+                <ice:commandLink id="btnCancelar" actionListener="#{divisionController.eventoCancelarProvincia}" immediate="true" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+            </ace:panel>
+            </div>
+                        
+        </ice:form>
+    
+</div>

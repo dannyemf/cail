@@ -1,0 +1,120 @@
+<!-- -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
+      >
+    
+    <f:view locale="es-EC" contentType="text/html" encoding="UTF-8">
+    
+    
+     <h:head>
+         
+        <title id="dynamicTitle">
+            <ui:insert name="title">#{mainController.prmSiglas}</ui:insert>
+        </title>
+         
+        <link href="./resources/css/imagen/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+        <link href="./resources/css/imagen/favicon.ico" rel="icon" type="image/x-icon"/>
+        
+        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/cail_layout.css"/>                        
+        <link rel='stylesheet' type='text/css' href='./resources/css/controles-ice.css'/>      
+        
+        <ui:include src="theme-rename.xhtml"></ui:include>
+        
+        <script type="text/javascript" src="./resources/js/jquery/jquery-1.5.1.js"></script>
+        <script type="text/javascript" src="./resources/js/jquery/ui/jquery-ui-1.8.11.custom.js"></script>
+        <script type="text/javascript" src="./resources/js/jquery/jquery.alphanumeric.pack.js"></script>
+        <script type="text/javascript" src="./resources/js/jquery/jquery.validate.js"></script>        
+        
+        <script type="text/javascript">
+            var $j = jQuery.noConflict();
+            $j(document).ready(function(){  
+               $j('.noIceOutTxt').removeClass('iceOutTxt');       
+            });
+        </script>        
+        <script type="text/javascript" src="./resources/js/Global.js"></script>
+        
+        <script type="text/javascript">            
+            // French initialization
+            ice.ace.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                currentText: 'Hoy',
+                monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunnes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+        </script>
+    </h:head>
+    <h:body>        
+        <icecore:config mandatoryResource="@all"></icecore:config>
+        <!--
+        <icecore:config blockUIOnSubmit="true"/>
+        -->
+        
+        <c:if test="#{sessionBean.usuarioLogeado == null}">
+          <script type="text/javascript">
+                document.location = '#{facesContext.externalContext.requestContextPath}/home.jsf';
+          </script>
+        </c:if>
+        
+        <ui:insert name="header">            
+            <ui:include src="/WEB-INF/include/cmail/header.xhtml"/>
+        </ui:insert>
+        
+        <div id="main">
+            <div id="content" class="body_container">
+                <div class="body_content">               
+
+                    <div class="contentContainer" style="min-height: 400px">
+
+                        <!--
+                           Main Component content;
+                           controls which content to display for the respective navigation
+                        -->
+                        <div class="ui-widget" style="">
+                            <h2 id="path">                                                        
+                                <b>Usted está aquí:  </b> #{menuController.currentPath} #{menuController.currentAction}
+                            </h2>
+                        </div>
+
+                        <cail:outputNotification></cail:outputNotification>
+
+                        <ui:insert name="page-content"/>
+                        <ice:panelGroup styleClass="clearer"/>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>                
+
+        <ui:insert name="footer">            
+            <ui:include src="/WEB-INF/include/comun/footer.xhtml"/>
+        </ui:insert>
+    </h:body>    
+ </f:view>   
+ 
+</html>
+ 
+

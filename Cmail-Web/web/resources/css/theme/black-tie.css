@@ -1,0 +1,23 @@
+/*
+CAIL CSS
+----------------------------------
+*/
+
+/**menu item over*/
+.wijmo-wijmenu-link:hover .wijmo-wijmenu-text{
+    color: #045491;
+}
+
+/**menu child default*/
+.wijmo-wijmenu-child .wijmo-wijmenu-link .wijmo-wijmenu-text{
+    color: #045491;
+}
+
+/**menu child default icons*/    
+.ui-state-default .ui-icon, .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+    background-image: url("#{resource['ace-black-tie:images/ui-icons_4ca300_256x240.png']}");    
+}
+
+.wijmo-wijmenu-child .wijmo-wijmenu-link .wijmo-wijmenu-text .ui-icon {        
+    background-image: url("#{resource['ace-black-tie:images/ui-icons_4ca300_256x240.png']}");    
+}

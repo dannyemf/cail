@@ -1,0 +1,105 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     >    
+    
+    <ice:form> 
+
+        <div class="opciones">
+            <ace:panel>
+                <ice:panelGrid columns="5">
+            <ice:outputText value="#{etiqueta.desde}"></ice:outputText>
+            <h:panelGrid>
+                <ice:selectInputDate id="sidDesde" label="#{etiqueta.desde}" value="#{reporteController.desde}" renderAsPopup="true">
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                </ice:selectInputDate>
+                <ice:message for="sidDesde"></ice:message>
+            </h:panelGrid>
+
+            <ice:outputText value="#{etiqueta.hasta}"></ice:outputText>
+            <h:panelGrid>
+                <ice:selectInputDate id="sidHasta" label="#{etiqueta.hasta}" value="#{reporteController.hasta}" renderAsPopup="true">
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                </ice:selectInputDate>
+                <ice:message for="sidHasta"></ice:message>
+            </h:panelGrid>
+
+            <ice:commandLink id="btnBuscar" actionListener="#{reporteController.eventoBuscarIngresosSalidas}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
+
+            </ice:panelGrid>
+            </ace:panel>
+        </div>
+
+        <ace:panel rendered="#{reporteController.listaIngresosSalidas.size() > 0}">                
+            <ice:outputText title="Exportar a pdf">
+                <ice:outputResource fileName="IngresoSalidas.pdf" 
+                                    attachment="true"
+                                    label="PDF"
+                                    mimeType="application/pdf"
+                                    shared="false"
+                                    image="/resources/icono/accion/reporte-png.png"
+                                    lastModified="#{reporteController.recursoIngresoSalida.lastModified()}"
+                                    resource="#{reporteController.recursoIngresoSalida}">                                        
+                </ice:outputResource>                    
+            </ice:outputText>
+        </ace:panel>
+
+        <ice:dataTable id="dataTable1" varStatus="ps" value="#{reporteController.listaIngresosSalidas}" var="p" rows="10" scrollHeight="250px" width="100%">
+
+            <f:facet name="header">
+                <ice:columnGroup>                        
+
+                    <ice:headerRow>
+                        <ice:column>                                
+                            <ice:outputText value="N°"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="Nombres y apellidos"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="Fecha Ingreso"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="Fecha Egreso"></ice:outputText>
+                        </ice:column>
+
+                        <ice:column>                                
+                            <ice:outputText value="Causa de detención"></ice:outputText>
+                        </ice:column>
+
+
+                    </ice:headerRow>
+
+                </ice:columnGroup>
+            </f:facet>
+
+            <ice:column>
+                <ice:outputText value="#{ps.index + 1}"/>
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.nombres} #{p.apellidos}"/>
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.fechaIngreso}"/>                    
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.fechaEgreso}"/>                    
+            </ice:column>
+
+            <ice:column>
+                <ice:outputText value="#{p.razonIngreso}"/>                    
+            </ice:column>
+
+        </ice:dataTable>
+
+    </ice:form>
+</div>

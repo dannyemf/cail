@@ -1,0 +1,172 @@
+<div 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ice="http://www.icesoft.com/icefaces/component" 
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:ui="http://java.sun.com/jsf/facelets"    
+    xmlns:c="http://java.sun.com/jsf/core"    
+    >       
+
+    <ice:form id="form">
+        
+        <ice:messages id="messages" globalOnly="true"></ice:messages>
+        
+        <ace:confirmationDialog 
+            modal="true"                             
+            widgetVar="pnlConfEliminar"
+            showEffect="explode"
+            header="Eliminar"            
+            message="¿Desea eliminar ésta pregunta: #{esquemaController.preguntaSeleccionada.numero}?"
+            >                        
+            
+            <div align="right">                
+                <ice:commandLink value="#{accion.eliminar}" immediate="true" actionListener="#{esquemaController.eventoRemoverPreguntaOk}" styleClass="ui-icon-trash cail-button">
+                </ice:commandLink>
+
+                <ice:commandLink value="#{accion.cancelar}" onclick="pnlConfEliminar.hide();" styleClass="ui-icon-cancel cail-button">
+                </ice:commandLink>
+                
+            </div>
+        </ace:confirmationDialog>
+                
+        <ace:panel header="#{etiqueta.datosGenerales}">
+            <ice:panelGrid columns="3">
+
+                <ice:outputLabel value="#{etiqueta.nombre}" />
+                <ice:inputText id="nombre" value="#{esquemaController.esquemaEdicion.nombre}" required="true" label="#{etiqueta.nombre}" maxlength="45">
+                    <f:validateLength minimum="3"></f:validateLength>
+                </ice:inputText>                
+                <ice:message for="nombre"/>
+
+                <ice:outputLabel value="#{etiqueta.descripcion}" />                
+                <ice:inputTextarea id="descripcion" value="#{esquemaController.esquemaEdicion.descripcion}" required="true" label="#{etiqueta.descripcion}" maxlength="45">
+                    <f:validateLength minimum="3"></f:validateLength>
+                </ice:inputTextarea>
+                <ice:message for="descripcion"/>
+
+
+                <ice:outputLabel value="#{etiqueta.estado}" />
+
+                <ice:selectBooleanCheckbox id="estado" value="#{esquemaController.esquemaEdicion.activo}"></ice:selectBooleanCheckbox>
+                <ice:message for="estado"/>
+
+                <ice:outputLabel value="#{etiqueta.tipo}" />
+                <ice:selectOneMenu id="tipo" value="#{esquemaController.esquemaEdicion.tipo}" label="Tipo">
+                    <f:selectItem itemValue="H-T-P" itemLabel="H-T-P"></f:selectItem>
+                </ice:selectOneMenu>
+                <ice:message for="tipo"/>
+            </ice:panelGrid>
+        </ace:panel>
+        
+        <br/>
+        
+        <ace:panel header="Lista de preguntas">
+
+            <ace:panel>
+                <ice:commandLink id="btnNuevo" partialSubmit="true" immediate="true" actionListener="#{esquemaController.eventoNuevaPregunta}" styleClass="ui-icon-plus cail-button" value="#{accion.nueva}"></ice:commandLink>
+            </ace:panel>        
+
+            <div style="overflow: auto">
+            <ice:dataTable id="dataTablePreguntas" rows="10" value="#{esquemaController.preguntas}" var="pregunta" scrollHeight="250px"
+                            binding="#{esquemaController.table}"
+                            >
+
+                <ice:column>
+                    <ice:commandLink id="lnkRem" title="#{accion.eliminar}" immediate="true" actionListener="#{esquemaController.eventoRemoverPreguntaSelect(pregunta)}">
+                        <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                    </ice:commandLink>
+                    <f:facet name="header">
+                        <ice:outputText value=""/>
+                    </f:facet>
+                </ice:column>
+
+                <ice:column>
+                    <ice:selectBooleanCheckbox id="chkRequerida" label="Requerida" value="#{pregunta.requerida}" partialSubmit="true"></ice:selectBooleanCheckbox>                    
+                    <ice:message for="chkRequerida"></ice:message>
+                    <f:facet name="header">
+                        <ice:outputText value="Requerida"/>
+                    </f:facet>
+                </ice:column>
+
+                <ice:column>
+                    <ice:inputText id="txtNumero" label="Número" value="#{pregunta.numero}" partialSubmit="true" required="true">
+                    </ice:inputText>
+                    <ice:message for="txtNumero"></ice:message>
+                    <f:facet name="header">
+                        <ice:outputText value="Numero"/>
+                    </f:facet>
+                </ice:column>
+
+                    <ice:column>
+                    <ice:selectOneMenu value="#{pregunta.tipo}" partialSubmit="true">
+                        <f:selectItem itemValue="LIBRE" itemLabel="Libre"></f:selectItem>
+                        <f:selectItem itemValue="CERRADA" itemLabel="Cerrada"></f:selectItem>
+                        <f:selectItem itemValue="MULTIPLE" itemLabel="Múltiple"></f:selectItem>
+                    </ice:selectOneMenu>
+                    <f:facet name="header">
+                        <ice:outputText value="#{etiqueta.tipo}"/>
+                    </f:facet>
+                </ice:column>
+
+
+                <ice:column>
+                    <ice:selectOneMenu value="#{pregunta.grupo}" partialSubmit="true">
+                        <f:selectItem itemValue="NINGUNO" itemLabel="Ninguno"></f:selectItem>
+                        <f:selectItem itemValue="CASA" itemLabel="Casa"></f:selectItem>
+                        <f:selectItem itemValue="ARBOL" itemLabel="Arbol"></f:selectItem>
+                        <f:selectItem itemValue="PERSONA" itemLabel="Persona"></f:selectItem>
+                    </ice:selectOneMenu>
+                    <f:facet name="header">
+                        <ice:outputText value="#{etiqueta.tipo}"/>
+                    </f:facet>
+                </ice:column>
+
+                <ice:column>
+                    <ice:inputTextarea id="txtEnunciado" label="Enunciado" value="#{pregunta.enunciado}" partialSubmit="true" required="true" style="" cols="120">
+                    </ice:inputTextarea>
+                    <ice:message for="txtEnunciado"></ice:message>
+
+                    <f:facet name="header">
+                        <ice:outputText value="Enunciado"/>
+                    </f:facet>
+                </ice:column>
+
+            </ice:dataTable>
+            </div>
+
+            <!-- Paginator with page controls -->
+            <ice:dataPaginator id="dataScrollPreguntas" for="dataTablePreguntas" paginator="true" fastStep="#{accion.fastStep}" paginatorMaxPages="#{accion.paginatorMaxPages}">
+                <f:facet name="first">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;" title="#{accion.first}"></ice:graphicImage>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;" title="#{accion.last}"></ice:graphicImage>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;" title="#{accion.previous}"></ice:graphicImage>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;" title="#{accion.next}"></ice:graphicImage>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;" title="#{accion.fastforward}"></ice:graphicImage>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;" title="#{accion.fastrewind}"></ice:graphicImage>
+                </f:facet>
+            </ice:dataPaginator>
+        </ace:panel>
+
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>
+            <ice:commandLink id="btnGuardar" actionListener="#{esquemaController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{esquemaController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+        
+    </ice:form>
+    
+</div>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ice="http://www.icesoft.com/icefaces/component"   
+      xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="bean" type="java.lang.Object" required="true"></cc:attribute>
+        <cc:attribute name="tipo" default="Nacimiento" displayName="Tipos: Nacimiento, Detencion, etc"></cc:attribute>
+        <cc:attribute name="label" default="#{etiqueta.nacimiento}"></cc:attribute>
+        <cc:attribute name="provincia" type="org.cmail.rehabilitacion.modelo.localizacion.Provincia"></cc:attribute>
+        <cc:attribute name="canton" type="org.cmail.rehabilitacion.modelo.localizacion.Canton"></cc:attribute>
+        <cc:attribute name="parroquia" type="org.cmail.rehabilitacion.modelo.localizacion.Parroquia"></cc:attribute>        
+        <cc:attribute name="disabled" default="false"></cc:attribute>
+        <cc:attribute name="required" default="true"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ice:panelGrid columns="3" styleClass="ui-state-#{cc.attrs.disabled ? 'disabled':'default'} ui-corner-all">
+            <cail:outputLabel value="#{etiqueta.provincia}" info="#{cc.attrs.required ? '(*)':''}"></cail:outputLabel>
+            <cail:outputLabel value="#{etiqueta.canton}" info="#{cc.attrs.required ? '(*)':''}"></cail:outputLabel>            
+            <cail:outputLabel value="#{etiqueta.parroquia}" info="#{cc.attrs.required ? '(*)':''}"></cail:outputLabel>
+
+            <h:selectOneMenu 
+                id="provincia"
+                label="#{etiqueta.provincia} #{cc.attrs.label}"
+                disabled="#{cc.attrs.disabled}"
+                value="#{cc.attrs.provincia}"                 
+                immediate="true"
+                required="#{cc.attrs.required}"
+                requiredMessage="#{etiqueta.provincia} #{cc.attrs.label}(*)"
+                styleClass="iceSelOneMnu"
+                style="width: 150px"
+                valueChangeListener="#{provinciaBean.changeProvincia}"
+                converter="provinciaConverter"
+                >
+                <f:selectItem itemLabel="#{etiqueta._seleccione_}"></f:selectItem>
+                <f:selectItems var="p" itemLabel="#{p.nombre}" value="#{provinciaBean.lista}">
+                </f:selectItems>                
+                <f:ajax render="canton parroquia"></f:ajax>
+                <f:ajax render="@all"></f:ajax>
+                
+                <f:attribute name="bean" value="#{cc.attrs.bean}" />
+                <f:attribute name="tipo" value="#{cc.attrs.tipo}" />
+            </h:selectOneMenu>
+            
+            <h:selectOneMenu 
+                id="canton" 
+                label="#{etiqueta.canton} #{cc.attrs.label}"
+                value="#{cc.attrs.canton}" 
+                disabled="#{cc.attrs.disabled}"
+                styleClass="iceSelOneMnu"
+                style="width: 150px"
+                immediate="true"
+                required="#{cc.attrs.required}"
+                requiredMessage="#{etiqueta.canton} #{cc.attrs.label}(*)"
+                valueChangeListener="#{provinciaBean.changeCanton}"
+                converter="cantonConverter">
+                <f:selectItem itemLabel="#{etiqueta._seleccione_}"></f:selectItem>
+                <f:selectItems var="p" itemLabel="#{p.nombre}" value="#{cc.attrs.provincia.cantones}"></f:selectItems>
+                <f:ajax render="parroquia"></f:ajax>
+                <f:ajax render="@all"></f:ajax>
+                
+                <f:attribute name="bean" value="#{cc.attrs.bean}" />
+                <f:attribute name="tipo" value="#{cc.attrs.tipo}" />
+            </h:selectOneMenu>            
+            
+            <h:selectOneMenu 
+                id="parroquia" 
+                label="#{etiqueta.parroquia} #{cc.attrs.label}"
+                value="#{cc.attrs.parroquia}" 
+                disabled="#{cc.attrs.disabled}"
+                converter="parroquiaConverter"
+                immediate="true"
+                required="#{cc.attrs.required}"
+                requiredMessage="#{etiqueta.parroquia} #{cc.attrs.label} (*)"
+                valueChangeListener="#{provinciaBean.changeParroquia}"
+                styleClass="iceSelOneMnu"
+                style="width: 150px"
+                >
+                <f:selectItem itemLabel="#{etiqueta._seleccione_}"></f:selectItem>
+                <f:selectItems var="p" itemLabel="#{p.nombre}" value="#{cc.attrs.canton.parroquias}"></f:selectItems>
+                <f:ajax render="@all"></f:ajax>
+                
+                <f:attribute name="bean" value="#{cc.attrs.bean}" />
+                <f:attribute name="tipo" value="#{cc.attrs.tipo}" />
+            </h:selectOneMenu>                        
+            
+            <ice:message for="provincia"></ice:message>
+            <ice:message for="canton"></ice:message>
+            <ice:message for="parroquia"></ice:message>
+            
+            <f:facet name="footer">
+                <cc:insertChildren></cc:insertChildren>
+            </f:facet>
+            
+        </ice:panelGrid>
+    </cc:implementation>
+</html>

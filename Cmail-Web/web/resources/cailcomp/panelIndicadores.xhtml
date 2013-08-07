@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>        
+        <cc:attribute name="indicadores" required="true" type="java.util.List"></cc:attribute>
+        <cc:attribute name="actionListenerNuevo" required="true"  method-signature="void actionListener(javax.faces.event.ActionEvent)"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ice:commandLink id="btnNuevo" actionListener="#{cc.attrs.actionListenerNuevo}" immediate="true" styleClass="ui-icon-document cail-button" value="#{accion.nueva}"></ice:commandLink>
+                
+        <ice:dataTable id="dataTable" rows="5" var="c" value="#{cc.attrs.indicadores}" width="100%">
+            <ice:panelConfirmation 
+                    title="#{mensaje.eliminar_indicador_title}" 
+                    acceptLabel="#{accion.eliminar}" 
+                    autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" 
+                    id="pc_eliminar" styleClass="icePnlCnfEliminar" message="#{mensaje.eliminar_indicador}"  rendered="true"/>
+            
+            <ice:column style="vertical-align: top">               
+                
+                <ice:panelLayout layout="flow">                                            
+
+                    <ice:commandLink immediate="true" actionListener="#{categoriaController.eventoEditarIndicador(evt, c)}" id="btnEditar" title="#{accion.editar}">
+                        <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
+                    </ice:commandLink>
+                    
+                    <ice:commandLink immediate="true" actionListener="#{categoriaController.eventoEliminarIndicador(evt, c)}" id="btnEliminar" title="#{accion.eliminar}">
+                        <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                    </ice:commandLink>
+
+                    <ice:commandLink rendered="#{categoriaController.verificarCopiarIndicador(c)}" immediate="true" actionListener="#{categoriaController.eventoCopiarIndicador(evt, c)}" id="btnCopiar" title="#{accion.copiarA}">
+                        <ice:graphicImage value="./resources/icono/row/row_nuevo_mas.png" alt="#{accion.copiarA}"></ice:graphicImage>
+                    </ice:commandLink>
+                    
+                </ice:panelLayout>
+
+                <f:facet name="header">
+                    <ice:outputText  value=""/>
+                </f:facet>
+            </ice:column>
+
+            <ice:column>
+                <ice:panelGrid columns="2" rowClasses="ui-state-highlight" style="width: 100%">
+
+                    <ice:outputText  value="#{etiqueta.nombre}"/>
+                    <ice:panelGrid columns="5">
+                        <ice:outputText value="#{c.nombre}" style="width: 380px"/>
+                        <ice:outputText  value="#{etiqueta.valor}: "/>                        
+                        <ice:outputText  value="#{c.valor}"/>
+                        <ice:outputText  value=" - #{etiqueta.orden}: "/>                        
+                        <ice:outputText  value="#{c.orden}"/>                        
+                    </ice:panelGrid>
+
+                    <ice:outputLabel  value="#{etiqueta.descripcion}"/>
+                    <ice:outputText id="txtIndDef" value="#{c.definicion}" style="width: 380px"/>
+
+                    <ice:outputLabel  value="Significaciones"/>
+                    <ice:panelGrid columns="2">
+                        <ice:outputText id="txtIndSigni" value="#{c.significaciones}" style="width: 380px"/>                        
+                    </ice:panelGrid>
+                </ice:panelGrid>                    
+
+                <f:facet name="header">
+                    <ice:outputText  value="Definición"/>
+                </f:facet>
+            </ice:column>
+
+                <ice:column style="vertical-align: bottom">                     
+                <div align="center">
+                    <ice:panelGrid>
+                        <ice:outputText styleClass="ui-state-highlight ui-corner-all" style="padding: 2px; border: solid 1px;">
+                            <ice:graphicImage value="#{c.imagen}" height="100"></ice:graphicImage>
+                        </ice:outputText>
+                    </ice:panelGrid>
+                </div>
+
+                <f:facet name="header">
+                    <ice:outputText  value="Imagen"/>
+                </f:facet>
+            </ice:column>
+
+        </ice:dataTable>
+        
+        <!-- Paginator with page controls -->        
+        <ice:dataPaginator id="dataScroll" for="dataTable" paginator="true" fastStep="#{accion.fastStep}" paginatorMaxPages="#{accion.paginatorMaxPages}">
+            <f:facet name="first">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-first.gif" style="border:none;" title="#{accion.first}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="last">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-last.gif" style="border:none;" title="#{accion.last}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="previous">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-previous.gif" style="border:none;" title="#{accion.previous}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="next">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-next.gif" style="border:none;" title="#{accion.next}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastforward">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif" style="border:none;" title="#{accion.fastforward}"></ice:graphicImage>
+            </f:facet>
+            <f:facet name="fastrewind">
+                <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif" style="border:none;" title="#{accion.fastrewind}"></ice:graphicImage>
+            </f:facet>
+        </ice:dataPaginator>
+        
+    </cc:implementation>
+</html>

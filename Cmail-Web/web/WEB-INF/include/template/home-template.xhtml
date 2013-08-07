@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      >
+
+    <f:view locale="es" contentType="text/html">
+
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />                
+
+            <link href="./resources/css/style.css" rel="stylesheet" type="text/css" />
+            <link href="./resources/css/home/home_layout.css" rel="stylesheet" type="text/css" />
+            <link href="./resources/css/home/nivo-slider.css" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="./resources/css/home/themes/default/default.css" type="text/css" media="screen" />
+            
+            <link href="./resources/css/controles-ice.css" rel="stylesheet" type="text/css" />
+            <ui:include src="theme-rename.xhtml"></ui:include>
+
+            <title>#{mainController.prmSiglas} - Home</title>
+
+            <script type="text/javascript" src="./resources/js/jquery/jquery-1.9.1.js"></script>                                
+            <script type="text/javascript" src="./resources/js/jquery/jquery-ui.min.js"></script>
+            
+            <script type="text/javascript" src="./resources/js/jquery/jquery.nivo.slider.js"></script>
+            
+            <script type="text/javascript">
+                var $j = jQuery.noConflict();
+            </script>
+            <script type="text/javascript" src="./resources/js/Global.js"></script>                
+
+            
+
+            <script type="text/javascript">
+            
+                function InitHomeMenu(){
+                    /*var lnks = $j('#menu .iceCmdLnk').click(function(){
+                        $j('#menu .iceCmdLnk').removeClass('ui-state-highlight');
+                        $j(this).addClass('ui-state-highlight');
+                    });
+                
+                    var homeInclude = $j('#homeInclude').val().split('/');                
+                    var page = homeInclude[homeInclude.length - 1];                
+                
+                    $j(lnks).each(function(){
+                        var s = $j(this).attr('onclick').toString();                    
+                        //alert(page + " - " + s.indexOf(page) +" --> "+ s);
+                        if(s.indexOf(page) > 0){                        
+                            $j(this).addClass('ui-state-highlight');
+                        }
+                    });
+                
+                    $j('#menu').buttonset();   
+                    */
+                };
+            
+                function InitHome(){
+                    try{
+                        //InitHomeMenu();                    
+                    
+                        //Cuando está vacio lanza excepcion
+                        try{
+                            $j('#slider').nivoSlider({
+                                controlNav: false,
+                                afterLoad: function(){
+                                    //$j('.nivo-nextNav').click();
+                                }
+                            });
+                        }catch(ex){
+                            alert("slider init: "+ex);
+                        }
+                    
+                    }catch(e){
+                        alert('initHome: ' + e);
+                    }
+                };
+            </script>
+
+
+
+        </h:head>
+
+        <h:body>
+
+            <icecore:config mandatoryResource="@all"></icecore:config>
+            
+            <div id="main">
+                
+                <ui:insert name="header">
+                    <ui:include src="/WEB-INF/include/home/header.xhtml"></ui:include>
+                </ui:insert>
+                
+                <ui:insert name="banner">
+                    <ui:include src="/WEB-INF/include/home/banner.xhtml"></ui:include>
+                </ui:insert>
+                
+                <ui:insert name="menu">
+                    <ui:include src="/WEB-INF/include/home/menu.xhtml"></ui:include>
+                </ui:insert>                                                       
+                
+                <div id="content">
+                    <div id="right" class="ui-widget">
+                        <ui:insert name="content">Content</ui:insert>
+                    </div>            
+                </div>
+
+                <div style="clear: both"></div>
+                
+            </div>
+                
+            <ui:insert name="footer">            
+                <ui:include src="/WEB-INF/include/comun/footer.xhtml"/>
+            </ui:insert>
+
+        </h:body>
+
+    </f:view>
+
+</html>

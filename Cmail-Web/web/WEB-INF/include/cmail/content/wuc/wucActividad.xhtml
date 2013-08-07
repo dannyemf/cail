@@ -1,0 +1,66 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     >
+
+    <ice:form id="frmActividad">                        
+        <ice:panelPopup styleClass="panelPopup"        
+                        autoCentre="true"
+                        modal="true"        
+                        draggable="true"
+                        rendered="#{planificacionController.renderPopupActividad}"
+                        visible="#{planificacionController.renderPopupActividad}"        
+                        style="z-index:999; left: 400px; width: auto; height: auto; position:absolute; background: #FFFFFF; border: solid 1px #004080"
+                        clientOnly="true"
+                        
+                        >
+
+            <f:facet name="header">
+                <h:panelGrid id="popupHeader2" width="100%" cellpadding="0" cellspacing="0" columns="2" columnClasses="popupIcon,popupTitle,popupButton" style="">
+                    <h:outputText value="Nueva Actividad..." style="padding-left: 10px"/>
+                    <h:commandButton id="popupClose2" type="button" image="./resources/icono/popupclose.gif"  style="cursor: pointer; position: absolute; right: 3px; top: 5px" actionListener="#{planificacionController.accionCerrar}" immediate="true"/>
+                </h:panelGrid>
+            </f:facet>
+
+
+            <f:facet name="body">
+                <h:panelGrid id="popupBody2" width="100%" cellpadding="0" cellspacing="0" columns="1">
+                    <ice:panelGrid id="tab1">
+                        <ice:panelGrid columns="3"> 
+                            <ice:outputLabel value="Codigo"></ice:outputLabel>
+                            <ice:inputText disabled="true" value="#{planificacionController.actividadEdicion.id}"></ice:inputText>
+                            <ice:outputLabel></ice:outputLabel>
+                            
+                            <ice:outputLabel value="Fecha de Ejecución"></ice:outputLabel>
+                            <ice:selectInputDate id="sidFechaEjecucion" required="true" value="#{planificacionController.actividadEdicion.fechaEjecucion}" renderAsPopup="true" renderMonthAsDropdown="true" renderYearAsDropdown="true">
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"/>
+                            </ice:selectInputDate>                        
+                            <ice:message for="sidFechaEjecucion" showDetail="true"  ></ice:message>
+                            <ice:outputLabel value="#{etiqueta.descripcion}" ></ice:outputLabel>
+                            <ice:inputTextarea id="txtDescripcionActividad" required="true" label="#{etiqueta.descripcion}"  value="#{planificacionController.actividadEdicion.descripcion}" binding="#{planificacionController.txtDescripcion}" > </ice:inputTextarea>
+                            <ice:message for="txtDescripcionActividad" showDetail="true"  ></ice:message>
+                            <ice:outputLabel value="Lugar"></ice:outputLabel>
+                            <ice:inputText id="txtLugar" required="true" label="Lugar" value="#{planificacionController.actividadEdicion.lugar}" > </ice:inputText>
+                            <ice:message for="txtLugar" showDetail="true"  ></ice:message>
+                            <ice:outputLabel value="Porcentaje de Ejecución"></ice:outputLabel>
+                            <ice:inputText id="txtPorcentaje" label="Porcentaje" required="true" maxlength="3" value="#{planificacionController.actividadEdicion.porcentajeEjecucion}" >
+                                <f:convertNumber integerOnly="true" maxIntegerDigits="3" minIntegerDigits="1" />
+                            </ice:inputText>
+                            <ice:message for="txtPorcentaje" showDetail="true"  ></ice:message>
+                        </ice:panelGrid>
+                        <br/>
+                        <ice:panelLayout layout="flow" style="text-align: center">
+                            <ice:commandButton value="Agregar" partialSubmit="true" actionListener="#{planificacionController.eventoAgregarActividad}"></ice:commandButton>
+                            <ice:commandButton value="#{accion.cancelar}" partialSubmit="true" actionListener="#{planificacionController.eventoCancelarActividad}" immediate="true"></ice:commandButton>
+                        </ice:panelLayout>
+                        <br/>
+                    </ice:panelGrid>                    
+                </h:panelGrid>
+            </f:facet>
+
+        </ice:panelPopup>     
+    </ice:form>
+</div>

@@ -1,0 +1,761 @@
+<div 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ice="http://www.icesoft.com/icefaces/component" 
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:ui="http://java.sun.com/jsf/facelets"    
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:cail="http://java.sun.com/jsf/composite/cailcomp">   
+
+    <ui:include src="/WEB-INF/include/cmail/content/wuc/wucBuscarPersona.xhtml"/>
+
+    <ice:form id="form">
+        <ice:messages id="messages"></ice:messages>
+
+        <ace:panel header="#{etiqueta.datosGenerales}">
+            <ice:panelGrid columns="3"> 
+                <ice:outputLabel value="#{etiqueta.lugar}" />
+                <ice:inputText id="lugarCentro" value="#{fichaIngresoController.fichaIngresoEdicion.lugar}" required="true" label="#{etiqueta.lugar}" maxlength="45">
+                    <f:validateLength minimum="3"></f:validateLength>
+                </ice:inputText>
+                <ice:message for="lugarCentro"/> 
+                
+                <ice:outputLabel value="#{etiqueta.fecha}" for="sidFecha"  />
+                <ice:selectInputDate label="#{etiqueta.fecha}" renderAsPopup="true"  renderMonthAsDropdown="true" renderYearAsDropdown="true" id="fecha"  value="#{fichaIngresoController.fichaIngresoEdicion.fecha}" required="true">
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy HH:mm" />
+                </ice:selectInputDate>
+                <ice:message for="fecha"/> 
+            </ice:panelGrid>
+        </ace:panel>
+
+        <br/>
+
+        <ace:tabSet id="ptsInf" clientSide="true">
+
+            <ace:tabPane label="#{etiqueta.datosIdentificacion}">
+
+                <ace:panel header="#{etiqueta.identificacionAdolescente}">
+
+                    <ice:panelGrid columns="8" columnClasses="columnsPanelGrid">
+
+                        <ice:outputLabel value="#{etiqueta.cedula}" for="txtCedulaAdolescente"/>                    
+                        <ice:panelGroup>
+                            <table style="border: 1px solid #c0c0c0; background: #cccccc; width: auto">
+                                <tr>
+                                    <td>
+                                        <ice:inputText id="txtCedulaAdolescente" 
+                                                       value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.cedula}"                                            
+                                                       partialSubmit="true"
+                                                       readonly="true"
+                                                       style="height: 24px; margin: 0; padding: 0;">
+                                        </ice:inputText>
+                                    </td>                                    
+                                    <td>
+                                        <ice:commandButton  actionListener="#{fichaIngresoController.accionEditarAdolescente}" image="./resources/icono/btn/btn-editar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <ice:inputHidden id="txtIdAdolescente" validator="#{fichaIngresoController.validarAdolescente}" value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.id}"></ice:inputHidden>
+                                        <ice:message showSummary="true" showDetail="false" for="txtIdAdolescente"></ice:message>                            
+                                    </td>
+                                </tr>
+                            </table>
+                        </ice:panelGroup>                                            
+
+                        <ice:outputLabel value="#{etiqueta.sexo}"/>                       
+                        <cail:selectOneMenuSexo id="selectSexo" value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.sexo}" disabled="true" ice="false"></cail:selectOneMenuSexo>
+
+                        <ice:outputLabel value="#{etiqueta.estadoCivil}"/>
+                        <cail:selectOneMenuEstadoCivil id="selectEstadoCivil" value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.estadoCivil}" disabled="true" ice="false"></cail:selectOneMenuEstadoCivil>                    
+
+                        <ice:outputLabel for="cedulado" value="#{etiqueta.cedulado}"/>                        
+                        <ice:selectBooleanCheckbox  id="cedulado" disabled="true" value="#{fichaIngresoController.fichaIngresoEdicion.cedulado}"/>                        
+
+                        <ice:outputLabel value="#{etiqueta.nombres}"/>
+                        <ice:inputText id="txtNombresAdolescente" 
+                                       label="#{etiqueta.nombres}"
+                                       value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.nombres}" 
+                                       required="true"
+                                       disabled="true">
+                        </ice:inputText>                    
+
+                        <ice:outputLabel value="#{etiqueta.apellidos}"/>
+                        <ice:inputText id="txtApellidosAdolescente" 
+                                       label="#{etiqueta.apellidos}" 
+                                       value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.apellidos}" 
+                                       disabled="true"
+                                       >
+                        </ice:inputText>                    
+
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.lugarFechaNacimiento}"></cail:separador>
+                    <ice:panelGrid columns="2">
+                        <ice:panelGrid columns="2">
+                            <ice:outputLabel value="#{etiqueta.fechaNacimiento}"/>
+                            <ice:inputText disabled="true"  value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.fechaNacimiento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"/>
+                            </ice:inputText>
+
+                            <ice:outputLabel value="#{etiqueta.edad}"/>
+                            <ice:inputText id="txtEdad" disabled="true" value="#{fichaIngresoController.fichaIngresoEdicion.edad}"/>
+                        </ice:panelGrid>
+
+                        <cail:selectOneProvincia
+                            id="somNac" tipo="Nacimiento" label="#{etiqueta.nacimiento}"
+                            required="true" disabled="true"
+                            bean="#{fichaIngresoController.adolescente}"
+                            provincia="#{fichaIngresoController.adolescente.provinciaNacimiento}"
+                            canton="#{fichaIngresoController.adolescente.cantonNacimiento}"
+                            parroquia="#{fichaIngresoController.adolescente.parroquiaNacimiento}">                        
+                        </cail:selectOneProvincia>
+                    </ice:panelGrid>
+                </ace:panel>
+
+                <br />
+
+                <ace:panel header="#{etiqueta.lugarProcedenciaDetenido}">
+                    <ice:panelGrid columns="2" columnClasses="columnsPanelGrid" width="100%">
+
+                        <cail:selectOneProvincia
+                            id="somLugarDetencion"
+                            tipo="Detencion" label="#{etiqueta.detencion}"
+                            required="true"                        
+                            bean="#{fichaIngresoController.fichaIngresoEdicion}"
+                            provincia="#{fichaIngresoController.fichaIngresoEdicion.provinciaDetencion}"
+                            canton="#{fichaIngresoController.fichaIngresoEdicion.cantonDetencion}"
+                            parroquia="#{fichaIngresoController.fichaIngresoEdicion.parroquiaDetencion}">                        
+                        </cail:selectOneProvincia>
+
+                        <ice:panelGrid columns="2" rowClasses="rowsPanelGrid">                        
+                            <ice:outputLabel value="#{etiqueta.barrio}"/>
+                            
+                            <ice:panelGrid>
+                                <ice:inputText id="txtBarrioDetencion" required="true" size="40" label="#{etiqueta.barrio}" value="#{fichaIngresoController.fichaIngresoEdicion.barrioDetencion}" />
+                                <ice:message for="txtBarrioDetencion"></ice:message>
+                            </ice:panelGrid>
+
+                            <ice:outputLabel value="#{etiqueta.comunidad}"/>
+                            <ice:panelGrid>
+                                <ice:inputText id="txtComunidadDetencion" required="true" size="40" label="#{etiqueta.comunidad}" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadDetencion}" />
+                                <ice:message for="txtComunidadDetencion"/>                                 
+                            </ice:panelGrid>
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>
+
+                </ace:panel>
+
+                <br />
+
+                <ace:panel header="#{etiqueta.identificacionAdolescente}">                
+                    <cail:separador value="#{etiqueta.nivelEducativoAprobado}"></cail:separador>
+                    <ice:panelGrid columns="3" columnClasses="columnsPanelGrid">
+                        <ice:outputLabel for="nivelBasico" value="#{etiqueta.nivelEducativo}"/>
+                        <ice:selectOneMenu label="#{etiqueta.nivelEducativo}" value="#{fichaIngresoController.fichaIngresoEdicion.nivelEducativoTipo}" partialSubmit="true">
+                            <f:selectItem itemValue="NINGUNO" itemLabel="#{etiqueta.ninguno}"></f:selectItem>
+                            <f:selectItem itemValue="BASICO" itemLabel="#{etiqueta.basico}"></f:selectItem>
+                            <f:selectItem itemValue="BACHILLERATO" itemLabel="#{etiqueta.bachillerato}"></f:selectItem>                            
+                            <f:selectItem itemValue="ESPECIAL" itemLabel="#{etiqueta.especial}"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:inputText id="txtNivelBachillerato_" value="#{fichaIngresoController.fichaIngresoEdicion.nivelEducativoNombre}" />                                                
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.autoidentificacion}"></cail:separador>
+                    <ice:panelGrid columns="3">
+                        <ice:selectOneMenu id="selectAutoidentificacion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.autoidentificacion}">
+                            <f:selectItem id="itemBlanco" itemLabel="#{etiqueta.blanco}" itemValue="BLANCO"/> 
+                            <f:selectItem id="itemMestizo" itemLabel="#{etiqueta.mestizo}" itemValue="MESTIZO"/> 
+                            <f:selectItem id="itemAfroecuatoriano" itemLabel="#{etiqueta.afroecuatoriano}" itemValue="ANFROECUATORIANO"/> 
+                            <f:selectItem id="itemIndigena" itemLabel="#{etiqueta.indigena}" itemValue="INDIGENA"/>   
+                        </ice:selectOneMenu>
+                        <ice:outputLabel value="#{etiqueta.nacionalidadPertenece}"/> 
+                        <ice:inputText id="txtOtraNacionalidad" value="#{fichaIngresoController.fichaIngresoEdicion.nacionalidad}" />
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.idioma}"></cail:separador>
+                    <ice:panelGrid columns="2" width="100%" columnClasses="columnsPanelGrid">
+                        <ice:panelGrid columns="2" rowClasses="rowsPanelGrid" > 
+                            <ice:selectBooleanCheckbox  id="idiomaCastellano" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.idiomaCastellano}" />
+                            <ice:outputLabel for="idiomaCastellano" value="#{etiqueta.castellano}"/>
+                            <ice:selectBooleanCheckbox  id="idiomaIngles" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.idiomaIngles}" />
+                            <ice:outputLabel for="idiomaIngles" value="#{etiqueta.ingles}"/>
+                        </ice:panelGrid>
+                        <ice:panelGrid columns="3" rowClasses="rowsPanelGrid" > 
+                            <ice:selectBooleanCheckbox  id="lenguaNativa" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.lenguaNativa}" />
+                            <ice:outputLabel for="lenguaNativa" value="#{etiqueta.lenguaNativaCual}"/>                            
+                            <ice:inputText  id="lenguaNativa_" value="#{fichaIngresoController.fichaIngresoEdicion.lenguaNativaNombre}" />
+                            <ice:selectBooleanCheckbox  id="otroIdioma" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.otroLenguaje}" />
+                            <ice:outputLabel for="otroIdioma"  value="#{etiqueta.otroIdioma}"/>                            
+                            <ice:inputText  id="otroIdioma_" value="#{fichaIngresoController.fichaIngresoEdicion.otroLenguajeNombre}" />
+                        </ice:panelGrid>                        
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.ocupacion}"></cail:separador>
+                    <ice:panelGrid columns="4">
+                        <ice:outputLabel value="#{etiqueta.ocupacionTipo}"/>
+                        <ice:inputText  id="tipoOcupacion" value="#{fichaIngresoController.fichaIngresoEdicion.tipoOcupacion}" style="width: 250px"/>
+                        <ice:outputLabel value="#{etiqueta.ocupacionDesdeCuando}"/>
+                        <ice:inputText  id="tiempoOcupacion" value="#{fichaIngresoController.fichaIngresoEdicion.tiempoOcupacionActual}" style="width: 250px" />
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.direccionDomicilioResidencia}"></cail:separador>
+                    <ice:panelGrid columns="2" width="100%" columnClasses="columnsPanelGrid">
+
+                        <cail:selectOneProvincia
+                            id="sopResidencia"
+                            tipo="Residencia" label="#{etiqueta.residencia}"
+                            bean="#{fichaIngresoController.fichaIngresoEdicion}"
+                            provincia="#{fichaIngresoController.fichaIngresoEdicion.provinciaResidencia}"
+                            canton="#{fichaIngresoController.fichaIngresoEdicion.cantonResidencia}"
+                            parroquia="#{fichaIngresoController.fichaIngresoEdicion.parroquiaResidencia}">                        
+                        </cail:selectOneProvincia>
+
+                        <ice:panelGrid columns="2" >
+
+                            <ice:outputLabel value="#{etiqueta.barrio}"/> 
+                            <ice:inputText  id="txtBarrioResidencia" value="#{fichaIngresoController.fichaIngresoEdicion.barrioResidencia}" />
+
+                            <ice:outputLabel value="#{etiqueta.comunidad}"/> 
+                            <ice:inputText  id="txtComunidadResidencia" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadResidencia}" />
+
+                        </ice:panelGrid>
+                        
+                        <ice:panelGrid columns="4" >                            
+
+                            <ice:outputLabel value="#{etiqueta.telefono}"/> 
+                            <ice:inputText  id="txtTelefonoResidencia" styleClass="numeric" label="#{etiqueta.telefono}" value="#{fichaIngresoController.fichaIngresoEdicion.telefonoResidencia}"></ice:inputText>                        
+
+                            <ice:outputLabel value="#{etiqueta.desdeCuando}"/>
+                            <ice:inputText  id="tiempoResidenciaActual" value="#{fichaIngresoController.fichaIngresoEdicion.tiempoResidenciaActual}" />
+
+                        </ice:panelGrid>
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.hijosAdolescente}"></cail:separador>
+                    <ice:panelGrid columns="6" columnClasses="columnsPanelGrid" width="100%">
+
+                        <ice:outputLabel value="#{etiqueta.numeroMujeres}"/> 
+                        <ice:inputText id="txtNumeroHijosMujeres" label="#{etiqueta.numeroMujeres}" styleClass="integer" partialSubmit="true" maxlength="2" required="true" value="#{fichaIngresoController.fichaIngresoEdicion.numeroHijosMujeres}"></ice:inputText>
+                        <ice:message for="txtNumeroHijosMujeres"></ice:message>
+
+                        <ice:outputLabel value="#{etiqueta.edadesMujeres}"/> 
+                        <ice:inputText id="txtEdadesHijosMujeres" label="#{etiqueta.edadesMujeres}" value="#{fichaIngresoController.fichaIngresoEdicion.edadesHijosMujeres}"/> 
+                        <ice:message for="txtEdadesHijosMujeres"></ice:message>
+
+                        <ice:outputLabel value="#{etiqueta.numeroHombres}"/> 
+                        <ice:inputText id="txtNumeroHijosHombres" styleClass="integer" label="#{etiqueta.numeroHombres}" maxlength="2" partialSubmit="true" required="true" value="#{fichaIngresoController.fichaIngresoEdicion.numeroHijosHombres}"></ice:inputText> 
+                        <ice:message for="txtNumeroHijosHombres"></ice:message>
+
+                        <ice:outputLabel value="#{etiqueta.edadesHombre}"/> 
+                        <ice:inputText id="txtEdadesHijosHombres" label="#{etiqueta.edadesHombre}" value="#{fichaIngresoController.fichaIngresoEdicion.edadesHijosHombres}"/> 
+                        <ice:message for="txtEdadesHijosHombres"></ice:message>
+
+                        <ice:outputLabel for="ingresaHijos" value="#{etiqueta.ingresaHijos}"/>
+                        <ice:selectBooleanCheckbox  id="ingresaHijos" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.ingresaHijos}" /> 
+                        <span></span>
+
+                        <ice:outputLabel value="#{etiqueta.cuantosEdades}"/>
+                        <ice:inputText id="txtHijosEdadesIngresados" value="#{fichaIngresoController.fichaIngresoEdicion.numeroHijosEdades}"/>                                        
+                        <span></span>
+                    </ice:panelGrid>
+
+                    <cail:separador value="#{etiqueta.personasVive}"></cail:separador>
+                    <ice:panelGrid columns="3" columnClasses="columnsPanelGrid">
+                        <ice:outputLabel value="#{etiqueta.nombres}"/>
+                        <ice:outputLabel value="#{etiqueta.parentesco}"/>
+                        <ice:outputLabel value="#{etiqueta.telefono}"/>
+
+                        <ice:inputText id="txtNombrePersona1" value="#{fichaIngresoController.fichaIngresoEdicion.nombrePersona1}" style="width: 300px;"/>
+                        <ice:inputText id="txtParentescoPersona1" value="#{fichaIngresoController.fichaIngresoEdicion.parentescoPersona1}"/>
+                        <ice:inputText id="txtTelefonoPersona1" value="#{fichaIngresoController.fichaIngresoEdicion.telefonoPersona1}" styleClass="numeric"/>
+
+                        <ice:inputText id="txtNombrePersona2" value="#{fichaIngresoController.fichaIngresoEdicion.nombrePersona2}" style="width: 300px;"/>
+                        <ice:inputText id="txtParentescoPersona2" value="#{fichaIngresoController.fichaIngresoEdicion.parentescoPersona2}"/>
+                        <ice:inputText id="txtTelefonoPersona2" value="#{fichaIngresoController.fichaIngresoEdicion.telefonoPersona2}" styleClass="numeric"/>
+
+                    </ice:panelGrid>
+                </ace:panel>
+
+            </ace:tabPane>
+
+            <ace:tabPane label="#{etiqueta.datosFamiliares}">
+
+                <ace:panel header="#{etiqueta.datosPadre}">
+                    <cail:selectOnePerson
+                        id="sopPadre"
+                        required="false"
+                        person="#{fichaIngresoController.adolescente.padre}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarPadre}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarPadre}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarPadre}">                        
+                    </cail:selectOnePerson>                    
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.datosMadre}">
+                    <cail:selectOnePerson
+                        id="sopMadre"
+                        required="false"
+                        person="#{fichaIngresoController.adolescente.madre}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarMadre}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarMadre}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarMadre}">                        
+                    </cail:selectOnePerson>                
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.datosRepresentante}">
+                    <cail:selectOnePerson
+                        id="sopRepresentante"
+                        required="true"
+                        requiredMessage="#{mensaje.seleccioneRepresentante}"
+                        person="#{fichaIngresoController.fichaIngresoEdicion.representante}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarRepresentante}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarRepresentante}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarRepresentante}">                        
+                    </cail:selectOnePerson>                    
+                </ace:panel>
+
+            </ace:tabPane>
+
+            <ace:tabPane label="#{etiqueta.razonIngreso}">
+
+                <ace:panel header="#{etiqueta.razonIngreso}">
+                    <ice:panelGrid columns="3" columnClasses="icePnlGrpColumnTop" width="100%">
+                        <!--Medida Cautelar -->
+                        <ice:panelGrid columns="2">
+                            <ice:selectBooleanCheckbox id="razInMedidaCautelar" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMedidaCautelar}" />
+                            <ice:outputLabel for="razInMedidaCautelar" value="#{etiqueta.razInMedidaCautelar}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMcRetencion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMcRetencion}" />
+                            <ice:outputLabel for="razInMcRetencion" value="#{etiqueta.razInMcRetencion}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMcInvestigacion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMcInvestigacion}" />
+                            <ice:outputLabel for="razInMcInvestigacion" value="#{etiqueta.razInMcInvestigacion}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMcComparecencia" value="#{fichaIngresoController.fichaIngresoEdicion.razInMcComparecencia}" />
+                            <ice:outputLabel for="razInMcComparecencia" value="#{etiqueta.razInMcComparecencia}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMcIntPreventivo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMcIntPreventivo}" />
+                            <ice:outputLabel for="razInMcIntPreventivo" value="#{etiqueta.razInMcIntPreventivo}"/>
+                        </ice:panelGrid>
+
+                        <!--Medida socioeducativa -->
+                        <ice:panelGrid columns="2">
+                            <ice:selectBooleanCheckbox id="razInMedidaSocioeducativa" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMedidaSocioeducativa}" />
+                            <ice:outputLabel for="razInMedidaSocioeducativa" value="#{etiqueta.razInMedidaSocioeducativa}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntFinSemana" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsIntFinSemana}" />
+                            <ice:outputLabel for="razInMsIntFinSemana" value="#{etiqueta.razInMsIntFinSemana}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntSemiLibertad" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsIntSemiLibertad}" />
+                            <ice:outputLabel for="razInMsIntSemiLibertad" value="#{etiqueta.razInMsIntSemiLibertad}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntInstitucional" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsIntInstitucional}" />
+                            <ice:outputLabel for="razInMsIntInstitucional" value="#{etiqueta.razInMsIntInstitucional}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntLibAsistida" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsLibAsistida}" />
+                            <ice:outputLabel for="razInMsIntLibAsistida" value="#{etiqueta.razInMsLibAsistida}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntServComunidad" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsServComunidad}" />
+                            <ice:outputLabel for="razInMsIntServComunidad" value="#{etiqueta.razInMsServComunidad}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntRepDanoCausado" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsRepDanoCausado}" />
+                            <ice:outputLabel for="razInMsIntRepDanoCausado" value="#{etiqueta.razInMsRepDanoCausado}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntOrientaApoyoFamiliar" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsOrientaApoyoFamiliar}" />
+                            <ice:outputLabel for="razInMsIntOrientaApoyoFamiliar" value="#{etiqueta.razInMsOrientaApoyoFamiliar}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntAmonestacionImposicion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsAmonestacionImposicion}" />
+                            <ice:outputLabel for="razInMsIntAmonestacionImposicion" value="#{etiqueta.razInMsAmonestacionImposicion}"/>
+
+                            <ice:selectBooleanCheckbox id="razInMsIntAmonestacion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInMsAmonestacion}" />
+                            <ice:outputLabel for="razInMsIntAmonestacion" value="#{etiqueta.razInMsAmonestacion}"/>
+                        </ice:panelGrid>
+
+                        <!--Reingreso -->
+                        <ice:panelGrid columns="2">
+                            <ice:selectBooleanCheckbox id="razInReingreso" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInReingreso}" />
+                            <ice:outputLabel for="razInReingreso" value="#{etiqueta.razInReingreso}"/>
+
+                            <ice:selectBooleanCheckbox id="razInRiMedidaCautelar" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInRiMedidaCautelar}" />
+                            <ice:outputLabel for="razInRiMedidaCautelar" value="#{etiqueta.razInRiMedidaCautelar}"/>
+
+                            <ice:selectBooleanCheckbox id="razInRiMedidaSocioeducativa" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInRiMedidaSocioeducativa}" />
+                            <ice:outputLabel for="razInRiMedidaSocioeducativa" value="#{etiqueta.razInRiMedidaSocioeducativa}"/>
+
+                            <ice:selectBooleanCheckbox id="razInRiOtroTipo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.razInRiOtroTipo}" />
+                            <ice:outputLabel for="razInRiOtroTipo" value="#{etiqueta.razInRiOtroTipo}"/>
+
+                            <ice:outputText></ice:outputText>
+                            <ice:inputText id="razInRiOtroTipoR" value="#{fichaIngresoController.fichaIngresoEdicion.razInRiOtroTipoNombre}" />
+
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>
+
+                    <ice:panelGrid columns="3">
+                        <ice:outputLabel value="#{etiqueta.juezDictaMedidaCiudad}"/>
+                        <ice:inputText id="txtJuez" required="true" style="width: 300px;" partialSubmit="true" label="#{etiqueta.juezDictaMedida}" value="#{fichaIngresoController.fichaIngresoEdicion.juez}" />
+                        <ice:message for="txtJuez"/> 
+                        <ice:outputLabel value="#{etiqueta.tiempoDadaMedida}"/>  
+                        <ice:inputText id="txtTiempoMedida" required="true" label="#{etiqueta.tiempoMedida}" partialSubmit="true" style="width: 300px;" value="#{fichaIngresoController.fichaIngresoEdicion.tiempoMedida}" />
+                        <ice:message for="txtTiempoMedida"/> 
+                    </ice:panelGrid>
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.causalMedida}">
+                    <ice:panelGrid columns="3" columnClasses="icePnlGrpColumnTop" width="100%">
+                        <ice:panelGrid width="100%" >                                    
+                            <ice:outputLabel style="font-weight: bold;" value="#{etiqueta.causalVarios}"/>                                    
+                            <ice:panelGrid columns="2">
+                                <ice:selectBooleanCheckbox id="causalVManejarAlcoholizado" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalVManejarAlcoholizado}" />
+                                <ice:outputLabel for="causalVManejarAlcoholizado" value="#{etiqueta.causalVManejarAlcoholizado}"/>
+                                <ice:selectBooleanCheckbox id="causalVHurto" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalVHurto}" />
+                                <ice:outputLabel for="causalVHurto" value="#{etiqueta.causalVHurto}"/>
+                                <ice:selectBooleanCheckbox id="causalVPosesionArmas" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalVPosecionArmas}" />
+                                <ice:outputLabel for="causalVPosesionArmas" value="#{etiqueta.causalVPosecionArmas}"/>
+                                <ice:selectBooleanCheckbox id="causalVRecaptura" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalVRecaptura}" />
+                                <ice:outputLabel for="causalVRecaptura" value="#{etiqueta.causalVRecaptura}"/>
+                                <ice:selectBooleanCheckbox id="causalVFalsificacionDoc" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalVFalsificacionDoc}" />
+                                <ice:outputLabel for="causalVFalsificacionDoc" value="#{etiqueta.causalVFalsificacionDoc}"/>
+                            </ice:panelGrid>
+
+                            <ice:outputLabel style="font-weight: bold;" value="#{etiqueta.causalInfraccionesPersonas}"/>
+                            <ice:panelGrid columns="2">
+                                <ice:selectBooleanCheckbox id="causalInfHomicidio" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfHomicidio}" />
+                                <ice:outputLabel for="causalInfHomicidio" value="#{etiqueta.causalInfHomicidio}"/>
+                                <ice:selectBooleanCheckbox id="causalInfIntHomicidio" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfIntHomicidio}" />
+                                <ice:outputLabel for="causalInfIntHomicidio" value="#{etiqueta.causalInfIntHomicidio}"/>
+                                <ice:selectBooleanCheckbox id="causalInfAsesinato" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfAsesinato}" />
+                                <ice:outputLabel for="causalInfAsesinato" value="#{etiqueta.causalInfAsesinato}"/>
+                                <ice:selectBooleanCheckbox id="causalInfLesiones" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfLesiones}" />
+                                <ice:outputLabel for="causalInfLesiones" value="#{etiqueta.causalInfLesiones}"/>
+                                <ice:selectBooleanCheckbox id="causalInfPlagio" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfPlagio}" />
+                                <ice:outputLabel for="causalInfPlagio" value="#{etiqueta.causalInfPlagio}"/>
+                                <ice:selectBooleanCheckbox id="causalInfIntPlagio" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfIntPlagio}" />
+                                <ice:outputLabel for="causalInfIntPlagio" value="#{etiqueta.causalInfIntPlagio}"/>
+                                <ice:selectBooleanCheckbox id="causalInfAsalto" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfAsalto}" />
+                                <ice:outputLabel for="causalInfAsalto" value="#{etiqueta.causalInfAsalto}"/>
+                                <ice:selectBooleanCheckbox id="causalInfTrataPersonas" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfTrataPersonas}" />
+                                <ice:outputLabel for="causalInfTrataPersonas" value="#{etiqueta.causalInfTrataPersonas}"/> 
+                            </ice:panelGrid>
+
+                        </ice:panelGrid>
+
+                        <ice:panelGrid >
+                            <ice:outputLabel style="font-weight: bold;" value="#{etiqueta.causalInfraccionesDrogras}"/>                                    
+                            <ice:panelGrid columns="2">
+                                <ice:selectBooleanCheckbox id="causalInfTrafico" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfTrafico}" />
+                                <ice:outputLabel for="causalInfTrafico" value="#{etiqueta.causalInfTrafico}"/>
+                                <ice:selectBooleanCheckbox id="causalInfConsumo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfConsumo}" />
+                                <ice:outputLabel for="causalInfConsumo" value="#{etiqueta.causalInfConsumo}"/>
+                                <ice:selectBooleanCheckbox id="causalInfTVenta" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfVenta}" />
+                                <ice:outputLabel for="causalInfTVenta" value="#{etiqueta.causalInfVenta}"/>
+                                <ice:selectBooleanCheckbox id="causalInfTrata" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfTrata}" />
+                                <ice:outputLabel for="causalInfTrata" value="#{etiqueta.causalInfTrata}"/>
+                            </ice:panelGrid>
+                            
+                            <ice:outputLabel style="font-weight: bold;" value="#{etiqueta.causalInfraccionesPropiedad}"/>                                    
+
+                            <ice:panelGrid columns="2">
+                                <ice:selectBooleanCheckbox id="causalInfRobo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfRobo}" />
+                                <ice:outputLabel for="causalInfRobo" value="#{etiqueta.causalInfRobo}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfIntentoRobo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfIntentoRobo}" />
+                                <ice:outputLabel for="causalInfIntentoRobo" value="#{etiqueta.causalInfRobo}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfAbigeato" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfAbigeato}" />
+                                <ice:outputLabel for="causalInfAbigeato" value="#{etiqueta.causalInfAbigeato}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfEstafa" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfEstafa}" />
+                                <ice:outputLabel for="causalInfEstafa" value="#{etiqueta.causalInfEstafa}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfExtorsion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfExtorsion}" />
+                                <ice:outputLabel for="causalInfExtorsion" value="#{etiqueta.causalInfExtorsion}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfDestruccion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfDestruccion}" />
+                                <ice:outputLabel for="causalInfDestruccion" value="#{etiqueta.causalInfDestruccion}"/>                     
+                            </ice:panelGrid>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid>
+                            <ice:outputLabel style="font-weight: bold;" value="#{etiqueta.causalInfraccionesSexual}"/>                                    
+                            <ice:panelGrid columns="2">
+                                <ice:selectBooleanCheckbox id="causalInfViolacion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfViolacion}" />
+                                <ice:outputLabel for="causalInfViolacion" value="#{etiqueta.causalInfViolacion}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfIntentoViolacion" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfIntentoViolacion}" />
+                                <ice:outputLabel for="causalInfIntentoViolacion" value="#{etiqueta.causalInfIntentoViolacion}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfEstupro" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfEstupro}" />
+                                <ice:outputLabel for="causalInfEstupro" value="#{etiqueta.causalInfEstupro}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfAtentPudor" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfAtentPudor}" />
+                                <ice:outputLabel for="causalInfAtentPudor" value="#{etiqueta.causalInfAtentPudor}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfAcosoSexual" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfAcosoSexual}" />
+                                <ice:outputLabel for="causalInfAcosoSexual" value="#{etiqueta.causalInfAcosoSexual}"/>
+                                
+                                <ice:selectBooleanCheckbox id="causalInfTrataExplotSexual" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfTrataExplotSexual}" />
+                                <ice:outputLabel for="causalInfTrataExplotSexual" value="#{etiqueta.causalInfTrataExplotSexual}"/>
+                                
+                                <ice:outputLabel value="-" style="color: white;"/>
+                                <ice:outputLabel value="#{etiqueta.causalInfOtros}"/>                                
+                                
+                                <ice:outputLabel value="-" style="color: white;"/>
+                                <ice:inputTextarea id="causalInfOtros" value="#{fichaIngresoController.fichaIngresoEdicion.causalInfOtros}" />                        
+                            </ice:panelGrid>
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>  
+
+                </ace:panel>
+
+            </ace:tabPane>
+
+            <ace:tabPane id="tabCondicionesIngrso" label="#{etiqueta.condicionesIngreso}">
+                <ice:panelGrid columns="3" rowClasses="separador,none" columnClasses="icePnlGrpColumnTop" width="100%">
+
+                    <ice:outputLabel value="#{etiqueta.condicionesFisicas}"/>
+                    <ice:outputLabel value="#{etiqueta.condicionesEmocionales}"/>
+                    <ice:outputLabel value="#{etiqueta.condicionesSalubridad}"/>
+
+                    <ice:panelGrid columns="2" width="100%">
+                        <ice:selectBooleanCheckbox  id="moretones" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condFisIngMoretones}" /> 
+                        <ice:outputLabel for="moretones" value="#{etiqueta.condFisIngMoretones}"/> 
+
+                        <ice:selectBooleanCheckbox  id="lastimados" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condFisIngLastimados}" /> 
+                        <ice:outputLabel for="lastimados" value="#{etiqueta.condFisIngLastimados}"/> 
+
+                        <ice:selectBooleanCheckbox  id="otros" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condFisIngOtros}" /> 
+                        <ice:outputLabel value="#{etiqueta.condFisIngOtros}" for="otros"/> 
+
+                        <ice:outputLabel value="" for="otros_"/>
+                        <ice:inputText  id="otros_" value="#{fichaIngresoController.fichaIngresoEdicion.condFisIngOtrosNombre}" /> 
+                    </ice:panelGrid>
+
+                    <ice:panelGrid columns="2" width="100%">
+                        <ice:selectBooleanCheckbox  id="tranquilo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngTranquilo}" /> 
+                        <ice:outputLabel value="#{etiqueta.condEmoIngTranquilo}" for="tranquilo"/> 
+
+                        <ice:selectBooleanCheckbox  id="agresivo" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngAgresivo}" />
+                        <ice:outputLabel value="#{etiqueta.condEmoIngAgresivo}" for="agresivo"/>
+
+                        <ice:selectBooleanCheckbox  id="extrovertido" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngExtrovertido}" />
+                        <ice:outputLabel value="#{etiqueta.condEmoIngExtrovertido}" for="extrovertido"/>
+
+                        <ice:selectBooleanCheckbox  id="asustado" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngAsustado}" />
+                        <ice:outputLabel value="#{etiqueta.condEmoIngAsustado}" for="asustado"/>
+
+                        <ice:selectBooleanCheckbox  id="introvertido" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngIntrovertido}" />
+                        <ice:outputLabel value="#{etiqueta.condEmoIngIntrovertido}" for="introvertido" />
+
+                        <ice:selectBooleanCheckbox  id="condIngOtros" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngOtros}" />
+                        <ice:outputLabel value="#{etiqueta.condEmoIngOtros}" for="condIngOtros"/>
+
+                        <ice:outputText></ice:outputText>
+                        <ice:inputText id="condInfOtros_" value="#{fichaIngresoController.fichaIngresoEdicion.condEmoIngOtrosNombre}"  />
+                    </ice:panelGrid>
+
+                    <ice:panelGrid>
+                        <ice:panelGrid columns="3" width="100%">
+                            <ice:outputLabel value="#{etiqueta.condSaludEnfermedad}" />
+                            <ice:inputText id="enfermedad" label="#{etiqueta.enfermedad}" style="width: 250px;" partialSubmit="true" required="true" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludEnfermedad}"  />
+                            <ice:message for="enfermedad"/>                             
+                            
+                            <ice:outputLabel value="#{etiqueta.condSaludMedicina}"/>
+                            <ice:inputTextarea id="medicinas" label="#{etiqueta.medicinas}" required="true" partialSubmit="true" style="width: 250px;" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludMedicina}"  />
+                            <ice:message for="medicinas"/>
+                        </ice:panelGrid> 
+                        <ice:panelGrid columns="3">
+                            <ice:selectBooleanCheckbox   id="drogas"  partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludSintDroga}" />
+                            <ice:outputLabel for="drogas" value="#{etiqueta.condSaludSintDroga}"/>
+                            <ice:outputLabel value=""/> 
+                        </ice:panelGrid>
+                    </ice:panelGrid>
+
+                </ice:panelGrid>                
+
+            </ace:tabPane>
+
+            <ace:tabPane label="#{etiqueta.datosAdicionales}">
+
+                <ace:panel header="#{etiqueta.pertenenciasIngresa}">
+                    <ice:panelGrid columns="3" >                        
+                        <ice:outputLabel value="#{etiqueta.descripcion}"/>
+                        <ice:inputTextarea id="txtdescripcionPertenencias" required="true" partialSubmit="true" label="Pertenencias" style="width: 500px; height: 40px;" value="#{fichaIngresoController.fichaIngresoEdicion.pertDescripcion}"  />
+                        <ice:message for="txtdescripcionPertenencias"/>                        
+                    </ice:panelGrid>
+
+                    <ice:outputLabel value="#{etiqueta.personaRecibePertenencias}" style="font-weight: bold; font-size: 12px;"/> 
+                    <cail:selectOnePerson
+                        id="sopPersonaPertenecias"
+                        required="true"
+                        requiredMessage="#{mensaje.seleccionePersonaPertenencias}"
+                        person="#{fichaIngresoController.fichaIngresoEdicion.responsableResguardoPertenencia}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarResponsablePertenencia}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarResponsablePertenencia}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarResponsablePertenencia}">                        
+                    </cail:selectOnePerson>              
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.documentoIngresaAdolescente}">                
+
+                    <ice:outputLabel value="#{etiqueta.documentacionNecesariaAdmision}"/>
+
+                    <ice:panelGrid columns="3" columnClasses="icePnlGrpColumnTop icePnlGrpColumnTop3" width="100%">
+                        <ice:panelGrid>
+                            <ice:panelLayout layout="flow">
+                                <ice:selectBooleanCheckbox   id="delito_flagrante"  partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.delitoFlagrante}" /> 
+                                <ice:outputLabel for="delito_flagrante" value="#{etiqueta.delitoFlagrante}"/>
+                            </ice:panelLayout>
+
+                            <ul>
+                                <li>#{etiqueta.partePolicial}</li>
+                                <li>..............</li>
+                            </ul>                                    
+                        </ice:panelGrid>
+
+                        <ice:panelGrid>
+                            <ice:panelLayout layout="flow"> 
+                                <ice:selectBooleanCheckbox  id="medidas_cautelares" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.medidasCautelares}" /> 
+                                <ice:outputLabel for="medidas_cautelares" value="#{etiqueta.medidasCautelares}"/>
+                            </ice:panelLayout>
+
+                            <ul>
+                                <li>#{etiqueta.resolucionJuezMedidaCautelar}</li>
+                                <li>#{etiqueta.copiaActaAudienciaCalificacion}</li>
+                                <li>#{etiqueta.copiaPartePolicial}</li>
+                                <li>#{etiqueta.certificadoMedico}</li>
+                            </ul>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid>
+                            <ice:panelLayout layout="flow">
+                                <ice:selectBooleanCheckbox  id="medidas_socioeducativas" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.medidasSocioeducativas}" /> 
+                                <ice:outputLabel for="medidas_socioeducativas" value="#{etiqueta.medidasSocioeducativas}"/>
+                            </ice:panelLayout>
+
+                            <ul>
+                                <li>#{etiqueta.resolucionJuezMedidaSocioeducativa}</li>
+                                <li>#{etiqueta.copiaPartePolicial}</li>
+                                <li>#{etiqueta.certificadoMedico}</li>
+                            </ul>                            
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>
+
+
+                    <ace:panel header="#{mensaje.listadoDocumentos}">
+
+                        <ice:panelGrid columns="3">
+
+                            <ice:outputText value="#{etiqueta.documuento}"></ice:outputText>
+                            <ace:fileEntry id="fileDocumento" fileEntryListener="#{fichaIngresoController.listenerUploadDocumento}"></ace:fileEntry>
+                            <h:commandButton value="#{accion.subir}"></h:commandButton>
+
+                        </ice:panelGrid>
+
+                        <ice:dataTable id="tablaDocumentos" var="doc" value="#{fichaIngresoController.fichaIngresoEdicion.documentos}" width="100%">
+                            <ice:column>
+
+                                <ice:commandLink immediate="true" actionListener="#{fichaIngresoController.eventoElimiarDocumento}">
+                                    <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
+                                </ice:commandLink>
+
+                                <f:facet name="header">
+                                    <ice:outputText value=""></ice:outputText>
+                                </f:facet>
+                            </ice:column>
+
+                            <ice:column>
+                                <ice:outputText value="#{doc.nombre}"></ice:outputText>
+                                <f:facet name="header">
+                                    <ice:outputText value="#{etiqueta.nombre}"></ice:outputText>
+                                </f:facet>
+                            </ice:column>
+                            
+                            <ice:column>
+                                
+                                <ice:inputText id="txtDocDes" value="#{doc.descripcion}" size="45" required="true" requiredMessage="#{mensaje.descripcionDocumentoRequerida}"></ice:inputText>
+                                <ice:message for="txtDocDes"></ice:message>
+                                
+                                <f:facet name="header">
+                                    <ice:outputText value="#{etiqueta.descripcion}"></ice:outputText>
+                                </f:facet>
+                            </ice:column>
+
+                            <ice:column>
+                                <ice:outputText value="#{doc.mimeType}"></ice:outputText>
+                                <f:facet name="header">
+                                    <ice:outputText value="#{etiqueta.tipo}"></ice:outputText>
+                                </f:facet>
+                            </ice:column>
+
+                        </ice:dataTable>
+
+                    </ace:panel>
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.observacionesAdicionales}">
+                    <ice:inputTextarea id="txtObservacionesAdicionles" required="true" label="#{etiqueta.observaciones}" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.observaciones}" style="width: 96%;"/>
+                    <ice:message for="txtObservacionesAdicionles">                         
+                    </ice:message>
+                </ace:panel>
+
+                <br/>
+
+                <ace:panel header="#{etiqueta.responsableTrasladoCentro}">
+                    <cail:selectOnePerson
+                        id="sopResponsableTraslado"
+                        required="true"
+                        requiredMessage="#{mensaje.seleccioneResponsableTraslado}"
+                        person="#{fichaIngresoController.fichaIngresoEdicion.responsableTraslado}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarResponsableTraslado}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarResponsableTraslado}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarResponsableTraslado}">                        
+                    </cail:selectOnePerson>                                    
+                </ace:panel>
+
+                <br/>                
+
+                <ace:panel header="#{etiqueta.personaIngresaCentro}">
+                    <cail:selectOnePerson
+                        id="sopResponsableIngreso"
+                        required="true"
+                        requiredMessage="#{mensaje.seleccionePersonaIngresaCentro}"
+                        person="#{fichaIngresoController.fichaIngresoEdicion.responsableIngreso}"
+                        actionListenerSelect="#{fichaIngresoController.accionBuscarResponsableIngreso}"
+                        actionListenerEdit="#{fichaIngresoController.accionEditarResponsableIngreso}"
+                        actionListenerClean="#{fichaIngresoController.accionLimpiarResponsableIngreso}">
+                    </cail:selectOnePerson>                                    
+                </ace:panel>
+
+            </ace:tabPane>            
+
+        </ace:tabSet>
+
+        <br/>
+
+        <div class="controles">
+            <ace:panel>
+                <ice:commandLink id="btnGuardar" actionListener="#{fichaIngresoController.eventoGuardar}" styleClass="ui-icon-disk cail-button" value="#{accion.guardar}"></ice:commandLink>                    
+                <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{fichaIngresoController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cancelar}"></ice:commandLink>
+            </ace:panel>
+        </div>
+
+    </ice:form>
+</div>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="30" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="3.8906136901500026"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2497"/>
+	<parameter name="PRM_INSTITUCION" class="java.lang.String"/>
+	<parameter name="PRM_LOGO" class="java.lang.String"/>
+	<parameter name="PRM_ESCUDO" class="java.lang.String"/>
+	<parameter name="PRM_MODEL" class="org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp"/>
+	<parameter name="PRM_FECHA" class="java.lang.String"/>
+	<parameter name="PRM_RENDER_NIVREHAB" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement x="174" y="0" width="197" height="60"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{PRM_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="4" y="63" width="536" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_INSTITUCION}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="152" y="77" width="240" height="12" backcolor="#CCCCFF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="174" y="77" width="197" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[EVOLUCIÓN PSICOLÓGICA DEL ADOLESCENTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="562" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="0" width="543" height="1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="6" y="2" width="535" height="11" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL ADOLESCENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="14" width="543" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="22" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="22" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getAdolescente().getNombres() + " " + $P{PRM_MODEL}.getAdolescente().getApellidos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="38" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SEXO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="37" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getAdolescente().getSexo().equals("M") ? "Masculino":"Femenino"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="54" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA NACIMIENTO:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="168" y="53" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_MODEL}.getAdolescente().getFechaNacimiento()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="70" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="69" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_MODEL}.getFichaIngreso().getEdad()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="86" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NIVEL DE INSTRUCCIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="86" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getFichaIngreso().getNivelEducativoTipo()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="102" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTADO CIVIL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="102" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getFichaIngreso().getEstadoCivil()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="118" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="118" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getAdolescente().getDireccion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="6" y="140" width="535" height="11" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL PROCESO DE APLICACIÓN DEL TEST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="159" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HISTORIA DEL ADOLESCENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="159" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getHistoriaAdolescente()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="198" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[COMENTARIO SOBRE LA CONDUCATA DEL ADOLESCENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="198" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getComentarioConducta()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="237" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HORA/INICIO TEST:]]></text>
+			</staticText>
+			<textField pattern="h:mm:ss a">
+				<reportElement x="168" y="237" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_MODEL}.getTestHtp().getHoraInicio()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="252" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HORA/FIN TEST:]]></text>
+			</staticText>
+			<textField pattern="h:mm:ss a">
+				<reportElement x="168" y="252" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{PRM_MODEL}.getTestHtp().getHoraFin()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="267" width="156" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DURACIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="267" width="374" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_MODEL}.getTestHtp().getDuracionMinutos() + " minutos"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="282" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[GRÁFICO / PROPORCIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="282" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getGraficoProporcion()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="321" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getGraficoPerspectiva()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="321" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[GRÁFICO / PERSPECTIVA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="360" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[GRÁFICO / DETALLE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="360" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getGraficoDetalle()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="399" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[INTERROGATIVO POSTERIOR AL ADOLESCENTE (H-T-P):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="399" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getInterrogativoPosterior()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="438" width="156" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RESUMEN / PSICÓLOGO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="438" width="374" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PRM_MODEL}.getResumenPsicologo()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="138" width="543" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="151" width="543" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="561" width="543" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="561"/>
+			</line>
+			<line>
+				<reportElement x="543" y="0" width="1" height="561"/>
+			</line>
+		</band>
+		<band height="120">
+			<printWhenExpression><![CDATA[$P{PRM_RENDER_NIVREHAB}]]></printWhenExpression>
+			<staticText>
+				<reportElement mode="Opaque" x="6" y="2" width="535" height="11" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[NIVEL DE RAHABILITACIÓN DEL ADOLESCENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="14" width="543" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="19" width="220" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[De acuerdo a la prueba psicológica y a la observación del Psicólogo, el adolescente tiene un nivel de rehabilitación de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="243" y="30" width="60" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{PRM_MODEL}.getPorcenjateRehabilitacion() + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="19" width="220" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA["Lo que ubica al adolescente en el nivel " + $P{PRM_MODEL}.getNivelRehabilitacion() + ": " + $P{PRM_MODEL}.getNivelRehabilitacionNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="64" width="532" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Se adjunta al presente informe:
+a) Las pruebas de Test Psicológico H-T-P.
+b) Las hojas de cada uno de los gráficos: Casa, Árbol y Persona.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="59" width="543" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="104" width="543" height="1"/>
+			</line>
+			<line>
+				<reportElement x="235" y="15" width="1" height="44"/>
+			</line>
+			<line>
+				<reportElement x="310" y="15" width="1" height="44"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="104"/>
+			</line>
+			<line>
+				<reportElement x="543" y="0" width="1" height="104"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>                
+        <cc:attribute name="value"></cc:attribute>
+        <cc:attribute name="partialSubmit" default="false"></cc:attribute>        
+        <cc:attribute name="disabled" default="false"></cc:attribute>
+        <cc:attribute name="ice" default="true" displayName="Si es true crea componente ice, sino h"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>    
+        <c:if test="#{cc.attrs.ice}">
+            <ice:selectOneMenu id="som" value="#{cc.attrs.value}" partialSubmit="#{cc.attrs.partialSubmit}" disabled="#{cc.attrs.disabled}">
+                <f:selectItem itemValue="SOLTERO" itemLabel="#{etiqueta.soltero}"></f:selectItem>
+                <f:selectItem itemValue="CASADO" itemLabel="#{etiqueta.casado}"></f:selectItem>
+                <f:selectItem itemValue="VIUDO" itemLabel="#{etiqueta.viudo}"></f:selectItem>
+                <f:selectItem itemValue="DIVORCIADO" itemLabel="#{etiqueta.divorciado}"></f:selectItem>
+                <f:selectItem itemValue="UNION_LIBRE" itemLabel="#{etiqueta.unionLibre}"></f:selectItem>
+            </ice:selectOneMenu>   
+        </c:if>
+        
+        <c:if test="#{!cc.attrs.ice}">
+            <h:selectOneMenu id="som" value="#{cc.attrs.value}" disabled="#{cc.attrs.disabled}" styleClass="iceSelOneMnu">
+                <f:selectItem itemValue="SOLTERO" itemLabel="#{etiqueta.soltero}"></f:selectItem>
+                <f:selectItem itemValue="CASADO" itemLabel="#{etiqueta.casado}"></f:selectItem>
+                <f:selectItem itemValue="VIUDO" itemLabel="#{etiqueta.viudo}"></f:selectItem>
+                <f:selectItem itemValue="DIVORCIADO" itemLabel="#{etiqueta.divorciado}"></f:selectItem>
+                <f:selectItem itemValue="UNION_LIBRE" itemLabel="#{etiqueta.unionLibre}"></f:selectItem>
+            </h:selectOneMenu>   
+        </c:if>
+    </cc:implementation>
+</html>

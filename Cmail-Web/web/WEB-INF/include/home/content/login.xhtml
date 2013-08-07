@@ -1,0 +1,80 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     >
+    
+    <ace:dialog header="#{mensaje.login_inicio}" width="400" modal="true" widgetVar="dlgLogin">
+    <ice:form id="form">                
+                
+        <div class="login-content" style="padding: 10px">
+            
+            <p>#{mensaje.login_ingrese}</p>
+            
+            <ice:messages globalOnly="true"></ice:messages>
+            <br/>
+            
+            <table width="100%">
+                
+                <tr>
+                    <td rowspan="2">
+                        <ice:graphicImage value="./resources/icono/accion/login.png" alt="#{etiqueta.usuario}"></ice:graphicImage>
+                    </td>
+                    <td>
+                        <ice:outputLabel style="width: 180px" value="#{etiqueta.usuario}"></ice:outputLabel>
+                    </td>
+                    <td>
+                        <ice:panelGrid>
+                            <ice:inputText 
+                                id="txtUsuario" 
+                                value="#{loginController.usuario}"
+                                required="true"
+                                styleClass="txtLogin"
+                                onkeyup="if(event.keyCode == 13){ice.setFocus('form:txtClave');}"
+                                label="#{etiqueta.usuario}">
+                                <f:validateLength minimum="5"></f:validateLength>
+                            </ice:inputText>
+                            <ice:message for="txtUsuario"></ice:message>    
+                        </ice:panelGrid>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <ice:outputLabel value="#{etiqueta.clave}" style="width: 180px"></ice:outputLabel>                                        
+                    </td>
+                    <td>
+                        <ice:panelGrid>
+                            <ice:inputSecret 
+                                id="txtClave"                                
+                                value="#{loginController.clave}"
+                                onkeyup="if(event.keyCode == 13){ice.setFocus('form:btnLogin');}"
+                                styleClass="txtLogin"
+                                required="true" 
+                                redisplay="true"
+                                label="#{etiqueta.clave}">
+                                <f:validateLength minimum="5"></f:validateLength>
+                            </ice:inputSecret>
+                            <ice:message for="txtClave"></ice:message> 
+                        </ice:panelGrid>
+                    </td>
+                </tr>
+                
+            </table>
+                        
+        </div>     
+            
+        <div style="text-align: right">            
+            <ice:commandLink id="btnLogin" actionListener="#{loginController.login}" styleClass="ui-icon-person cail-button" value="#{accion.iniciar}"></ice:commandLink> 
+        </div>
+        
+    </ice:form>    
+    </ace:dialog>
+    <!--
+    <p>En esta sección usted podrá autenticarse con el software de rehabilitación.</p>
+    
+    <p>Es necesario que usted sea un usuario registrado, en caso de no serlo comunicarse con el administrador del sistema para solicitar las credenciales.</p>
+    -->
+    
+</div>
