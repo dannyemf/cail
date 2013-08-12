@@ -18,31 +18,38 @@
 
                 <ice:outputLabel value="#{etiqueta.fechaInicio}"></ice:outputLabel>                
                 <h:panelGrid>
-                    <ice:selectInputDate id="sidFechaInicio" 
+                    <ace:dateTimeEntry id="sidFechaInicio" 
                                         value="#{agendaController.agendaEdicion.fechaInicio}" 
-                                        label="#{etiqueta.fechaInicio}"
-                                        renderAsPopup="true" 
-                                        renderMonthAsDropdown="true" 
-                                        renderYearAsDropdown="true" 
+                                        label="#{etiqueta.fechaInicio}"                                        
+                                        requiredMessage="(*)"
                                         required="true"
-                                        requiredMessage="(*)">
+                                        renderAsPopup="true"   
+                                        navigator="true"                        
+                                        showOn="both"
+                                        popupIconOnly="true"
+                                        locale="es"
+                                        pattern="dd/MM/yyyy"
+                                        >
                         <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="sidFechaInicio"/> 
                 </h:panelGrid>                
 
                 <ice:outputLabel value="#{etiqueta.fechaFin}"></ice:outputLabel>                
                 <h:panelGrid>
-                    <ice:selectInputDate id="sidFechaFin" 
+                    <ace:dateTimeEntry id="sidFechaFin" 
                                         value="#{agendaController.agendaEdicion.fechaFin}" 
                                         label="#{etiqueta.fechaFin}"                                        
-                                        renderAsPopup="true" 
-                                        renderMonthAsDropdown="true"                                      
-                                        renderYearAsDropdown="true"                                     
+                                        requiredMessage="(*)"
                                         required="true"
-                                        requiredMessage="(*)">
+                                        renderAsPopup="true"   
+                                        navigator="true"                        
+                                        showOn="both"
+                                        popupIconOnly="true"
+                                        locale="es"
+                                        pattern="dd/MM/yyyy">
                         <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="sidFechaFin"/> 
                 </h:panelGrid>                
                 
@@ -116,9 +123,19 @@
                     </f:facet>
                 </ice:column>
                 <ice:column>                    
-                    <ice:selectInputDate id="sidActFecEje" label="#{etiqueta.fecha}" value="#{actividad.fechaEjecucion}" renderAsPopup="true">
+                    <ace:dateTimeEntry 
+                        id="sidActFecEje" 
+                        label="#{etiqueta.fecha}" 
+                        value="#{actividad.fechaEjecucion}" 
+                        required="true"
+                        renderAsPopup="true"   
+                        navigator="true"                        
+                        showOn="both"
+                        popupIconOnly="true"
+                        locale="es"
+                        pattern="dd/MM/yyyy">
                         <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy"/>
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="sidActFecEje"></ice:message>
                     <f:facet name="header">
                         <ice:outputText value="#{etiqueta.fecha}"/>

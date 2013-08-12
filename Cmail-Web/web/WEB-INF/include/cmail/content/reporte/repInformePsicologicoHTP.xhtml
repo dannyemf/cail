@@ -13,17 +13,37 @@
                 <ice:panelGrid columns="5">
             <ice:outputText value="#{etiqueta.desde}"></ice:outputText>
             <h:panelGrid>
-                <ice:selectInputDate id="sidDesde" label="#{etiqueta.desde}" value="#{reporteController.desde}" renderAsPopup="true">
+                <ace:dateTimeEntry 
+                    id="sidDesde" 
+                    label="#{etiqueta.desde}" 
+                    value="#{reporteController.desde}" 
+                    renderAsPopup="true"   
+                    required="true"                      
+                    navigator="true"                        
+                    showOn="both"
+                    popupIconOnly="true"
+                    locale="es"
+                    pattern="dd/MM/yyyy">
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                </ace:dateTimeEntry>
                 <ice:message for="sidDesde"></ice:message>
             </h:panelGrid>
 
             <ice:outputText value="#{etiqueta.hasta}"></ice:outputText>
             <h:panelGrid>
-                <ice:selectInputDate id="sidHasta" label="#{etiqueta.hasta}" value="#{reporteController.hasta}" renderAsPopup="true">
+                <ace:dateTimeEntry 
+                    id="sidHasta" 
+                    label="#{etiqueta.hasta}" 
+                    value="#{reporteController.hasta}" 
+                    renderAsPopup="true"   
+                    required="true"                      
+                    navigator="true"                        
+                    showOn="both"
+                    popupIconOnly="true"
+                    locale="es"
+                    pattern="dd/MM/yyyy">
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                </ace:dateTimeEntry>
                 <ice:message for="sidHasta"></ice:message>
             </h:panelGrid>
 

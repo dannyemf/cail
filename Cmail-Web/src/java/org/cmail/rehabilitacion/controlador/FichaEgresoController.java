@@ -24,10 +24,12 @@ import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
+import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.sira.FichaEgreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.servicio.FichaEgresoServicio;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
+import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
@@ -129,16 +131,20 @@ public class FichaEgresoController extends Controller {
     }
 
     public void eventoBuscar(ActionEvent evt) {
-        List<FichaEgreso> lst = new FichaEgresoServicio().listarFichas(cedula, nombres, apellidos);
-        List<ItemFichaEgreso> datos = new ArrayList<ItemFichaEgreso>();
-        
-        for (Iterator<FichaEgreso> it = lst.iterator(); it.hasNext();) {
-            FichaEgreso f = it.next();
-            datos.add(new ItemFichaEgreso(f));
+        if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
+            showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
+        }else{
+            List<FichaEgreso> lst = new FichaEgresoServicio().listarFichas(cedula, nombres, apellidos);
+            List<ItemFichaEgreso> datos = new ArrayList<ItemFichaEgreso>();
+
+            for (Iterator<FichaEgreso> it = lst.iterator(); it.hasNext();) {
+                FichaEgreso f = it.next();
+                datos.add(new ItemFichaEgreso(f));
+            }
+
+            setModelFichasEgreso(new CmailListDataModel<ItemFichaEgreso>(datos));
+            showMessageResultList(lst);
         }
-        
-        setModelFichasEgreso(new CmailListDataModel<ItemFichaEgreso>(datos));
-        showMessageResultList(lst);
     }
 
     public FichaEgreso getFichaEgresoEdicion() {

@@ -37,9 +37,19 @@
                     <ice:message for="lugarCentro"/>          
                 </ice:panelLayout>                                   
                 <ice:outputLabel value="#{etiqueta.fechaEgreso}" for="fechaEgreso" />
-                <ice:selectInputDate id="fechaEgreso" label="#{etiqueta.fechaEgreso}"  value="#{fichaEgresoController.fichaEgresoEdicion.fecha}" renderAsPopup="true" renderMonthAsDropdown="true" renderYearAsDropdown="true">
+                <ace:dateTimeEntry 
+                    id="fechaEgreso" 
+                    label="#{etiqueta.fechaEgreso}"  
+                    value="#{fichaEgresoController.fichaEgresoEdicion.fecha}" 
+                    required="true"
+                    renderAsPopup="true"   
+                    navigator="true"                        
+                    showOn="both"
+                    popupIconOnly="true"
+                    locale="es"
+                    pattern="dd/MM/yyyy">
                     <f:convertDateTime timeZone="#{fichaEgresoController.timeZone}" pattern="dd/MM/yy hh:mm:ss" />
-                </ice:selectInputDate>
+                </ace:dateTimeEntry>
                 <ice:outputLabel value="#{etiqueta.tiempoPermanenciaCentro}" for="tiempoPermanencia" />
                 <ice:panelLayout layout="flow"> 
                     <ice:inputText id="tiempoPermanencia" label="#{etiqueta.tiempoPermanencia}" required="true" value="#{fichaEgresoController.fichaEgresoEdicion.tiempoPermanencia}" />
@@ -50,7 +60,7 @@
         
         <br/>
         
-        <ace:tabSet id="panelTabFichaEgreso" width="80%" immediate="true"  partialSubmit="true">
+        <ace:tabSet id="panelTabFichaEgreso" immediate="true">
             <ace:tabPane id="tabRazonEgreso" label="RAZÓN DE EGRESO" >
                 <ice:panelGrid columns="3">
                     <ice:panelGrid columns="2" width="100%"> 

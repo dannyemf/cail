@@ -7,20 +7,23 @@
      xmlns:c="http://java.sun.com/jsp/jstl/core"     
      >    
 
-    <ice:form id="form">            
-
-        <ice:messages id="messages"></ice:messages>
+    <ice:form id="form">                   
 
         <div class="opciones">
             <ace:panel>                
                 <ice:panelGrid columns="10">
                     
                     <ice:outputLabel value="#{etiqueta.texto}"></ice:outputLabel>
-                    <ice:inputText 
-                        value="#{galeriaController.texto}"                         
-                        label="#{etiqueta.texto}"
-                        actionListener="#{galeriaController.eventoBuscar}">
-                    </ice:inputText>                                                                        
+                    <h:panelGrid>
+                        <ice:inputText 
+                            id="txtTexto"
+                            value="#{galeriaController.texto}"                         
+                            label="#{etiqueta.texto}"
+                            required="true"
+                            actionListener="#{galeriaController.eventoBuscar}">
+                        </ice:inputText>  
+                        <ice:message for="txtTexto"></ice:message>
+                    </h:panelGrid>                                                                      
 
                     <ice:commandLink id="btnBuscar"  actionListener="#{galeriaController.eventoBuscar}" styleClass="ui-icon-search cail-button" value="#{accion.buscar}"></ice:commandLink>
                     <ice:commandLink id="btnNuevo" immediate="true" actionListener="#{galeriaController.eventoNuevo}" styleClass="ui-icon-document cail-button" value="#{accion.nuevo}" disabled="#{permisoController.checkPermiso('galeria.crear')}"></ice:commandLink>

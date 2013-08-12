@@ -59,9 +59,21 @@
                     
                     <cail:outputLabel for="dtpFechaNac" value="#{etiqueta.fechaNacimiento}" info="(*)"></cail:outputLabel>
                     <h:panelGrid columns="2">
-                    <ice:selectInputDate  id="dtpFechaNac" label="#{etiqueta.fechaNacimiento}" renderMonthAsDropdown="true"  required="true" requiredMessage="#{mensaje.seleccioneFecha}" renderAsPopup="true" renderYearAsDropdown="true" value="#{empleadoController.empleado.fechaNacimiento}" partialSubmit="true">
+                    <ace:dateTimeEntry  
+                        id="dtpFechaNac" 
+                        label="#{etiqueta.fechaNacimiento}"                                                
+                        requiredMessage="#{mensaje.seleccioneFecha}"                         
+                        value="#{empleadoController.empleado.fechaNacimiento}" 
+                        singleSubmit="true"
+                        required="true"
+                        renderAsPopup="true"   
+                        navigator="true"                        
+                        showOn="both"
+                        popupIconOnly="true"
+                        locale="es"
+                        pattern="dd/MM/yyyy">
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="dtpFechaNac"></ice:message>
                     </h:panelGrid>
 

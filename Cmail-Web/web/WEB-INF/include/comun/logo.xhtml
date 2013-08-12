@@ -16,7 +16,7 @@
 
                     <c:if test="#{sessionBean.usuarioLogeado != null}">
                         <h2 class="usuario">
-                            <ice:outputText styleClass="usuario" action="#{menuController.actionCamilPage}" value="#{mensaje.bienvenido}: #{sessionBean.usuarioLogeado.nombres} #{sessionBean.usuarioLogeado.apellidos}" style="font-size: 12px"></ice:outputText>
+                            <ice:outputText styleClass="usuario" value="#{mensaje.bienvenido}: #{sessionBean.usuarioLogeado.nombres} #{sessionBean.usuarioLogeado.apellidos}" style="font-size: 12px"></ice:outputText>
                         </h2>
                     </c:if>
                 </td>

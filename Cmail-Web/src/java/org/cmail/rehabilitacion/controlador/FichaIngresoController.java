@@ -21,11 +21,13 @@ import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.CmailList;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
+import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.model.ItemFichaIngreso;
+import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 import org.icefaces.ace.component.fileentry.FileEntry;
 import org.icefaces.ace.component.fileentry.FileEntryEvent;
@@ -233,15 +235,19 @@ public class FichaIngresoController extends Controller {
     }
 
     public void eventoBuscar(ActionEvent evt) {
-        List<FichaIngreso> listaFichas = new FichaIngresoServicio().listarFichas(cedula, nombres, apellidos);
-        CmailList<ItemFichaIngreso> coleccion = new CmailList<ItemFichaIngreso>();
-        for (Iterator<FichaIngreso> it = listaFichas.iterator(); it.hasNext();) {
-            FichaIngreso fichaIngreso = it.next();            
-            coleccion.add(new ItemFichaIngreso(fichaIngreso));            
-        }                
-        setModelFichasIngreso(new CmailListDataModel<ItemFichaIngreso>(coleccion));
-        
-        showMessageResultList(listaFichas);
+        if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
+            showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
+        }else{
+            List<FichaIngreso> listaFichas = new FichaIngresoServicio().listarFichas(cedula, nombres, apellidos);
+            CmailList<ItemFichaIngreso> coleccion = new CmailList<ItemFichaIngreso>();
+            for (Iterator<FichaIngreso> it = listaFichas.iterator(); it.hasNext();) {
+                FichaIngreso fichaIngreso = it.next();            
+                coleccion.add(new ItemFichaIngreso(fichaIngreso));            
+            }                
+            setModelFichasIngreso(new CmailListDataModel<ItemFichaIngreso>(coleccion));
+
+            showMessageResultList(listaFichas);
+        }
     }
     
     public void eventoGenerarEgreso(ActionEvent evt, FichaIngreso item){        

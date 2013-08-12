@@ -14,28 +14,40 @@
             <ice:panelGrid columns="6">                     
                 <ice:outputLabel value="#{etiqueta.desde}"/>
                 <h:panelGrid>
-                    <ice:selectInputDate
+                    <ace:dateTimeEntry
                     id="sidFechaDesde"
                     value="#{agendaController.fechaDesde}"
                     label="#{etiqueta.desde}"                    
-                    renderAsPopup="true"                         
+                    renderAsPopup="true"   
+                    required="true"                      
+                    navigator="true"                        
+                    showOn="both"
+                    popupIconOnly="true"
+                    locale="es"
+                    pattern="dd/MM/yyyy"
                     >
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="sidFechaDesde"></ice:message>
                 </h:panelGrid>
 
                 <ice:outputLabel value="#{etiqueta.hasta}"/>
                 
-                <h:panelGrid>
-                    <ice:selectInputDate
+                <h:panelGrid>                    
+                    <ace:dateTimeEntry
                         id="sidFechaHasta" 
                         label="#{etiqueta.hasta}"
                         value="#{agendaController.fechaHasta}"
-                        renderAsPopup="true"                        
+                        required="true"
+                        renderAsPopup="true"   
+                        navigator="true"                        
+                        showOn="both"
+                        popupIconOnly="true"
+                        locale="es"
+                        pattern="dd/MM/yyyy"
                         >
                         <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                    </ice:selectInputDate>
+                    </ace:dateTimeEntry>
                     <ice:message for="sidFechaHasta"></ice:message>
                 </h:panelGrid>
 

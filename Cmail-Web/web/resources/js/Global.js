@@ -54,7 +54,9 @@ function InitButtons(){
     
     $j('.cail-buttonset').buttonset();
     
-    $j('.cail-button-recurso-row').each(function(){_InitButtonRecursoRow(this, false);});                       
+    $j('.cail-button-recurso-row').each(function(){_InitButtonRecursoRow(this, false);}); 
+    
+    $j('.ui-inputfield').removeClass('ui-state-default');
 };
 
 function InitPanelConfirmacion(){

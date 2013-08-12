@@ -27,27 +27,54 @@
                     </ice:selectOneMenu>
 
                     <ice:outputLabel value="#{etiqueta.texto}" rendered="#{articuloController.renderTexto}"></ice:outputLabel>
+                    <h:panelGrid>
                     <ice:inputText 
+                        id="txtTexto"
                         value="#{articuloController.texto}" 
                         rendered="#{articuloController.renderTexto}"
                         label="#{etiqueta.texto}"
                         actionListener="#{articuloController.eventoBuscar}"
+                        required="true"
                         >
                     </ice:inputText>
+                    <ice:message for="txtTexto"></ice:message>
+                    </h:panelGrid>
 
                     <ice:outputLabel value="#{etiqueta.desde}" rendered="#{articuloController.renderFecha}"></ice:outputLabel>
                     <h:panelGrid>
-                        <ice:selectInputDate id="sidFechaDesde" renderAsPopup="true" label="#{etiqueta.desde}" value="#{articuloController.fechaInicial}" rendered="#{articuloController.renderFecha}">
+                        <ace:dateTimeEntry 
+                            id="sidFechaDesde"                            
+                            label="#{etiqueta.desde}" 
+                            value="#{articuloController.fechaInicial}" 
+                            rendered="#{articuloController.renderFecha}"
+                            required="true"
+                            renderAsPopup="true"
+                            navigator="true"                        
+                            showOn="both"
+                            popupIconOnly="true"
+                            locale="es"
+                            pattern="dd/MM/yyyy">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
-                        </ice:selectInputDate> 
+                        </ace:dateTimeEntry> 
                         <ice:message for="sidFechaDesde"></ice:message>
                     </h:panelGrid>
 
                     <ice:outputLabel value="#{etiqueta.hasta}" rendered="#{articuloController.renderFecha}"></ice:outputLabel>
                     <h:panelGrid>
-                        <ice:selectInputDate id="sidFechaHasta" renderAsPopup="true" label="#{etiqueta.hasta}" value="#{articuloController.fechaFinal}" rendered="#{articuloController.renderFecha}">
+                        <ace:dateTimeEntry 
+                            id="sidFechaHasta"                             
+                            label="#{etiqueta.hasta}" 
+                            value="#{articuloController.fechaFinal}" 
+                            rendered="#{articuloController.renderFecha}"
+                            required="true"
+                            renderAsPopup="true"
+                            navigator="true"                        
+                            showOn="both"
+                            popupIconOnly="true"
+                            locale="es"
+                            pattern="dd/MM/yyyy">
                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
-                        </ice:selectInputDate> 
+                        </ace:dateTimeEntry> 
                         <ice:message for="sidFechaHasta"></ice:message>
                     </h:panelGrid>
 

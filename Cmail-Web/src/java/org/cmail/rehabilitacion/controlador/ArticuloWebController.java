@@ -4,7 +4,7 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
-import com.icesoft.faces.component.selectinputdate.SelectInputDate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -26,6 +26,7 @@ import org.cmail.rehabilitacion.servicio.ImagenWebServicio;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
 import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
+import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
 
 /**
  *
@@ -62,11 +63,11 @@ public class ArticuloWebController extends Controller {
         
     public void eventoChangeCriterio(ValueChangeEvent e){
         //Setea la ultima fecha fijada para evitar que coja las validaciones y se renderize las fechas (ocultar cuando estén en error)
-        SelectInputDate cf1 =  (SelectInputDate)e.getComponent().getParent().findComponent("form:sidFechaDesde");
-        SelectInputDate cf2 =  (SelectInputDate)e.getComponent().getParent().findComponent("form:sidFechaHasta");
-        
-        cf1.setSubmittedValue(cf1.formatDate(fechaInicial));
-        cf2.setSubmittedValue(cf2.formatDate(fechaInicial));                
+        DateTimeEntry cf1 =  (DateTimeEntry)e.getComponent().getParent().findComponent("form:sidFechaDesde");
+        DateTimeEntry cf2 =  (DateTimeEntry)e.getComponent().getParent().findComponent("form:sidFechaHasta");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        cf1.setSubmittedValue(df.format(fechaInicial));
+        cf2.setSubmittedValue(df.format(fechaFinal));
     }
 
     public void eventoEditar(ActionEvent evt) {

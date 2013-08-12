@@ -17,9 +17,11 @@ import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
+import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
 import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
+import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
@@ -43,10 +45,14 @@ public class AdolescenteController extends Controller {
     public AdolescenteController() {
     }   
     
-    public void eventoBuscar(ActionEvent evt) {
-        List<Persona> lista = new PersonaServicio().listarAdolescentes(cedula, nombres, apellidos, incluirOtrosRoles);        
-        setModelList(new CmailListDataModel<Persona>(lista));
-        showMessageResultList(lista);
+    public void eventoBuscar(ActionEvent evt) {        
+        if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
+            showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
+        }else{
+            List<Persona> lista = new PersonaServicio().listarAdolescentes(cedula, nombres, apellidos, incluirOtrosRoles);
+            setModelList(new CmailListDataModel<Persona>(lista));
+            showMessageResultList(lista);
+        }
     }
 
     public void eventoNuevo(ActionEvent evt) {

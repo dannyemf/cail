@@ -35,15 +35,18 @@
                 <ice:outputText id="txtObservaciones" styleClass="textFinPlanificacion" value="#{agendaController.agendaEdicion.observaciones}" />
                 <ice:message for="txtObservaciones" showDetail="true"  ></ice:message>
                 <ice:outputLabel value="#{etiqueta.fechaFin}" styleClass="labelFinPlanificacion"/>
-                <ice:selectInputDate id="sidFechaFin" 
+                <ace:dateTimeEntry id="sidFechaFin" 
                                         value="#{agendaController.agendaEdicion.fechaFin}" 
-                                        label="#{etiqueta.fechaFin}"
-                                        renderAsPopup="true" 
-                                        renderMonthAsDropdown="true"                                      
-                                        renderYearAsDropdown="true"                                     
-                                        required="true">
+                                        label="#{etiqueta.fechaFin}"                                        
+                                        required="true"
+                                        renderAsPopup="true"   
+                                        navigator="true"                        
+                                        showOn="both"
+                                        popupIconOnly="true"
+                                        locale="es"
+                                        pattern="dd/MM/yyyy">
                     <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
-                </ice:selectInputDate>
+                </ace:dateTimeEntry>
                 <ice:message for="sidFechaFin"/> 
                 <ice:outputLabel value="#{etiqueta.reporteFinal}" styleClass="labelFinPlanificacion"/>
                 <ice:inputTextarea id="txtReporte" style="box-shadow:0px 0px 5px #800000;border: 3px double #CCCCCC; width: 250px;"  cols="45"  rows="2" label="Reporte" required="true" value="#{agendaController.agendaEdicion.reporteFinal}" > </ice:inputTextarea>

@@ -29,6 +29,7 @@ import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CategoriaComparator;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.FileUtil;
+import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.core.interpretacion.Diagnostico;
 import org.cmail.rehabilitacion.modelo.core.interpretacion.ItemInterpretacion;
 import org.cmail.rehabilitacion.modelo.core.interpretacion.ItemInterpretacionCategoria;
@@ -366,21 +367,24 @@ public class TestHtpController extends Controller {
     }
 
     public void eventoBuscar(ActionEvent evt) {
-        List<TestHtp> listaTest = new TestHtpServicio().listarTest(getCedula(), getNombres(), getApellidos());
-        List<ItemTestHtp> lst = new ArrayList<ItemTestHtp>();
-        
-        InterpretacionHtpServicio infServ = new InterpretacionHtpServicio();
-        
-        for (Iterator<TestHtp> it = listaTest.iterator(); it.hasNext();) {
-            TestHtp test = it.next();
-            InterpretacionTestHtp inf =  infServ.obtenerUnicoPor("testHtp", test);
-            
-            lst.add(new ItemTestHtp(test, inf));            
+        if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
+            showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
+        }else{
+            List<TestHtp> listaTest = new TestHtpServicio().listarTest(cedula, nombres, apellidos);
+            List<ItemTestHtp> lst = new ArrayList<ItemTestHtp>();
+
+            InterpretacionHtpServicio infServ = new InterpretacionHtpServicio();
+
+            for (Iterator<TestHtp> it = listaTest.iterator(); it.hasNext();) {
+                TestHtp test = it.next();
+                InterpretacionTestHtp inf =  infServ.obtenerUnicoPor("testHtp", test);
+
+                lst.add(new ItemTestHtp(test, inf));            
+            }
+
+            setModelEsquema(new CmailListDataModel<ItemTestHtp>(lst));
+            showMessageResultList(listaTest);
         }
-        
-        
-        setModelEsquema(new CmailListDataModel<ItemTestHtp>(lst));
-        showMessageResultList(listaTest);
     }
 
     public TestHtp getFormEdicion() {
