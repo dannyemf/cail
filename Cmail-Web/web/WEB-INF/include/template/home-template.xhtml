@@ -13,7 +13,10 @@
     <f:view locale="es" contentType="text/html">
 
         <h:head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />                
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>#{mainController.prmSiglas} - Home</title>
+            <link href="./resources/css/imagen/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+            <link href="./resources/css/imagen/favicon.ico" rel="icon" type="image/x-icon"/>
 
             <link href="./resources/css/style.css" rel="stylesheet" type="text/css" />
             <link href="./resources/css/home/home_layout.css" rel="stylesheet" type="text/css" />
@@ -21,9 +24,7 @@
             <link rel="stylesheet" href="./resources/css/home/themes/default/default.css" type="text/css" media="screen" />
             
             <link href="./resources/css/controles-ice.css" rel="stylesheet" type="text/css" />
-            <ui:include src="theme-rename.xhtml"></ui:include>
-
-            <title>#{mainController.prmSiglas} - Home</title>
+            <ui:include src="theme-rename.xhtml"></ui:include>            
 
             <script type="text/javascript" src="./resources/js/jquery/jquery-1.9.1.js"></script>                                
             <script type="text/javascript" src="./resources/js/jquery/jquery-ui.min.js"></script>
@@ -39,25 +40,7 @@
 
             <script type="text/javascript">
             
-                function InitHomeMenu(){
-                    /*var lnks = $j('#menu .iceCmdLnk').click(function(){
-                        $j('#menu .iceCmdLnk').removeClass('ui-state-highlight');
-                        $j(this).addClass('ui-state-highlight');
-                    });
-                
-                    var homeInclude = $j('#homeInclude').val().split('/');                
-                    var page = homeInclude[homeInclude.length - 1];                
-                
-                    $j(lnks).each(function(){
-                        var s = $j(this).attr('onclick').toString();                    
-                        //alert(page + " - " + s.indexOf(page) +" --> "+ s);
-                        if(s.indexOf(page) > 0){                        
-                            $j(this).addClass('ui-state-highlight');
-                        }
-                    });
-                
-                    $j('#menu').buttonset();   
-                    */
+                function InitHomeMenu(){                    
                 };
             
                 function InitHome(){
