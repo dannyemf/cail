@@ -19,13 +19,13 @@ HERRAMIENTAS Y TECNOLOGÍAS USADAS:
 
 ----------------------------------------------------------------------------------------------------
 
-- ICE FACES: 3.2.0 (+Superior)
+- ICE FACES: 3.3.0 (+Superior)
 
-- PLUGIN ICE FACES PARA NETBEANS: ICEfaces-3.2.0b-Netbeans-7.2-Plugins.zip (+Superior)
+- PLUGIN ICE FACES PARA NETBEANS: ICEfaces-3.3.0 (+Superior)
 
 ----------------------------------------------------------------------------------------------------
 
-- NETBEANS: 7.2.1 (+Superior)
+- NETBEANS: 7.3.1 (+Superior)
 
 ----------------------------------------------------------------------------------------------------
 
