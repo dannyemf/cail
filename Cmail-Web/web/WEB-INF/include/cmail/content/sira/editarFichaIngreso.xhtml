@@ -144,13 +144,13 @@
                             <ice:outputLabel value="#{etiqueta.barrio}"/>
                             
                             <ice:panelGrid>
-                                <ice:inputText id="txtBarrioDetencion" required="true" size="40" label="#{etiqueta.barrio}" value="#{fichaIngresoController.fichaIngresoEdicion.barrioDetencion}" />
+                                <ice:inputText id="txtBarrioDetencion" size="40" label="#{etiqueta.barrio}" value="#{fichaIngresoController.fichaIngresoEdicion.barrioDetencion}" />
                                 <ice:message for="txtBarrioDetencion"></ice:message>
                             </ice:panelGrid>
 
                             <ice:outputLabel value="#{etiqueta.comunidad}"/>
                             <ice:panelGrid>
-                                <ice:inputText id="txtComunidadDetencion" required="true" size="40" label="#{etiqueta.comunidad}" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadDetencion}" />
+                                <ice:inputText id="txtComunidadDetencion" size="40" label="#{etiqueta.comunidad}" value="#{fichaIngresoController.fichaIngresoEdicion.comunidadDetencion}" />
                                 <ice:message for="txtComunidadDetencion"/>                                 
                             </ice:panelGrid>
                         </ice:panelGrid>
@@ -579,11 +579,11 @@
                     <ice:panelGrid>
                         <ice:panelGrid columns="3" width="100%">
                             <ice:outputLabel value="#{etiqueta.condSaludEnfermedad}" />
-                            <ice:inputText id="enfermedad" label="#{etiqueta.enfermedad}" style="width: 250px;" partialSubmit="true" required="true" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludEnfermedad}"  />
+                            <ice:inputText id="enfermedad" label="#{etiqueta.enfermedad}" style="width: 250px;" partialSubmit="true" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludEnfermedad}"  />
                             <ice:message for="enfermedad"/>                             
                             
                             <ice:outputLabel value="#{etiqueta.condSaludMedicina}"/>
-                            <ice:inputTextarea id="medicinas" label="#{etiqueta.medicinas}" required="true" partialSubmit="true" style="width: 250px;" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludMedicina}"  />
+                            <ice:inputTextarea id="medicinas" label="#{etiqueta.medicinas}" partialSubmit="true" style="width: 250px;" value="#{fichaIngresoController.fichaIngresoEdicion.condSaludMedicina}"  />
                             <ice:message for="medicinas"/>
                         </ice:panelGrid> 
                         <ice:panelGrid columns="3">
