@@ -54,6 +54,8 @@ body {
     /*text-transform: uppercase;*/ 
     color: rgb(0, 102, 170);
     
+    width: 700px;
+    
 }
 
 #logo .slogan{
