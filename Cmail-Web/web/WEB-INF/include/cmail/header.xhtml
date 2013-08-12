@@ -15,14 +15,19 @@
                 <td>                    
                     <ui:include src="/WEB-INF/include/comun/logo.xhtml"></ui:include>
                 </td>                
-                <td align="right">                
-                    <table cellpading="0" cellspacing="0" border="0" align="right">
-                        <tr>                            
+                <td>                    
+                    <table cellpading="0" cellspacing="0" border="0">
+                        <tr>
                             <td>
+                                <center>
                                 <ui:include src="/WEB-INF/include/cmail/languageThemeControl.xhtml"/>
+                                </center>
                             </td>
-                            <td>                                
-                                <div class="cail-buttonset" style="float: right">
+                        </tr>
+                        <tr>                                                        
+                            <td>  
+                                <center>
+                                <div class="cail-buttonset">
                                     <ice:commandLink title="Pagina de inicio" action="#{menuController.actionHomePage}" styleClass="ui-icon-circle-arrow-w cail-button-big cail-button">
                                         <ice:graphicImage value="./resources/icono/arrow_left.png" width="32px" height="32px"></ice:graphicImage>
                                     </ice:commandLink>                                    
@@ -30,9 +35,10 @@
                                         <ice:graphicImage value="./resources/icono/sign-out.png"></ice:graphicImage>
                                     </ice:commandLink>                           
                                 </div>
+                                </center>
                             </td>
                         </tr>
-                    </table>                    
+                    </table>                          
                 </td>
             </tr>
             <tr>
