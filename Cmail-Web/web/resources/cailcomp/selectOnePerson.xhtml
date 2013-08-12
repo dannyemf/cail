@@ -11,6 +11,7 @@
     <cc:interface>
         <cc:attribute name="person" type="org.cmail.rehabilitacion.modelo.Persona"></cc:attribute>                 
         <cc:attribute name="required" default="true"></cc:attribute>
+        <cc:attribute name="showControls" default="true"></cc:attribute>
         <cc:attribute name="requiredMessage" default="Seleccione una persona"></cc:attribute>
         <cc:attribute name="actionListenerSelect" required="true"  method-signature="void actionListener(javax.faces.event.ActionEvent)"></cc:attribute>
         <cc:attribute name="actionListenerEdit" required="true"  method-signature="void actionListener(javax.faces.event.ActionEvent)"></cc:attribute>
@@ -25,9 +26,9 @@
             <ice:panelGrid columns="3">
                 <ice:panelGrid columns="4" style="border: 1px solid #c0c0c0; background: #cccccc ">   
                     <ice:inputText maxlength="10"  id="txtCedula" required="true" validator="#{fichaIngresoController.validarCedulaPadre}" value="#{cc.attrs.person eq null ? '--Seleccione--': cc.attrs.person.cedula}" disabled="true" style="height: 24px; margin: 0; padding: 0; height: 24px"/>                
-                    <ice:commandButton  actionListener="#{cc.attrs.actionListenerSelect}" image="./resources/icono/btn/btn-buscar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="Buscar"/>
-                    <ice:commandButton  actionListener="#{cc.attrs.actionListenerEdit}" image="./resources/icono/btn/btn-editar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
-                    <ice:commandButton  actionListener="#{cc.attrs.actionListenerClean}" image="./resources/icono/btn/btn-limpiar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="Limpiar"/>
+                    <ice:commandButton rendered="#{cc.attrs.showControls}"  actionListener="#{cc.attrs.actionListenerSelect}" image="./resources/icono/btn/btn-buscar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="Buscar"/>
+                    <ice:commandButton rendered="#{cc.attrs.showControls}" actionListener="#{cc.attrs.actionListenerEdit}" image="./resources/icono/btn/btn-editar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
+                    <ice:commandButton rendered="#{cc.attrs.showControls}" actionListener="#{cc.attrs.actionListenerClean}" image="./resources/icono/btn/btn-limpiar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="Limpiar"/>
                 </ice:panelGrid>
                 
                 <c:if test="#{cc.attrs.person eq null and cc.attrs.required}">

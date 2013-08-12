@@ -71,6 +71,11 @@ public class AgendaController extends Controller {
         FacesUtils.getSessionBean().setAgendaEdicion(getModelAgendas().getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_AGENDA);
     }
+    
+    public void eventoVer(ActionEvent evt) {
+        FacesUtils.getSessionBean().setAgendaEdicion(getModelAgendas().getRowData());
+        FacesUtils.getMenuController().redirectApp(Constantes.VW_VER_AGENDA);
+    }
 
     public void eventoGuardar(ActionEvent evt) {
         boolean b = new AgendaServicio().guardar(getAgendaEdicion());

@@ -93,6 +93,7 @@ public class Constantes {
     //AGENDAS
     public static final String VW_ADM_AGENDAS    = "sira/adminAgendas.xhtml";
     public static final String VW_EDT_AGENDA    = "sira/editarAgenda.xhtml";
+    public static final String VW_VER_AGENDA    = "sira/verAgenda.xhtml";
     public static final String VW_FLZ_AGENDA    = "sira/finalizarAgenda.xhtml";
     
     //DIVISION POLITICA

@@ -65,6 +65,10 @@
                     <ice:commandLink actionListener="#{agendaController.eventoEditar}" id="btnEditar" title="#{accion.editar}" disabled="#{permisoController.checkPermiso('agenda.editar')}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                     </ice:commandLink>
+                    
+                    <ice:commandLink actionListener="#{agendaController.eventoVer}" id="btnVer" title="#{accion.ver}" disabled="#{permisoController.checkPermiso('agenda.ver')}">
+                        <ice:graphicImage value="/resources/icono/row/row_ver.png" alt="#{accion.ver}"></ice:graphicImage>
+                    </ice:commandLink>
 
                     <ice:commandLink id="btnFinalizar" disabled="#{not p.estadoFinalizado and permisoController.checkPermiso('agenda.finalizar')}" title="#{accion.finalizar}" actionListener="#{agendaController.eventoFinalizar}">
                         <ice:graphicImage value='/resources/icono/row/#{(p.estadoFinalizado == false ? "row_cerrar.png":"row_cerrar_disabled.png")}' alt="#{accion.finalizar}"></ice:graphicImage>

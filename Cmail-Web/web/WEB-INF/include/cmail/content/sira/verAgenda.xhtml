@@ -1,0 +1,100 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:ace="http://www.icefaces.org/icefaces/components"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
+     >    
+    
+    <input type="hidden" id="subpath" value='#{accion.ver}'/>
+    
+    <ice:form id="frmEditActividad">
+        
+        <ace:panel header="#{etiqueta.datosGenerales}" toggleable="true">
+            <ice:panelGrid columns="4" style="text-align: top;"> 
+
+                <ice:outputLabel value="#{etiqueta.fechaInicio}"></ice:outputLabel>                                
+                <ice:inputText value="#{agendaController.agendaEdicion.fechaInicio}" disabled="true">
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                </ice:inputText>                                                            
+                
+                <ice:outputLabel value="#{etiqueta.fechaFin}"></ice:outputLabel>                                
+                <ice:inputText id="sidFechaFin" value="#{agendaController.agendaEdicion.fechaFin}" disabled="true">
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy" />
+                </ice:inputText>               
+                                
+                <ice:outputLabel value="Objetivo"></ice:outputLabel>                
+                <ice:inputTextarea id="txtObjetivo" style="width:250px;" rows="1" label="#{etiqueta.objetivo}" disabled="true" value="#{agendaController.agendaEdicion.objetivo}" > </ice:inputTextarea>                                    
+                
+                <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>                
+                <ice:inputTextarea id="txtDescripcion" style="width:250px;" rows="1" label="#{etiqueta.descripcion}" disabled="true" value="#{agendaController.agendaEdicion.descripcion}" > </ice:inputTextarea>                                    
+                
+                <ice:outputLabel value="#{etiqueta.participantes}"></ice:outputLabel>                
+                <ice:inputTextarea id="txtParticipantes" style="width:250px;" rows="1" label="#{etiqueta.participantes}" disabled="true" value="#{agendaController.agendaEdicion.participantes}" > </ice:inputTextarea>                    
+                
+                <ice:outputLabel value="#{etiqueta.observaciones}"></ice:outputLabel>                
+                <ice:inputTextarea id="txtObservaciones"  label="#{etiqueta.observaciones}" style="width:250px;" rows="1" disabled="true" value="#{agendaController.agendaEdicion.observaciones}" > </ice:inputTextarea>                
+                
+                <ice:outputLabel value="#{etiqueta.responsable}/CI"></ice:outputLabel>
+                <ice:inputText value="#{agendaController.agendaEdicion.responsable.cedula}" style="width:250px;" disabled="true"></ice:inputText>
+                
+                <ice:outputLabel value="#{etiqueta.responsable}/#{etiqueta.nombres}"></ice:outputLabel>
+                <ice:inputText value="#{agendaController.agendaEdicion.responsable.nombres} #{agendaController.agendaEdicion.responsable.apellidos}" style="width:250px;" disabled="true"></ice:inputText>
+                
+            </ice:panelGrid>
+        </ace:panel>                     
+        
+        <br/>
+        
+        <ace:panel header="#{mensaje.listaActividades} (#{agendaController.agendaEdicion.eventos.size()})" toggleable="true">            
+            
+            <ice:dataTable id="tablaActividades"  
+                            var="actividad" 
+                            value="#{agendaController.agendaEdicion.eventos}"
+                            width="100%"                           
+                            >                
+                <ice:column>                    
+                    <ice:outputText
+                        id="sidActFecEje"                        
+                        value="#{actividad.fechaEjecucion}">                        
+                        <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yyyy"/>
+                    </ice:outputText>                    
+                    <f:facet name="header">
+                        <ice:outputText value="#{etiqueta.fecha}"/>
+                    </f:facet>
+                </ice:column>
+                <ice:column>
+                    <ice:outputText value="#{actividad.descripcion}" id="txtDescrip"/>                    
+                    <f:facet name="header">
+                        <ice:outputText value="#{etiqueta.descripcion}"/>
+                    </f:facet>
+                </ice:column >
+                <ice:column >
+                    <ice:outputText id="txtLugar" value="#{actividad.lugar}"/>                    
+                    <f:facet name="header">
+                        <ice:outputText id="outputText6" value="#{etiqueta.lugar}"/>
+                    </f:facet>
+                </ice:column>                    
+                <ice:column>
+                    <ice:outputText id="txtPorcentaje" value="#{actividad.porcentajeEjecucion}"></ice:outputText>                                            
+                    <f:facet name="header">
+                        <ice:outputText id="outputText8" value="#{etiqueta.porcentajeEjecucion}"/>
+                    </f:facet>
+                </ice:column>                    
+            </ice:dataTable>
+        </ace:panel>
+        
+        <br/>
+        <br/>
+        
+        <div class="controles">
+        <ace:panel>            
+            <ice:commandLink id="btnCancelar" immediate="true" actionListener="#{agendaController.eventoCancelar}" styleClass="ui-icon-cancel cail-button" value="#{accion.cerrar}"></ice:commandLink>
+        </ace:panel>
+        </div>
+
+    </ice:form>
+    
+</div>
