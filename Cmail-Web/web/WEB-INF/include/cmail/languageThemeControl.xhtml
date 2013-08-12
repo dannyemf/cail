@@ -4,11 +4,15 @@
 <div xmlns="http://www.w3.org/1999/xhtml"    
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ice="http://www.icesoft.com/icefaces/component"
-    class="ui-icon-pencil cail-button">
+    class="ui-icon-pencil cail-button" title="Tema">
     
     
     <span>Tema:</span>
-    <ice:selectOneMenu id="currentStyle" value="#{styleBean.aceTheme}" valueChangeListener="#{styleBean.changeTheme}" partialSubmit="true">
+    <ice:selectOneMenu id="currentStyle"
+                       value="#{styleBean.aceTheme}"
+                       valueChangeListener="#{styleBean.changeTheme}" 
+                       partialSubmit="true"
+                       style="width: 80px;">
         <f:selectItem itemLabel="default" itemValue="default"/>
         <f:selectItem itemLabel="default-blue" itemValue="default-blue"/>        
         <f:selectItem itemLabel="black-tie" itemValue="black-tie"/>
