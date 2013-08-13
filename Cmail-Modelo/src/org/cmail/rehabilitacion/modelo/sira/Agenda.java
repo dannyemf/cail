@@ -13,7 +13,9 @@ import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 
 /**
  *
- * @author Desarrolador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Agenda extends AuditEntity {
 

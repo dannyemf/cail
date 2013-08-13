@@ -11,7 +11,9 @@ import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class InformePsicologico extends DomainEntity{
     

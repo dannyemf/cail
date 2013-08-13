@@ -5,8 +5,11 @@
 package org.cmail.rehabilitacion.modelo.core;
 
 /**
- *
- * @author Usuario
+ * Clase con las contantes de los parámetros y los nombres de los beans manejados.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Constantes {
     

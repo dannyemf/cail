@@ -5,8 +5,11 @@
 package org.cmail.rehabilitacion.modelo;
 
 /**
- *
- * @author Usuario
+ * Clase que representa un log de auditoría de un atributo.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class AuditoriaPropiedad extends DomainEntity{
     
@@ -15,14 +18,40 @@ public class AuditoriaPropiedad extends DomainEntity{
     public static final String ESTADO_ACTUALIZADO = "ACTUALIZADO";
     public static final String ESTADO_CREADO = "CREADO";
     
-    private String nombre;    
+    /**
+     * Nombre del atributo
+     */
+    private String nombre;
+    
+    /**
+     * Valor del atributo
+     */
     private String valor;
+    
+    /**
+     * Estado del atributo con valor ESTADO_INVARIANTE, ESTADO_ELIMINADO, ESTADO_ACTUALIZADO, ESTADO_CREADO
+     */
     private String estado;
+    
+    /**
+     * Log de auditoría al que pertenece
+     */
     private AuditoriaEntidad auditoria;
             
+    /**
+     * Constructor por defecto
+     */
     public AuditoriaPropiedad() {
     }
 
+    /**
+     * Constructor completo.
+     * 
+     * @param nombre nombre de la propiedad
+     * @param valor valor de la propiedad
+     * @param estado estado de la propiedad
+     * @param auditoria log de auditoria al que pertenece
+     */
     public AuditoriaPropiedad(String nombre, String valor, String estado, AuditoriaEntidad auditoria) {
         this.nombre = nombre;        
         this.valor = valor;
@@ -30,8 +59,6 @@ public class AuditoriaPropiedad extends DomainEntity{
         this.auditoria = auditoria;
     }
     
-    
-
     /**
      * @return the nombre
      */
@@ -87,8 +114,5 @@ public class AuditoriaPropiedad extends DomainEntity{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    
-    
-    
+            
 }

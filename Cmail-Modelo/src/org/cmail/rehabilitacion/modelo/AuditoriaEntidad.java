@@ -12,33 +12,96 @@ import java.util.Set;
 
 
 /**
- *
- * @author Usuario
+ * Entidad que representa un log de auditoría, registrando la acción, la fecha, el usuario, etc.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class AuditoriaEntidad extends DomainEntity{
         
-    
+    /**
+     * Constante de la acción de creación
+     */
     public static final String ACCION_CREACION = "CREACION";
+    
+    /**
+     * Constante de la acción de actualización
+     */
     public static final String ACCION_ACTUALIZACION = "ACTUALIZACION";
+    
+    /**
+     * Constante de la acción de eliminación
+     */
     public static final String ACCION_ELIMINACION = "ELIMINACION";
     
+    /**
+     * Id de la entidad auditada
+     */
     private Long entidadId;
+    
+    /**
+     * Nombre de la entidad auditada
+     */
     private String entidadNombre;
+    
+    /**
+     * Clase de la entidad auditada
+     */
     private String entidadClase;
+    
+    /**
+     * Valor de una de las constantes ACCION_CREACION, ACCION_ACTUALIZACION o ACCION_ELIMINACION
+     */
     private String accion;
+    
+    /**
+     * Login del usuario que ha realizó la acción
+     */
     private String usuario;
+    
+    /**
+     * Fecha en que se realizó la acción
+     */
     private Date fecha;
+    
+    /**
+     * Colección de las propiedades o atributos auditados
+     */
     private Set<AuditoriaPropiedad> propiedades = new HashSet<AuditoriaPropiedad>();
     
+    /**
+     * La entidad auditada
+     */
     private DomainEntity entidad;
 
+    /**
+     * Constructor mínimo
+     */
     public AuditoriaEntidad() {
     }
     
+    /**
+     * Constructor completo
+     * @param entidad la entidad a auditar
+     * @param accion la acción realizada
+     * @param usuario el usuario que está realizando la operación
+     * @param propiedades las propiedades a auditar
+     * @param currentState el estado actual de la entidad
+     */
     public AuditoriaEntidad(DomainEntity entidad, final String accion, final String usuario, String[] propiedades, Object[] currentState) {
         this(entidad, accion, usuario, propiedades, currentState, currentState);        
     }
 
+    /**
+     * Constructor completo
+     * @param entidad la entidad a auditar
+     * @param accion la acción realizada
+     * @param usuario el usuario que está realizando la operación
+     * @param propiedades las propiedades a auditar
+     * @param previousState el estado anterior de la entidad
+     * @param currentState el estado actual de la entidad
+     */
     public AuditoriaEntidad(DomainEntity entidad, final String accion, final String usuario, String[] propiedades,  Object[] previousState, Object[] currentState) {
         this.setId(-1L);
         this.usuario = usuario;
@@ -78,10 +141,19 @@ public class AuditoriaEntidad extends DomainEntity{
         
     }
     
+    /**
+     * Inicializa el id de la entidad
+     */
     public void initId(){
         this.entidadId = entidad.getId();
     }
     
+    /**
+     * Obtiene un string representativo de la entidad.
+     * 
+     * @param object el objeto del que se debe obtener el string
+     * @return la cadena
+     */
     public String getString(Object object){
         String valor = null;
         
@@ -118,6 +190,12 @@ public class AuditoriaEntidad extends DomainEntity{
         return valor;
     }
     
+    /**
+     * Agrega una propiedad al listado de propiedades
+     * @param propiedad el nombre de la propiedad
+     * @param object el valor de la propiedad
+     * @param estado el estado de la propiedad
+     */
     public void add(String propiedad, Object object, String estado){
         String valor = getString(object);        
         AuditoriaPropiedad p = new AuditoriaPropiedad(propiedad, valor, estado, this);        

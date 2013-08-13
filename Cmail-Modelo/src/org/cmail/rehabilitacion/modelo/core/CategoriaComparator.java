@@ -7,22 +7,43 @@ package org.cmail.rehabilitacion.modelo.core;
 import java.util.Comparator;
 import org.cmail.rehabilitacion.modelo.htp.Categoria;
 
-
-
 /**
- *
- * @author Usuario
+ * Clase comparadora de categorias por nombre, descripción o tipo.
+ * Se usa para ordenar colecciones.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class CategoriaComparator implements Comparator<Categoria>{
 
+    /**
+     * El atributo con el que se debe comparar
+     */
     private String nombreAtributo;
+    
+    /**
+     * Indica si se debe comparar de forma ascendente o descendente
+     */
     private boolean ascendente;
 
+    /**
+     * Constructor único.
+     * 
+     * @param nombreAtributo nombre del atributo
+     * @param ascendente indica se es ascendente o descendente
+     */
     public CategoriaComparator(String nombreAtributo, boolean ascendente) {
         this.nombreAtributo = nombreAtributo;
         this.ascendente = ascendente;
     }    
     
+    /**
+     * Método de comparación
+     * @param o1 la categoría uno
+     * @param o2 la categoría dos
+     * @return 1, -1 ó 0
+     */
     public int compare(Categoria o1, Categoria o2) {
         if(nombreAtributo.equals("nombre")){
             if(ascendente){

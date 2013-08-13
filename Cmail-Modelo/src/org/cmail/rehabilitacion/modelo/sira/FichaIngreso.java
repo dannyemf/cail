@@ -15,7 +15,9 @@ import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class FichaIngreso extends AuditEntity{
     

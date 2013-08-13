@@ -5,8 +5,11 @@
 package org.cmail.rehabilitacion.excepcion;
 
 /**
- *
- * @author Usuario
+ * Clase de excepción lanzada cuando un usuario no está activo.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ActivoException extends Exception{
 

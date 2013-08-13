@@ -5,8 +5,11 @@
 package org.cmail.rehabilitacion.excepcion;
 
 /**
- *
- * @author Usuario
+ * Clase de excepción lanzada cuando el login no es correcto.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class LoginException extends Exception{
 

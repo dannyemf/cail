@@ -7,13 +7,22 @@ package org.cmail.rehabilitacion.modelo;
 import java.io.Serializable;
 
 /**
- *
- * @author Usuario
+ * Clase base del dominio. De ésta clase debe heredar toda clase del dominio.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public abstract class DomainEntity implements Serializable {
     
+    /**
+     * El id o la clave primaria
+     */
     private Long id = -1L;    
 
+    /**
+     * Constructor por defecto
+     */
     public DomainEntity() {        
     }
 
@@ -35,7 +44,5 @@ public abstract class DomainEntity implements Serializable {
     public String toString() {
         return this.getId().toString();
     }
-    
-    
     
 }

@@ -11,7 +11,9 @@ import org.cmail.rehabilitacion.modelo.AuditEntity;
 /**
  * Clase para representar un esquema de formularios de evaluación
  * 
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Esquema extends AuditEntity {
     

@@ -8,12 +8,21 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
- * @author Usuario
+ * Clase de utilidad para fechas.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class DateUtils {
-
-
+    
+    /**
+     * Obtiene la diferencia en milisegundos entre dos fechas.
+     * 
+     * @param fechaInicio la fecha inicial
+     * @param fechaFinal la fecha final
+     * @return los milisegundos
+     */
     public static long diferenciaMilisegundos(Date fechaInicio, Date fechaFinal){
         // Crear 2 instancias de Calendar
         Calendar cal1 = Calendar.getInstance();
@@ -33,6 +42,13 @@ public class DateUtils {
         return diff;
     }
     
+    /**
+     * Obtiene la diferencia en segundos entre dos fechas.
+     * 
+     * @param fechaInicio la fecha inicial
+     * @param fechaFinal la fecha final
+     * @return los segundos
+     */
     public static long diferenciaSegundos(Date fechaInicio, Date fechaFinal){
         long diff = diferenciaMilisegundos(fechaInicio, fechaFinal);
         
@@ -43,6 +59,13 @@ public class DateUtils {
         
     }
     
+    /**
+     * Obtiene la diferencia en minutos entre dos fechas.
+     * 
+     * @param fechaInicio la fecha inicial
+     * @param fechaFinal la fecha final
+     * @return los minutos
+     */
     public static long diferenciaMinutos(Date fechaInicio, Date fechaFinal){
         long diff = diferenciaMilisegundos(fechaInicio, fechaFinal);                
         // calcular la diferencia en minutos
@@ -51,6 +74,13 @@ public class DateUtils {
         return diffMinutes;        
     }
     
+    /**
+     * Obtiene la diferencia en horas entre dos fechas.
+     * 
+     * @param fechaInicio la fecha inicial
+     * @param fechaFinal la fecha final
+     * @return las horas
+     */
     public static long diferenciaHoras(Date fechaInicio, Date fechaFinal){
         long diff = diferenciaMilisegundos(fechaInicio, fechaFinal);
         
@@ -60,6 +90,13 @@ public class DateUtils {
         return diffHours;        
     }
     
+    /**
+     * Obtiene la diferencia en días entre dos fechas.
+     * 
+     * @param fechaInicio la fecha inicial
+     * @param fechaFinal la fecha final
+     * @return los días
+     */
     public static long diferenciaDias(Date fechaInicio, Date fechaFinal){
         long diff = diferenciaMilisegundos(fechaInicio, fechaFinal);
         
@@ -69,6 +106,10 @@ public class DateUtils {
         return diffDays;        
     }
     
+    /**
+     * Pruebas
+     * @param args 
+     */
     public static void main(String[] args)
     {
         // Crear 2 instancias de Calendar

@@ -11,8 +11,11 @@ import org.cmail.rehabilitacion.modelo.localizacion.Parroquia;
 import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 
 /**
- *
- * @author Usuario
+ * Entidad que representa a una persona, siendo ésta un empleado, un adolescente, un padre de un adolescente, etc.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Persona extends AuditEntity implements Cloneable{
     
@@ -54,6 +57,11 @@ public class Persona extends AuditEntity implements Cloneable{
         roles = "";
     }
     
+    /**
+     * Obtiene la edad de una persona en años.
+     * 
+     * @return la edad
+     */
     public int calcularEdad(){
         
         Date fa = new Date();
@@ -93,6 +101,11 @@ public class Persona extends AuditEntity implements Cloneable{
         return ey;
     }
     
+    /**
+     * Agrega un rol a la persona.
+     * 
+     * @param rol el rol agregar
+     */
     public void addRol(PersonaRol rol){
         if(roles == null){
             roles = "";
@@ -103,10 +116,18 @@ public class Persona extends AuditEntity implements Cloneable{
         }
     }    
     
+    /**
+     * Verifica si tiene el rol empleado
+     * @return true si tiene el rol
+     */
     public boolean isEmpleado(){
         return roles.contains(PersonaRol.EMPLEADO.name());
     }
     
+    /**
+     * Verifica si tiene el rol adolescente
+     * @return true si tiene el rol
+     */
     public boolean isAdolescente(){
         return roles.contains(PersonaRol.ADOLESCENTE.name());
     }
@@ -274,20 +295,6 @@ public class Persona extends AuditEntity implements Cloneable{
         this.madre = madre;
     }
 
-//    /**
-//     * @return the representante
-//     */
-//    public Persona getRepresentante() {
-//        return representante;
-//    }
-//
-//    /**
-//     * @param representante the representante to set
-//     */
-//    public void setRepresentante(Persona representante) {
-//        this.representante = representante;
-//    }
-
     /**
      * @return the ocupacion
      */
@@ -320,9 +327,7 @@ public class Persona extends AuditEntity implements Cloneable{
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", celular=" + celular + ", ocupacion=" + ocupacion + '}';
     }
-
-    
-   
+      
     @Override
     public boolean equals(Object obj) {
         if (obj != null || obj instanceof Persona) {

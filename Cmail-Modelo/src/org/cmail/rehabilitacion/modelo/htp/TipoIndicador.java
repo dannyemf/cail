@@ -6,7 +6,9 @@ package org.cmail.rehabilitacion.modelo.htp;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public enum TipoIndicador {
     Casa,

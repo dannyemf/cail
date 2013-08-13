@@ -14,14 +14,25 @@ import org.cmail.rehabilitacion.modelo.htp.Indicador;
 import org.cmail.rehabilitacion.modelo.htp.TipoIndicador;
 
 /**
- *
- * @author Usuario
+ * Clase que representa un item de interpretación (Clase de vista).
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ItemInterpretacion implements Serializable{
     
-    
+    /**
+     * Lista de categorías
+     */
     private List<ItemInterpretacionCategoria> categroias = new ArrayList<ItemInterpretacionCategoria>();
 
+    /**
+     * Constructor completo-
+     * 
+     * @param categorias las categorías
+     * @param tipo el tipo de indicador
+     */
     public ItemInterpretacion(List<Categoria> categorias, TipoIndicador tipo) {                
         
         for (Iterator<Categoria> it = categorias.iterator(); it.hasNext();) {            

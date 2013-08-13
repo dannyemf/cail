@@ -5,8 +5,11 @@
 package org.cmail.rehabilitacion.excepcion;
 
 /**
- *
- * @author Usuario
+ * Clase de excepción lanzada cuando la clave no es correcta.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ClaveException extends Exception{
 

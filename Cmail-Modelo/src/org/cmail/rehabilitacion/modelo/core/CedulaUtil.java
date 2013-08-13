@@ -4,17 +4,22 @@
  */
 package org.cmail.rehabilitacion.modelo.core;
 
-import java.util.GregorianCalendar;
-
 /**
- *
- * @author Usuario
+ * Clase de utilidad para validar números de cédula.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
-public class CedulaUtil {
+public class CedulaUtil {    
 
-    GregorianCalendar gc = new GregorianCalendar();
-
-    public static int mt_verificaCedula(String ced) {
+    /**
+     * Obtiene el número verificador de la cédula.
+     * 
+     * @param cedula el número de cédula
+     * @return el dígito
+     */
+    public static int obtenerNúmeroVerificador(String cedula) {
         int verificador = 0;
         char num;
         String nu = "";
@@ -23,7 +28,7 @@ public class CedulaUtil {
         int aux1 = 0;        
         int ver = 0;
         for (int i = 0; i < 10; i = i + 2) {
-            num = ced.charAt(i);
+            num = cedula.charAt(i);
             nu = String.valueOf(num);
             n1 = Integer.parseInt(nu);
             n1 = n1 * 2;
@@ -34,7 +39,7 @@ public class CedulaUtil {
         }
 
         for (int j = 1; j < 9; j = j + 2) {
-            num = ced.charAt(j);
+            num = cedula.charAt(j);
             nu = String.valueOf(num);
             n1 = Integer.parseInt(nu);
             aux1 = aux1 + n1;
@@ -52,15 +57,15 @@ public class CedulaUtil {
             ver = 10 - res;
         }
         return ver;
-    }
-
-      //para ingresar solo numeros
+    }      
+    
     /**
-     * permite determinar si la cadena ingresada son solo numeros
-     * @param cadena - cadena de texto de entrada
-     * @return true|false
-     */
-    public static  boolean mt_soloDigito(String cadena) {        
+     * Permite determinar si la cadena ingresada son solo números.
+     * 
+     * @param cadena la cedena a verificar
+     * @return true si es cierto
+     */ 
+    public static  boolean esNumero(String cadena) {        
         boolean b = true;
         for (int i = 0; ((i < cadena.length())&& (b== true)); i++) {
             char cha = cadena.charAt(i);
@@ -69,9 +74,15 @@ public class CedulaUtil {
         return b;
     }
 
+    /**
+     * Verifica que el número de cédula sea correcto.
+     * 
+     * @param cedula el número de cédula
+     * @return true si es correcta
+     */
     public static boolean validar(String cedula) {
         boolean verifica = false;        
-        boolean ban = mt_soloDigito(cedula);
+        boolean ban = esNumero(cedula);
         if (ban == false) {
             verifica = false;
         } else {
@@ -81,7 +92,7 @@ public class CedulaUtil {
                 if (cedula.length() <= 9) {
                     verifica = false;
                 } else {
-                    int v = mt_verificaCedula(cedula);
+                    int v = obtenerNúmeroVerificador(cedula);
                     int dig = Integer.parseInt(String.valueOf(cedula.charAt(9)));
                     if (v == dig) {
                         verifica = true;

@@ -8,17 +8,35 @@ import java.io.Serializable;
 import org.cmail.rehabilitacion.modelo.htp.Indicador;
 
 /**
- *
- * @author Usuario
+ * Clase para la interpretación de un indicador (Clase de vista).
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ItemInterpretacionCategoriaIndicador implements Serializable{
     
+    /**
+     * Si el indicador ha sido marcado o seleccionado en la vista
+     */
     private boolean seleccionado;
+    
+    /**
+     * El indicador a tratar
+     */
     private Indicador indicador;
 
+    /**
+     * Constructor por defecto
+     */
     public ItemInterpretacionCategoriaIndicador() {
     }
 
+    /**
+     * Constructor completo.
+     * 
+     * @param indicador el indicador
+     */
     public ItemInterpretacionCategoriaIndicador(Indicador indicador) {        
         this.indicador = indicador;
     }

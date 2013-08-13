@@ -5,11 +5,13 @@
 package org.cmail.rehabilitacion.modelo.core.interpretacion;
 
 import java.util.Comparator;
-import org.cmail.rehabilitacion.modelo.htp.TipoCategoria;
 
 /**
- *
- * @author Usuario
+ * Comparador de ItemInterpretacionCategoria por tipo de categoría (Clase de vista).
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ItemInterpretacionCategoriaComparator implements Comparator<ItemInterpretacionCategoria> {
 

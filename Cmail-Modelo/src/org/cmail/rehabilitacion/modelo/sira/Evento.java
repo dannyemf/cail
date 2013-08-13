@@ -9,7 +9,9 @@ import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
  *
- * @author Desarrollador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Evento extends AuditEntity {
 

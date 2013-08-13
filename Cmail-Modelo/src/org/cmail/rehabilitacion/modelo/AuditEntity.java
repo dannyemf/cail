@@ -7,16 +7,37 @@ package org.cmail.rehabilitacion.modelo;
 import java.util.Date;
 
 /**
- *
- * @author Usuario
+ * Clase base del dominio que es auditable, es decir toda clase que debe manejar auditoría debe heredad de ésta clase.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class AuditEntity extends DomainEntity{
     
+    /**
+     * Fecha de creación de la entidad
+     */
     private Date auditCreateDate;
+    
+    /**
+     * La última fecha de actualización de la entidad
+     */
     private Date auditUpdateDate;
+    
+    /**
+     * Usuario que creó la entidad
+     */
     private String auditCreateUser;
+    
+    /**
+     * El último usuario que hizo una modificación de la entidad
+     */
     private String auditUpdateUser;
 
+    /**
+     * Constructor por defecto
+     */
     public AuditEntity() {
     }
 
@@ -75,7 +96,5 @@ public class AuditEntity extends DomainEntity{
     public void setAuditUpdateUser(String auditUpdateUser) {
         this.auditUpdateUser = auditUpdateUser;
     }
-    
-    
     
 }
