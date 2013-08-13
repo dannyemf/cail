@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.cmail.rehabilitacion.dao;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,19 +19,47 @@ import org.hibernate.Transaction;
 import org.hibernate.type.Type;
 
 /**
- *
- * @author Usuario
+ * Clase para auditar las entidades persistentes.
+ * Se debe configurar al crear la sesión (HibernateSessionFactory)
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class AuditInterceptor extends EmptyInterceptor {
-    
+        
     protected final Logger log = Logger.getLogger(this.getClass());
     
+    /**
+     * Almacena el número de entidades actualizadas
+     */
     private int updates;
+    
+    /**
+     * Almacena el número de entidades creadas
+     */
     private int creates;
+    
+    /**
+     * Almacena el número de entidades cargadas
+     */
     private int loads;
     
+    /**
+     * Almacena la lista de logs de auditoría referentes a la transacción en curso
+     */
     private List<AuditoriaEntidad> auditorias = new ArrayList<AuditoriaEntidad>();
 
+    /**
+     * Método que es invocado por hibernate cuando se borra una entidad
+     * 
+     * @param entity la entidad a borrar
+     * @param id    el id de la entidad a borrar
+     * @param state estado actual de la entidad
+     * @param propertyNames nombres de la propiedades
+     * @param types tipos de datos de las propiedades
+     */
+    @Override
     public void onDelete(Object entity,
                          Serializable id,
                          Object[] state,
@@ -56,6 +79,18 @@ public class AuditInterceptor extends EmptyInterceptor {
         }
     }
 
+    /**
+     * Método que es invocado por hibernate cuando se actualiza una entidad
+     * 
+     * @param entity la entidad a actualizar
+     * @param id    el id de la entidad
+     * @param currentState estado actual de la entidad
+     * @param previousState estado anterior de la entidad
+     * @param propertyNames nombres de las propiedades
+     * @param types tipos de datos de las propiedades
+     * @return true si el estado actual ha sido modificado
+     */
+    @Override
     public boolean onFlushDirty(Object entity,
                                 Serializable id,
                                 Object[] currentState,
@@ -107,6 +142,17 @@ public class AuditInterceptor extends EmptyInterceptor {
         return false;
     }
 
+    /**
+     * Método que es invocado por hibernate cuando se carga una entidad
+     * 
+     * @param entity la entidad a cargar
+     * @param id el id de la entidad a cargar
+     * @param state el estado actual de la entidad
+     * @param propertyNames nombres de las propiedades
+     * @param types tipos de datos de las propiedades
+     * @return true si el estado actual ha sido modificado
+     */
+    @Override
     public boolean onLoad(Object entity,
                           Serializable id,
                           Object[] state,
@@ -118,6 +164,17 @@ public class AuditInterceptor extends EmptyInterceptor {
         return false;
     }
 
+    /**
+     * Método que es invocado por hibernate cuando se guarda una entidad
+     * 
+     * @param entity la entidad a guardar
+     * @param id el id de la entidad a guardar
+     * @param state el estado actual de la entidad
+     * @param propertyNames nombres de las propiedades
+     * @param types tipos de datos de las propiedades
+     * @return true si el estado actual ha sido modificado
+     */
+    @Override
     public boolean onSave(Object entity,
                           Serializable id,
                           Object[] state,
@@ -164,6 +221,13 @@ public class AuditInterceptor extends EmptyInterceptor {
         return false;
     }  
     
+    /**
+     * Método que es invocado por hibernate después de que la transacción se ha completado.
+     * Aquí aprovechamos para guardar los log's de auditoría.
+     * 
+     * @param tx la transacción de hibernate
+     */
+    @Override
     public void afterTransactionCompletion(Transaction tx) {
         if ( tx.wasCommitted() ) {
             System.out.println("Creations: " + creates + ", Updates: " + updates + ", Loads: " + loads);
@@ -196,7 +260,6 @@ public class AuditInterceptor extends EmptyInterceptor {
         }
         updates=0;
         creates=0;
-        loads=0;
-        
+        loads=0;        
     }
 }

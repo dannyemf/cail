@@ -4,43 +4,88 @@ package org.cmail.rehabilitacion.dao.hql;
 import java.util.List;
 
 /**
- * Clase que representa un par de datos clave y valor
+ * Clase que representa un par de datos clave y valor con su operador, en si representa una propiedad (Framework K).
  * 
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class KProperty {
     
+    /**
+     * El nombre de la propiedad
+     */
     private String key;
-    private Object valor;    
+    
+    /**
+     * El valor de la propiedad
+     */
+    private Object valor;   
+    
+    /**
+     * El operador con el que se debe tratar
+     */
     private KOperador operador = KOperador.eq;    
     
+    /**
+     * Constructor por defecto, no se usa.
+     */
     protected KProperty() {                        
     }
     
+    /**
+     * Constructor mínimo con operador por defecto is null.
+     * 
+     * @param key nombre de la propiedad
+     */
     public KProperty(String key) {
         this.key = key;
         this.operador = KOperador.isNul;
     }
     
+    /**
+     * Constructor completo con valor nulo.
+     * 
+     * @param key nombre de la propiedad
+     * @param operador operador a tratar
+     */
     public KProperty(String key, KOperador operador) {
         this.key = key;
         this.valor = null;
         this.operador = operador;        
     }
 
+    /**
+     * Constructor completo con operador nulo o eq dependiendo del valor.
+     * 
+     * @param key nombre de la propiedad
+     * @param valor el valor
+     */
     public KProperty(String key, Object valor) {
         this.key = key;
         this.valor = valor;
         this.operador = valor == null ? KOperador.isNul : KOperador.eq;
     }
     
+    /**
+     * Constructor completo.
+     * 
+     * @param key nombre de la propiedad
+     * @param valor el valor
+     * @param operador el operador a tratar
+     */
     public KProperty(String key, Object valor, KOperador operador) {
         this.key = key;
         this.valor = valor;
         this.operador = operador;        
     }
     
-    public String op(List<Object> parametros){
+    /**
+     * Genera el hql del operador. Ejemplo: is null
+     * @param parametros lista de parámetros
+     * @return hql del operador
+     */
+    public String toHqlOperador(List<Object> parametros){
         switch(operador){
             case eq: 
                 parametros.add(valor);
@@ -96,9 +141,14 @@ public class KProperty {
         
     }        
     
+    /**
+     * Genera el hql de la propiedad. Ejemplo: propiedad is null
+     * @param parametros lista de parámetros
+     * @return hql del la propiedad
+     */
     public String toHql(List<Object> parametros){        
         String s = "";        
-        s += key + op(parametros);        
+        s += key + toHqlOperador(parametros);        
         return s;
     }      
 

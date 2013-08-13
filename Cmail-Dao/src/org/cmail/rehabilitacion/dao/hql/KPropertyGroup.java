@@ -10,13 +10,22 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *
- * @author Usuario
+ * Clase que representa una agrupación de propiedades mediante and u or (Framework K).
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class KPropertyGroup extends KProperty{       
 
+    /**
+     * Indica si se debe agrupar con and (true) o con or (false)
+     */
     private boolean and = true;
     
+    /**
+     * Lista de propiedades a agrupar
+     */
     private List<KProperty> propiedades = new ArrayList<KProperty>();
     
     public KPropertyGroup(boolean and, KProperty... propiedades) {
@@ -24,6 +33,12 @@ public class KPropertyGroup extends KProperty{
         this.and = and;
     }
     
+    /**
+     * Genera el hql de esta propiedad.
+     * 
+     * @param parametros lista de parámetros
+     * @return hql generado
+     */
     public String toHql(List<Object> parametros){        
         String s = "(";              
         

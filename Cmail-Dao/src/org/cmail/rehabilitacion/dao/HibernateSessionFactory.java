@@ -1,40 +1,64 @@
 package org.cmail.rehabilitacion.dao;
 
-import java.util.Iterator;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.mapping.Table;
 
+/**
+ * Clase para manejar la sesión de hibernate contra la base de datos, es decir maneja la conexión de la base de datos.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
+ */
 public class HibernateSessionFactory {
 
-    private static String CONFIG_FILE_LOCATION = "org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml";
+    /**
+     * Ubicación del archivo de configuración de hibernate
+     */
+    private static final String CONFIG_FILE_LOCATION = "org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml";
+    
+    /**
+     * Hilo local en ejecución, para manejar una única instancia de conexión con la base de datos.
+     */
     private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
-    private static Configuration configuration = new Configuration();
-    private static org.hibernate.SessionFactory sessionFactory;
-    private static String configFile = CONFIG_FILE_LOCATION;
+    
+    /**
+     * Objeto de configuración actual de hibernate.
+     */
+    private static final Configuration configuration = new Configuration();
+    
+    /**
+     * Fábrica de sesiones de hibernate.
+     */
+    private static org.hibernate.SessionFactory sessionFactory;    
 
+    /**
+     * Bloque de inicialización automática de la sesión de hibernate cuando se invoque por primera vez a esta clase.
+     */
     static {
         try {
             configuration.setInterceptor(new AuditInterceptor());
-            configuration.configure(configFile);            
+            configuration.configure(CONFIG_FILE_LOCATION);            
             sessionFactory = configuration.buildSessionFactory();                 
         } catch (Exception e) {
-            System.err.println("%%%% Error Creating SessionFactory %%%%");
-            e.printStackTrace();
+            System.err.println("%%%% Error al crear la SessionFactory %%%%");            
+            System.err.println(e);
         }
     }
 
+    /**
+     * Constructor privado por defecto, es decir no se debe crear instancias de esta clase, sino usar sus métodos estáticos.
+     */
     private HibernateSessionFactory() {        
     }
         
-
+     
     /**
-     * Returns the ThreadLocal Session instance.  Lazy initialize
-     * the <code>SessionFactory</code> if needed.
-     *
-     *  @return Session
-     *  @throws HibernateException
+     * Retorna la sesión de hibernate albergada en el hilo local (hilo en ejecución, mediante inicialización perezosa).     
+     * 
+     * @return la sesión de hibernate
+     * @throws HibernateException 
      */
     public static Session getSession() throws HibernateException {
         Session session = (Session) threadLocal.get();
@@ -48,39 +72,23 @@ public class HibernateSessionFactory {
         }
 
         return session;
-    }
-    
-    public static Table getTable(Class clase){
-        
-        for (Iterator it = configuration.getClassMappings(); it.hasNext();) {
-            org.hibernate.mapping.RootClass o = (org.hibernate.mapping.RootClass)it.next();
-            
-            if(o.getClassName().equals(clase.getCanonicalName())){
-                return o.getTable();
-            }
-        }
-        
-        return null;
-        
-        
-    }
+    }    
 
     /**
-     *  Rebuild hibernate session factory
-     *
+     * Reconstruye la fábrica de sesiones
      */
     public static void rebuildSessionFactory() {
         try {
-            configuration.configure(configFile);
+            configuration.configure(CONFIG_FILE_LOCATION);
             sessionFactory = configuration.buildSessionFactory();
         } catch (Exception e) {
-            System.err.println("%%%% Error Creating SessionFactory %%%%");
-            e.printStackTrace();
+            System.err.println("%%%% Error al crear la SessionFactory %%%%");
+            System.err.println(e);
         }
     }
 
     /**
-     *  Close the single hibernate session instance.
+     *  Cierra la instancia de la sesión hibernate.
      *
      *  @throws HibernateException
      */
@@ -94,28 +102,11 @@ public class HibernateSessionFactory {
     }
 
     /**
-     *  return session factory
-     *
+     * Retorna la fábrica de sesiones de hibernate.
+     * 
+     * @return la fábrica de sesiones
      */
     public static org.hibernate.SessionFactory getSessionFactory() {
         return sessionFactory;
-    }
-
-    /**
-     *  return session factory
-     *
-     *	session factory will be rebuilded in the next call
-     */
-    public static void setConfigFile(String configFile) {
-        HibernateSessionFactory.configFile = configFile;
-        sessionFactory = null;
-    }
-
-    /**
-     *  return hibernate configuration
-     *
-     */
-    public static Configuration getConfiguration() {
-        return configuration;
     }
 }

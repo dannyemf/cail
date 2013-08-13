@@ -20,17 +20,30 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
- * @author Usuario
+ * Clase de acceso a datos para manejar las opciones de menú.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class OpcionDao extends GanericDao<Opcion> {
     
     protected final Logger log = Logger.getLogger(this.getClass());
 
+    /**
+     * Constructor por defecto
+     */
     public OpcionDao() {
         super(Opcion.class);
     }
     
+    /**
+     * Obtiene una lista de opciones por usuario y por opción padre, donde las opciones tengan los mismos perfiles que el usuario.
+     * 
+     * @param usuario el usuario
+     * @param padre la opción padre
+     * @return lista de opciones
+     */
     public List<VwOpcion> obtenerOpciones(Usuario usuario, VwOpcion padre){
         try {
             if(usuario.getPerfiles().size() > 0){
@@ -61,6 +74,12 @@ public class OpcionDao extends GanericDao<Opcion> {
         return new ArrayList<VwOpcion>();
     }
     
+    /**
+     * Obtiene las opciones cuyo padre sea el el indicado en el parámetro.
+     * 
+     * @param padre la opción padre
+     * @return lista de opciones
+     */
     public List<Opcion> obtenerOpciones(Opcion padre){
         try {
             Query q = getSession().createQuery("from Opcion as o where o.padre "  + (padre == null ? " is null " : "="+padre.getId() + " "));
@@ -71,7 +90,14 @@ public class OpcionDao extends GanericDao<Opcion> {
         }        
     }
     
-    public boolean guardar(Opcion instancia, List<Perfil> removed) {
+    /**
+     * Guarda una opción, permitiendo remover los perfiles en forma jerárquica de las opciones hijas.
+     * 
+     * @param opcion la opción a guardar
+     * @param removed la lista de perfiles
+     * @return true si la transación culminó con éxito
+     */
+    public boolean guardar(Opcion opcion, List<Perfil> removed) {
         boolean s = true;
         try {
             
@@ -79,8 +105,8 @@ public class OpcionDao extends GanericDao<Opcion> {
             
             beginTransaction();
 
-            List<Opcion> lst = obtenerOpciones(instancia);
-            this.recursivoGuardar(instancia, removed, lst);
+            List<Opcion> lst = obtenerOpciones(opcion);
+            this.recursivoGuardar(opcion, removed, lst);
             
             commit();            
         } catch (Exception e) {
@@ -92,12 +118,19 @@ public class OpcionDao extends GanericDao<Opcion> {
         }        
     }
     
-    private void recursivoGuardar(Opcion instancia, List<Perfil> removed, List<Opcion> hijos) {
+    /**
+     * Método privado y recursivo invocado por el método guardar.
+     * 
+     * @param opcion la opción a guardar
+     * @param removed lista de perfiles
+     * @param hijos lista de opciones hijas
+     */
+    private void recursivoGuardar(Opcion opcion, List<Perfil> removed, List<Opcion> hijos) {
         
-        if(instancia.getId().longValue() == -1){
-            getSession().saveOrUpdate(instancia);
+        if(opcion.getId().longValue() == -1){
+            getSession().saveOrUpdate(opcion);
         }else{        
-            getSession().saveOrUpdate(merge(instancia));
+            getSession().saveOrUpdate(merge(opcion));
         }
         // Eliminar los perfiles eliminados de los hijos            
         for (Iterator<Opcion> it = hijos.iterator(); it.hasNext();) {
@@ -107,7 +140,12 @@ public class OpcionDao extends GanericDao<Opcion> {
         }
     }
     
-    
+    /**
+     * Elimina una opcion y sus perfiles
+     * 
+     * @param opcion la opcion a eliminar
+     * @return true si la transacción culmina con éxito
+     */
     public boolean eliminar(Opcion opcion){
         try {
             log.info("Borrando opcion " + opcion);
@@ -129,10 +167,5 @@ public class OpcionDao extends GanericDao<Opcion> {
             return false;
         }
     }
-    
-    
-        
-    
-    
-    
+                            
 }

@@ -12,12 +12,23 @@ import org.hibernate.usertype.EnhancedUserType;
 import org.hibernate.usertype.ParameterizedType;
 
 /**
- * @author Gavin King
+ * Clase para tratar enumeraciones con hibernate.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class EnumUserType implements EnhancedUserType, ParameterizedType {
 
+   /**
+    * La enumeración a tratar
+    */
    private Class<Enum> enumClass;
 
+   /**
+    * Fija la enumeración a tratar
+    * @param parameters 
+    */
    public void setParameterValues(Properties parameters) {
       String enumClassName = parameters.getProperty("enumClassName");
       try {

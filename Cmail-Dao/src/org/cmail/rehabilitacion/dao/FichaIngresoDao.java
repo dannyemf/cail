@@ -4,36 +4,32 @@
  */
 package org.cmail.rehabilitacion.dao;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
-import org.hibernate.CacheMode;
-import org.hibernate.Query;
 import org.hibernate.Transaction;
 
 /**
- *
- * @author Usuario
+ * Clase de acceso a datos para menejar las fichas de ingreso.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class FichaIngresoDao extends GanericDao<FichaIngreso> {
 
+    /**
+     * Constructor por defecto
+     */
     public FichaIngresoDao() {
         super(FichaIngreso.class);
-    }
-
-    public List<FichaIngreso> obtenerOpciones(String nombres, String apellidos, String cedula) {
-        try {
-            Query q = getSession().createQuery("from FichaIngreso as ficha where ficha.adolescente.nombres like %" + nombres != null ? nombres : ""
-                    + " and FichaIngreso as ficha where ficha.adolescente.apellidos like %" + apellidos != null ? apellidos : ""
-                    + " and FichaIngreso as ficha where ficha.adolescente.cedula like %" + cedula != null ? cedula : "");
-            q.setCacheMode(CacheMode.REFRESH);
-            return q.list();
-        } catch (Exception e) {
-            return new ArrayList<FichaIngreso>();
-        }
-    }
+    }    
     
-    public boolean save(FichaIngreso instancia) {
+    /**
+     * Guarda una ficha de ingreso
+     * 
+     * @param fichaIngreso la ficha de ingreso a guardar
+     * @return true si se guardó correctamente
+     */
+    public boolean save(FichaIngreso fichaIngreso) {
         boolean b = false;
         Transaction tx = null;
         
@@ -43,10 +39,10 @@ public class FichaIngresoDao extends GanericDao<FichaIngreso> {
             tx = getSession().beginTransaction();
             
             //merge(instancia);
-            log.info("Madre: " + instancia.getAdolescente().getMadre().getNombres());
+            log.info("Madre: " + fichaIngreso.getAdolescente().getMadre().getNombres());
             
-            getSession().saveOrUpdate(merge(instancia.getAdolescente()));
-            getSession().saveOrUpdate(merge(instancia));
+            getSession().saveOrUpdate(merge(fichaIngreso.getAdolescente()));
+            getSession().saveOrUpdate(merge(fichaIngreso));
             
             tx.commit();
             b=true;
@@ -59,6 +55,5 @@ public class FichaIngresoDao extends GanericDao<FichaIngreso> {
         
         return b;
     }
-    
     
 }

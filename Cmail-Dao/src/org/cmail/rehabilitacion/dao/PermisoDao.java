@@ -17,17 +17,29 @@ import org.hibernate.LockMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
- * @author Usuario
+ * Clase de acceso a datos para manejar los perfiles.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class PermisoDao extends GanericDao<Permiso> {
     
     protected final Logger log = Logger.getLogger(this.getClass());
 
+    /**
+     * Constructor por defecto
+     */
     public PermisoDao() {
         super(Permiso.class);
     }
     
+    /**
+     * Obtiene los permisos para un usuario en específico, tomando en cuenta los perfiles del mismo.
+     * 
+     * @param usuario el usuario del que se debe obtener los permisos
+     * @return lista de permisos
+     */
     public List<Permiso> obtenerPermisos(Usuario usuario){
         try {
             if(usuario.getPerfiles().size() > 0){
@@ -53,9 +65,5 @@ public class PermisoDao extends GanericDao<Permiso> {
         
         return new ArrayList<Permiso>();
     }
-    
-        
-    
-    
     
 }

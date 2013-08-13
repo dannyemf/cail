@@ -11,7 +11,6 @@ import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -21,26 +20,29 @@ import org.cmail.rehabilitacion.modelo.core.CmailList;
 import org.cmail.rehabilitacion.dao.hql.KProperty;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 import org.hibernate.HibernateException;
-import org.hibernate.mapping.Table;
 
 /**
- *
- * @author Desarrollador
+ * Clase de acceso a datos que puede usarse con cualquier entidad
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class Dao {
-
+    
     protected final Logger log = Logger.getLogger(this.getClass());
     
     /**
-     * Obtiene la sesión hibernate
-     * @return  La sesión
+     * Obtiene la sesión hibernate.
+     * 
+     * @return  La sesión de HibernateSessionFactory
      */
     public Session getSession() {
         return HibernateSessionFactory.getSession();
     }
 
     /**
-     * Inici un transacción hibernate
+     * Inicia un transacción de hibernate.
      */
     public void beginTransaction() {
         log.info("Iniciando transacción...");
@@ -49,7 +51,8 @@ public class Dao {
     }
 
     /**
-     * Confirma la transacción hibernate
+     * Confirma la transacción de hibernate.
+     * 
      * @throws HibernateException 
      */
     public void commit() throws HibernateException{
@@ -79,42 +82,20 @@ public class Dao {
     }
     
     /**
-     * Cierra la sessión hibernate
+     * Cierra la sessión hibernate.
      */
     public void close() {
         try {
             //getSession().close();
         } catch (Exception e) {
         }
-    }
-    
-    public Table getTable(DomainEntity entidad){
-        return HibernateSessionFactory.getTable(entidad.getClass());
-    }
-    
-    public <T extends DomainEntity> Table getTable(Class<T> clase){
-        return HibernateSessionFactory.getTable(clase);
-    }
-    
-    public <T extends DomainEntity> String getTableName(Class<T> clase){
-        return HibernateSessionFactory.getTable(clase).getName();
-    }
-    
-    public String getTableName(DomainEntity entidad){
-        return HibernateSessionFactory.getTable(entidad.getClass()).getName();
-    }
-    
-    public String getLRLike(Object obj){
-        if(obj == null || obj.toString().length() == 0){
-            return "%";
-        }        
-        return "%" + obj.toString() + "%";
-    }
+    }        
     
     /**
-     * Guarda una entidad en la base datos
-     * @param instancia Instncia persistente
-     * @return true o false
+     * Guarda una entidad en la base datos.
+     * 
+     * @param instancia la entidad a guardar
+     * @return true si se guardó correctamente
      */
     public boolean save(DomainEntity instancia) {
         boolean exito = true;  
@@ -147,8 +128,9 @@ public class Dao {
     }
     
     /**
-     * Guarda una una entidad sin hacer commit. Se debe seguir:
-     * @param instancia Entidad persistente
+     * Guarda una una entidad sin hacer commit.
+     * 
+     * @param instancia entidad a guardar
      */
     public void saveOnTx(DomainEntity instancia) throws HibernateException {
         if(instancia.getId().longValue() > 0){
@@ -163,9 +145,10 @@ public class Dao {
     }
     
     /**
-     * Elimina una entidad de la base de datos
-     * @param instancia Entidad persistente
-     * @return true o false
+     * Elimina una entidad de la base de datos.
+     * 
+     * @param instancia la entidad a eliminar
+     * @return true si se eliminó correctamente
      */
     public boolean delete(DomainEntity instancia) {
         boolean exito = true;
@@ -184,9 +167,10 @@ public class Dao {
     }
     
     /**
-     * Refresca o restaura una entidad con la información actual de la base de datos
-     * @param instancia Entidad persistente
-     * @return true o false
+     * Refresca o restaura una entidad con la información actual de la base de datos.
+     * 
+     * @param instancia la entidad a recargar
+     * @return true si la operación concluyó con éxito
      */
     public boolean refresh(DomainEntity instancia) {
         boolean exito = true;
@@ -205,13 +189,14 @@ public class Dao {
     }
     
     /**
-     * Devuelve el objeto unificando los cambios cuando este se encuentre entre varias sesiones hibernate
-     * @param instancia Instancia persistente
-     * @return La misma instancia
+     * Devuelve el objeto unificando los cambios cuando este se encuentre entre varias sesiones hibernate.
+     * 
+     * @param instancia instancia persistente
+     * @return la misma instancia
      */
     public DomainEntity merge(DomainEntity instancia) {
         try {
-            instancia = (DomainEntity) getSession().merge(instancia);
+            instancia = (DomainEntity) getSession().merge(instancia);            
         } catch (Exception e) {
             log.error(instancia, e);
         }        
@@ -219,11 +204,19 @@ public class Dao {
     }
 
     /**
-     * Obtiene una entidad por su id
-     * @param <T> Clase de entidad
-     * @param clase Tipo de entidad
-     * @param id Id de la entidad
-     * @return Entidad o null
+     * Obtiene una entidad por su id.    
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where id = :id
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico de la entidad
+     * @param clase clase de la entidad
+     * @param id id de la entidad
+     * @return la entidad con ese id o null si no la encuentra
      */
     public <T extends DomainEntity> T getById(Class<? extends T> clase, Long id) {
         try {
@@ -238,11 +231,27 @@ public class Dao {
             return null;
         }
     }        
-
-    public <T extends DomainEntity> T getByUniqueProperty(Class<? extends T> clase, String propiedad, Object value) {
+    
+    /**
+     * Obtiene una única entidad por nombre de atributo y su valor.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad = :valor limit 1
+     * <span>
+     * </p>
+     * 
+     * @param <T> el tipo genérico
+     * @param clase la clase de entidad
+     * @param propiedad el nombre de la propiedad única
+     * @param valor el valor de la propiedad
+     * @return la entidad encontrada o null de lo contrario
+     */
+    public <T extends DomainEntity> T getByUniqueProperty(Class<? extends T> clase, String propiedad, Object valor) {
         try {
             Criteria cri = getSession().createCriteria(clase);
-            cri.add(Restrictions.eq(propiedad, value));
+            cri.add(Restrictions.eq(propiedad, valor));
             cri.setLockMode(LockMode.UPGRADE);
             return (T)cri.uniqueResult();
         } catch (Exception e) {
@@ -250,9 +259,24 @@ public class Dao {
         }
     }
     
-    public boolean exists(DomainEntity entidad, String propiedad, String value) {
+    /**
+     * Verifica si existe una entidad por atributo y valor.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * select count (*) from entidad where propiedad = :value
+     * <span>
+     * </p>
+     * 
+     * @param entidad la entidad
+     * @param propiedad nombre de la propiedad
+     * @param valor valor de la propiedad
+     * @return  true si existe
+     */
+    public boolean exists(DomainEntity entidad, String propiedad, String valor) {
         try {            
-            Query q = getSession().createQuery(HqlUtil.exists(entidad, propiedad, value));            
+            Query q = getSession().createQuery(HqlUtil.exists(entidad, propiedad, valor));            
             List lst = q.list();            
             long o = Long.parseLong(lst.size() > 0 ? lst.get(0).toString() : "0");            
             if(o > 0){
@@ -264,6 +288,22 @@ public class Dao {
         return false;
     }
 
+    /**
+     * Obtiene todas las entidades cuya propiedad sea igual al valor indicado.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad = :valor
+     * <span>
+     * </p>     
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de entidad
+     * @param propiedad el nombre de la propiedad
+     * @param valor el valor de la propiedad
+     * @return la lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByProperty(Class<? extends T> clase, String propiedad, Object valor) {
         try {
             log.info("getAllByProperty(): Clase=" + clase+"; Propiedad="+ propiedad + "; Valor="+ valor);
@@ -281,6 +321,22 @@ public class Dao {
         }
     }
     
+    /**
+     * Obtiene el primer elemento cuya propiedad sea igual al valor.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad = :valor limit 1
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de entidad
+     * @param propiedad el nombre de la propiedad
+     * @param valor el valor de la propiedad
+     * @return la primer entidad encontrada
+     */
     public <T extends DomainEntity> T getFirstByProperty(Class<? extends T> clase, String propiedad, Object valor) {
         try {
             Criteria cri = getSession().createCriteria(clase);
@@ -298,6 +354,21 @@ public class Dao {
         }
     }
     
+    /**
+     * Obtiene una lista de entidades genérica mediante la consulta hql indicada.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad ....hql.....
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de entidad
+     * @param hql la consulta hql
+     * @return la lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByHql(Class<? extends T> clase, String hql) {
         try {                                    
             getSession().clear();                
@@ -308,6 +379,22 @@ public class Dao {
         }
     }
     
+    /**
+     * Obtiene un listado de entidades genérica mediante likes y or.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad1 like '%:valor%' or propiedad2 like '%:valor%' or ... propiedad(n) like '%valor%'
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de entidad
+     * @param valor el valor
+     * @param propiedades los nombres de la propiedades
+     * @return lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByOrLikePropertys(Class<? extends T> clase, Object valor, String... propiedades) {
         try {                                    
             getSession().clear();    
@@ -319,9 +406,26 @@ public class Dao {
         }
     }
     
-    public <T extends DomainEntity> CmailList<T> getAllByAndLikePropertys(Class<? extends T> clase, KProperty... map) {
+    /**
+     * Obtiene un listado de entidades genérica mediante el listado de propiedades, el agrupador and y el operador like.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad1 like '%:valor1%' and propiedad2 like '%:valor2%' and propiedad(n) like '%:valor(n)'
+     * <br/>
+     * Donde op1, op2, op(n) el el operador de cada Kproperty
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase clase de entidad
+     * @param propiedades lista de propiedades
+     * @return lista de entidades
+     */
+    public <T extends DomainEntity> CmailList<T> getAllByAndLikePropertys(Class<? extends T> clase, KProperty... propiedades) {
         try {
-            String sql = HqlUtil.getAllByAndLikePropertys(clase, map);            
+            String sql = HqlUtil.getAllByAndLikePropertys(clase, propiedades);            
             log.info("getAllByAndLikePropertys: " + sql);            
             getSession().clear();
             Query q = getSession().createQuery(sql);            
@@ -331,6 +435,21 @@ public class Dao {
         }
     }    
     
+    /**
+     * Obtiene un listado de entidades genérica mediante el listado de propiedades y el agrupador and.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad1 = :valor1 and propiedad2 = :valor2 and propiedad(n) = :valor(n)
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase clase de entidad
+     * @param propiedades lista de propiedades
+     * @return lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByAndPropertys(Class<? extends T> clase, KProperty... map) {
         try {
             String sql = HqlUtil.getAllByAndPropertys(clase, map);
@@ -357,6 +476,22 @@ public class Dao {
         }
     }    
 
+    /**
+     * Obtiene la lista de entidadades donde la propiedad contenga por lo menos un valor de la lista de valores.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad in (valor1, valor2,... valor(n))
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de entidad
+     * @param propiedad el nombre de la propiedad
+     * @param valores la lista de valores
+     * @return lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByInProperty(Class<? extends T> clase, String propiedad, Object... valores) {
         try {
             Criteria cri = getSession().createCriteria(clase);
@@ -367,20 +502,24 @@ public class Dao {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    public <T extends DomainEntity> CmailList<T> getByExample(Class<? extends T> clase, Object objectExample) {
-        try {
-            Criteria cri = getSession().createCriteria(clase);
-            cri.add(Example.create(objectExample));
-            cri.setLockMode(LockMode.UPGRADE);
-            
-            return new CmailList<T>(cri.list());
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    }    
     
+    /**
+     * Obtiene todas las entidades donde la propiedad contenga la cadena valor.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad like '%:valor%'
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase clase de entidad
+     * @param propiedad el nombre de la propiedad
+     * @param valor el valor de la propiedad
+     * @return lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllLikeProperty(Class<? extends T> clase, String propiedad, String valor) {
         try {
             log.info("getAllLikeProperty: " + clase.getSimpleName() +"." +  propiedad +"='%"+ valor+"%'");
@@ -394,6 +533,20 @@ public class Dao {
         }
     }
     
+    /**
+     * Obtiene todas las entidades de una clase en específico.
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase la clase de la entidad
+     * @return listado de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAll(Class<? extends T> clase) {
         try {
             getSession().clear();
@@ -408,7 +561,24 @@ public class Dao {
             return new CmailList();
         }
     }
-    
+
+    /**
+     * Obtiene un listado de entidades donde la propiedad esté entre la fecha inicial y final (incluido las fechas inicial y final).
+     * 
+     * <p>
+     * <b style='color: red;'>Hql Generado: </b>
+     * <span style='color: blue;'>
+     * from entidad where propiedad &gt;= :fechaInicial and propiedad &lt;= :fechaFInal
+     * <span>
+     * </p>
+     * 
+     * @param <T> tipo genérico
+     * @param clase clase de la entidad
+     * @param propiedad nombre de la propiedad
+     * @param fechaInicial fecha inicial
+     * @param fechaFinal fecha final
+     * @return lista de entidades
+     */
     public <T extends DomainEntity> CmailList<T> getAllByDates(Class<? extends T> clase, String propiedad, Date fechaInicial, Date fechaFinal) {
         try {
             Calendar c = Calendar.getInstance();
