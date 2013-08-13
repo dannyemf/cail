@@ -92,11 +92,7 @@ public class BaseServicio  {
     
     public <T extends DomainEntity> CmailList<T> listarPorRangoFechas(Class<? extends T> clase, String propiedad, Date fechaInicial, Date fechaFinal){
         return dao.getAllByDates(clase, propiedad, fechaInicial, fechaFinal);
-    }
-    
-    public <T extends DomainEntity> CmailList<T> listarPorEjemplo(Class<? extends T> clase, DomainEntity objetoEjemplo){
-        return dao.getByExample(clase, objetoEjemplo);
-    }
+    }    
     
 
     

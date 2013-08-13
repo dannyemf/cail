@@ -38,9 +38,7 @@ public class GenericServicio<T extends DomainEntity> extends  BaseServicio {
 
     public boolean existe(DomainEntity entidad, String propiedad, String valor) {
         return super.existe(entidad, propiedad, valor);
-    }
-    
-    
+    }        
     
     public T obtenerUnicoPor(String propiedad, Object valor){
         return super.obtenerUnicoPor(claseG, propiedad, valor);
@@ -84,11 +82,7 @@ public class GenericServicio<T extends DomainEntity> extends  BaseServicio {
     
     public CmailList<T> listarPorRangoFechas(String propiedad, Date fechaInicial, Date fechaFinal){
         return super.listarPorRangoFechas(claseG, propiedad, fechaInicial, fechaFinal);
-    }
-    
-    public CmailList<T> listarPorEjemplo(DomainEntity objetoEjemplo){
-        return super.listarPorEjemplo(claseG, objetoEjemplo);
-    }
+    }       
     
     
 }
