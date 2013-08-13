@@ -5,12 +5,11 @@
 package org.cmail.rehabilitacion.servicio;
 
 import java.util.List;
-import org.cmail.rehabilitacion.dao.Dao;
 import org.cmail.rehabilitacion.dao.GanericDao;
 import org.cmail.rehabilitacion.dao.HqlUtil;
 import org.cmail.rehabilitacion.dao.hql.K;
 import org.cmail.rehabilitacion.dao.hql.KProperty;
-import org.cmail.rehabilitacion.dao.hql.KQuery;
+import org.cmail.rehabilitacion.dao.hql.KWhere;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
 
@@ -32,22 +31,7 @@ public class PersonaServicio extends GenericServicio<Persona> {
         p.addRol(PersonaRol.GENERAL);        
         return p;
     }
-
-    //comprueba si ya existe una persona con la cedula enviada y
-    //y determina si es otra persona que se esta editando
-//    public boolean existePersonaByCedula(String cedula, Persona persona) {
-//        boolean existe = false;
-//        if (persona != null) {
-//            Persona persona_aux = (Persona) obtenerUnicoPor(Persona.class, "cedula", cedula);
-//            if (persona_aux != null && (!persona.getId().equals(persona_aux.getId()))) {
-//                existe = true;
-//            }
-//        }
-//        return existe;
-//    }
-
        
-
     public List<Persona> listarAdolescentes(String cedula, String nombres, String apellidos, boolean incluirOtrosRoles) {        
         KProperty[] props = new KProperty[incluirOtrosRoles ? 3 : 4];
         props[0]=new KProperty("cedula", cedula);
@@ -76,18 +60,22 @@ public class PersonaServicio extends GenericServicio<Persona> {
     
     public List<Persona> listarPersonas(String texto, PersonaRol rol, PersonaRol noRol) {                
         
-        KProperty roles = K.like("roles", rol.name());
+        KWhere where = super.from().where(K.like("roles", rol.name()));        
         
         if(noRol != null){
-            roles.and(K.notLike("roles", noRol.name()));
+            where.addProperty(K.notLike("roles", noRol.name()));
         }
         
-        KProperty propsx = roles.and(
-            K.like("cedula", texto).or(K.like("nombres", texto)).or(K.like("apellidos",texto)).or(K.like("(nombres||' '||apellidos)", texto))
-        );
-        
-        
-        return super.from().where(propsx).list();
-    }
+        where.addProperty(
+                K.or(
+                    K.like("cedula", texto), 
+                    K.like("nombres", texto), 
+                    K.like("apellidos",texto), 
+                    K.like("(nombres||' '||apellidos)", texto)
+                )
+        );       
+                
+        return where.list();
+    }    
    
 }

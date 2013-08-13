@@ -65,7 +65,13 @@ public class CategoriaController  extends Controller{
     }
     
     public void eventoBuscar(ActionEvent evt) {
-        listaCategorias = new CategoriaServicio().from().where(K.like("nombre", texto).or(K.like("descripcion", texto)).or(K.like("tipo", texto))).list();
+        listaCategorias = new CategoriaServicio().from().where(
+                K.or(
+                    K.like("nombre", texto), 
+                    K.like("descripcion", texto), 
+                    K.like("tipo", texto)
+                )
+        ).list();
     }
 
     public void eventoNuevo(ActionEvent evt) {

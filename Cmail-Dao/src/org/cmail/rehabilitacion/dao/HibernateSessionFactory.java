@@ -118,9 +118,4 @@ public class HibernateSessionFactory {
     public static Configuration getConfiguration() {
         return configuration;
     }
-    
-    public static void main(String [] xs){
-        Session s = getSession();                
-        
-    }
 }

@@ -1,9 +1,6 @@
 
 package org.cmail.rehabilitacion.dao.hql;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,15 +11,10 @@ import java.util.List;
 public class KProperty {
     
     private String key;
-    private Object valor;
-    private boolean group = false;
-    private List<KProperty> propiedades = new ArrayList<KProperty>();    
-    private KOperador operador = KOperador.eq;
-    private boolean and = true;  
+    private Object valor;    
+    private KOperador operador = KOperador.eq;    
     
-    protected KProperty(KProperty... propiedades) {
-        this.propiedades.addAll(Arrays.asList(propiedades));        
-        group = true;
+    protected KProperty() {                        
     }
     
     public KProperty(String key) {
@@ -106,49 +98,9 @@ public class KProperty {
     
     public String toHql(List<Object> parametros){        
         String s = "";        
-        s += isGroup() ? "(" :  "";
-        s += toHqlProperties(parametros);
-        s += isGroup() ? ")" : "";
+        s += key + op(parametros);        
         return s;
-    }
-    
-    public String toHqlProperties(List<Object> parametros){        
-        String s = propiedades.isEmpty() ? "" : "(";
-        
-        if(isGroup()==false){
-            s += getKey() + op(parametros);
-        }
-        
-        int i = 0;
-        for (Iterator<KProperty> it = propiedades.iterator(); it.hasNext();) {
-            KProperty kv = it.next();            
-            s += kv.isAnd() ? " and " : " or ";                        
-            s += kv.toHql(parametros);
-        }
-        
-        s+= propiedades.isEmpty() ? "" : ")";
-        
-        return s;
-    }
-    
-    
-    public KProperty and(KProperty p){
-        p.and = true;
-        propiedades.add(p);
-        return this;
-    }   
-    
-    public KProperty or(KProperty p){
-        p.and = false;
-        propiedades.add(p);
-        return this;
-    }
-    
-    public KProperty toOr(){
-        and = false;
-        return this;
-    }
-    
+    }      
 
     /**
      * @return the key
@@ -176,15 +128,7 @@ public class KProperty {
      */
     public void setValor(Object valor) {
         this.valor = valor;
-    }
-
-    public boolean isGroup() {
-        return group;
-    }
-
-    public void setGroup(boolean group) {
-        this.group = group;
-    }
+    }   
 
     public KOperador getOperador() {
         return operador;
@@ -192,16 +136,6 @@ public class KProperty {
 
     public void setOperador(KOperador operador) {
         this.operador = operador;
-    }        
-
-    public boolean isAnd() {
-        return and;
     }
-
-    public void setAnd(boolean and) {
-        this.and = and;
-    }
-
-    
     
 }

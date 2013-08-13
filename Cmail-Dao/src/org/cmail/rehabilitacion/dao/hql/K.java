@@ -10,9 +10,13 @@ package org.cmail.rehabilitacion.dao.hql;
  */
 public class K {
     
-    public static KProperty group(KProperty... propiedades){
-        return new KPropertyGroup(propiedades);
-    }    
+    public static KProperty and(KProperty... propiedades){
+        return new KPropertyGroup(true, propiedades);
+    }
+    
+    public static KProperty or(KProperty... propiedades){
+        return new KPropertyGroup(false, propiedades);
+    }
     
     public static KProperty eq(String propiedad, Object valor){
         KProperty k = new KProperty(propiedad, valor, KOperador.eq);        

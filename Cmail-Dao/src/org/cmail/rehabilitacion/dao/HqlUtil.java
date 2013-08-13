@@ -4,12 +4,8 @@
  */
 package org.cmail.rehabilitacion.dao;
 
-import java.util.List;
-import org.cmail.rehabilitacion.dao.hql.K;
 import org.cmail.rehabilitacion.dao.hql.KProperty;
-import org.cmail.rehabilitacion.dao.hql.KQuery;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
-import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 
 /**
  *
@@ -89,14 +85,5 @@ public class HqlUtil {
         } catch (Exception e) {
             return null;
         }
-    }
-    
-    public static void main(String... pro){
-        List<Usuario> lst = KQuery.from(Usuario.class).orderBy(K.asc("login")).list();
-        for (Usuario u : lst) {
-            System.out.println(u);
-        }
-        
-    }
-    
+    }       
 }

@@ -12,7 +12,6 @@ import org.cmail.rehabilitacion.modelo.seguridad.Perfil;
 
 import org.cmail.rehabilitacion.modelo.seguridad.Permiso;
 import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
-import org.cmail.rehabilitacion.modelo.seguridad.VwOpcion;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.criterion.Restrictions;

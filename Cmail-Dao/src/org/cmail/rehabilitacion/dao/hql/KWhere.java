@@ -21,7 +21,11 @@ public class KWhere<T extends DomainEntity> implements IKResult<T> {
     public KWhere(KQuery<T> query, KProperty... k) {
         propiedades.addAll(Arrays.asList(k));
         this.query = query;
-    }   
+    }
+    
+    public void addProperty(KProperty k){
+        propiedades.add(k);
+    }
     
     public String toHql(List<Object> parametros){
         
@@ -29,12 +33,13 @@ public class KWhere<T extends DomainEntity> implements IKResult<T> {
             String where = "";
             
             int i = 0;
-            for (KProperty it : propiedades) {
+            for (KProperty it : propiedades) {                                
                 if(i > 0){
-                    where += it.isAnd() ? " and " : " or ";
+                    where += " and ";
                 }
                 where +=  it.toHql(parametros);
                 i++;
+                                            
             }                                                
             
             return where.length() == 0 ? "" : " Where " + where;
@@ -63,10 +68,5 @@ public class KWhere<T extends DomainEntity> implements IKResult<T> {
     public Long count(){
         return query.count();
     }
-
-    
-
-    
-    
     
 }

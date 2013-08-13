@@ -99,14 +99,7 @@ public class KQuery<T extends DomainEntity> implements IKResult{
         }
         
         return q;
-    }
-    
-    public static void main(String... ax){
-        Persona p = new Persona();
-        p.setId(1L);        
-        Long c =  KQuery.from(FichaIngreso.class).where(K.eq("adolescente", p), K.isNull("idFichaEgreso")).count();
-        System.out.println(c);
-    }
+    }   
     
     public List<T>list(){
         String hql = toHql();
