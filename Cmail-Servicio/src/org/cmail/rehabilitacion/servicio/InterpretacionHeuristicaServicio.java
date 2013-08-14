@@ -15,11 +15,23 @@ import org.cmail.rehabilitacion.modelo.htp.Categoria;
 import org.cmail.rehabilitacion.modelo.htp.TipoCategoria;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para realizar la interpretación heurística del test htp.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class InterpretacionHeuristicaServicio {       
     
+    /**
+     * Método principal para generar el diágnostico para lo cual necesita la información ingresada en la vista.
+     * 
+     * @param categorias lista con todas las categorías de indicadores
+     * @param ic modelo de vista en donde especifica los indicadores seleccionados de la casa
+     * @param ia modelo de vista en donde especifica los indicadores seleccionados del árbol
+     * @param ip modelo de vista en donde especifica los indicadores seleccionados de la persona
+     * @return un objeto Diagnostico
+     */
     public Diagnostico diagnosticar(List<Categoria> categorias, ItemInterpretacion ic, ItemInterpretacion ia, ItemInterpretacion ip){
         
         Diagnostico diagnostico = new Diagnostico(categorias);                
@@ -53,6 +65,12 @@ public class InterpretacionHeuristicaServicio {
         return diagnostico;
     }
     
+    /**
+     * Método invocado por diagnosticar(...) para generar el diagnóstico por cada tipo de categoría y calcular el porcentaje de rehabilitación.
+     * 
+     * @param categorias las categorías de indicadores
+     * @param diagnostico el diagnóstico actual
+     */
     private void generarDiagnostico(List<Categoria> categorias, Diagnostico diagnostico){
         
         String grafProporcion = this.generarDiagnostico(diagnostico, TipoCategoria.Proporcion);
@@ -72,6 +90,14 @@ public class InterpretacionHeuristicaServicio {
         diagnostico.setPorcentajeRehabilitacionSistema(valor);
     }
     
+    /**
+     * Genera un diagnóstico para el tipo de categoría indicado.
+     * Este método es invocado por generarDiagnostico(...).
+     * 
+     * @param diagnostico el diagnóstico actual
+     * @param tipo el tipo de categoría
+     * @return 
+     */
     private String generarDiagnostico(Diagnostico diagnostico, TipoCategoria tipo){
         
         List<String> listaSignificaciones = new ArrayList<String>();
@@ -108,6 +134,13 @@ public class InterpretacionHeuristicaServicio {
         return diag;
     }
     
+    /**
+     * Obtiene todas las categorías del tipo indicado.
+     * 
+     * @param lista todas las categorías de la base de datos
+     * @param tipo el tipo de categoría a filtrar
+     * @return lista de categoria con el tipo indicado
+     */
     public List<Categoria> obtenerCategorias(List<Categoria> lista, TipoCategoria tipo){
         List<Categoria> listaF = new ArrayList<Categoria>();
                 
@@ -121,6 +154,13 @@ public class InterpretacionHeuristicaServicio {
         return listaF;
     }
     
+    /**
+     * Obtiene el indicador más adecuado de una categoría según los valores seleccionados por el usuario.
+     * 
+     * @param categoria la categoría
+     * @param ic el modelo de la vista
+     * @return el indicador
+     */
     public ItemInterpretacionCategoriaIndicador obtenerMejorIndicador(Categoria categoria, ItemInterpretacion ic){
         
         ItemInterpretacionCategoria item = obtenerItemCategoria(ic, categoria);
@@ -144,6 +184,12 @@ public class InterpretacionHeuristicaServicio {
         return itemIndicador;
     }
     
+    /**
+     * Obtiene el mejor indicador entre el conjunto de indicadores según los valores ingresados por el usuario.
+     * 
+     * @param indicadores el conjunto de indicadores
+     * @return un indicador
+     */
     public ItemInterpretacionCategoriaIndicador obtenerMejorIndicador(ItemInterpretacionCategoriaIndicador... indicadores){
         
         ItemInterpretacionCategoriaIndicador indicador = null;
@@ -163,6 +209,13 @@ public class InterpretacionHeuristicaServicio {
         return indicador;
     }
     
+    /**
+     * Obtiene el indicador con mayor peso y en caso de ser iguales obtiene un indicador al hazar.
+     * 
+     * @param i1 indicador uno
+     * @param i2 indicador dos
+     * @return el indicador con mayor perso o al hazar
+     */
     public ItemInterpretacionCategoriaIndicador obtenerMayor(ItemInterpretacionCategoriaIndicador i1, ItemInterpretacionCategoriaIndicador i2){        
         
         if(i1.getIndicador().getValor() > i2.getIndicador().getValor()){
@@ -175,8 +228,30 @@ public class InterpretacionHeuristicaServicio {
                 return obtenerAleatorio(i1, i2);
             }
         }
-    }        
+    }  
     
+    /**
+     * Si el peso de los dos indicadores es igual, se obtiene uno al hazar.
+     * @param i1 indicador uno
+     * @param i2 indicador dos
+     * @return un indicador al hazar
+     */
+    public ItemInterpretacionCategoriaIndicador obtenerAleatorio(ItemInterpretacionCategoriaIndicador i1, ItemInterpretacionCategoriaIndicador i2){
+        double r = Math.random() * 100;
+        if(r >= 50.0){
+            return i1;
+        }else{
+            return i2;
+        }
+    }
+    
+    /**
+     * Obtiene el item de interpretación de la categoría mediante el item de interpretación y su categoría.
+     * 
+     * @param itemInt item de interpretación
+     * @param categoria la categoría
+     * @return el ItemInterpretacionCategoria
+     */
     public ItemInterpretacionCategoria obtenerItemCategoria(ItemInterpretacion itemInt, Categoria categoria){
         
         ItemInterpretacionCategoria itemCat = null;
@@ -191,17 +266,15 @@ public class InterpretacionHeuristicaServicio {
         }
         
         return itemCat;
-    }  
+    }          
     
-    public ItemInterpretacionCategoriaIndicador obtenerAleatorio(ItemInterpretacionCategoriaIndicador i1, ItemInterpretacionCategoriaIndicador i2){
-        double r = Math.random() * 100;
-        if(r >= 50.0){
-            return i1;
-        }else{
-            return i2;
-        }
-    }
-    
+    /**
+     * Eliminar los caracteres indicados del final de la cadena.
+     * 
+     * @param cadena la cadena
+     * @param ends los caracteres a eliminar
+     * @return 
+     */
     public String replaceEnd(String cadena, char... ends){
         
         for (char c : ends) {
@@ -209,7 +282,6 @@ public class InterpretacionHeuristicaServicio {
                 cadena = cadena.substring(0, cadena.length()-1);
             }
         }
-        
         
         return cadena;
     }

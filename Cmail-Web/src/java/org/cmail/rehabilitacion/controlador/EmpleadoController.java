@@ -124,7 +124,7 @@ public class EmpleadoController extends Controller {
     public void validarCedulaEmpleado(FacesContext cont, UIComponent cmp, Object value) throws ValidatorException{
         boolean b = CedulaUtil.validar(value.toString());
         if (b) {
-            boolean bi = new FichaIngresoServicio().existePersonaByCedula(value.toString(), getEmpleado());
+            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getEmpleado());
             if (bi) {                
                 errorMessage(cmp.getClientId(), mensajeBundle("val_cedula_registrada"));
             }

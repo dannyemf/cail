@@ -12,31 +12,30 @@ import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para manejar fichas de ingreso.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
 
+    /**Capa de acceso a datos*/
     private FichaIngresoDao dao;
     
+    /**
+     * Constructor por defecto
+     */
     public FichaIngresoServicio() {
         super(FichaIngreso.class);
         dao = new FichaIngresoDao();
-    }
+    }    
 
-    //comprueba si ya existe una persona con la cedula enviada y
-    //y determina si es otra persona que se esta editando
-    public boolean existePersonaByCedula(String cedula, Persona persona) {
-        boolean existe = false;
-        if (persona != null) {
-            Persona persona_aux = (Persona) obtenerUnicoPor(Persona.class, "cedula", cedula);
-            if (persona_aux != null && (!persona.getId().equals(persona_aux.getId()))) {
-                existe = true;
-            }
-        }
-        return existe;
-    }
-
+    /**
+     * Guarda la ficha de ingreso
+     * @param ficha la ficha
+     * @return true si se guardó
+     */
     public boolean guardarFicha(FichaIngreso ficha) {
         
         //if(ficha.getId().longValue() <= 0){
@@ -49,25 +48,16 @@ public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
         ficha.setRazonIngreso(this.generarRazonIngreso(ficha));
             
         return dao.save(ficha);        
-    }
-    
+    }       
 
-    //busca personas extendiendo de la super BaseServicio
-    /*public List<Persona> listarPersonas(String cedula, String nombres, String apellidos) {
-        return listarTodosLike2(Persona.class, "cedula", cedula, "nombres", nombres, "apellidos", apellidos);
-    }*/
-
-    /*public Persona buscarPersonaByCedula(String cedula) {
-        List<Persona> listaPersonas = getByPropiedad(Persona.class, "cedula", cedula);
-        if (listaPersonas != null && !listaPersonas.isEmpty()) {
-            return listaPersonas.get(0);
-        } else {
-            //revisar
-            return new Persona();
-        }
-
-    }*/
-
+    /**
+     * Lista las fichas de ingreso donde por lo menos un atributo del adolescente contenga el valor respectivo.
+     * 
+     * @param cedula la cédula
+     * @param nombres los nombres
+     * @param apellidos los apellidos
+     * @return lista de fichas de ingreso
+     */
     public List<FichaIngreso> listarFichas(String cedula, String nombres, String apellidos) {        
         return super.listarPorPropiedadesValoresLike(
             new KProperty("adolescente.cedula", cedula),
@@ -76,6 +66,12 @@ public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
         );
     }
 
+    /**
+     * Crea una nueva ficha de ingreso e la inicializa con valores por defecto.
+     * 
+     * @param adolescente el adolescente
+     * @return la ficha de ingreso
+     */
     public FichaIngreso crearNueva(Persona adolescente) {
         FichaIngreso fichaIngreso = new FichaIngreso();
         fichaIngreso.setAdolescente(adolescente); 
@@ -86,21 +82,27 @@ public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
         return fichaIngreso;
     }
     
-    public String generarRazonIngreso(FichaIngreso fi){
+    /**
+     * Genera una descripción de la razón de ingreso del adolescente tomando en cuenta los atributos booleanos que dicatan tal motivo.
+     * 
+     * @param fichaIngreso la ficha de ingreso
+     * @return una cadena
+     */
+    public String generarRazonIngreso(FichaIngreso fichaIngreso){
         String motivo = "";
         
-        if (fi.isRazInMedidaCautelar()){
+        if (fichaIngreso.isRazInMedidaCautelar()){
             motivo += "Medida cautelar (";
-            if (fi.isRazInMcRetencion()){
+            if (fichaIngreso.isRazInMcRetencion()){
                 motivo += "Retención; ";
             }
-            if (fi.isRazInMcInvestigacion()){
+            if (fichaIngreso.isRazInMcInvestigacion()){
                 motivo += "Investigación; ";
             }
-            if (fi.isRazInMcComparecencia()){
+            if (fichaIngreso.isRazInMcComparecencia()){
                 motivo += "Asegurar comparescencia; ";
             }
-            if (fi.isRazInMcIntPreventivo()){
+            if (fichaIngreso.isRazInMcIntPreventivo()){
                 motivo += "Internamiento preventivo; ";
             } 
             motivo += ")";
@@ -108,33 +110,33 @@ public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
             motivo = motivo.replace("; )", ")");
         }
         
-        if (fi.isRazInMedidaSocioeducativa()){
+        if (fichaIngreso.isRazInMedidaSocioeducativa()){
             motivo += "Medida socioeducativa (";
-            if (fi.isRazInMsIntFinSemana()){
+            if (fichaIngreso.isRazInMsIntFinSemana()){
                 motivo += "Internamiento de fin de semana; ";
             }
-            if (fi.isRazInMsIntSemiLibertad()){
+            if (fichaIngreso.isRazInMsIntSemiLibertad()){
                 motivo += "Internamiento régimen de semilibertad; ";
             }
-            if (fi.isRazInMsIntInstitucional()){
+            if (fichaIngreso.isRazInMsIntInstitucional()){
                 motivo += "Internamiento institucional; ";
             }
-            if (fi.isRazInMsLibAsistida()){
+            if (fichaIngreso.isRazInMsLibAsistida()){
                 motivo += "Libertad asistida; ";
             }
-            if (fi.isRazInMsServComunidad()){
+            if (fichaIngreso.isRazInMsServComunidad()){
                 motivo += "Servicio a la comunidad; ";
             }
-            if (fi.isRazInMsRepDanoCausado()){
+            if (fichaIngreso.isRazInMsRepDanoCausado()){
                 motivo += "Reparación del daño causado; ";
             }
-            if (fi.isRazInMsOrientaApoyoFamiliar()){
+            if (fichaIngreso.isRazInMsOrientaApoyoFamiliar()){
                 motivo += "Orientación y apoyo familiar; ";
             }
-            if (fi.isRazInMsAmonestacionImposicion()){
+            if (fichaIngreso.isRazInMsAmonestacionImposicion()){
                 motivo += "Amonestación e imposición de reglas de conducta; ";
             }
-            if (fi.isRazInMsAmonestacion()){
+            if (fichaIngreso.isRazInMsAmonestacion()){
                 motivo += "Amonestación; ";
             }
             motivo += ")";
@@ -142,16 +144,16 @@ public class FichaIngresoServicio extends GenericServicio<FichaIngreso> {
             motivo = motivo.replace("; )", ")");
         }
         
-        if (fi.isRazInReingreso()){
+        if (fichaIngreso.isRazInReingreso()){
             motivo += "Reingreso (";
-            if (fi.isRazInRiMedidaCautelar()){
+            if (fichaIngreso.isRazInRiMedidaCautelar()){
                 motivo += "Medida cautelar; ";
             }
-            if (fi.isRazInRiMedidaSocioeducativa()){
+            if (fichaIngreso.isRazInRiMedidaSocioeducativa()){
                 motivo += "Medida socioeducativa; ";
             }
-            if (fi.isRazInRiOtroTipo()){
-                motivo += fi.getRazInRiOtroTipoNombre() + "; ";
+            if (fichaIngreso.isRazInRiOtroTipo()){
+                motivo += fichaIngreso.getRazInRiOtroTipoNombre() + "; ";
             }
             motivo += ")";
             

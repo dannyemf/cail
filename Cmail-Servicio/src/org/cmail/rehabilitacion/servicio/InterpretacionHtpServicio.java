@@ -15,15 +15,27 @@ import org.cmail.rehabilitacion.modelo.seguridad.Parametro;
 import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para manejar la entidad interpretación test htp.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class InterpretacionHtpServicio extends GenericServicio<InterpretacionTestHtp> {
 
+    /**
+     * Constructor por defecto
+     */
     public InterpretacionHtpServicio() {
         super(InterpretacionTestHtp.class);
     }
     
+    /**
+     * Inicializa una instancia de interpretación de un test htp
+     * 
+     * @param test el test htp
+     * @return la instancia
+     */
     public InterpretacionTestHtp crearInterpretacion (TestHtp test){
         
         InterpretacionTestHtp interpretacion = new InterpretacionTestHtp();
@@ -37,6 +49,12 @@ public class InterpretacionHtpServicio extends GenericServicio<InterpretacionTes
         return interpretacion;
     }
     
+    /**
+     * Genera un resumen separado con puntos y comas de las respuestas del test htp considerando las preguntas obligatorias.
+     * 
+     * @param test el test htp
+     * @return el resumen
+     */
     public String generarResumenInterrogativo (TestHtp test){
         
         String r = "";
@@ -55,6 +73,12 @@ public class InterpretacionHtpServicio extends GenericServicio<InterpretacionTes
         return r;
     }
     
+    /**
+     * Calcula el nivel de rehabilitación en base a la interpretación del test htp.
+     * 
+     * @param interpretacion la interpretación
+     * @throws LayerException 
+     */
     public void calcularNivelRehabilitacion(InterpretacionTestHtp interpretacion) throws LayerException{
         //Porcentaje de calificacion el evaluador
         Parametro prm = new ParametroServicio().obtenerParametro(Constantes.PRM_PORCENTAJE_EVALUADOR, TipoParametro.Porcentaje);

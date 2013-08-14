@@ -13,20 +13,27 @@ import org.cmail.rehabilitacion.modelo.seguridad.Perfil;
 import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para manejar las cuentas de usaurio.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class UsuarioServicio extends GenericServicio<Usuario> {
 
+    /**
+     * Constructor por defecto
+     */
     public UsuarioServicio() {
         super(Usuario.class);
     }
     
     /**
+     * Autentica un usuario.
      * 
-     * @param login
-     * @param clave
-     * @return
+     * @param login el nombre de usaurio
+     * @param clave la clave del usuario
+     * @return el usuario o null
      * @throws Exception 
      */
     public Usuario logear(String login, String clave) throws Exception {
@@ -46,6 +53,12 @@ public class UsuarioServicio extends GenericServicio<Usuario> {
         }        
     }
     
+    /**
+     * Guarda un usuario en la base de datos
+     * @param model el usuario
+     * @param userLogeado el usuario que está editando
+     * @return true si se guardó correctamente
+     */
     public boolean guardar(Usuario model, Usuario userLogeado) {
         
         ArrayList<Perfil> prfs = new ArrayList<Perfil>(model.getPerfiles());

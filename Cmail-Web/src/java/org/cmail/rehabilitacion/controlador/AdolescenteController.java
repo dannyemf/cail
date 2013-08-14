@@ -26,7 +26,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
  *
- * @author Desarrollador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 @ManagedBean(name = Constantes.MB_ADOLESCENTES)
 @SessionScoped
@@ -198,24 +200,7 @@ public class AdolescenteController extends Controller {
     public WucBuscarPersonaController getWucBuscarPersona() {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
     }
-       
-    //validadores de cedula
-    /**
-     * al intentar guardar un adolescente con la misma cedula 
-     * no se le permite. porque cada detenido solo tiene una sola
-     * ficha de detenciones..     
-     */
-    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) throws ValidatorException{
-        boolean b = CedulaUtil.validar(value.toString());
-        if (b) {
-            boolean bi = new FichaIngresoServicio().existePersonaByCedula(value.toString(), getAdolescente());
-            if (bi) {                
-                errorMessage(cmp.getClientId(), mensajeBundle("val_cedula_registrada"));
-            }
-        } else {
-            errorMessage(cmp.getClientId(), mensajeBundle("val_cedula_incorrecta"));            
-        }
-    }    
+               
 
     public CmailListDataModel<Persona> getModelList() {
         return modelList;

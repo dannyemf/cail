@@ -19,7 +19,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
-import org.cmail.rehabilitacion.controlador.bean.*;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
@@ -29,6 +28,7 @@ import org.cmail.rehabilitacion.modelo.sira.FichaEgreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.servicio.FichaEgresoServicio;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
+import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
@@ -288,7 +288,7 @@ public class FichaEgresoController extends Controller {
     public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = CedulaUtil.validar(value.toString());
         if (b) {
-            boolean bi = new FichaIngresoServicio().existePersonaByCedula(value.toString(), getFichaEgresoEdicion().getAdolescente());
+            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaEgresoEdicion().getAdolescente());
             if (bi) {
                 setFacesMessage("Cedula ya registrada");
             }

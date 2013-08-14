@@ -25,6 +25,7 @@ import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
+import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.model.ItemFichaIngreso;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
@@ -506,7 +507,7 @@ public class FichaIngresoController extends Controller {
     public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = CedulaUtil.validar(value.toString());
         if (b) {
-            boolean bi = new FichaIngresoServicio().existePersonaByCedula(value.toString(), getFichaIngresoEdicion().getAdolescente());
+            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaIngresoEdicion().getAdolescente());
             if (bi) {
                 setFacesMessage("Cedula ya registrada");
             }

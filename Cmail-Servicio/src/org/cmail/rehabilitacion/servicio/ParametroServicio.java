@@ -9,23 +9,28 @@ import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para manejar los parámetros del sistema.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class ParametroServicio extends GenericServicio<Parametro> {
 
+    /**
+     * Constructor por defecto
+     */
     public ParametroServicio() {
         super(Parametro.class);
-    }
+    }    
     
-//    public Parametro obtenerParametro(String nombre){
-//        return obtenerParametro(nombre,"DefaultValue");
-//    }
-    
-//    public Parametro obtenerParametro(String nombre, String defaultValues){
-//        return obtenerParametro(nombre, defaultValues, "Parámetro no inicializado");
-//    }
-    
+    /**
+     * Obtiene el parámetro por nombre, si no existe lo crea.
+     * 
+     * @param nombre nombre único del parámetro
+     * @param defaultTipo tipo de parámetro
+     * @return el parámetro
+     */
     public Parametro obtenerParametro(String nombre, TipoParametro defaultTipo){
         Parametro p = super.obtenerUnicoPor("nombre", nombre);
         
@@ -47,13 +52,14 @@ public class ParametroServicio extends GenericServicio<Parametro> {
         }
         
         return p;
-    }
+    }    
     
-    /*public String obtenerValor(String nombre){
-        Parametro p = obtenerParametro(nombre);        
-        return p != null ? p.getValor() : "DefaultValue";
-    }*/
-    
+    /**
+     * Obtiene el valor de un parámetro, si no existe lo crea.
+     * @param nombre nombre único del parámetro
+     * @param defaultTipo tipo por defecto
+     * @return el valor del parámetro
+     */
     public String obtenerValor(String nombre, TipoParametro defaultTipo){
         Parametro p = obtenerParametro(nombre, defaultTipo);
         return p != null ? p.getValor() : "¿¿¿"+nombre+"???";

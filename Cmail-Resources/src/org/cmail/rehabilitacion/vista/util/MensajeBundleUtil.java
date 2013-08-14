@@ -12,8 +12,11 @@ import org.apache.log4j.Logger;
 
 
 /**
- *
- * @author Usuario
+ * Clase de utilidad para cargar mensajes de los archivos de recursos (Internacionalización).
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class MensajeBundleUtil {        
     
@@ -26,6 +29,12 @@ public class MensajeBundleUtil {
     
     private static HashMap messageBundles = new HashMap();
     
+    /**
+     * Obtiene un mensaje de ruta para el mapa de navegación (Usted está aquí).
+     * 
+     * @param key la clave
+     * @return el mensaje
+     */
     public static String getRuta(String key){
         String xx = getBundle(RUTA_ROUTES).getString(key);
         if(xx == null || xx.equals("")){
@@ -34,6 +43,12 @@ public class MensajeBundleUtil {
         return xx;
     }
     
+    /**
+     * Obtiene un mensaje del archivo de recursos.
+     * 
+     * @param key la clave
+     * @return  el mensaje
+     */
     public static String getMensaje(String key){
         String xx = getBundle(RUTA_MENSAJES).getString(key);
         if(xx == null || xx.equals("")){
@@ -42,6 +57,11 @@ public class MensajeBundleUtil {
         return xx;
     }
     
+    /**
+     * Obtiene la etiqueta usada para los controles (texto en botones, etc.).
+     * @param key la clave
+     * @return la etiqueta
+     */
     public static String getEtiqueta(String key){
         String xx = getBundle(RUTA_ETIQUETAS).getString(key);
         if(xx == null || xx.equals("")){
@@ -50,7 +70,11 @@ public class MensajeBundleUtil {
         return xx;
     }
     
-    
+    /**
+     * Obtiene el nombre de la acción usada en los controles (botones, vínculos, etc.)
+     * @param key la clave
+     * @return la acción
+     */
     public static String getAccion(String key){
         String xx = getBundle(RUTA_ACCIONES).getString(key);
         if(xx == null || xx.equals("")){
@@ -60,6 +84,12 @@ public class MensajeBundleUtil {
     }
     
 
+    /**
+     * Obtiene un el recurso para la presentación de mensajes, etiquetas, etc.
+     * 
+     * @param bundle La ruta del archivo de recursos
+     * @return el recurso
+     */
     public static ResourceBundle getBundle(String bundle){                
         
         Locale locale = null;
@@ -86,13 +116,7 @@ public class MensajeBundleUtil {
         }
         
         return messages;
-    }  
-    
-    public static void main(String... args){
-        System.out.println(getMensaje("eliminar_usuario"));
-        System.out.println(getRuta("nuevo"));
-        
-    }
+    }          
     
 }
 

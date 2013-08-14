@@ -9,21 +9,32 @@ import org.cmail.rehabilitacion.dao.Dao;
 import org.cmail.rehabilitacion.modelo.sira.FichaEgreso;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.dao.hql.KProperty;
-import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- *
- * @author Usuario
+ * Clase de lógica de negocio para manejar fichas de egresos.
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0Usuario
  */
 public class FichaEgresoServicio extends GenericServicio<FichaEgreso> {
 
+    /**Capa de acceso a datos*/
     private Dao dao = null;
     
+    /**
+     * Constructor por defecto
+     */
     public FichaEgresoServicio() {
         super(FichaEgreso.class);
         dao = new Dao();
     }
     
+    /**
+     * Guarda una ficha de egreso en la base de datos
+     * @param egreso la ficha de egreso
+     * @return true si se guardó correctamente
+     */
     public boolean guardar(FichaEgreso egreso){
         boolean b = false;
         try {
@@ -44,21 +55,15 @@ public class FichaEgresoServicio extends GenericServicio<FichaEgreso> {
         }
         
         return b;
-    }
-
-    //comprueba si ya existe una persona con la cedula enviada y
-    //y determina si es otra persona que se esta editando
-    public boolean existePersonaByCedula(String cedula, Persona persona) {
-        boolean existe = false;
-        if (persona != null) {
-            Persona persona_aux = (Persona) obtenerUnicoPor(Persona.class, "cedula", cedula);
-            if (persona_aux != null && (!persona.getId().equals(persona_aux.getId()))) {
-                existe = true;
-            }
-        }
-        return existe;
-    }
+    }   
     
+    /**
+     * Lista las fichas de egreso donde la la cédula, los nombres o los apellidos contengan las cedenas respectivas.
+     * @param cedula la cédula del adolescente
+     * @param nombres los nombres del adolescente
+     * @param apellidos los apellidos del adolescente
+     * @return lista de fichas de egreso
+     */
     public List<FichaEgreso> listarFichas(String cedula, String nombres, String apellidos) {
         return super.listarPorPropiedadesValoresLike(
                 new KProperty("adolescente.cedula", cedula),
@@ -66,6 +71,11 @@ public class FichaEgresoServicio extends GenericServicio<FichaEgreso> {
                 new KProperty("adolescente.apellidos", apellidos));
     }
 
+    /**
+     * Crear una ficha de egreso la inicializa con valores por defecto.
+     * 
+     * @return la ficha de egreso
+     */
     public FichaEgreso crearNueva() {
         FichaEgreso fichaEgreso = new FichaEgreso();
         fichaEgreso.setAdolescente(new Persona());
