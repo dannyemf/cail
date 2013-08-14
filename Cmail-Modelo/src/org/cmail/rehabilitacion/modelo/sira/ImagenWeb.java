@@ -7,22 +7,41 @@ package org.cmail.rehabilitacion.modelo.sira;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa las imágenes subidas al servidor para usarlas en los artículos y en la galería de imágenes (banner).
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class ImagenWeb extends DomainEntity{
 
+    /**Nombre de la imagen*/
     private String nombre;
+    
+    /**Descripción de la imagen. En caso de la galería se muestra como pié de la imagen.*/
     private String descripcion;
+    
+    /**Indica es imagen para la galería o para uso en un artículo*/
     private TipoImagenWeb tipo = TipoImagenWeb.ARTICULO;
+    
+    /**Ruta de la imagen*/
     private String rutaAbsoluta;
+    
+    /**Tipo de contenido de la imagen. Ejemplo: "image/jpg"*/
     private String mimeType;
+    
+    /**Contenido binario de la imagen*/
     private byte[] data;
+    
+    /**Estado o vigencia de la imagen (indica si debe mostrarse o no)*/
     private boolean estado = true;
+    
+    /**Orden de presentación*/
     private int orden;
-            
+    
+    /**
+     * Constructor por defecto
+     */
     public ImagenWeb() {
     }
 
@@ -138,8 +157,4 @@ public class ImagenWeb extends DomainEntity{
         this.orden = orden;
     }
 
-    
-    
-    
-    
 }

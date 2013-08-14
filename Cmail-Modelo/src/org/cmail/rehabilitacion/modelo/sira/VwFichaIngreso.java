@@ -8,7 +8,8 @@ import java.util.Date;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Vista de una ficha de ingreso creada con la finalidad de optimizar consultas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

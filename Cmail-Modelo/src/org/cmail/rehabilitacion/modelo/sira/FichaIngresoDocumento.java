@@ -7,20 +7,42 @@ package org.cmail.rehabilitacion.modelo.sira;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa los documentos (archivos) que deben subirse con la ficha de ingreso.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class FichaIngresoDocumento extends DomainEntity{
 
+    /**
+     * Nombre del documento
+     */
     private String nombre;
+    
+    /**
+     * Descripción del documento
+     */
     private String descripcion;
+    
+    /**
+     * Tipo de contenido del archivo. Ejemplo: application/pdf
+     */
     private String mimeType;
+    
+    /**
+     * Contenido del archivo (datos binarios)
+     */
     private byte[] data;
     
+    /**
+     * Ficha de ingreso a la que pertenece el archvio
+     */
     private FichaIngreso ficha;
-            
+
+    /**
+     * Constructor por defecto
+     */
     public FichaIngresoDocumento() {
     }
 
@@ -92,9 +114,6 @@ public class FichaIngresoDocumento extends DomainEntity{
      */
     public void setFicha(FichaIngreso ficha) {
         this.ficha = ficha;
-    }
-
-    
-    
+    }       
     
 }

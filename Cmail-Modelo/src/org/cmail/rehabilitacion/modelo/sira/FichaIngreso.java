@@ -14,161 +14,247 @@ import org.cmail.rehabilitacion.modelo.localizacion.Parroquia;
 import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 
 /**
- *
+ * Entidad que representa una ficha de ingreso de un adolescente, es decir el registro de cuando una persona es ingresada al centro de rehabilitación.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class FichaIngreso extends AuditEntity{
     
+    /** Ficha de egreso generada cuando sale, mientras no salga del centro será nula*/
     private FichaEgreso fichaEgreso = null;
     
+    /** Lugar donde ingresa. Ejemplo: "Loja"*/
     private String lugar;
+    
+    /** Fecha de cuando ingresa al centro*/
     private Date fecha = new Date();
+    
+    /** Razón de ingreso generado por el sistema de las medidas seleccionadas*/
     private String razonIngreso;
     
-    /**
-     * 1. RAZONES DE INGRESO
-     * raz ==> Razon
-     * Ing ==> Ingreso
-     * Mc ==> Medida Cautelar
-     * Ms ==> Medida Socioeducativa
-     * Ri ==> Reingreso    
-     */
+    //====================================
+    //1. RAZONES DE INGRESO
+    //====================================  
     
-    //1.1 Medida Cautelar
-    private boolean razInMedidaCautelar; //1.1 Medida cautelar
-    private boolean razInMcRetencion; //Retención
-    private boolean razInMcInvestigacion; //Investigación
-    private boolean razInMcComparecencia; //Asegurar comparecencia
-    private boolean razInMcIntPreventivo; // Internamiento preventivo
+    /**1.1 Razones de ingreso (medida cautelar): Medida Cautelar*/
+    private boolean razInMedidaCautelar;    
+    /**1.1 Razones de ingreso (medida cautelar): Retención*/
+    private boolean razInMcRetencion;
+    /**1.1 Razones de ingreso (medida cautelar): Investigación*/
+    private boolean razInMcInvestigacion;
+    /**1.1 Razones de ingreso (medida cautelar): Asegurar comparecencia*/
+    private boolean razInMcComparecencia;
+    /**1.1 Razones de ingreso (medida cautelar): Internamiento preventivo*/
+    private boolean razInMcIntPreventivo;
+        
+    /**1.2 Razones de ingreso (medida socioeducativa): Medida socioeducativa*/
+    private boolean razInMedidaSocioeducativa;
+    /**1.2 Razones de ingreso (medida socioeducativa): Interamiento de fin de semana*/
+    private boolean razInMsIntFinSemana;
+    /**1.2 Razones de ingreso (medida socioeducativa): Internamiento regimen de semi libertad*/
+    private boolean razInMsIntSemiLibertad;
+    /**1.2 Razones de ingreso (medida socioeducativa): Internamiento institucional*/
+    private boolean razInMsIntInstitucional;
+    /**1.2 Razones de ingreso (medida socioeducativa): Libertad asistida*/
+    private boolean razInMsLibAsistida;
+    /**1.2 Razones de ingreso (medida socioeducativa): Servicio a la comunidad */
+    private boolean razInMsServComunidad;
+    /**1.2 Razones de ingreso (medida socioeducativa): Reparacion del daño causado*/
+    private boolean razInMsRepDanoCausado;
+    /**1.2 Razones de ingreso (medida socioeducativa): Orientación y apoyo familiar*/
+    private boolean razInMsOrientaApoyoFamiliar;
+    /**1.2 Razones de ingreso (medida socioeducativa): Amonestacin e imposicion de reglas de conducta*/
+    private boolean razInMsAmonestacionImposicion;
+    /**1.2 Razones de ingreso (medida socioeducativa): Amonestación*/
+    private boolean razInMsAmonestacion;
+        
+    /**1.3 Razones de ingreso (reingreso): Reingreso*/
+    private boolean razInReingreso;
+    /**1.3 Razones de ingreso (reingreso): Medida Cautelar*/
+    private boolean razInRiMedidaCautelar;
+    /**1.3 Razones de ingreso (reingreso): Medida Socioeducativa*/
+    private boolean razInRiMedidaSocioeducativa;
+    /**1.3 Razones de ingreso (reingreso): Identifique tipo de medida*/
+    private boolean razInRiOtroTipo;
+    /**1.3 Razones de ingreso (reingreso): Identifique nombre tipo de medida*/
+    private String razInRiOtroTipoNombre; // descripcion de otro tipo de reingrso  
     
-    //1.2 Medida socioeducativa
-    private boolean razInMedidaSocioeducativa; //1.2 Medida Socioeducativa
-    private boolean razInMsIntFinSemana; // Interamiento de fin de semana
-    private boolean razInMsIntSemiLibertad; // Internamiento regimen de semi libertad
-    private boolean razInMsIntInstitucional; // Internamiento institucional
-    private boolean razInMsLibAsistida; // Libertad asistida
-    private boolean razInMsServComunidad; // Servicio a la comunidad 
-    private boolean razInMsRepDanoCausado; // Reparacion del daño causado
-    private boolean razInMsOrientaApoyoFamiliar; // Orientación y apoyo familiar
-    private boolean razInMsAmonestacionImposicion; // Amonestacin e imposicion de reglas de conducta
-    private boolean razInMsAmonestacion; // Amonestación
+    /**Juez que dicta la medida (nombre y ciudad)*/
+    private String juez;
     
-    //1.3 Reingreso
-    private boolean razInReingreso; // 1.3 Reingreso
-    private boolean razInRiMedidaCautelar; //  Medida Cautelar
-    private boolean razInRiMedidaSocioeducativa; // Medida Socioeducativa
-    private boolean razInRiOtroTipo; // (Identifique tipo de medida)
-    private String razInRiOtroTipoNombre; // descripcion de otro tipo de reingrso    
-    private String juez; ////Juez que dicta la medida (nombre y ciudad)
-    
-    //1.4 Tiempo para el cual fue dada la medida
+    /**1.4 Tiempo para el cual fue dada la medida*/
     private String tiempoMedida;
     
-    /**
-     * causal de la medida
-     * causal ==> causal
-     * Varios ==> V
-     * Inf ==> Infracciones (contra las personas, por drogas, contra la propiedad, de tipo sexual)
-     */
-    private boolean causalVManejarAlcoholizado; // Manejar con grado alcoholizado no permitido
-    private boolean causalVHurto; //Hurto
-    private boolean causalVPosecionArmas; // Posesión de armas
-    private boolean causalVRecaptura; // Recaptura
-    private boolean causalVFalsificacionDoc; //Falsificación de Documentos
-    //Infracciones contra las personas
-    private boolean causalInfHomicidio; // Homicidio
-    private boolean causalInfIntHomicidio; //Intento de homicidio
-    private boolean causalInfAsesinato; // Asesinato
-    private boolean causalInfLesiones;//Lesiones que causan incapacidad física
-    private boolean causalInfPlagio;// Plagio (Secuestro)
-    private boolean causalInfIntPlagio;// Intento de Plagio
-    private boolean causalInfAsalto;// Asalto contra la propiedad privada
-    private boolean causalInfTrataPersonas;//Trata de personas
-    //Infracciones por Drogas
-    private boolean causalInfTrafico;// Tráfico de drogas
-    private boolean causalInfConsumo;// Consumo y poseción ilícita
-    private boolean causalInfVenta;//Venta de drogas
-    private boolean causalInfTrata;//Trata con fines de tráfico de drogas
-    //Infracciones contra la propiedad
-    private boolean causalInfRobo;//Robo
-    private boolean causalInfIntentoRobo;//Intento de Robo
-    private boolean causalInfAbigeato;//Abigeato
-    private boolean causalInfEstafa;//Estafa
-    private boolean causalInfExtorsion;//Extorción
-    private boolean causalInfDestruccion;//Destrucción a la propiedad
-    //Infracciones de tipo sexual
-    private boolean causalInfViolacion;//Violación
-    private boolean causalInfIntentoViolacion;//Intento de Violación    
-    private boolean causalInfEstupro;//Estupro
-    private boolean causalInfAtentPudor;//Atentado al pudor
-    private boolean causalInfAcosoSexual;//Acoso Sexual
-    private boolean causalInfTrataExplotSexual;//Trata con fines de explotación sexual
-    private String causalInfOtros;//Descripción de otro tipo de infracción
+    /**Causal de la medida varios: Manejar con grado alcoholizado no permitido*/
+    private boolean causalVManejarAlcoholizado;
+    /**Causal de la medida varios: Hurto*/
+    private boolean causalVHurto;
+    /**Causal de la medida varios: Posesión de armas*/
+    private boolean causalVPosecionArmas;
+    /**Causal de la medida varios: Recaptura*/
+    private boolean causalVRecaptura;
+    /**Causal de la medida varios: Falsificación de Documentos*/
+    private boolean causalVFalsificacionDoc;
     
-    //2. DATOS DE IDENTIFICACIÓN    
-    private Persona adolescente;    
-    private String estadoCivil;//estado civil del adolescente
-    private boolean cedulado = true;// especifica si el cedulado tiene cedula o no?
+    /**Causal de la medida infracciones contra personas: Homicidio*/
+    private boolean causalInfHomicidio;
+    /**Causal de la medida infracciones contra personas: Intento de homicidio*/
+    private boolean causalInfIntHomicidio;
+    /**Causal de la medida infracciones contra personas: Asesinato*/
+    private boolean causalInfAsesinato;
+    /**Causal de la medida infracciones contra personas: Lesiones que causan incapacidad física*/
+    private boolean causalInfLesiones;
+    /**Causal de la medida infracciones contra personas: Plagio (Secuestro)*/
+    private boolean causalInfPlagio;
+    /**Causal de la medida infracciones contra personas: Intento de Plagio*/
+    private boolean causalInfIntPlagio;
+    /**Causal de la medida infracciones contra personas: Asalto contra la propiedad privada*/
+    private boolean causalInfAsalto;
+    /**Causal de la medida infracciones contra personas: Trata de personas*/
+    private boolean causalInfTrataPersonas;
     
-    // lugar de procedencia donde fue retenido
-    private Provincia provinciaDetencion;//
-    private Canton cantonDetencion;//
-    private Parroquia parroquiaDetencion;//
-    private String barrioDetencion;//
-    private String comunidadDetencion;//
-    private int edad;// edad del adolescente    
+    /**Causal de la medida infracciones por drogas: Tráfico de drogas*/
+    private boolean causalInfTrafico;
+    /**Causal de la medida infracciones por drogas: Consumo y poseción ilícita*/
+    private boolean causalInfConsumo;
+    /**Causal de la medida infracciones por drogas: Venta de drogas*/
+    private boolean causalInfVenta;
+    /**Causal de la medida infracciones por drogas: Trata con fines de tráfico de drogas*/
+    private boolean causalInfTrata;
     
-    // 2.5 nivel educativo aprobado
+    /**Causal de la medida infracciones contra propiedad: Robo*/
+    private boolean causalInfRobo;
+    /**Causal de la medida infracciones contra propiedad: Intento de Robo*/
+    private boolean causalInfIntentoRobo;
+    /**Causal de la medida infracciones contra propiedad: Abigeato*/
+    private boolean causalInfAbigeato;
+    /**Causal de la medida infracciones contra propiedad: Estafa*/
+    private boolean causalInfEstafa;
+    /**Causal de la medida infracciones contra propiedad: Extorción*/
+    private boolean causalInfExtorsion;
+    /**Causal de la medida infracciones contra propiedad: Destrucción a la propiedad*/
+    private boolean causalInfDestruccion;
+        
+    /**Causal de la medida infracciones de tipo sexual: Violación*/
+    private boolean causalInfViolacion;
+    /**Causal de la medida infracciones de tipo sexual: Intento de Violación*/
+    private boolean causalInfIntentoViolacion;
+    /**Causal de la medida infracciones de tipo sexual: Estupro*/
+    private boolean causalInfEstupro;
+    /**Causal de la medida infracciones de tipo sexual: Atentado al pudor*/
+    private boolean causalInfAtentPudor;
+    /**Causal de la medida infracciones de tipo sexual: Acoso Sexual*/
+    private boolean causalInfAcosoSexual;
+    /**Causal de la medida infracciones de tipo sexual: Trata con fines de explotación sexual*/
+    private boolean causalInfTrataExplotSexual;
+    /**Causal de la medida infracciones de tipo sexual: Descripción de otro tipo de infracción*/
+    private String causalInfOtros;
+    
+    //====================================
+    //2. DATOS DE IDENTIFICACIÓN
+    //====================================
+    
+    /**2.1 Adolescente de quien se registra el ingreso*/
+    private Persona adolescente;  
+    /**2.2 Estado civil del adolescente*/
+    private String estadoCivil;
+    /**2.3 Especifica si el adolescente tiene cedula o no*/
+    private boolean cedulado = true;
+    /**Edad del adolescente cuando fue ingresado al centro*/
+    private int edad;
+    
+    /**2.4 Lugar de procedencia donde fue retenido: provincia*/
+    private Provincia provinciaDetencion;
+    /**2.4 Lugar de procedencia donde fue retenido: cantón*/
+    private Canton cantonDetencion;
+    /**2.4 Lugar de procedencia donde fue retenido: parroquia*/
+    private Parroquia parroquiaDetencion;
+    /**2.4 Lugar de procedencia donde fue retenido: barrio*/
+    private String barrioDetencion;
+    /**2.4 Lugar de procedencia donde fue retenido: comunidad*/
+    private String comunidadDetencion;    
+    
+    /**2.5 Nivel educativo aprobado: NINGUNO, BASICO, BACHILLERATO, ESPECIAL*/
     private String nivelEducativoTipo;
+    /**2.5 Nombre del nivel educativo*/
     private String nivelEducativoNombre;
     
-    //2.6 Autoidentificación
+    /**2.6 Autoidentificación: BLANCO. MESTIZO, ETC.*/
     private String autoidentificacion;
+    /**2.6 Nacionalidad del adolescente*/
     private String nacionalidad;
     
-    //2.7 Idioma
+    /**2.7 Idioma: castellano*/
     private boolean idiomaCastellano;
+    /**2.7 Idioma: inglés*/
     private boolean idiomaIngles;
+    /**2.7 Idioma: lengua nativa*/
     private boolean lenguaNativa;
+    /**2.7 Idioma: nombre de la lengua nativa si es que marcó lenguaNativa*/
     private String lenguaNativaNombre;
+    /**2.7 Idioma: otro lenguaje*/
     private boolean otroLenguaje;
+    /**2.7 Idioma: nombre del otro lenguaje si es que marcó otro lenguaje*/
     private String otroLenguajeNombre;
     
-    //2.8 Ocupación
-    private String tipoOcupacion;// Tipo de ocupación
-    private String tiempoOcupacionActual;// Desde cuando realiza esta ocupación
+    /**2.8 Ocupación: Tipo de ocupación*/
+    private String tipoOcupacion;
+    /**2.8 Ocupación: Tiempo desde cuando realiza esta ocupación*/
+    private String tiempoOcupacionActual;
     
-    //2.9 Dirección del domicilio/residencia
-    private String tiempoResidenciaActual;// Desde cuando?
-    private String telefonoResidencia;// Teléfono de residencia
-    private Provincia provinciaResidencia;// Provincia de residencia
-    private Canton cantonResidencia;// Cantón de residencia
-    private Parroquia parroquiaResidencia;// Parroquia de residencia
-    private String barrioResidencia;// Barrio de residencia
-    private String comunidadResidencia;// Comunidad de residencia
+    /**2.9 Dirección del domicilio/residencia: Desde cuando*/
+    private String tiempoResidenciaActual;
+    /**2.9 Dirección del domicilio/residencia: Teléfono de residencia*/
+    private String telefonoResidencia;
+    /**2.9 Dirección del domicilio/residencia: Provincia de residencia*/
+    private Provincia provinciaResidencia;
+    /**2.9 Dirección del domicilio/residencia: Cantón de residencia*/
+    private Canton cantonResidencia;
+    /**2.9 Dirección del domicilio/residencia: Parroquia de residencia*/
+    private Parroquia parroquiaResidencia;
+    /**2.9 Dirección del domicilio/residencia: Barrio de residencia*/
+    private String barrioResidencia;
+    /**2.9 Dirección del domicilio/residencia: Comunidad de residencia*/
+    private String comunidadResidencia;
     
-    //2.10 Hijos del o la Adolescente
-    private Integer numeroHijosHombres =0;// Numero total de hijos varones que tiene el adolescente
-    private String edadesHijosHombres;// descripción de las edades de los hijos varones
-    private Integer numeroHijosMujeres =0;// Numero total de hijos mujeres que tiene el adolescente
-    private String edadesHijosMujeres;// descripción de las edades de los hijos varones
-    private boolean ingresaHijos;// Ingresa con su o sus hijos
-    private String numeroHijosEdades;// Con cuantos hijos ingresa y de que edades
+    /**2.10 Hijos del o la Adolescente: Número total de hijos varones que tiene el adolescente*/
+    private Integer numeroHijosHombres =0;
+    /**2.10 Hijos del o la Adolescente: Descripción de las edades de los hijos varones*/
+    private String edadesHijosHombres;
+    /**2.10 Hijos del o la Adolescente: Número total de hijos mujeres que tiene el adolescente*/
+    private Integer numeroHijosMujeres =0;
+    /**2.10 Hijos del o la Adolescente: Descripción de las edades de los hijos varones*/
+    private String edadesHijosMujeres;
+    /**2.10 Hijos del o la Adolescente: Especifica si ingresa con su o sus hijos*/
+    private boolean ingresaHijos;
+    /**2.10 Hijos del o la Adolescente: Con cuantos hijos ingresa y de que edades*/
+    private String numeroHijosEdades;
     
-    //2.11 persona o persona con quien vive
+    /**2.11 Persona o personas con quien vive: Nombre de la persona 1*/
     private String nombrePersona1;//
-    private String parentescoPersona1;//
-    private String telefonoPersona1;//
-    private String nombrePersona2;//
+    /**2.11 Persona o personas con quien vive: Parentezco de la persona 1*/
+    private String parentescoPersona1;
+    /**2.11 Persona o personas con quien vive: Teléfono de la persona 1*/
+    private String telefonoPersona1;
+    /**2.11 Persona o personas con quien vive: Nombre de la persona 2*/
+    private String nombrePersona2;
+    /**2.11 Persona o personas con quien vive: Parentezco de la persona 2*/
     private String parentescoPersona2;//
+    /**2.11 Persona o personas con quien vive: Teléfono de la persona 2*/
     private String telefonoPersona2;//
     
+    //====================================
     //3. DATOS FAMILIARES
-    //3.1 PADRE - En el adolescente
-    //3.2 MADRE - En el adolescente    
-    //3.3 REPRESENTANTE
+    //====================================    
+    
+    /**
+     * Datos familiares:
+     * 3.1 Padre registrado en el adolescente.
+     * 3.2 Madre registrado en el adolescente.
+     * 3.3 Representante registrado en cada ingreso (puede cambiar de representante).
+     */
     private Persona representante;
     
     //4. CONDICIONES DE INGRESO DEL O LA ADOLESCENTE
@@ -181,50 +267,79 @@ public class FichaIngreso extends AuditEntity{
      * Ing = ingreso
      */
     
-    //4.1 Físicas
-    private boolean condFisIngMoretones;// Moretones
-    private boolean condFisIngLastimados;//Lastimados
-    private boolean condFisIngOtros;// otros
-    private String condFisIngOtrosNombre;// otros cual?
+    /**4.1 Condiciones Físicas de Ingreso: Moretones*/
+    private boolean condFisIngMoretones;
+    /**4.1 Condiciones Físicas de Ingreso: Lastimados*/
+    private boolean condFisIngLastimados;
+    /**4.1 Condiciones Físicas de Ingreso: Otros*/
+    private boolean condFisIngOtros;
+    /**4.1 Condiciones Físicas de Ingreso: Nombre las otras condiciones*/
+    private String condFisIngOtrosNombre;
+        
+    /**4.2 Condiciones Emocionales de Ingreso: Tranquilo/a*/
+    private boolean condEmoIngTranquilo;
+    /**4.2 Condiciones Emocionales de Ingreso: Extrovertido/a*/
+    private boolean condEmoIngExtrovertido;
+    /**4.2 Condiciones Emocionales de Ingreso: Introvertido/a*/
+    private boolean condEmoIngIntrovertido;
+    /**4.2 Condiciones Emocionales de Ingreso: Agresivo/a*/
+    private boolean condEmoIngAgresivo;
+    /**4.2 Condiciones Emocionales de Ingreso: Asustado/a*/
+    private boolean condEmoIngAsustado;
+    /**4.2 Condiciones Emocionales de Ingreso: Otros*/
+    private boolean condEmoIngOtros;
+    /**4.2 Condiciones Emocionales de Ingreso: Nombre de las otras condiciones*/
+    private String condEmoIngOtrosNombre;
     
-    //4.2 Emocional
-    private boolean condEmoIngTranquilo;// Tranquilo/a
-    private boolean condEmoIngExtrovertido;//Extrovertido/a
-    private boolean condEmoIngIntrovertido;//Introvertido/a
-    private boolean condEmoIngAgresivo;//Agresivo/a
-    private boolean condEmoIngAsustado;//Asustado/a
-    private boolean condEmoIngOtros;//Otros 
-    private String condEmoIngOtrosNombre;//otros cual?
+    /**4.3 Condiciones Salubridad de Ingreso: Alguna enfermedad (identifique)*/
+    private String condSaludEnfermedad;
+    /**4.3 Condiciones Salubridad de Ingreso: Medicina que toma*/
+    private String condSaludMedicina;
+    /**4.3 Condiciones Salubridad de Ingreso: Presenta síntomas de haber consumido droga*/
+    private boolean condSaludSintDroga;
     
-    //4.3 Salubridad
-    private String condSaludEnfermedad;// Alguna enfermedad (identifique)
-    private String condSaludMedicina;// Medicina que toma
-    private boolean condSaludSintDroga;// Presenta síntomas de haber consumido droga
-    
+    //===================================
     //5. PERTENENCIAS CON LAS QUE INGRESA
-    //5.1 
-    // pert = pertenencias
-    private String pertDescripcion;// Descripción de la pertenencias con las que ingresa al centro
-    //5.2
-    private Persona responsableResguardoPertenencia;//  ¿Quién guarda o a quién se le entrega las pertenencias?
+    //===================================
+    
+    /**5.1 Pertenecias ingresa: Descripción de la pertenencias con las que ingresa al centro*/
+    private String pertDescripcion;
+    /**5.2 Pertenecias ingresa: ¿Quién guarda o a quién se le entrega las pertenencias?*/
+    private Persona responsableResguardoPertenencia;
+    
     //5.3
     // solo por completar el formulario
-//    private String firma;// firma del o la adolescente, certificando que esas son sus pertenencias y a quien las entrega
+    // private String firma;// firma del o la adolescente, certificando que esas son sus pertenencias y a quien las entrega
+    
+    //======================================================
     //6. DOCUMENTOS CON LOS QUE INGRESA EL O  LA ADOLESCENTE
-    //6.1 Documentación necesaria para la admisión de un adolescente (Art 378) 
-    private boolean delitoFlagrante;// Delito flagrante (Art. 326)
-    private boolean medidasCautelares;//Medidas cautelares (Art. 328 y 329)
-    private boolean medidasSocioeducativas;// Medidas socioeducativas (Art. 369)
-    // 7. OBSERVACIONES ADICIONALES
-    private String observaciones;//
-    //8. RESPONSABLE DEL TRASLADO AL CENTRO
+    //======================================================
+    
+    /**6.1 Documentación necesaria para la admisión de un adolescente (Art 378): Delito flagrante (Art. 326)*/
+    private boolean delitoFlagrante;
+    /**6.1 Documentación necesaria para la admisión de un adolescente (Art 378): Medidas cautelares (Art. 328 y 329)*/
+    private boolean medidasCautelares;
+    /**6.1 Documentación necesaria para la admisión de un adolescente (Art 378): Medidas socioeducativas (Art. 369)*/
+    private boolean medidasSocioeducativas;
+    
+    /**7. Observaciones adicionales*/
+    private String observaciones;
+    
+    /**8. Resposnable del traslado al centro*/
     private Persona responsableTraslado;
-    //9. PERSONA QUE LO INGRESA AL CENTRO
+    
+    /**9. Persona que lo ingresa al centro*/
     private Persona responsableIngreso;
     
+    /**
+     * Documentos habilitantes
+     */
     private Set<FichaIngresoDocumento> documentos = new HashSet<FichaIngresoDocumento>();
     
 
+    /**
+     * Constructor por defecto
+     */
     public FichaIngreso() {
     }
     

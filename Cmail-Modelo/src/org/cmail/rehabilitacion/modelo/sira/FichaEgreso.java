@@ -17,114 +17,205 @@ import org.cmail.rehabilitacion.modelo.Persona;
  */
 public class FichaEgreso extends AuditEntity {
 
+    /**La ficha de ingreso de la cual se está generando el egreso*/
     private FichaIngreso fichaIngreso = null;
-    private Persona adolescente;
-    private String lugar;
-    private Date fecha = new Date(); // habrá que obtener el día y la fecha del egreso, mas la hora
-    private String tiempoPermanencia; // tiempo de permanencia en el centro
-    /**1. RAZÓN DE EGRESO
-     * raz ==> razon
-     * Eg ==> Egreso
-     * Cad ==> caducidad     
-     * Int ==> internamiento
-     * Ret ==> Retención
-     * Res ==> Resolución
-     */
-    private boolean razEgCadRetencion;//1.1 Caducidad de la retención    
-    private boolean razEgTermMedida;//1.2 Terminación del tiempo de la medidad socioeducativa    
-    private boolean razEgCadIntPreventivo;//1.3 Caducidad del internamiento preventivo
-    private boolean razEgCadRetInvestigacion;//1.4 Caducidad de la retención para investigación
-    private boolean razEgCadRetComparecencia;//1.5  Caducidad de la retención para comparecencia
-    private boolean razEgDefuncion;//1.6 Defunción
-    private boolean razEgResJusdicial;//1.7 Resolución Judicial
-    private boolean razEgEvasionFuga;//1.8 Evasión y fuga
-    private boolean razEgTrasferencia;//1.9 Trasferencia
-    private boolean razEgEmbarazo;//1.10 Embarazo
-    //2. AUTORIZACIÓN DEL EGRESO
-    // docs = documentos
-    // Aut = Autoriza
-    //2.1 Nombre y cargo de la persona que autoriza el egreso
-    private Persona autorizaEgreso;
-//    private String personaAutEgreso;
-    //2.2 Documento/s  que avaliza/n la autorización para el egreso del CAI(Adjunte)
-    private String docsEgreso;
-    //3. ACTITUD DEL O LA ADOLESCENTE
-    //3.1 Aceptación de salir
-    // exp = explicación
-//    private boolean aceptacionSalida;
-    private boolean aceptacionSalida;
-    private String expAceptacionSalida;
-    //3.2 Aceptación de irse con la persona autorizada para llevarle
-//    private boolean aceptacionPersonaSalida;
-    private boolean aceptacionPersonaSalida;
-    private String expAceptacionPersonaSalida;
-    //3.3 Persona con la cual egresa
-    //eg = egresa
-    private boolean egAmbosProgenitores;
-    private boolean egPadre;
-    private boolean egMadre;
-    private boolean egRepresentante;
-    private boolean egHermano;
-    private boolean egHermana;
-    private boolean egAbuelo;
-    private boolean egAbuela;
-    private boolean egAmbosAbuelos;
-    private boolean egTios;
-    private boolean egPareja;
-    private boolean egSolo;
-    private boolean egOtros;
-    private String relacionEgOtros;
-    //4. CONDICIONES DE EGRESO DEL O LA ADOLESCENTE
-    /**
-     * cond = condiciones
-     * Fis = fisicas
-     * Emo = emocionales
-     * Salud = salubridad
-     * Eg = Egreso
-     */
-    //4.1 Físicas
-    // 
-    private boolean condFisEgPerfectas;
-    private boolean condFisEgLastimados;
-    private boolean condFisEgMoretones;
-    //4.2 Emocionales
-    private boolean condEmoEgTranquilo;
-    private boolean condEmoEgAgresivo;
-    private boolean condEmoEgExtrovertido;
-    private boolean condEmoEgIntrovertido;
-    private boolean condEmoEgConfinado;
-    private boolean condEmoEgAsustado;
-    private boolean condEmoEgAlegre;
-    private boolean condEmoEgOtro;
-    private String condEmoEgOtroNombre;
-    //4.3 Salubridad
-    private String condSaludEgTEnfermedad;  // Tipo de Enfermedad
-    private String condSaludEgMedicinas; // Medicinas que toma
-    //5. PERTENENCIAS CON LAS QUE EGRESA (Describa)
-    //5.1 Descripción
-    // desc = descripción
-    private String descPertenencias;
-    //6. DATOS DE REFERENCIA DEL O LA ADOLESCENTE
-    //6.1 Con quién vivirá (nombre-parentesco)
-    private String personaQueVivira;
-    //6.2 Dirección y teléfono de referencia del lugar donde vivirá.
-    //Ref = referencia
-    private String direccionTelefonoRef;
-    //6.3 Mapa de referencia
-//    private String mapaRef;
-    //7. RESPONSABLE DEL EGRESO
-    //Eg = egreso
-    private Persona responsableEgreso;
-//    private String nombreResponsableEg;
-//    private String cargoResponsableEg;
-//    private String firmaResponsableEg;
-    //8. PERSONA CON LA QUE EGRESA EL O LA ADOLESCENTE
-    //pe = persona que egresa
     
-    private Persona companeroEgreso;
-    private String parentescoCompaneroEgreso;
-    // por completar la ficha
+    /**El adolescente de quien se está haciendo el egreso*/
+    private Persona adolescente;
+    
+    /**El lugar donde se está haciendo el egreso*/
+    private String lugar;
+    
+    /**Fecha en que egresa el adolescente*/
+    private Date fecha = new Date();
+    
+    /**Tiempo de permanencia en el centro de rehabilitación*/
+    private String tiempoPermanencia;
+    
+    //=================================================
+    //1. RAZÓN DE EGRESO
+    //=================================================
+    
+    /**1.1.- Razón de egreso: Caducidad de la retención */
+    private boolean razEgCadRetencion;
+    
+    /**1.2.- Razón de egreso: Terminación del tiempo de la medidad socioeducativa*/
+    private boolean razEgTermMedida;
+    
+    /**1.3.- Caducidad del internamiento preventivo*/
+    private boolean razEgCadIntPreventivo;
+    
+    /**1.4.- Razón de egreso: Caducidad de la retención para investigación*/
+    private boolean razEgCadRetInvestigacion;
+    
+    /**1.5.- Razón de egreso: Caducidad de la retención para comparecencia*/
+    private boolean razEgCadRetComparecencia;
+    
+    /**1.6.- Razón de egreso: Defunción*/
+    private boolean razEgDefuncion;
+    
+    /**1.7.- Razón de egreso: Resolución Judicial*/
+    private boolean razEgResJusdicial;
+    
+    /**1.8.- Razón de egreso: Evasión y fuga*/
+    private boolean razEgEvasionFuga;
+    
+    /**1.9.- Razón de egreso: Trasferencia*/
+    private boolean razEgTrasferencia;
+    
+    /**1.10.- Razón de egreso: Embarazo*/
+    private boolean razEgEmbarazo;
+    
+    //=================================================
+    //2. AUTORIZACIÓN DEL EGRESO
+    //=================================================
+    
+    /**2.1 Nombre y cargo de la persona que autoriza el egreso*/
+    private Persona autorizaEgreso;
+    
 
+    /**2.2 Documento(s)  que avaliza(n) la autorización para el egreso del centro (Adjuntos)*/
+    private String docsEgreso;
+    
+    //=================================================
+    //3. ACTITUD DEL O LA ADOLESCENTE
+    //=================================================    
+    
+    /**3.1 Aceptación de salir*/
+    private boolean aceptacionSalida;
+    
+    /**3.1 Explicación de la aceptación de salida*/
+    private String expAceptacionSalida;
+    
+    /**3.2 Aceptación de irse con la persona autorizada para llevarle*/
+    private boolean aceptacionPersonaSalida;
+    
+    /**3.2 Explicación de la aceptación de irse con la persona autorizada para llevarle*/    
+    private String expAceptacionPersonaSalida;        
+    
+    /**3.3 Personas con la cual egresa (ambos progenitores)*/
+    private boolean egAmbosProgenitores;
+    
+    /**3.3 Personas con la cual egresa (padre)*/
+    private boolean egPadre;
+    
+    /**3.3 Personas con la cual egresa (madre)*/
+    private boolean egMadre;
+    
+    /**3.3 Personas con la cual egresa (representante)*/
+    private boolean egRepresentante;
+    
+    /**3.3 Personas con la cual egresa (hermano)*/
+    private boolean egHermano;
+    
+    /**3.3 Personas con la cual egresa (hermana)*/
+    private boolean egHermana;
+    
+    /**3.3 Personas con la cual egresa (abuelo)*/
+    private boolean egAbuelo;
+    
+    /**3.3 Personas con la cual egresa (abuela)*/
+    private boolean egAbuela;
+    
+    /**3.3 Personas con la cual egresa (ambos abuelos)*/
+    private boolean egAmbosAbuelos;
+    
+    /**3.3 Personas con la cual egresa (tios)*/
+    private boolean egTios;
+    
+    /**3.3 Personas con la cual egresa (pareja)*/
+    private boolean egPareja;
+    
+    /**3.3 Personas con la cual egresa (solo)*/
+    private boolean egSolo;
+    
+    /**3.3 Personas con la cual egresa (otros)*/
+    private boolean egOtros;
+    
+    /**3.3 Relación de parentezco cuando indica que egresa con otros, que no estén en el listado*/
+    private String relacionEgOtros;
+    
+    //=================================================
+    //4. CONDICIONES DE EGRESO DEL O LA ADOLESCENTE
+    //=================================================        
+    
+    //Físicas
+    
+    /**4.1 Condiciones de Egreso Físicas: Perfectas*/
+    private boolean condFisEgPerfectas;
+    /**4.1 Condiciones de Egreso Físicas: Lastimados*/
+    private boolean condFisEgLastimados;
+    /**4.1 Condiciones de Egreso Físicas: Moretones*/
+    private boolean condFisEgMoretones;
+    
+    //Emocionales
+    
+    /**4.2 Condiciones de Egreso Emocionales: Tranquilo*/
+    private boolean condEmoEgTranquilo;
+    /**4.2 Condiciones de Egreso Emocionales: Agresivo*/
+    private boolean condEmoEgAgresivo;
+    /**4.2 Condiciones de Egreso Emocionales: Extrovertido*/
+    private boolean condEmoEgExtrovertido;
+    /**4.2 Condiciones de Egreso Emocionales: Introvertido*/
+    private boolean condEmoEgIntrovertido;
+    /**4.2 Condiciones de Egreso Emocionales: Confinado*/
+    private boolean condEmoEgConfinado;
+    /**4.2 Condiciones de Egreso Emocionales: Asustado*/
+    private boolean condEmoEgAsustado;
+    /**4.2 Condiciones de Egreso Emocionales: Alegre*/
+    private boolean condEmoEgAlegre;
+    /**4.2 Condiciones de Egreso Emocionales: Otras*/
+    private boolean condEmoEgOtro;
+    /**4.2 Condiciones de Egreso Emocionales: Descripción cuando elije otras*/
+    private String condEmoEgOtroNombre;
+    
+    //Salubridad
+    
+    /**4.3 Condiciones de Egreso Salubridad: Tipo de enfermedad*/
+    private String condSaludEgTEnfermedad;
+    /**4.3 Condiciones de Egreso Salubridad: Medicinas que toma*/
+    private String condSaludEgMedicinas;
+    
+    //=================================================
+    //5. PERTENENCIAS CON LAS QUE EGRESA (Describa)
+    //=================================================
+        
+    /**5.1 Descripción de las pertenencias con las que egresa*/
+    private String descPertenencias;
+    
+    //=================================================
+    //6. DATOS DE REFERENCIA DEL O LA ADOLESCENTE
+    //=================================================
+    
+    /**6.1 Datos de referencia: Con quién vivirá (nombre-parentesco)*/
+    private String personaQueVivira;
+    
+    /**6.2 Datos de referencia: Dirección y teléfono de referencia del lugar donde vivirá*/
+    private String direccionTelefonoRef;
+    
+    //6.3 Mapa de referencia
+    //private String mapaRef;
+    
+    //=================================================
+    //7. RESPONSABLE DEL EGRESO
+    //=================================================
+    
+    /** 7.1 Empleado responsable del egreso*/
+    private Persona responsableEgreso;
+
+    //=================================================
+    //8. PERSONA CON LA QUE EGRESA EL O LA ADOLESCENTE
+    //=================================================
+        
+    /**8.1 Persona con la que egresa el adolescente*/
+    private Persona companeroEgreso;
+    
+    /**8.2 Parentezco con la persona que egresa*/
+    private String parentescoCompaneroEgreso;
+    
+    /**
+     * Constructor por defecto
+     */
     public FichaEgreso() {
     }
 

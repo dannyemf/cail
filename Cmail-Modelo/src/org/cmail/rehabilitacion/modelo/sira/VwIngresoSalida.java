@@ -8,7 +8,8 @@ import java.util.Date;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Vista que relaciona la ficha de ingreso y la ficha de egreso con la finalidad de optimizar consultas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
