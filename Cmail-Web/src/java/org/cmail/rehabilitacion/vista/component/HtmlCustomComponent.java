@@ -12,7 +12,9 @@ import javax.faces.context.ResponseWriter;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @FacesComponent(value = "HtmlCustomComponent")
 public class HtmlCustomComponent extends UIComponentBase {

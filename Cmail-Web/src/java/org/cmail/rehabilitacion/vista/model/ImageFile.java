@@ -20,7 +20,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ImageFile implements Serializable{    
     

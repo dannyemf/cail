@@ -14,7 +14,9 @@ import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 
 @FacesValidator(value="porcentajeValidator")

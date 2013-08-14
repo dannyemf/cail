@@ -30,7 +30,7 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
- * @version 1.0Usuario
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_AGENDA)
 @ViewScoped

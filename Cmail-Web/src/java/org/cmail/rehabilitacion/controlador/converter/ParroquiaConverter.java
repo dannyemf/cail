@@ -14,7 +14,9 @@ import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 
 @FacesConverter(value="parroquiaConverter")

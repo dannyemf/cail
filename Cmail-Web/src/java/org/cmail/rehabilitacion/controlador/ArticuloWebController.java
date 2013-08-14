@@ -30,7 +30,9 @@ import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_ARTICULO_WEB)
 @ViewScoped

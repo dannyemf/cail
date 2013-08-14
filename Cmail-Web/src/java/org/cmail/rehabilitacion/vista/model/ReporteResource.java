@@ -25,7 +25,9 @@ import org.cmail.rehabilitacion.vista.util.ReporUtil;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ReporteResource implements Resource, Serializable{
 

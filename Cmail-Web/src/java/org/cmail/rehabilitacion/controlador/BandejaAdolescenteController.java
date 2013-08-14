@@ -34,7 +34,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
  *
- * @author Desarrollador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_BANDEJA)
 @SessionScoped

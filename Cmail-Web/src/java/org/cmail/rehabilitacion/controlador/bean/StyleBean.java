@@ -13,6 +13,12 @@ import org.cmail.rehabilitacion.servicio.ParametroServicio;
 import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
+/**
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
+ */
 @ManagedBean(name="styleBean")
 @SessionScoped
 public class StyleBean implements Serializable {

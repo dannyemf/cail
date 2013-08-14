@@ -5,11 +5,9 @@
 package org.cmail.rehabilitacion.controlador;
 
 import java.util.ArrayList;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-import javax.faces.validator.ValidatorException;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.localizacion.Canton;
@@ -21,7 +19,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_DIVISION)
 @ViewScoped

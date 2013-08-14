@@ -11,7 +11,12 @@ import javax.faces.event.ActionEvent;
 import org.cmail.rehabilitacion.controlador.WucBuscarPersonaController;
 import org.cmail.rehabilitacion.modelo.Persona;
 
-
+/**
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
+ */
 public class ActionListenerWucBuscarPersona implements javax.faces.event.ActionListener, Serializable{   
 
     private Persona persona;

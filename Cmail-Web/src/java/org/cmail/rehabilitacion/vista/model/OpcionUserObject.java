@@ -5,6 +5,12 @@ package org.cmail.rehabilitacion.vista.model;
 import javax.swing.tree.DefaultMutableTreeNode;
 import org.cmail.rehabilitacion.modelo.seguridad.Opcion;
 
+/**
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
+ */
 public class OpcionUserObject extends NodeUserObject {
 
     private Opcion opcion;

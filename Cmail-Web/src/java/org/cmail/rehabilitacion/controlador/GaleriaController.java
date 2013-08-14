@@ -27,7 +27,9 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_GALERIA)
 @ViewScoped

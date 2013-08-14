@@ -8,7 +8,6 @@ import org.cmail.rehabilitacion.modelo.core.Constantes;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
-import org.cmail.rehabilitacion.controlador.bean.*;
 import org.cmail.rehabilitacion.modelo.htp.InformePsicologico;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
@@ -17,7 +16,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
  *
- * @author Desarrollador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_INFORME)
 @SessionScoped

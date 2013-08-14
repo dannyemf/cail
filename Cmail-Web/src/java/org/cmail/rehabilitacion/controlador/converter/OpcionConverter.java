@@ -12,7 +12,9 @@ import org.cmail.rehabilitacion.servicio.OpcionServicio;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class OpcionConverter implements Converter {
 

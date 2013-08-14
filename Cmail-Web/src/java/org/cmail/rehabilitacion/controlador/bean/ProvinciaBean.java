@@ -5,7 +5,6 @@
 package org.cmail.rehabilitacion.controlador.bean;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,9 @@ import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 
 @ManagedBean

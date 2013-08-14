@@ -9,6 +9,12 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import org.cmail.rehabilitacion.controlador.WucMultimediaController;
 
+/**
+ * 
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
+ */
 public class ActionListenerWucMultimedia implements javax.faces.event.ActionListener{   
 
     private File file;

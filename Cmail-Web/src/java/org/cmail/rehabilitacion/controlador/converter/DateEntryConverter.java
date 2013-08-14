@@ -13,7 +13,9 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @FacesConverter(value="dateEntryConverter")
 public class DateEntryConverter implements Converter{

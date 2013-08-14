@@ -7,11 +7,12 @@ package org.cmail.rehabilitacion.vista.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import org.cmail.rehabilitacion.modelo.sira.FichaEgreso;
-import org.cmail.rehabilitacion.vista.model.ReporteResource;
 
 /**
  *
- * @author Carpio Guarnizo
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ItemFichaEgreso implements Serializable{
     

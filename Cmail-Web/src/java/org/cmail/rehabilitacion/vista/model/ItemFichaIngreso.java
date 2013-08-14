@@ -7,12 +7,12 @@ package org.cmail.rehabilitacion.vista.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
-import org.cmail.rehabilitacion.vista.model.ReporteResource;
-import org.cmail.rehabilitacion.vista.util.ReporUtil;
 
 /**
  *
- * @author Carpio Guarnizo
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public class ItemFichaIngreso implements Serializable{
     

@@ -22,7 +22,9 @@ import org.cmail.rehabilitacion.vista.model.ReporteResource;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean (name= Constantes.MB_REPORTE) 
 @ViewScoped

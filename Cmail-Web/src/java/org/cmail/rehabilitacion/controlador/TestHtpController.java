@@ -60,7 +60,9 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 /**
  *
- * @author Desarrollador
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_EV_HTP)
 @SessionScoped

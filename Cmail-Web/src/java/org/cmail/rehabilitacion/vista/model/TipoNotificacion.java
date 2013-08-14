@@ -8,7 +8,9 @@ import java.io.Serializable;
 
 /**
  *
- * @author Usuario
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 public enum TipoNotificacion implements Serializable{
     Aviso,

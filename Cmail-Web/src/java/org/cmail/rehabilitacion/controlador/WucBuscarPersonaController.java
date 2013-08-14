@@ -29,7 +29,9 @@ import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
  * <p>The NavigationBean class is responsible for storing the state of the
  * included dynamic content for display.  </p>
  *
- * @since 0.3.0
+ * @author Noralma Vera
+ * @author Doris Viñamagua
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_WUC_BUSCAR_PERSONA)
 @SessionScoped
