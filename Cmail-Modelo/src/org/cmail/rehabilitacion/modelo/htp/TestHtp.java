@@ -15,7 +15,7 @@ import org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- * Formulacion de evaluación H-T-P
+ * Entidad que refleja el formulacion de evaluación H-T-P.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -23,38 +23,114 @@ import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
  */
 public class TestHtp extends AuditEntity{
     
+    /**
+     * El adolescente al que se le aplica el test htp
+     */
     private Persona adolescente;
+    
+    /**
+     * La persona que aplica el test (usuario logeado)
+     */
     private Usuario evaluador;
+    
+    /**
+     * El esquema de preguntas con el que se aplicó el test
+     */
     private Esquema esquema;
+    
+    /**
+     * La ficha de ingreso actual
+     */
     private FichaIngreso fichaIngreso;
     
+    /**
+     * La fecha en que se creó este test
+     */
     private Date fecha = new Date();
+    
+    /**
+     * La hora de inicio en que se comenzó el test
+     */
     private Date horaInicio = new Date();
+    
+    /**
+     * La hora de finalización del test
+     */
     private Date horaFin = new Date();
     
+    /**
+     * Edad del adolescente a la fecha de aplicar el test
+     */
     private int edadAdolescente = 0;
+    
+    /**
+     * Duración del test en minutos
+     */
     private int duracionMinutos = 0;
     
+    /**
+     * Tiempo en minutos que se demoró para empezar a dibujar la casa
+     */
     private int tiempoLatenciaCasa = 0;
+    
+    /**
+     * Tiempo en minutos que se demoró para empezar a dibujar el árbol
+     */
     private int tiempoLatenciaArbol = 0;
+    
+    /**
+     * Tiempo en minutos que se demoró para empezar a dibujar la persona
+     */
     private int tiempoLatenciaPersona = 0;
     
+    /**
+     * Tiempo en minutos que se demoró en dibujar la casa
+     */
     private int tiempoDuracionCasa = 0;
+    
+    /**
+     * Tiempo en minutos que se demoró en dibujar el árbol
+     */
     private int tiempoDuracionArbol = 0;
+    
+    /**
+     * Tiempo en minutos que se demoró en dibujar la persona
+     */
     private int tiempoDuracionPersona = 0;
     
+    /**
+     * Contenido del dibujo de la casa (binario)
+     */
     private byte[] dibujoCasa;
+    
+    /**
+     * Contenido del dibujo del aŕbol (binario)
+     */
     private byte[] dibujoArbol;
+    
+    /**
+     * Contenido del dibujo de la persona (binario)
+     */
     private byte[] dibujoPersona;
     
+    /**
+     * Colección de respuestas a cada pregunta del test
+     */
     private Set<TestHtpRespuesta> respuestas = new HashSet<TestHtpRespuesta>();
 
+    /**
+     * Constructor por defecto
+     */
     public TestHtp() {
     }        
     
-    public void addRespuesta(EsquemaPregunta esq){
+    /**
+     * Agrega una respuesta a la pregunta correspondiente
+     * @param pregunta la pregunta 
+     */
+    public void addRespuesta(EsquemaPregunta pregunta){
         TestHtpRespuesta rta = new TestHtpRespuesta();
-        rta.setEsquemaPregunta(esq);
+        rta.setEsquemaPregunta(pregunta);
         this.getRespuestas().add(rta);
         rta.setFormulario(this);
         rta.setRespuesta("");

@@ -7,23 +7,54 @@ package org.cmail.rehabilitacion.modelo.htp;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa un indicador.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class Indicador extends DomainEntity implements Cloneable{
     
+    /**
+     * Nomre del indicador
+     */
     private String nombre;
+    
+    /**
+     * Descripción del indicador
+     */
     private String definicion;
+    
+    /**
+     * Las posibles interpretaciones separadas por punto y coma (;)
+     */
     private String significaciones;
+    
+    /**
+     * Tipo de indicador
+     */
     private TipoIndicador tipo = TipoIndicador.Arbol;
+    
+    /**
+     * Valor o peso del indicador
+     */
     private int valor;
+    
+    /**
+     * Orden de presentación u ordenación
+     */
     private int orden;
+    
+    /**
+     * Imagen que representa al indicador
+     */
     private byte[] imagen;
     
     private Categoria categoria;
 
+    /**
+     * Constructor por defecto
+     */
     public Indicador() {
     }
 

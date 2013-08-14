@@ -7,22 +7,49 @@ package org.cmail.rehabilitacion.modelo.sira;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- *
+ * Entidad que representa un artículo o noticia que debe presentarse en la pagina inicial.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class ArticuloWeb extends AuditEntity{
     
+    /**
+     * Título del artículo
+     */
     private String titulo;
+    
+    /**
+     * Indica si el artículo debe mostrarse o no (vigencia)
+     */
     private boolean activo;
+    
+    /**
+     * Indica si el artículo debe mostrarse en la página principal (true) mediante menús o en la sección de noticias (false)
+     */
     private boolean paginaPrincipal;
+    
+    /**
+     * Breve resumen que es mostrado en la sección de noticias y el artículo completo se muestra con el botón leer más.
+     */
     private String resumen = "";
+    
+    /**
+     * Contenido del artículo completo. Es mostrado con el botón leer más.
+     */
     private String descripcion = "";
 
+    /**
+     * Constructor por defecto
+     */
     public ArticuloWeb() {
     }
     
+    /**
+     * Verifica si debe mostrarse un botón leer más (cuando hay una descripción)
+     * @return true si se debe mostrar
+     */
     public boolean isLeerMas(){
         if(this.descripcion.length() > 0){
             return true;

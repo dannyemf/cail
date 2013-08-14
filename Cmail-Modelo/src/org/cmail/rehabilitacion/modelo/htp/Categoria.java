@@ -14,28 +14,52 @@ import org.cmail.rehabilitacion.modelo.DomainEntity;
 import org.cmail.rehabilitacion.modelo.core.IndicadorOrdenComparator;
 
 /**
- *
+ * Entidad que representa una categoría de indicadores.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class Categoria extends DomainEntity{
     
-    private String nombre;
+    /**
+     * Nombre de la categoría
+     */
+    private String nombre;   
+    
+    /**
+     * Descripción de la categoría
+     */
     private String descripcion;
+    
+    /**
+     * Tipo de categoría
+     */
     private TipoCategoria tipo;
     
     //private Interpretacion interpretacion;
     private Set<Indicador> indicadores = new HashSet<Indicador>();   
 
+    /**
+     * Constructor por defecto
+     */
     public Categoria() {
     }
     
+    /**
+     * Agrega un indicador a la categoría
+     * @param indicador el indicador
+     */
     public void addIndicador(Indicador indicador){
         indicador.setCategoria(this);
         indicadores.add(indicador);
     }
     
+    /**
+     * Obtiene una lista de indicadores solo del tipo indicado
+     * @param tipo el tipo de indicador
+     * @return la lista de indicadores
+     */
     public List<Indicador> obtenerIndicadores(TipoIndicador tipo){
         List<Indicador> lst = new ArrayList<Indicador>();
         for (Iterator<Indicador> it = this.indicadores.iterator(); it.hasNext();) {
@@ -50,14 +74,26 @@ public class Categoria extends DomainEntity{
         return lst;
     }
     
+    /**
+     * Obtiene los indicadores cuyo tipo es Casa
+     * @return la lista de indicadores
+     */
     public List<Indicador> getIndicadoresCasa(){
         return obtenerIndicadores(TipoIndicador.Casa);
     }
     
+    /**
+     * Obtiene los indicadores cuyo tipo es Arbol
+     * @return la lista de indicadores
+     */
     public List<Indicador> getIndicadoresArbol(){
         return obtenerIndicadores(TipoIndicador.Arbol);
     }
     
+    /**
+     * Obtiene los indicadores cuyo tipo es Persona
+     * @return la lista de indicadores
+     */
     public List<Indicador> getIndicadoresPersona(){
         return obtenerIndicadores(TipoIndicador.Persona);
     }
@@ -117,9 +153,6 @@ public class Categoria extends DomainEntity{
      */
     public void setTipo(TipoCategoria tipo) {
         this.tipo = tipo;
-    }
-
-    
-
+    }  
     
 }

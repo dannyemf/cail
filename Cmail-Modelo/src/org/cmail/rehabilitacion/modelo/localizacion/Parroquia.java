@@ -8,7 +8,8 @@ package org.cmail.rehabilitacion.modelo.localizacion;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa una parroquia de un cantón del Ecuador.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -20,6 +21,9 @@ public class Parroquia extends DomainEntity {
     private String zona;    
     private boolean activa;    
 
+    /**
+     * Constructor por defecto
+     */
     public Parroquia() {
         activa = true;
     }   

@@ -7,7 +7,8 @@ package org.cmail.rehabilitacion.modelo.seguridad;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Vista de Opción con los atributos adecuados con la finalidad de optimizar consultas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

@@ -8,20 +8,44 @@ import java.util.Date;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- *
+ * Entidad que representa un evento o actividad dentro de una planificación (agenda).
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class Evento extends AuditEntity {
 
+    /**
+     * Fecha de cuando debe llevarse a cabo
+     */
     private Date fechaEjecucion = new Date();
+    
+    /**
+     * Lugar donde debe realizarse
+     */
     private String lugar;
+    
+    /**
+     * Descripción de lo que debe realizarse
+     */
     private String descripcion;
+    
+    /**
+     * Porcentaje de ejecución del evento
+     */
     private int porcentajeEjecucion = 0;
+    
+    /**
+     * Agenda a la que pertenece
+     */
     private Agenda agenda;
+    
     private boolean selected;
 
+    /**
+     * Constructor por defecto
+     */
     public Evento() {
     }
 

@@ -7,7 +7,8 @@ package org.cmail.rehabilitacion.modelo.sira;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa a una pregunta dentro de un test.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -22,22 +23,44 @@ public class EsquemaPregunta extends DomainEntity{
     public static final String GRUPO_CASA = "CASA";
     public static final String GRUPO_ARBOL = "ARBOL";
     public static final String GRUPO_PERSONA = "PERSONA";
-
+   
     /**
-     * @return the GRUPO_NINGUNO
+     * Número de pregunta con fines de ordenación.
      */
-    public static String getGRUPO_NINGUNO() {
-        return GRUPO_NINGUNO;
-    }
-    
     private int numero = 0;
+    
+    /**
+     * Enunciado o texto de la pregunta
+     */
     private String enunciado = "";
+    
+    /**
+     * Tipo de pregunta
+     */
     private String tipo = TIPO_ABIERTA;
-    private String grupo = getGRUPO_NINGUNO();
+    
+    /**
+     * Grupo de la pregunta
+     */
+    private String grupo = GRUPO_NINGUNO;
+    
+    /**
+     * Indica si la pregunta es de contestación obligatoria
+     */
     private boolean requerida;
     
+    /**
+     * El esquema al que pertenece esta pregunta
+     */
     private Esquema esquema;
 
+    /**
+     * Constructor por defecto
+     */
+    public EsquemaPregunta() {
+    }
+    
+    
     /**
      * @return the numero
      */

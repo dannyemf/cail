@@ -5,7 +5,8 @@
 package org.cmail.rehabilitacion.modelo.htp;
 
 /**
- *
+ * Enumeración que representa un tipo de indicador.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

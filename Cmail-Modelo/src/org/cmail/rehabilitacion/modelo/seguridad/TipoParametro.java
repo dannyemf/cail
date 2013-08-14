@@ -5,7 +5,8 @@
 package org.cmail.rehabilitacion.modelo.seguridad;
 
 /**
- *
+ * Enumeración que indica que tipo de dato debe albergar un parámetro.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

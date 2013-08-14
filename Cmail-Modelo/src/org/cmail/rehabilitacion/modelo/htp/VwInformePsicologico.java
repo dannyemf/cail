@@ -8,7 +8,8 @@ import java.util.Date;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Vista de la entidad InformePsicologico con la finalidad de optimizar consultas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -30,6 +31,9 @@ public class VwInformePsicologico extends DomainEntity{
     private String resultadoTest;
     private String motivoIngreso;
     
+    /**
+     * Constructor por defecto
+     */
     public VwInformePsicologico() {
     }
 

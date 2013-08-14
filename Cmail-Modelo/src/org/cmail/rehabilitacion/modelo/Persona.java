@@ -53,6 +53,9 @@ public class Persona extends AuditEntity implements Cloneable{
      */
     private String roles;
     
+    /**
+     * Constructor por defecto
+     */
     public Persona() {
         roles = "";
     }

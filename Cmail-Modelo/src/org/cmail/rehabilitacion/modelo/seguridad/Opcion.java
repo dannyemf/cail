@@ -9,24 +9,59 @@ import java.util.Set;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- *
+ * Entidad que representa un menú de usuario.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class Opcion extends AuditEntity {
 
+    /**
+     * Texto que se muestra en el menú
+     */
     private String etiqueta;
+    
+    /**
+     * Página web o control que se debe mostrar al hacer click.
+     */
     private String url;
+    
+    /**
+     * Título que se debe mostrar
+     */
     private String titulo;
+    
+    /**
+     * Icono jquery que debe tener el menú
+     */
     private String icono;
     
+    /**
+     * Opción padre para mostrar el menú con jerarquías
+     */
     private Opcion padre;
+    
+    /**
+     * Colección de perfiles a los que les debe aparecer el menú.
+     */
     private Set<Perfil> perfiles = new HashSet<Perfil>();
 
+    /**
+     * Constructor por defecto
+     */
     public Opcion() {
     }
 
+    /**
+     *
+     * Constructor por completo.
+     *
+     * @param etiqueta
+     * @param url
+     * @param titulo
+     * @param padre 
+     */
     public Opcion(String etiqueta, String url, String titulo, Opcion padre) {
         this.etiqueta = etiqueta;
         this.url = url;
@@ -34,10 +69,20 @@ public class Opcion extends AuditEntity {
         this.padre = padre;
     }
 
+    /**
+     * Agrega un perfil al menú
+     * @param perfil el perfil a agregar
+     * @return true si se agregó
+     */
     public boolean addPerfil(Perfil perfil) {
         return this.perfiles.add(perfil);
     }
 
+    /**
+     * Remueve un perfil del menú
+     * @param perfil el perfil a remover
+     * @return true si se removió
+     */
     public boolean removePerfil(Perfil perfil) {
         return this.perfiles.remove(perfil);
     }

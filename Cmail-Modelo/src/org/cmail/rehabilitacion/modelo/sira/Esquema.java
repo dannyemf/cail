@@ -9,7 +9,7 @@ import java.util.Set;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- * Clase para representar un esquema de formularios de evaluación
+ * Entidad para representar un esquema de preguntas para el formulario HTP o posibles evaluaciones.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -20,12 +20,29 @@ public class Esquema extends AuditEntity {
     public static final String TIPO_HTP = "H-T-P";
     public static final String TIPO_ANA = "ANAM";
     
+    /**
+     * Nombre del test
+     */
     private String nombre = "";
+    
+    /**
+     * Descripción del test
+     */
     private String descripcion = "";
         
+    /**
+     * Indica si el test es vigente o no. Ya que se pueden crear múltiples versiones de un mismo test.
+     */
     private boolean activo = false;
+    
+    /**
+     * Tipo de test
+     */
     private String tipo = TIPO_HTP;
     
+    /**
+     * Colección de preguntas del test
+     */
     private Set<EsquemaPregunta> preguntas = new HashSet<EsquemaPregunta>();
 
     public Esquema() {

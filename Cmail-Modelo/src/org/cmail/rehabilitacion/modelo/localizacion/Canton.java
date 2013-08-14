@@ -9,7 +9,8 @@ import java.util.Set;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa un cantón del Ecuador.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -21,6 +22,9 @@ public class Canton extends DomainEntity{
     private boolean activo;
     private Set<Parroquia> parroquias = new HashSet<Parroquia>();
 
+    /**
+     * Constructor por defecto
+     */
     public Canton() {
         this.activo = true;        
     }

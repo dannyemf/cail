@@ -11,17 +11,37 @@ import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- *
+ * Entidad que representa la interpretación de un test htp realizado por el psicólogo.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class InterpretacionTestHtp extends AuditEntity{
     
+    /**
+     * El adolescente que realizó el test htp
+     */
     private Persona adolescente;
+    
+    /**
+     * El test htp realizado
+     */
     private TestHtp testHtp;
+    
+    /**
+     * La ficha de ingreso actual
+     */
     private FichaIngreso fichaIngreso;    
+    
+    /**
+     * La persona que aplicó el test htp
+     */
     private Usuario evaluador;
+    
+    /**
+     * Fecha en que se creó esta interpretación
+     */
     private Date fecha = new Date();
     
     private String historiaAdolescente;
@@ -38,8 +58,11 @@ public class InterpretacionTestHtp extends AuditEntity{
     private double porcenjateRehabilitacionEvaluador;    
     private double porcenjateRehabilitacion;
     
-    private int    nivelRehabilitacion;    
+    private int nivelRehabilitacion;    
     
+    /**
+     * Constructor por defecto
+     */
     public InterpretacionTestHtp() {
     }   
 

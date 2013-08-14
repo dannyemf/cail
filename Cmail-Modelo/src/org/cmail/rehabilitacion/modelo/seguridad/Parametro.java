@@ -8,7 +8,8 @@ import java.awt.Dimension;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- *
+ * Entidad que permite configurar o parametrizar el sistema.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -20,9 +21,16 @@ public class Parametro extends AuditEntity{
     private String valor;
     private TipoParametro tipo = TipoParametro.Cadena;
 
+    /**
+     * Constructor por defecto
+     */
     public Parametro() {
     }
     
+    /**
+     * Convierte el valor a entero
+     * @return el valor en entero
+     */
     public int toInt(){
         try {
             return Integer.parseInt(valor);
@@ -31,6 +39,11 @@ public class Parametro extends AuditEntity{
         }
     }
     
+    
+    /**
+     * Convierte el valor a double
+     * @return el valor en double
+     */
     public double toDouble(){
         try {
             return Double.parseDouble(valor);
@@ -39,6 +52,11 @@ public class Parametro extends AuditEntity{
         }
     }
     
+    
+    /**
+     * Convierte el valor a dimensión
+     * @return el valor en el objeto Dimension(ancho, alto)
+     */
     public Dimension toDimension(){
         try {
             String[] sps = valor.split("x");

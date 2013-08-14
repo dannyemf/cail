@@ -10,38 +10,127 @@ import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- *
+ * Entidad que representa un informe psicológico realizado para un adolescente.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class InformePsicologico extends DomainEntity{
     
-    private Persona adolescente;    
+    /**
+     * El adolescente del que se realiza el infome
+     */
+    private Persona adolescente;
+    
+    /**
+     * La ficha de ingreso actual
+     */
     private FichaIngreso fichaIngreso;
+    
+    /**
+     * Fecha en la que se realiza el informe
+     */
     private Date fecha = new Date();
     
-    private String situacionPresente; // Sitiacion presente del adolescente
-    private String anamnesisAntecedentes; //Anamnesis personal y antecedentes personales
-    private String historiaLaboral; //Historia laboral del adolescente
-    private String historiaSalud; //Historia de salud del adolescente
-    private String examenFunciones; //Examen de funciones psíquicas
-    private String informacionPuebasPsicologicas; // Información mas significativa de las pruebas psicológicas
-    private String informacionReactivosTest; // Informacion mas significativa de los reactivos o test utilizados con su familia o persoa de su vinculo afectivo mas cercano
-    private String impresioesDiagnosticasPsicologo; // Impresiones diagnósticas del psicolólogo    
-    private String planAcompaniamiento; //Plan de acompañamiento al adolescente y su familia
+    /**
+     * Sitiacion presente del adolescente
+     */
+    private String situacionPresente; 
     
+    /**
+     * Anamnésis personal y antecedentes personales
+     */
+    private String anamnesisAntecedentes;
+    
+    /**
+     * Historia laboral del adolescente
+     */
+    private String historiaLaboral;
+    
+    /**
+     * Historia de salud del adolescente
+     */
+    private String historiaSalud;
+    
+    /**
+     * Examen de funciones psíquicas
+     */
+    private String examenFunciones;
+    
+    /**
+     * Información mas significativa de las pruebas psicológicas
+     */
+    private String informacionPuebasPsicologicas;
+    
+    /**
+     * Informacion mas significativa de los reactivos o test utilizados con su familia o persoa de su vinculo afectivo mas cercano
+     */
+    private String informacionReactivosTest;
+    
+    /**
+     * Impresiones diagnósticas del psicolólogo
+     */
+    private String impresioesDiagnosticasPsicologo;
+    
+    /**
+     * Plan de acompañamiento al adolescente y su familia
+     */
+    private String planAcompaniamiento;
+    
+    /**
+     * Condiciones de identidad y fortalezas
+     */
     private String condicionesIdentidadFortalezas;
+    
+    /**
+     * Condiciones de identidad y debilidades
+     */
     private String condicionesIdentidadDebilidades;
+    
+    /**
+     * Condiciones de salud y fortalezas
+     */
     private String condicionesSaludFortalezas;
+    
+    /**
+     * Condiciones de salud y debilidades
+     */
     private String condicionesSaludDebilidades;
+    
+    /**
+     * Condiciones de educación y fortalezas
+     */
     private String condicionesEducacionFortalezas;
+    
+    /**
+     * Condiciones de educación y debilidades
+     */
     private String condicionesEducacionDebilidades;
+    
+    /**
+     * Condiciones de vínculos familiares y fortalezas
+     */
     private String condicionesVinvulosFamiliaresFortalezas;
+    
+    /**
+     * Condiciones de vínculos familiares y debilidades
+     */
     private String condicionesVinculosFamiliaresDebilidades;
+    
+    /**
+     * Condiciones de formación de trabajo y fortalezas
+     */
     private String condicionesFormacionTrabajoFortalezas;
+    
+    /**
+     * Condiciones de formación de trabajo y debilidades
+     */
     private String condicionesFormacionTrabajoDebilidades;
 
+    /**
+     * Constructor por defecto
+     */
     public InformePsicologico() {
     }
 

@@ -12,44 +12,91 @@ import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 
 /**
- *
+ * Entidad que representa una agenda o planificación de actividades.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class Agenda extends AuditEntity {
 
-    //analisis
-    //datos informativos ==> fecha + lugar + (descripcion)
-    //objetivos ==> fin de la planificacion    
-    //recursos ==> responsable + partcipantes
-    //actividades ==> actividades
     public static final String ESTADO_REGISTRADO = "REGISTRADA";
     public static final String ESTADO_FINALIZADO = "FINALIZADA";
+    
+    /**
+     * Fecha de inicio de la ejecución
+     */
     private Date fechaInicio = new Date();
+    
+    /**
+     * Fecha de inicio de finalización de la ejecución
+     */
     private Date fechaFin = new Date();
+    
+    /**
+     * Objetivo de la planificación
+     */
     private String objetivo;
+    
+    /**
+     * Descripción breve de que se va a realizar en la agenda
+     */
     private String descripcion;
+    
+    /**
+     * Descripción de los participantes
+     */
     private String participantes;
-    // analizar si es una lista de actividades.
+    
+    /**
+     * Listade actividades a realizar
+     */
     private Set<Evento> eventos = new HashSet<Evento>();
+    
+    /**
+     * Observaciones de la planificación
+     */
     private String observaciones;
+    
+    /**
+     * Empleado encargado de ejecutar
+     */
     private Persona responsable;
+    
+    /**
+     * Estado actual de la agenda
+     */
     private String estado = ESTADO_REGISTRADO;
+    
+    /**
+     * Observaciones al finalizar la ejecuación de la agenda
+     */
     private String reporteFinal;
-    //para fines de auditoria
+    
+    /**
+     * El usuario que creó la agenda
+     */
     private Usuario usuario;
 
     public Agenda() {
     }
 
-    public void addEvento(Evento a) {
-        this.getEventos().add(a);
-        a.setAgenda(this);
+    /**
+     * Agrega un vento
+     * @param evento el evento 
+     */
+    public void addEvento(Evento evento) {
+        this.getEventos().add(evento);
+        evento.setAgenda(this);
     }
 
-    public boolean removeEvento(Evento a) {
-        return this.getEventos().remove(a);
+    /**
+     * Remueve un vento de la agenda
+     * @param evento el evento
+     * @return true si se removió
+     */
+    public boolean removeEvento(Evento evento) {
+        return this.getEventos().remove(evento);
     }
 
     /**
@@ -226,6 +273,10 @@ public class Agenda extends AuditEntity {
         this.reporteFinal = reporteFinal;
     }
     
+    /**
+     * Verifica si la agenda está en estado finalizada
+     * @return true si el estado es la constante ESTADO_FINALIZADO
+     */
     public boolean isEstadoFinalizado(){
         if(estado.equals(ESTADO_FINALIZADO)){
             return true;

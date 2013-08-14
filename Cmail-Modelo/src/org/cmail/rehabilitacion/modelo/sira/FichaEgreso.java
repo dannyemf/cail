@@ -9,12 +9,12 @@ import org.cmail.rehabilitacion.modelo.AuditEntity;
 import org.cmail.rehabilitacion.modelo.Persona;
 
 /**
- *
+ * Entidad que representa una ficha de egreso de un adolescente, es decir el registro de cuando una adolescente sale del centro de rehabilitación al cumplir su condena.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
-//FICHA DE EGRESO  DE ADOLESCENTES
 public class FichaEgreso extends AuditEntity {
 
     private FichaIngreso fichaIngreso = null;

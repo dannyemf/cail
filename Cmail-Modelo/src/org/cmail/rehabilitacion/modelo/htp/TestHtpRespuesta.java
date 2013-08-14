@@ -8,17 +8,32 @@ import org.cmail.rehabilitacion.modelo.DomainEntity;
 import org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta;
 
 /**
- *
+ * Entidad que representa a una respuesta del adolescente del test htp aplicado.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 public class TestHtpRespuesta extends DomainEntity{
     
+    /**
+     * El test htp al que pertenece la respuesta
+     */
     private TestHtp formulario;
+    
+    /**
+     * La pregunta que se responde
+     */
     private EsquemaPregunta esquemaPregunta;
+    
+    /**
+     * La respuesta contestada
+     */
     private String respuesta;
 
+    /**
+     * Constructor por defecto
+     */
     public TestHtpRespuesta() {
     }
 

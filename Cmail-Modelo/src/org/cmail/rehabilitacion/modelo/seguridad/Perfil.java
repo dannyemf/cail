@@ -7,7 +7,8 @@ package org.cmail.rehabilitacion.modelo.seguridad;
 import org.cmail.rehabilitacion.modelo.AuditEntity;
 
 /**
- *
+ * Entidad que representa un perfil de usuario.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -20,9 +21,17 @@ public class Perfil extends AuditEntity{
     // Atributo no persisnte
     private boolean seleccionado = false;
 
+    /**
+     * Constructor por defecto
+     */
     public Perfil() {
     }
 
+    /**
+     * Constructor completo
+     * @param nombre
+     * @param descripcion 
+     */
     public Perfil(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

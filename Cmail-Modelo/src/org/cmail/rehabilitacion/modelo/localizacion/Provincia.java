@@ -9,7 +9,8 @@ import java.util.Set;
 import org.cmail.rehabilitacion.modelo.DomainEntity;
 
 /**
- *
+ * Entidad que representa una provincia del Ecuador.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -22,6 +23,9 @@ public class Provincia extends DomainEntity{
     private boolean activa;
     private Set<Canton> cantones = new HashSet<Canton>();
 
+    /**
+     * Constructor por defecto
+     */
     public Provincia() {
         activa = true;
     }
