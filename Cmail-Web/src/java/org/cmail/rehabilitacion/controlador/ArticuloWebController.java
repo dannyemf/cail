@@ -7,7 +7,6 @@ package org.cmail.rehabilitacion.controlador;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -19,12 +18,9 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucMultimedia;
 import org.cmail.rehabilitacion.modelo.sira.ArticuloWeb;
-import org.cmail.rehabilitacion.modelo.sira.ImagenWeb;
 import org.cmail.rehabilitacion.servicio.BaseServicio;
 import org.cmail.rehabilitacion.servicio.GenericServicio;
-import org.cmail.rehabilitacion.servicio.ImagenWebServicio;
 import org.cmail.rehabilitacion.servicio.PerfilServicio;
-import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
 
@@ -50,25 +46,25 @@ public class ArticuloWebController extends Controller {
 
     /**Constructor por defecto*/
     public ArticuloWebController() {        
-    }
+    }    
     
-    private void initImages(){
-        List<ImagenWeb> lst = new ImagenWebServicio().listarImagenesWeb();
-        for (Iterator<ImagenWeb> it = lst.iterator(); it.hasNext();) {
-            ImagenWeb im = it.next();
-            new ImageFile(im);
-        }
-    }   
-    
-    public void eventoSelTab(ValueChangeEvent e){
-        getWucMultimedia().accionCerrar(new ActionEvent(e.getComponent()));
+    /**
+     * Evento invocado al seleccioanr el tab de resumen y contenido del artículo
+     * @param evt el evento 
+     */
+    public void eventoSelTab(ValueChangeEvent evt){
+        getWucMultimedia().accionCerrar(new ActionEvent(evt.getComponent()));
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
     } 
-        
-    public void eventoChangeCriterio(ValueChangeEvent e){
+    
+    /**
+     * Evento invocado al cambiar el criterio de búsqueda con la finalidad de pasar los validadores y presentar los nuevos controles.
+     * @param evt el evento 
+     */
+    public void eventoChangeCriterio(ValueChangeEvent evt){
         //Setea la ultima fecha fijada para evitar que coja las validaciones y se renderize las fechas (ocultar cuando estén en error)
-        DateTimeEntry cf1 =  (DateTimeEntry)e.getComponent().getParent().findComponent("form:sidFechaDesde");
-        DateTimeEntry cf2 =  (DateTimeEntry)e.getComponent().getParent().findComponent("form:sidFechaHasta");
+        DateTimeEntry cf1 =  (DateTimeEntry)evt.getComponent().getParent().findComponent("form:sidFechaDesde");
+        DateTimeEntry cf2 =  (DateTimeEntry)evt.getComponent().getParent().findComponent("form:sidFechaHasta");
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         cf1.setSubmittedValue(df.format(fechaInicial));
         cf2.setSubmittedValue(df.format(fechaFinal));
@@ -169,8 +165,35 @@ public class ArticuloWebController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_ARTICULOS);
     }
     
+    /**
+     * Evento invocado por el botón para seleccionar agregar las imágenes del resumen.
+     * Abre el diálogo del wuc multimedia.
+     * @param evt el evento 
+     */
+    public void seleccionarImagenResumen(ActionEvent evt){       
+        getWucMultimedia().mostar(new ActionListenerWucMultimedia(){
+            @Override
+            public void processAction(ActionEvent ae) throws AbortProcessingException {
+                log().info(this.getImgTag());
+                //getArticuloEdicion().setResumen(getArticuloEdicion().getResumen() + this.getImgTag());                                
+            }                   
+        },"form:txtResumen", "Insertar al resumen");
+    }
     
-
+    /**
+     * Evento invocado por el botón para seleccionar agregar las imágenes del contenido.
+     * Abre el diálogo del wuc multimedia.
+     * @param evt el evento 
+     */
+    public void seleccionarImagenContenido(ActionEvent e){ 
+        getWucMultimedia().mostar(new ActionListenerWucMultimedia(){
+            @Override
+            public void processAction(ActionEvent ae) throws AbortProcessingException {                                
+                //getArticuloEdicion().setDescripcion(getArticuloEdicion().getDescripcion() + this.getImgTag());
+            }                   
+        },"form:txtDescripcion","Insertar a la página");
+    }
+        
     public ArticuloWeb getArticuloEdicion() {
         return FacesUtils.getSessionBean().getParrafoEdicion();
     }
@@ -181,26 +204,7 @@ public class ArticuloWebController extends Controller {
     
     public WucMultimediaController getWucMultimedia(){
         return FacesUtils.getBean(Constantes.MB_WUC_MULTIMEDIA, WucMultimediaController.class);
-    }
-    
-    public void seleccionarImagenResumen(ActionEvent e){       
-        getWucMultimedia().mostar(new ActionListenerWucMultimedia(){
-            @Override
-            public void processAction(ActionEvent ae) throws AbortProcessingException {
-                log().info(this.getImgTag());
-                //getArticuloEdicion().setResumen(getArticuloEdicion().getResumen() + this.getImgTag());                                
-            }                   
-        },"form:txtResumen", "Insertar al resumen");
-    }
-    
-    public void seleccionarImagenContenido(ActionEvent e){ 
-        getWucMultimedia().mostar(new ActionListenerWucMultimedia(){
-            @Override
-            public void processAction(ActionEvent ae) throws AbortProcessingException {                                
-                //getArticuloEdicion().setDescripcion(getArticuloEdicion().getDescripcion() + this.getImgTag());
-            }                   
-        },"form:txtDescripcion","Insertar a la página");
-    }
+    }        
 
     public void setModel(CmailListDataModel<ArticuloWeb> model) {
         this.model = model;
@@ -289,7 +293,5 @@ public class ArticuloWebController extends Controller {
     public void setSelectedTab(int s){
         getSessionBean().addSessionMap("currentTabArticulo", s);
     }
-    
-    
-  
+          
 }

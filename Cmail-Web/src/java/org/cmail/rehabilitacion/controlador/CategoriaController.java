@@ -134,18 +134,34 @@ public class CategoriaController  extends Controller{
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_CATEGORIAS);
     }    
     
+    /**
+     * Evento invocado para crear un nuevo indicador dentro de la categoría casa.
+     * @param evt el evento
+     */
     public void eventoNuevoIndicadorCasa(ActionEvent evt) {
         crearIndicador(TipoIndicador.Casa);
     }
     
+    /**
+     * Evento invocado para crear un nuevo indicador dentro de la categoría arbol.
+     * @param evt el evento
+     */
     public void eventoNuevoIndicadorArbol(ActionEvent evt) {
         crearIndicador(TipoIndicador.Arbol);
     }
     
+    /**
+     * Evento invocado para crear un nuevo indicador dentro de la categoría persona.
+     * @param evt el evento
+     */
     public void eventoNuevoIndicadorPersona(ActionEvent evt) {
         crearIndicador(TipoIndicador.Persona);
     }
     
+    /**
+     * Crea un nuevo indicador según el tipo indicado y lo inicializa.
+     * @param tipo el tipo de indicador a crear
+     */
     public void crearIndicador(TipoIndicador tipo) {        
         indicadorEdicion = new Indicador();
         indicadorOldValues = null;        
@@ -163,6 +179,11 @@ public class CategoriaController  extends Controller{
         showIndicador(indicadorEdicion);
     }
     
+    /**
+     * Verifica si un indicador no existe en los otros tipos de indicadores, de tal manera que pueda duplicarse.
+     * @param indicador el indicador a verificar
+     * @return true si es que puede copiarse
+     */
     public boolean verificarCopiarIndicador(Indicador indicador) {
         boolean addCasa = !indicador.getTipo().equals(TipoIndicador.Casa);
         boolean addArbol = !indicador.getTipo().equals(TipoIndicador.Arbol);
@@ -182,6 +203,14 @@ public class CategoriaController  extends Controller{
         
         return addCasa || addArbol || addPersona;
     }
+    
+    /**
+     * Evento para crear una copia del mismo indicador en los otros tipos de indicadores que no exista.
+     * Se invoca solo si se acepto la acción de copiar en la ventana de confirmación.
+     * 
+     * @param evt el evento
+     * @param indicador el indicador
+     */
     public void eventoCopiarIndicador(ActionEvent evt, Indicador indicador) {
         indicadorEdicion = indicador;
         tiposIndicadores = new ArrayList<SelectItem>();
@@ -222,6 +251,10 @@ public class CategoriaController  extends Controller{
         }
     }
     
+    /**
+     * Evento que confirma la acción de copiar el indicador.
+     * @param evt el evento
+     */
     public void eventoCopiarIndicadorOk(ActionEvent evt) {
         
         if(tiposIndicadorSeleccionados!=null && tiposIndicadorSeleccionados.length > 0){
@@ -245,11 +278,19 @@ public class CategoriaController  extends Controller{
         runScript("dlgCopiarIndicador.hide();");
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar de la ventana de confirmación de copia del indicador.
+     * @param evt el evento
+     */
     public void eventoCancelarCopiarIndicador(ActionEvent evt) {
         indicadorEdicion = null;
         runScript("dlgCopiarIndicador.hide();");
     }
     
+    /**
+     * Inicializa los controles en la ventana de edición del indicador.
+     * @param indicador el indicador
+     */
     public void showIndicador(Indicador indicador){                                
         initAudit(indicador);
         
@@ -262,17 +303,32 @@ public class CategoriaController  extends Controller{
         runScript("dlgEditarIndicador.show();");
     }
     
+    /**
+     * Evento invocado para eliminar un indicador.
+     * Es necesario una confirmaciíon de tal acción.
+     * @param evt el evento
+     * @param indicador el indicador
+     */
     public void eventoEliminarIndicador(ActionEvent evt, Indicador indicador) {                
         this.indicadorEdicion = indicador;
         runScript("dlgEliminarIndicador.show();");
     }
     
+    /**
+     * Evento de confirmación para eliminar el indicador.
+     * Se procede a eliminar el indicador,
+     * @param evt 
+     */
     public void eventoEliminarIndicadorOk(ActionEvent evt) {
         categoriaEdicion.getIndicadores().remove(indicadorEdicion);
         runScript("dlgEliminarIndicador.hide();");
     }
     
-    
+    /**
+     * Evento invocado para editar un indicador
+     * @param evt el evento
+     * @param indicador el indicador
+     */
     public void eventoEditarIndicador(ActionEvent evt, Indicador indicador) {
         this.indicadorEdicion = indicador;
         try {
@@ -284,6 +340,11 @@ public class CategoriaController  extends Controller{
         showIndicador(indicadorEdicion);                
     }
     
+    /**
+     * Evento invocado para guardar el indicador en edición.
+     * Si es un nuevo indicador se agrega a la categoría.
+     * @param evt el evento
+     */
     public void eventoGuardarIndicador(ActionEvent evt) {
         if(nuevoIndicador){
             categoriaEdicion.addIndicador(indicadorEdicion);            
@@ -292,6 +353,12 @@ public class CategoriaController  extends Controller{
         runScript("dlgEditarIndicador.hide();");
     }
     
+    /**
+     * Evento para cancelar la edición de un indicador.
+     * Restaura los valores anteriores.
+     * 
+     * @param evt el evento
+     */
     public void eventoCancelarEditarIndicador(ActionEvent evt) {
         if(indicadorOldValues != null){
             indicadorEdicion.setNombre(indicadorOldValues.getNombre());
@@ -304,6 +371,13 @@ public class CategoriaController  extends Controller{
         runScript("dlgEditarIndicador.hide();");
     }
     
+    /**
+     * Validación del nombre del indicador
+     * @param ctx el contexto
+     * @param cmp el componente
+     * @param value el valor
+     * @throws ValidatorException 
+     */
     public void validateNombreIndicador(FacesContext ctx, UIComponent cmp, Object value) throws ValidatorException{
         
         TipoIndicador tipo = this.indicadorEdicion.getTipo();
@@ -317,10 +391,18 @@ public class CategoriaController  extends Controller{
         }
     }
     
+    /**
+     * Evento para remover la imagen actual asociada a un indicador
+     * @param evt el evento
+     */
     public void eventoLimpiarImagenIndicador(ActionEvent evt) {                
         indicadorEdicion.setImagen(null);
     }
     
+    /**
+     * Evento para subir una nueva imagen que represente al indicador.
+     * @param event el evento
+     */
     public void listenerUploadImagenIndicador(FileEntryEvent event) {                
         
         log().info("Listener invocado...");
