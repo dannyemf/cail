@@ -47,7 +47,7 @@ public class ImagenWebServicio extends GenericServicio<ImagenWeb> {
     public List<ImagenWeb> listarGaleriaHomePage(){
         return from().where(
                 K.eq("tipo", TipoImagenWeb.GALERIA),
-                K.like("estado", true)
+                K.eq("estado", true)
         ).orderBy(K.asc("orden")).list();
     }
     

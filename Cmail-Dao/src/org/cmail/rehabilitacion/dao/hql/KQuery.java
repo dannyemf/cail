@@ -135,11 +135,11 @@ public class KQuery<T extends DomainEntity> implements IKResult{
      * @param hql el hql
      * @return el objeto Query
      */
-    private Query createHibernateQuery(String hql){       
-        
-        System.out.println(hql);
+    private Query createHibernateQuery(String hql){                    
         
         HibernateSessionFactory.getSession().clear();
+        
+        System.out.println("HQL => " + hql);
         
         Query q = HibernateSessionFactory.getSession().createQuery(hql);
         

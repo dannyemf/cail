@@ -1776,3 +1776,767 @@
 18:58:23,833 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_opcion (id bigint not null, id_padre bigint, id_perfil bigint, etiqueta varchar(45), url varchar(80), titulo varchar(80), icono varchar(80), primary key (id)) ENGINE=InnoDB
 18:58:23,834 ERROR SchemaUpdate:156 - Table 'vw_opcion' already exists
 18:58:23,834  INFO SchemaUpdate:160 - schema update complete
+08:45:11,187  INFO Environment:514 - Hibernate 3.2.5
+08:45:11,192  INFO Environment:532 - loaded properties from resource hibernate.properties: {hibernate.c3p0.acquire_increment=1, hibernate.c3p0.timeout=100, hibernate.c3p0.min_size=10, hibernate.c3p0.max_size=100, hibernate.bytecode.use_reflection_optimizer=false, hibernate.c3p0.max_statements=0, hibernate.c3p0.idle_test_period=100}
+08:45:11,196  INFO Environment:681 - Bytecode provider name : cglib
+08:45:11,201  INFO Environment:598 - using JDK 1.4 java.sql.Timestamp handling
+08:45:11,249  INFO Configuration:1426 - configuring from resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:45:11,249  INFO Configuration:1403 - Configuration resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:45:11,334  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Usuario.hbm.xml
+08:45:11,467  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Usuario -> seg_usuario
+08:45:11,488  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Usuario.perfiles -> seg_usuario_perfil
+08:45:11,495  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Perfil.hbm.xml
+08:45:11,535  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Perfil -> seg_perfil
+08:45:11,538  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Opcion.hbm.xml
+08:45:11,569  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Opcion -> seg_opcion
+08:45:11,637  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Opcion.perfiles -> seg_opcion_perfil
+08:45:11,639  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Permiso.hbm.xml
+08:45:11,663  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Permiso -> seg_permiso
+08:45:11,666  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Permiso.perfiles -> seg_permiso_perfil
+08:45:11,667  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Persona.hbm.xml
+08:45:11,705  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.Persona -> sira_persona
+08:45:11,710  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parametro.hbm.xml
+08:45:11,732  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Parametro -> seg_parametro
+08:45:11,736  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngreso.hbm.xml
+08:45:11,826  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngreso -> sira_fichaingreso
+08:45:11,855  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngresoDocumento.hbm.xml
+08:45:11,885  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento -> sira_fiching_documento
+08:45:11,890  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaEgreso.hbm.xml
+08:45:11,935  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaEgreso -> sira_fichaegreso
+08:45:11,945  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Agenda.hbm.xml
+08:45:11,980  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Agenda -> sira_agenda
+08:45:11,983  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Evento.hbm.xml
+08:45:12,018  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Evento -> sira_actividad
+08:45:12,029  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Provincia.hbm.xml
+08:45:12,048  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Provincia -> loc_provincia
+08:45:12,049  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Canton.hbm.xml
+08:45:12,070  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Canton -> loc_canton
+08:45:12,071  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parroquia.hbm.xml
+08:45:12,100  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Parroquia -> loc_parroquia
+08:45:12,103  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ArticuloWeb.hbm.xml
+08:45:12,135  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ArticuloWeb -> web_articulo
+08:45:12,139  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ImagenWeb.hbm.xml
+08:45:12,167  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ImagenWeb -> web_imagen
+08:45:12,170  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaEntidad.hbm.xml
+08:45:12,199  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaEntidad -> aud_entidad
+08:45:12,203  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaPropiedad.hbm.xml
+08:45:12,232  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaPropiedad -> aud_propiedad
+08:45:12,235  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Esquema.hbm.xml
+08:45:12,265  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Esquema -> sira_esquema
+08:45:12,266  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/EsquemaPregunta.hbm.xml
+08:45:12,290  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta -> sira_esquema_pregunta
+08:45:12,291  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtp.hbm.xml
+08:45:12,321  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtp -> htp_test
+08:45:12,325  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtpRespuesta.hbm.xml
+08:45:12,351  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtpRespuesta -> htp_test_respuesta
+08:45:12,355  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml
+08:45:12,386  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InformePsicologico -> htp_inf_psicologico
+08:45:12,391  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InterpretacionTestHtp.hbm.xml
+08:45:12,423  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp -> htp_interpretacion_test
+08:45:12,428  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Categoria.hbm.xml
+08:45:12,452  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Categoria -> htp_catgeoria
+08:45:12,455  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Indicador.hbm.xml
+08:45:12,478  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Indicador -> htp_indicador
+08:45:12,480  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwOpcion.hbm.xml
+08:45:12,495  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.VwOpcion -> vw_opcion
+08:45:12,497  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwFichaIngreso.hbm.xml
+08:45:12,516  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwFichaIngreso -> vw_ficha_ingreso
+08:45:12,519  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwIngresoSalida.hbm.xml
+08:45:12,536  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwIngresoSalida -> vw_ingreso_salida
+08:45:12,540  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwInformePsicologico.hbm.xml
+08:45:12,557  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.VwInformePsicologico -> vw_informe_psicologico
+08:45:12,561  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/hibernate.mapping.xml
+08:45:12,575  INFO Configuration:1541 - Configured SessionFactory: null
+08:45:12,579  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.FichaIngreso.documentos -> sira_fiching_documento
+08:45:12,582  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Agenda.eventos -> sira_actividad
+08:45:12,584  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Provincia.cantones -> loc_canton
+08:45:12,584  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Canton.parroquias -> loc_parroquia
+08:45:12,584  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.AuditoriaEntidad.propiedades -> aud_propiedad
+08:45:12,588  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Esquema.preguntas -> sira_esquema_pregunta
+08:45:12,589  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.TestHtp.respuestas -> htp_test_respuesta
+08:45:12,589  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.Categoria.indicadores -> htp_indicador
+08:45:12,631  INFO C3P0ConnectionProvider:81 - C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/cail
+08:45:12,631  INFO C3P0ConnectionProvider:82 - Connection properties: {user=root, password=****}
+08:45:12,632  INFO C3P0ConnectionProvider:85 - autocommit mode: false
+08:45:12,669  INFO MLog:80 - MLog clients using log4j logging.
+08:45:12,862  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.2 [built 21-May-2007 15:05:05; debug? true; trace: 10]
+08:45:12,968  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@a0698b77 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@a62a650a [ acquireIncrement -> 1, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> z8kfsx8w104rdhmyh1ak6|783a69, idleConnectionTestPeriod -> 100, initialPoolSize -> 10, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 100, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 100, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 10, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@538a5001 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104rdhmyh1ak6|fd54ec, jdbcUrl -> jdbc:mysql://localhost:3306/cail, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104rdhmyh1ak6|9abc40, numHelperThreads -> 3 ]
+08:45:13,333  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.32-0ubuntu0.13.04.1
+08:45:13,342  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.23 ( Revision: ${bzr.revision-id} )
+08:45:13,374  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+08:45:13,381  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+08:45:13,386  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+08:45:13,388  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+08:45:13,389  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+08:45:13,390  INFO SettingsFactory:154 - JDBC batch size: 15
+08:45:13,391  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+08:45:13,394  INFO SettingsFactory:162 - Scrollable result sets: enabled
+08:45:13,395  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+08:45:13,396  INFO SettingsFactory:178 - Connection release mode: auto
+08:45:13,397  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+08:45:13,398  INFO SettingsFactory:205 - Default batch fetch size: 1
+08:45:13,399  INFO SettingsFactory:209 - Generate SQL with comments: enabled
+08:45:13,400  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+08:45:13,404  INFO SettingsFactory:217 - Order SQL inserts for batching: disabled
+08:45:13,407  INFO SettingsFactory:386 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+08:45:13,415  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+08:45:13,416  INFO SettingsFactory:225 - Query language substitutions: {}
+08:45:13,416  INFO SettingsFactory:230 - JPA-QL strict compliance: disabled
+08:45:13,416  INFO SettingsFactory:235 - Second-level cache: enabled
+08:45:13,416  INFO SettingsFactory:239 - Query cache: disabled
+08:45:13,416  INFO SettingsFactory:373 - Cache provider: org.hibernate.cache.NoCacheProvider
+08:45:13,417  INFO SettingsFactory:254 - Optimize cache for minimal puts: disabled
+08:45:13,417  INFO SettingsFactory:263 - Structured second-level cache entries: disabled
+08:45:13,422  INFO SettingsFactory:283 - Echoing all SQL to stdout
+08:45:13,422  INFO SettingsFactory:290 - Statistics: disabled
+08:45:13,422  INFO SettingsFactory:294 - Deleted entity synthetic identifier rollback: disabled
+08:45:13,423  INFO SettingsFactory:309 - Default entity-mode: pojo
+08:45:13,423  INFO SettingsFactory:313 - Named query checking : enabled
+08:45:13,448  INFO SessionFactoryImpl:161 - building session factory
+08:45:14,215  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+08:45:14,218  INFO SchemaUpdate:115 - Running hbm2ddl schema update
+08:45:14,218  INFO SchemaUpdate:126 - fetching database metadata
+08:45:14,222  INFO SchemaUpdate:138 - updating schema
+08:45:14,253  INFO TableMetadata:39 - table found: cail.aud_entidad
+08:45:14,254  INFO TableMetadata:40 - columns: [id, entidadnombre, fecha, entidadid, usuario, entidadclase, accion]
+08:45:14,255  INFO TableMetadata:42 - foreign keys: []
+08:45:14,255  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,269  INFO TableMetadata:39 - table found: cail.aud_propiedad
+08:45:14,270  INFO TableMetadata:40 - columns: [nombre, id, estado, id_auditoria, valor]
+08:45:14,270  INFO TableMetadata:42 - foreign keys: [fk898cec9915a9375f]
+08:45:14,270  INFO TableMetadata:43 - indexes: [fk898cec9915a9375f, primary]
+08:45:14,276  INFO TableMetadata:39 - table found: cail.htp_catgeoria
+08:45:14,277  INFO TableMetadata:40 - columns: [nombre, id, definicion, tipo]
+08:45:14,277  INFO TableMetadata:42 - foreign keys: []
+08:45:14,277  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,287  INFO TableMetadata:39 - table found: cail.htp_indicador
+08:45:14,288  INFO TableMetadata:40 - columns: [orden, nombre, id, imagen, id_categoria, valor, tipo, definicion, significaciones]
+08:45:14,288  INFO TableMetadata:42 - foreign keys: [fk29844645da4f97e]
+08:45:14,288  INFO TableMetadata:43 - indexes: [fk29844645da4f97e, primary]
+08:45:14,305  INFO TableMetadata:39 - table found: cail.htp_inf_psicologico
+08:45:14,305  INFO TableMetadata:40 - columns: [condicionessaluddebilidades, id_adolescente, id_ficha, fecha, condicionesvinculosfamiliaresdebilidades, anamnesisantecedentes, condicioneseducaciondebilidades, planacompaniamiento, id, condicionesformaciontrabajodebilidades, informacionreactivostest, examenfunciones, historiasalud, informacionpuebaspsicologicas, historialaboral, condicionesidentidaddebilidades, impresioesdiagnosticaspsicologo, condicionesidentidadfortalezas, condicionessaludfortalezas, situacionpresente, condicionesformaciontrabajofortalezas, condicioneseducacionfortalezas, condicionesvinvulosfamiliaresfortalezas]
+08:45:14,305  INFO TableMetadata:42 - foreign keys: [fkf5ce644a6c35479c, fkf5ce644af019975d]
+08:45:14,305  INFO TableMetadata:43 - indexes: [fkf5ce644a6c35479c, fkf5ce644af019975d, primary]
+08:45:14,323  INFO TableMetadata:39 - table found: cail.htp_interpretacion_test
+08:45:14,323  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, porcenjaterehabilitacionsistema, id_evaluador, porcenjaterehabilitacion, fecha, comentarioconducta, auditupdateuser, interrogativoposterior, auditupdatedate, resumenpsicologo, porcenjaterehabilitacionevaluador, id, graficoperspectiva, graficoproporcion, auditcreatedate, nivelrehabilitacion, nivelrehabilitacionnombre, id_test, graficodetalle, historiaadolescente]
+08:45:14,323  INFO TableMetadata:42 - foreign keys: [fkac3cc97dfd32cf31, fkac3cc97df019975d, fkac3cc97d525e5464, fkac3cc97d6c35479c]
+08:45:14,323  INFO TableMetadata:43 - indexes: [fkac3cc97df019975d, fkac3cc97dfd32cf31, fkac3cc97d525e5464, primary, fkac3cc97d6c35479c]
+08:45:14,347  INFO TableMetadata:39 - table found: cail.htp_test
+08:45:14,347  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, id_evaluador, fecha, horainicio, auditupdateuser, dibujopersona, dibujoarbol, tiempoduracioncasa, edadadolescente, auditupdatedate, tiempolatenciaarbol, dibujocasa, tiempoduracionarbol, duracionminutos, id, tiempolatenciacasa, tiempoduracionpersona, id_esquema, auditcreatedate, horafin, tiempolatenciapersona]
+08:45:14,348  INFO TableMetadata:42 - foreign keys: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:45:14,348  INFO TableMetadata:43 - indexes: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, primary, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:45:14,358  INFO TableMetadata:39 - table found: cail.htp_test_respuesta
+08:45:14,358  INFO TableMetadata:40 - columns: [id, respuesta, id_esq_preg, id_test]
+08:45:14,358  INFO TableMetadata:42 - foreign keys: [fk1d6110ec54e8086, fk1d6110e525e5464]
+08:45:14,359  INFO TableMetadata:43 - indexes: [fk1d6110ec54e8086, primary, fk1d6110e525e5464]
+08:45:14,366  INFO TableMetadata:39 - table found: cail.loc_canton
+08:45:14,366  INFO TableMetadata:40 - columns: [nombre, id, id_provincia, activo]
+08:45:14,366  INFO TableMetadata:42 - foreign keys: [fkd4a6a162fffdad4c]
+08:45:14,366  INFO TableMetadata:43 - indexes: [fkd4a6a162fffdad4c, primary]
+08:45:14,375  INFO TableMetadata:39 - table found: cail.loc_parroquia
+08:45:14,376  INFO TableMetadata:40 - columns: [nombre, id, id_canton, zona, activa]
+08:45:14,377  INFO TableMetadata:42 - foreign keys: [fkc2a24b9bc3dcbe54]
+08:45:14,377  INFO TableMetadata:43 - indexes: [fkc2a24b9bc3dcbe54, primary]
+08:45:14,387  INFO TableMetadata:39 - table found: cail.loc_provincia
+08:45:14,388  INFO TableMetadata:40 - columns: [nombre, id, cod_region, activa, capital]
+08:45:14,388  INFO TableMetadata:42 - foreign keys: []
+08:45:14,388  INFO TableMetadata:43 - indexes: [nombre, primary, capital]
+08:45:14,398  INFO TableMetadata:39 - table found: cail.seg_opcion
+08:45:14,398  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, icono, id_padre, auditupdatedate, etiqueta, url]
+08:45:14,398  INFO TableMetadata:42 - foreign keys: [fk6cc97550fada3500]
+08:45:14,398  INFO TableMetadata:43 - indexes: [fk6cc97550fada3500, primary]
+08:45:14,407  INFO TableMetadata:39 - table found: cail.seg_opcion_perfil
+08:45:14,408  INFO TableMetadata:40 - columns: [id_opcion, id_perfil]
+08:45:14,408  INFO TableMetadata:42 - foreign keys: [fk154a579bd65538e8, fk154a579bd8967034]
+08:45:14,408  INFO TableMetadata:43 - indexes: [fk154a579bd65538e8, primary, fk154a579bd8967034]
+08:45:14,418  INFO TableMetadata:39 - table found: cail.seg_parametro
+08:45:14,419  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, valor, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate]
+08:45:14,419  INFO TableMetadata:42 - foreign keys: []
+08:45:14,419  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:45:14,434  INFO TableMetadata:39 - table found: cail.seg_perfil
+08:45:14,436  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:45:14,437  INFO TableMetadata:42 - foreign keys: []
+08:45:14,438  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:45:14,448  INFO TableMetadata:39 - table found: cail.seg_permiso
+08:45:14,448  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:45:14,448  INFO TableMetadata:42 - foreign keys: []
+08:45:14,448  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:45:14,458  INFO TableMetadata:39 - table found: cail.seg_permiso_perfil
+08:45:14,458  INFO TableMetadata:40 - columns: [id_permiso, id_perfil]
+08:45:14,458  INFO TableMetadata:42 - foreign keys: [fk35b282e03a3df60e, fk35b282e0d8967034]
+08:45:14,458  INFO TableMetadata:43 - indexes: [fk35b282e03a3df60e, primary, fk35b282e0d8967034]
+08:45:14,469  INFO TableMetadata:39 - table found: cail.seg_usuario
+08:45:14,470  INFO TableMetadata:40 - columns: [localidad, auditcreateuser, apellidos, auditupdateuser, fecha_registro, auditupdatedate, activo, temaui, id, nombres, auditcreatedate, login, clave, cedula]
+08:45:14,470  INFO TableMetadata:42 - foreign keys: []
+08:45:14,470  INFO TableMetadata:43 - indexes: [primary, login, cedula]
+08:45:14,478  INFO TableMetadata:39 - table found: cail.seg_usuario_perfil
+08:45:14,478  INFO TableMetadata:40 - columns: [id_usuario, id_perfil]
+08:45:14,478  INFO TableMetadata:42 - foreign keys: [fk92770127d8967034, fk927701277b4ddd40]
+08:45:14,478  INFO TableMetadata:43 - indexes: [primary, fk92770127d8967034, fk927701277b4ddd40]
+08:45:14,491  INFO TableMetadata:39 - table found: cail.sira_actividad
+08:45:14,491  INFO TableMetadata:40 - columns: [id, porcentaje_ejecucion, auditcreateuser, id_planificacion, auditupdateuser, auditcreatedate, lugar, descripcion, auditupdatedate, fecha_ejecucion, id_agenda]
+08:45:14,492  INFO TableMetadata:42 - foreign keys: [fkd595c783979fad7d, fk_evento_agenda]
+08:45:14,492  INFO TableMetadata:43 - indexes: [fkd595c783979fad7d, primary, fk_evento_agenda]
+08:45:14,507  INFO TableMetadata:39 - table found: cail.sira_agenda
+08:45:14,507  INFO TableMetadata:40 - columns: [auditcreateuser, objetivo, auditupdateuser, id_responsable, descripcion, auditupdatedate, observaciones, reportefinal, id, fecha_fin, estado, id_usuario, auditcreatedate, participantes, fecha_inicio]
+08:45:14,507  INFO TableMetadata:42 - foreign keys: [fk_agenda_responsable, fk_agenda_usuario]
+08:45:14,508  INFO TableMetadata:43 - indexes: [fk_agenda_responsable, fk_agenda_usuario, primary]
+08:45:14,519  INFO TableMetadata:39 - table found: cail.sira_esquema
+08:45:14,519  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate, activo]
+08:45:14,519  INFO TableMetadata:42 - foreign keys: []
+08:45:14,520  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,529  INFO TableMetadata:39 - table found: cail.sira_esquema_pregunta
+08:45:14,529  INFO TableMetadata:40 - columns: [id, grupo, enunciado, id_esquema, tipo, requerida, numero]
+08:45:14,530  INFO TableMetadata:42 - foreign keys: [fk72213dfcb7187c7b]
+08:45:14,530  INFO TableMetadata:43 - indexes: [fk72213dfcb7187c7b, primary]
+08:45:14,554  INFO TableMetadata:39 - table found: cail.sira_fichaegreso
+08:45:14,554  INFO TableMetadata:40 - columns: [raz_eg_fuga, id_adolescente, auditcreateuser, auditupdateuser, eg_solo, auditupdatedate, raz_eg_term_medida, eg_respresentante, id_res_egreso, raz_eg_cad_retinvestiacion, relacion_eg_otros, cond_emo_eg_agresivo, raz_eg_cad_retcomparecencia, exp_aceptacion_persalida, cond_salud_medicinas, eg_tios, cond_salud_eg_enfermedad, raz_eg_cad_intpreventivo, raz_eg_trasferencia, id_aut_egreso, eg_madre, id_com_egreso, cond_emo_eg_tranquilo, eg_abuela, raz_eg_resjudicial, eg_pareja, aceptacion_persalida, raz_eg_defuncion, eg_ambos_progenitores, eg_hermano, eg_abuelo, eg_padre, cond_emo_eg_asustado, exp_aceptacion_salida, cond_emo_eg_alegre, eg_hermana, aceptacion_salida, cond_fis_eg_perfectas, cond_emo_otro_nombre, id, docs_egreso, eg_otros, raz_eg_embarazo, desc_pertenencias, eg_fis_eg_lastimados, cond_fis_eg_moretones, cond_emo_eg_extrovertido, raz_eg_cad_retencion, id_ingreso, cond_emo_eg_introvertido, persona_vivira, fecha, parentesco_companero_egreso, dir_telf_referencia, eg_ambosabuelos, auditcreatedate, cond_emo_eg_confinado, lugar, cond_emo_eg_otro, tiempo_permanencia]
+08:45:14,555  INFO TableMetadata:42 - foreign keys: [fkcb815f70fec7f85, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:45:14,555  INFO TableMetadata:43 - indexes: [fkcb815f70fec7f85, primary, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:45:14,600  INFO TableMetadata:39 - table found: cail.sira_fichaingreso
+08:45:14,601  INFO TableMetadata:40 - columns: [id_adolescente, causal_v_hurto, auditcreateuser, cond_fis_ing_lastimados, estado_civil, id_can_detencion, id_egreso, causal_inf_trafico, id_res_traslado, raz_in_mc_comparecencia, cond_emo_ing_extrovertido, comunidad_residencia, causal_inf_atentpudor, barrio_residencia, id_representante, nivel_educativo_tipo, raz_in_reingreso, otro_lenguaje_nombre, causal_inf_estafa, medidas_cautelares, ingresa_hijos, raz_in_ms_servcomunidad, causal_inf_intplagio, raz_in_medidacautelar, id_par_residencia, petenencias_descripcion, nombre_persona1, cond_emo_ing_agresivo, razoningreso, nombre_persona2, raz_in_ri_medidasocioeducativa, raz_in_mc_intpreventivo, edad_hijos_mujeres, cedulado, causal_v_recaptura, causal_inf_venta, causal_inf_consumo, id_par_detencion, cond_emo_ing_tranquilo, causal_inf_intviolacion, causal_inf_robo, raz_in_mc_retencion, delito_flagrante, raz_in_ms_amonestimposicion, causal_inf_lesiones, causal_inf_abigeato, idioma_ingles, comunidad_detencion, cond_salud_sintoma_droga, causal_inf_acososexual, raz_in_ms_libasistida, causal_inf_asesinato, id_pro_residencia, fecha, causal_v_falsificaciondoc, causal_inf_trata, num_hijos_hombres, cond_emo_otros_nombre, num_hijos_mujeres, edad_hijos_hombres, telefono_residencia, auditcreatedate, lugar, causal_inf_extorcion, id_res_ingreso, raz_in_ms_intinstitucional, raz_in_ms_semilibertad, tiempo_medida, raz_in_ri_medidacautelar, auditupdateuser, causal_inf_violacion, auditupdatedate, observaciones, idioma_castellano, causal_v_posesionarmas, cond_emo_ing_otros, id_pro_detencion, tipo_ocupacion, lengua_nativa_nombre, nacionalidad, autoidentificacion, causal_inf_otros, raz_in_medidasocioeducativa, telefono_persona1, telefono_persona2, juez, causal_inf_plagio, causal_inf_tratapersonas, cond_emo_ing_asustado, cond_fis_ing_otros, num_hijos_edades, otro_lenguaje, parentesco_persona1, causal_inf_homicidio, parentesco_persona2, id_res_pertenencia, raz_in_ms_amonestacion, medidas_socioeducativas, causal_v_manejaralcoholizado, causal_inf_trataexplotsexual, id, raz_in_ri_otrotipo, id_can_residencia, edad, cond_salud_medicina, raz_in_ms_finsemana, cond_fis_ing_moretones, raz_in_mc_investigacion, raz_in_ms_repdanocausado, raz_in_ms_apoyofamiliar, lengua_nativa, cond_salud_enfermedad, causal_inf_inthomicidio, barrio_detencion, raz_in_ri_otrotipo_nombre, causal_inf_destruccion, cond_emo_ing_introvertido, cond_fis_otros_nombre, causal_inf_intentorobo, nivel_educativo_nombre, tiempo_ocupacion_actual, causal_inf_estupro, tiempo_residencia_actual, causal_inf_asalto]
+08:45:14,601  INFO TableMetadata:42 - foreign keys: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a92f998454, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a92f019975d, fk83a01a9298d62689, fk83a01a921477ce6f, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:45:14,601  INFO TableMetadata:43 - indexes: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a9298d62689, fk83a01a921477ce6f, primary, fk83a01a92f998454, fk83a01a92f019975d, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:45:14,610  INFO TableMetadata:39 - table found: cail.sira_fiching_documento
+08:45:14,610  INFO TableMetadata:40 - columns: [nombre, id, id_ficha, mimetype, data, descripcion]
+08:45:14,611  INFO TableMetadata:42 - foreign keys: [fkb29e58756c35479c]
+08:45:14,611  INFO TableMetadata:43 - indexes: [primary, fkb29e58756c35479c]
+08:45:14,624  INFO TableMetadata:39 - table found: cail.sira_persona
+08:45:14,624  INFO TableMetadata:40 - columns: [direccion, auditcreateuser, parentesco, estado_civil, id_canton_nacimiento, apellidos, auditupdateuser, telefono, fecha_registro, sexo, auditupdatedate, cargo, id_parroquia_nacimiento, fecha_nacimiento, id, ocupacion, id_madre, nombres, email, auditcreatedate, id_provincia_nacimiento, roles, id_padre, cedula, celular]
+08:45:14,625  INFO TableMetadata:42 - foreign keys: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, fke15c807296e33551, fke15c8072627e6f52]
+08:45:14,625  INFO TableMetadata:43 - indexes: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, primary, fke15c8072627e6f52, fke15c807296e33551]
+08:45:14,627  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:45:14,634  INFO TableMetadata:39 - table found: cail.vw_informe_psicologico
+08:45:14,634  INFO TableMetadata:40 - columns: [id, motivoingreso, nivelinstruccion, fechainforme, estadocivil, evaluador, adolescente, edad, lugar, resultadotest, cedula, fechatest]
+08:45:14,635  INFO TableMetadata:42 - foreign keys: []
+08:45:14,635  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,636  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:45:14,636  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:45:14,644  INFO TableMetadata:39 - table found: cail.web_articulo
+08:45:14,644  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, descripcion, auditupdatedate, paginaprincipal, resumen, activo]
+08:45:14,644  INFO TableMetadata:42 - foreign keys: []
+08:45:14,644  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,651  INFO TableMetadata:39 - table found: cail.web_imagen
+08:45:14,651  INFO TableMetadata:40 - columns: [orden, nombre, id, mimetype, estado, tipo, data, descripcion, rutaabsoluta]
+08:45:14,651  INFO TableMetadata:42 - foreign keys: []
+08:45:14,652  INFO TableMetadata:43 - indexes: [primary]
+08:45:14,653  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:45:14,654  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:45:14,654  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:45:14,669 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ficha_ingreso (id bigint not null, cedula varchar(45), nombres varchar(45), apellidos varchar(45), lugar varchar(80), fecha datetime, razonIngreso varchar(255), edad integer, primary key (id)) ENGINE=InnoDB
+08:45:14,669 ERROR SchemaUpdate:156 - Table 'vw_ficha_ingreso' already exists
+08:45:14,671 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ingreso_salida (id bigint not null, fechaIngreso datetime, fechaEgreso datetime, nombres varchar(45), apellidos varchar(45), razonIngreso varchar(255), primary key (id)) ENGINE=InnoDB
+08:45:14,671 ERROR SchemaUpdate:156 - Table 'vw_ingreso_salida' already exists
+08:45:14,672 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_opcion (id bigint not null, id_padre bigint, id_perfil bigint, etiqueta varchar(45), url varchar(80), titulo varchar(80), icono varchar(80), primary key (id)) ENGINE=InnoDB
+08:45:14,672 ERROR SchemaUpdate:156 - Table 'vw_opcion' already exists
+08:45:14,672  INFO SchemaUpdate:160 - schema update complete
+08:45:14,904  INFO BooleanType:140 - could not bind value '%true%' to parameter: 2; java.lang.String cannot be cast to java.lang.Boolean
+08:49:33,815  INFO Environment:514 - Hibernate 3.2.5
+08:49:33,821  INFO Environment:532 - loaded properties from resource hibernate.properties: {hibernate.c3p0.acquire_increment=1, hibernate.c3p0.timeout=100, hibernate.c3p0.min_size=10, hibernate.c3p0.max_size=100, hibernate.bytecode.use_reflection_optimizer=false, hibernate.c3p0.max_statements=0, hibernate.c3p0.idle_test_period=100}
+08:49:33,823  INFO Environment:681 - Bytecode provider name : cglib
+08:49:33,827  INFO Environment:598 - using JDK 1.4 java.sql.Timestamp handling
+08:49:33,876  INFO Configuration:1426 - configuring from resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:49:33,876  INFO Configuration:1403 - Configuration resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:49:33,960  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Usuario.hbm.xml
+08:49:34,115  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Usuario -> seg_usuario
+08:49:34,129  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Usuario.perfiles -> seg_usuario_perfil
+08:49:34,134  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Perfil.hbm.xml
+08:49:34,172  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Perfil -> seg_perfil
+08:49:34,175  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Opcion.hbm.xml
+08:49:34,212  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Opcion -> seg_opcion
+08:49:34,291  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Opcion.perfiles -> seg_opcion_perfil
+08:49:34,296  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Permiso.hbm.xml
+08:49:34,329  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Permiso -> seg_permiso
+08:49:34,335  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Permiso.perfiles -> seg_permiso_perfil
+08:49:34,338  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Persona.hbm.xml
+08:49:34,380  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.Persona -> sira_persona
+08:49:34,385  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parametro.hbm.xml
+08:49:34,405  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Parametro -> seg_parametro
+08:49:34,407  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngreso.hbm.xml
+08:49:34,474  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngreso -> sira_fichaingreso
+08:49:34,496  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngresoDocumento.hbm.xml
+08:49:34,515  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento -> sira_fiching_documento
+08:49:34,520  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaEgreso.hbm.xml
+08:49:34,578  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaEgreso -> sira_fichaegreso
+08:49:34,591  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Agenda.hbm.xml
+08:49:34,628  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Agenda -> sira_agenda
+08:49:34,632  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Evento.hbm.xml
+08:49:34,675  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Evento -> sira_actividad
+08:49:34,678  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Provincia.hbm.xml
+08:49:34,708  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Provincia -> loc_provincia
+08:49:34,709  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Canton.hbm.xml
+08:49:34,737  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Canton -> loc_canton
+08:49:34,738  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parroquia.hbm.xml
+08:49:34,764  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Parroquia -> loc_parroquia
+08:49:34,765  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ArticuloWeb.hbm.xml
+08:49:34,793  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ArticuloWeb -> web_articulo
+08:49:34,794  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ImagenWeb.hbm.xml
+08:49:34,825  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ImagenWeb -> web_imagen
+08:49:34,828  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaEntidad.hbm.xml
+08:49:34,862  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaEntidad -> aud_entidad
+08:49:34,864  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaPropiedad.hbm.xml
+08:49:34,890  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaPropiedad -> aud_propiedad
+08:49:34,895  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Esquema.hbm.xml
+08:49:34,922  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Esquema -> sira_esquema
+08:49:34,923  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/EsquemaPregunta.hbm.xml
+08:49:34,951  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta -> sira_esquema_pregunta
+08:49:34,955  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtp.hbm.xml
+08:49:34,988  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtp -> htp_test
+08:49:34,992  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtpRespuesta.hbm.xml
+08:49:35,018  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtpRespuesta -> htp_test_respuesta
+08:49:35,021  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml
+08:49:35,052  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InformePsicologico -> htp_inf_psicologico
+08:49:35,056  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InterpretacionTestHtp.hbm.xml
+08:49:35,087  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp -> htp_interpretacion_test
+08:49:35,091  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Categoria.hbm.xml
+08:49:35,114  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Categoria -> htp_catgeoria
+08:49:35,116  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Indicador.hbm.xml
+08:49:35,144  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Indicador -> htp_indicador
+08:49:35,147  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwOpcion.hbm.xml
+08:49:35,169  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.VwOpcion -> vw_opcion
+08:49:35,172  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwFichaIngreso.hbm.xml
+08:49:35,196  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwFichaIngreso -> vw_ficha_ingreso
+08:49:35,199  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwIngresoSalida.hbm.xml
+08:49:35,217  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwIngresoSalida -> vw_ingreso_salida
+08:49:35,221  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwInformePsicologico.hbm.xml
+08:49:35,239  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.VwInformePsicologico -> vw_informe_psicologico
+08:49:35,243  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/hibernate.mapping.xml
+08:49:35,257  INFO Configuration:1541 - Configured SessionFactory: null
+08:49:35,261  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.FichaIngreso.documentos -> sira_fiching_documento
+08:49:35,264  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Agenda.eventos -> sira_actividad
+08:49:35,266  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Provincia.cantones -> loc_canton
+08:49:35,270  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Canton.parroquias -> loc_parroquia
+08:49:35,277  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.AuditoriaEntidad.propiedades -> aud_propiedad
+08:49:35,278  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Esquema.preguntas -> sira_esquema_pregunta
+08:49:35,281  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.TestHtp.respuestas -> htp_test_respuesta
+08:49:35,281  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.Categoria.indicadores -> htp_indicador
+08:49:35,332  INFO C3P0ConnectionProvider:81 - C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/cail
+08:49:35,334  INFO C3P0ConnectionProvider:82 - Connection properties: {user=root, password=****}
+08:49:35,336  INFO C3P0ConnectionProvider:85 - autocommit mode: false
+08:49:35,369  INFO MLog:80 - MLog clients using log4j logging.
+08:49:35,559  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.2 [built 21-May-2007 15:05:05; debug? true; trace: 10]
+08:49:35,663  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@2a78b891 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@30399224 [ acquireIncrement -> 1, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> z8kfsx8w104x0781cp1cb6|783a69, idleConnectionTestPeriod -> 100, initialPoolSize -> 10, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 100, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 100, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 10, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@dd997d1b [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104x0781cp1cb6|fd54ec, jdbcUrl -> jdbc:mysql://localhost:3306/cail, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104x0781cp1cb6|9abc40, numHelperThreads -> 3 ]
+08:49:36,018  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.32-0ubuntu0.13.04.1
+08:49:36,019  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.23 ( Revision: ${bzr.revision-id} )
+08:49:36,052  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+08:49:36,069  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+08:49:36,076  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+08:49:36,078  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+08:49:36,079  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+08:49:36,081  INFO SettingsFactory:154 - JDBC batch size: 15
+08:49:36,082  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+08:49:36,084  INFO SettingsFactory:162 - Scrollable result sets: enabled
+08:49:36,085  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+08:49:36,086  INFO SettingsFactory:178 - Connection release mode: auto
+08:49:36,088  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+08:49:36,089  INFO SettingsFactory:205 - Default batch fetch size: 1
+08:49:36,090  INFO SettingsFactory:209 - Generate SQL with comments: enabled
+08:49:36,091  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+08:49:36,103  INFO SettingsFactory:217 - Order SQL inserts for batching: disabled
+08:49:36,104  INFO SettingsFactory:386 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+08:49:36,107  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+08:49:36,109  INFO SettingsFactory:225 - Query language substitutions: {}
+08:49:36,109  INFO SettingsFactory:230 - JPA-QL strict compliance: disabled
+08:49:36,109  INFO SettingsFactory:235 - Second-level cache: enabled
+08:49:36,110  INFO SettingsFactory:239 - Query cache: disabled
+08:49:36,110  INFO SettingsFactory:373 - Cache provider: org.hibernate.cache.NoCacheProvider
+08:49:36,110  INFO SettingsFactory:254 - Optimize cache for minimal puts: disabled
+08:49:36,110  INFO SettingsFactory:263 - Structured second-level cache entries: disabled
+08:49:36,116  INFO SettingsFactory:283 - Echoing all SQL to stdout
+08:49:36,116  INFO SettingsFactory:290 - Statistics: disabled
+08:49:36,116  INFO SettingsFactory:294 - Deleted entity synthetic identifier rollback: disabled
+08:49:36,117  INFO SettingsFactory:309 - Default entity-mode: pojo
+08:49:36,117  INFO SettingsFactory:313 - Named query checking : enabled
+08:49:36,150  INFO SessionFactoryImpl:161 - building session factory
+08:49:36,924  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+08:49:36,927  INFO SchemaUpdate:115 - Running hbm2ddl schema update
+08:49:36,927  INFO SchemaUpdate:126 - fetching database metadata
+08:49:36,936  INFO SchemaUpdate:138 - updating schema
+08:49:36,969  INFO TableMetadata:39 - table found: cail.aud_entidad
+08:49:36,970  INFO TableMetadata:40 - columns: [id, entidadnombre, fecha, entidadid, usuario, entidadclase, accion]
+08:49:36,970  INFO TableMetadata:42 - foreign keys: []
+08:49:36,970  INFO TableMetadata:43 - indexes: [primary]
+08:49:36,986  INFO TableMetadata:39 - table found: cail.aud_propiedad
+08:49:36,986  INFO TableMetadata:40 - columns: [nombre, id, estado, id_auditoria, valor]
+08:49:36,986  INFO TableMetadata:42 - foreign keys: [fk898cec9915a9375f]
+08:49:36,987  INFO TableMetadata:43 - indexes: [fk898cec9915a9375f, primary]
+08:49:36,995  INFO TableMetadata:39 - table found: cail.htp_catgeoria
+08:49:36,995  INFO TableMetadata:40 - columns: [nombre, id, definicion, tipo]
+08:49:36,995  INFO TableMetadata:42 - foreign keys: []
+08:49:36,995  INFO TableMetadata:43 - indexes: [primary]
+08:49:37,005  INFO TableMetadata:39 - table found: cail.htp_indicador
+08:49:37,005  INFO TableMetadata:40 - columns: [orden, nombre, id, imagen, id_categoria, valor, tipo, definicion, significaciones]
+08:49:37,005  INFO TableMetadata:42 - foreign keys: [fk29844645da4f97e]
+08:49:37,005  INFO TableMetadata:43 - indexes: [fk29844645da4f97e, primary]
+08:49:37,020  INFO TableMetadata:39 - table found: cail.htp_inf_psicologico
+08:49:37,021  INFO TableMetadata:40 - columns: [condicionessaluddebilidades, id_adolescente, id_ficha, fecha, condicionesvinculosfamiliaresdebilidades, anamnesisantecedentes, condicioneseducaciondebilidades, planacompaniamiento, id, condicionesformaciontrabajodebilidades, informacionreactivostest, examenfunciones, historiasalud, informacionpuebaspsicologicas, historialaboral, condicionesidentidaddebilidades, impresioesdiagnosticaspsicologo, condicionesidentidadfortalezas, condicionessaludfortalezas, situacionpresente, condicionesformaciontrabajofortalezas, condicioneseducacionfortalezas, condicionesvinvulosfamiliaresfortalezas]
+08:49:37,021  INFO TableMetadata:42 - foreign keys: [fkf5ce644a6c35479c, fkf5ce644af019975d]
+08:49:37,021  INFO TableMetadata:43 - indexes: [fkf5ce644a6c35479c, fkf5ce644af019975d, primary]
+08:49:37,040  INFO TableMetadata:39 - table found: cail.htp_interpretacion_test
+08:49:37,040  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, porcenjaterehabilitacionsistema, id_evaluador, porcenjaterehabilitacion, fecha, comentarioconducta, auditupdateuser, interrogativoposterior, auditupdatedate, resumenpsicologo, porcenjaterehabilitacionevaluador, id, graficoperspectiva, graficoproporcion, auditcreatedate, nivelrehabilitacion, nivelrehabilitacionnombre, id_test, graficodetalle, historiaadolescente]
+08:49:37,040  INFO TableMetadata:42 - foreign keys: [fkac3cc97dfd32cf31, fkac3cc97df019975d, fkac3cc97d525e5464, fkac3cc97d6c35479c]
+08:49:37,040  INFO TableMetadata:43 - indexes: [fkac3cc97df019975d, fkac3cc97dfd32cf31, fkac3cc97d525e5464, primary, fkac3cc97d6c35479c]
+08:49:37,056  INFO TableMetadata:39 - table found: cail.htp_test
+08:49:37,056  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, id_evaluador, fecha, horainicio, auditupdateuser, dibujopersona, dibujoarbol, tiempoduracioncasa, edadadolescente, auditupdatedate, tiempolatenciaarbol, dibujocasa, tiempoduracionarbol, duracionminutos, id, tiempolatenciacasa, tiempoduracionpersona, id_esquema, auditcreatedate, horafin, tiempolatenciapersona]
+08:49:37,056  INFO TableMetadata:42 - foreign keys: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:49:37,056  INFO TableMetadata:43 - indexes: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, primary, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:49:37,065  INFO TableMetadata:39 - table found: cail.htp_test_respuesta
+08:49:37,065  INFO TableMetadata:40 - columns: [id, respuesta, id_esq_preg, id_test]
+08:49:37,066  INFO TableMetadata:42 - foreign keys: [fk1d6110ec54e8086, fk1d6110e525e5464]
+08:49:37,066  INFO TableMetadata:43 - indexes: [fk1d6110ec54e8086, primary, fk1d6110e525e5464]
+08:49:37,073  INFO TableMetadata:39 - table found: cail.loc_canton
+08:49:37,073  INFO TableMetadata:40 - columns: [nombre, id, id_provincia, activo]
+08:49:37,073  INFO TableMetadata:42 - foreign keys: [fkd4a6a162fffdad4c]
+08:49:37,073  INFO TableMetadata:43 - indexes: [fkd4a6a162fffdad4c, primary]
+08:49:37,081  INFO TableMetadata:39 - table found: cail.loc_parroquia
+08:49:37,082  INFO TableMetadata:40 - columns: [nombre, id, id_canton, zona, activa]
+08:49:37,082  INFO TableMetadata:42 - foreign keys: [fkc2a24b9bc3dcbe54]
+08:49:37,082  INFO TableMetadata:43 - indexes: [fkc2a24b9bc3dcbe54, primary]
+08:49:37,093  INFO TableMetadata:39 - table found: cail.loc_provincia
+08:49:37,095  INFO TableMetadata:40 - columns: [nombre, id, cod_region, activa, capital]
+08:49:37,096  INFO TableMetadata:42 - foreign keys: []
+08:49:37,096  INFO TableMetadata:43 - indexes: [nombre, primary, capital]
+08:49:37,109  INFO TableMetadata:39 - table found: cail.seg_opcion
+08:49:37,109  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, icono, id_padre, auditupdatedate, etiqueta, url]
+08:49:37,109  INFO TableMetadata:42 - foreign keys: [fk6cc97550fada3500]
+08:49:37,110  INFO TableMetadata:43 - indexes: [fk6cc97550fada3500, primary]
+08:49:37,121  INFO TableMetadata:39 - table found: cail.seg_opcion_perfil
+08:49:37,121  INFO TableMetadata:40 - columns: [id_opcion, id_perfil]
+08:49:37,121  INFO TableMetadata:42 - foreign keys: [fk154a579bd65538e8, fk154a579bd8967034]
+08:49:37,121  INFO TableMetadata:43 - indexes: [fk154a579bd65538e8, primary, fk154a579bd8967034]
+08:49:37,132  INFO TableMetadata:39 - table found: cail.seg_parametro
+08:49:37,132  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, valor, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate]
+08:49:37,133  INFO TableMetadata:42 - foreign keys: []
+08:49:37,133  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:49:37,145  INFO TableMetadata:39 - table found: cail.seg_perfil
+08:49:37,146  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:49:37,148  INFO TableMetadata:42 - foreign keys: []
+08:49:37,149  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:49:37,156  INFO TableMetadata:39 - table found: cail.seg_permiso
+08:49:37,158  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:49:37,159  INFO TableMetadata:42 - foreign keys: []
+08:49:37,160  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:49:37,168  INFO TableMetadata:39 - table found: cail.seg_permiso_perfil
+08:49:37,169  INFO TableMetadata:40 - columns: [id_permiso, id_perfil]
+08:49:37,169  INFO TableMetadata:42 - foreign keys: [fk35b282e03a3df60e, fk35b282e0d8967034]
+08:49:37,169  INFO TableMetadata:43 - indexes: [fk35b282e03a3df60e, primary, fk35b282e0d8967034]
+08:49:37,181  INFO TableMetadata:39 - table found: cail.seg_usuario
+08:49:37,181  INFO TableMetadata:40 - columns: [localidad, auditcreateuser, apellidos, auditupdateuser, fecha_registro, auditupdatedate, activo, temaui, id, nombres, auditcreatedate, login, clave, cedula]
+08:49:37,181  INFO TableMetadata:42 - foreign keys: []
+08:49:37,181  INFO TableMetadata:43 - indexes: [primary, login, cedula]
+08:49:37,189  INFO TableMetadata:39 - table found: cail.seg_usuario_perfil
+08:49:37,190  INFO TableMetadata:40 - columns: [id_usuario, id_perfil]
+08:49:37,190  INFO TableMetadata:42 - foreign keys: [fk92770127d8967034, fk927701277b4ddd40]
+08:49:37,190  INFO TableMetadata:43 - indexes: [primary, fk92770127d8967034, fk927701277b4ddd40]
+08:49:37,198  INFO TableMetadata:39 - table found: cail.sira_actividad
+08:49:37,199  INFO TableMetadata:40 - columns: [id, porcentaje_ejecucion, auditcreateuser, id_planificacion, auditupdateuser, auditcreatedate, lugar, descripcion, auditupdatedate, fecha_ejecucion, id_agenda]
+08:49:37,199  INFO TableMetadata:42 - foreign keys: [fkd595c783979fad7d, fk_evento_agenda]
+08:49:37,199  INFO TableMetadata:43 - indexes: [fkd595c783979fad7d, primary, fk_evento_agenda]
+08:49:37,215  INFO TableMetadata:39 - table found: cail.sira_agenda
+08:49:37,215  INFO TableMetadata:40 - columns: [auditcreateuser, objetivo, auditupdateuser, id_responsable, descripcion, auditupdatedate, observaciones, reportefinal, id, fecha_fin, estado, id_usuario, auditcreatedate, participantes, fecha_inicio]
+08:49:37,215  INFO TableMetadata:42 - foreign keys: [fk_agenda_responsable, fk_agenda_usuario]
+08:49:37,216  INFO TableMetadata:43 - indexes: [fk_agenda_responsable, fk_agenda_usuario, primary]
+08:49:37,226  INFO TableMetadata:39 - table found: cail.sira_esquema
+08:49:37,227  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate, activo]
+08:49:37,227  INFO TableMetadata:42 - foreign keys: []
+08:49:37,227  INFO TableMetadata:43 - indexes: [primary]
+08:49:37,235  INFO TableMetadata:39 - table found: cail.sira_esquema_pregunta
+08:49:37,235  INFO TableMetadata:40 - columns: [id, grupo, enunciado, id_esquema, tipo, requerida, numero]
+08:49:37,235  INFO TableMetadata:42 - foreign keys: [fk72213dfcb7187c7b]
+08:49:37,236  INFO TableMetadata:43 - indexes: [fk72213dfcb7187c7b, primary]
+08:49:37,261  INFO TableMetadata:39 - table found: cail.sira_fichaegreso
+08:49:37,262  INFO TableMetadata:40 - columns: [raz_eg_fuga, id_adolescente, auditcreateuser, auditupdateuser, eg_solo, auditupdatedate, raz_eg_term_medida, eg_respresentante, id_res_egreso, raz_eg_cad_retinvestiacion, relacion_eg_otros, cond_emo_eg_agresivo, raz_eg_cad_retcomparecencia, exp_aceptacion_persalida, cond_salud_medicinas, eg_tios, cond_salud_eg_enfermedad, raz_eg_cad_intpreventivo, raz_eg_trasferencia, id_aut_egreso, eg_madre, id_com_egreso, cond_emo_eg_tranquilo, eg_abuela, raz_eg_resjudicial, eg_pareja, aceptacion_persalida, raz_eg_defuncion, eg_ambos_progenitores, eg_hermano, eg_abuelo, eg_padre, cond_emo_eg_asustado, exp_aceptacion_salida, cond_emo_eg_alegre, eg_hermana, aceptacion_salida, cond_fis_eg_perfectas, cond_emo_otro_nombre, id, docs_egreso, eg_otros, raz_eg_embarazo, desc_pertenencias, eg_fis_eg_lastimados, cond_fis_eg_moretones, cond_emo_eg_extrovertido, raz_eg_cad_retencion, id_ingreso, cond_emo_eg_introvertido, persona_vivira, fecha, parentesco_companero_egreso, dir_telf_referencia, eg_ambosabuelos, auditcreatedate, cond_emo_eg_confinado, lugar, cond_emo_eg_otro, tiempo_permanencia]
+08:49:37,263  INFO TableMetadata:42 - foreign keys: [fkcb815f70fec7f85, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:49:37,263  INFO TableMetadata:43 - indexes: [fkcb815f70fec7f85, primary, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:49:37,310  INFO TableMetadata:39 - table found: cail.sira_fichaingreso
+08:49:37,310  INFO TableMetadata:40 - columns: [id_adolescente, causal_v_hurto, auditcreateuser, cond_fis_ing_lastimados, estado_civil, id_can_detencion, id_egreso, causal_inf_trafico, id_res_traslado, raz_in_mc_comparecencia, cond_emo_ing_extrovertido, comunidad_residencia, causal_inf_atentpudor, barrio_residencia, id_representante, nivel_educativo_tipo, raz_in_reingreso, otro_lenguaje_nombre, causal_inf_estafa, medidas_cautelares, ingresa_hijos, raz_in_ms_servcomunidad, causal_inf_intplagio, raz_in_medidacautelar, id_par_residencia, petenencias_descripcion, nombre_persona1, cond_emo_ing_agresivo, razoningreso, nombre_persona2, raz_in_ri_medidasocioeducativa, raz_in_mc_intpreventivo, edad_hijos_mujeres, cedulado, causal_v_recaptura, causal_inf_venta, causal_inf_consumo, id_par_detencion, cond_emo_ing_tranquilo, causal_inf_intviolacion, causal_inf_robo, raz_in_mc_retencion, delito_flagrante, raz_in_ms_amonestimposicion, causal_inf_lesiones, causal_inf_abigeato, idioma_ingles, comunidad_detencion, cond_salud_sintoma_droga, causal_inf_acososexual, raz_in_ms_libasistida, causal_inf_asesinato, id_pro_residencia, fecha, causal_v_falsificaciondoc, causal_inf_trata, num_hijos_hombres, cond_emo_otros_nombre, num_hijos_mujeres, edad_hijos_hombres, telefono_residencia, auditcreatedate, lugar, causal_inf_extorcion, id_res_ingreso, raz_in_ms_intinstitucional, raz_in_ms_semilibertad, tiempo_medida, raz_in_ri_medidacautelar, auditupdateuser, causal_inf_violacion, auditupdatedate, observaciones, idioma_castellano, causal_v_posesionarmas, cond_emo_ing_otros, id_pro_detencion, tipo_ocupacion, lengua_nativa_nombre, nacionalidad, autoidentificacion, causal_inf_otros, raz_in_medidasocioeducativa, telefono_persona1, telefono_persona2, juez, causal_inf_plagio, causal_inf_tratapersonas, cond_emo_ing_asustado, cond_fis_ing_otros, num_hijos_edades, otro_lenguaje, parentesco_persona1, causal_inf_homicidio, parentesco_persona2, id_res_pertenencia, raz_in_ms_amonestacion, medidas_socioeducativas, causal_v_manejaralcoholizado, causal_inf_trataexplotsexual, id, raz_in_ri_otrotipo, id_can_residencia, edad, cond_salud_medicina, raz_in_ms_finsemana, cond_fis_ing_moretones, raz_in_mc_investigacion, raz_in_ms_repdanocausado, raz_in_ms_apoyofamiliar, lengua_nativa, cond_salud_enfermedad, causal_inf_inthomicidio, barrio_detencion, raz_in_ri_otrotipo_nombre, causal_inf_destruccion, cond_emo_ing_introvertido, cond_fis_otros_nombre, causal_inf_intentorobo, nivel_educativo_nombre, tiempo_ocupacion_actual, causal_inf_estupro, tiempo_residencia_actual, causal_inf_asalto]
+08:49:37,311  INFO TableMetadata:42 - foreign keys: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a92f998454, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a92f019975d, fk83a01a9298d62689, fk83a01a921477ce6f, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:49:37,311  INFO TableMetadata:43 - indexes: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a9298d62689, fk83a01a921477ce6f, primary, fk83a01a92f998454, fk83a01a92f019975d, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:49:37,316  INFO TableMetadata:39 - table found: cail.sira_fiching_documento
+08:49:37,316  INFO TableMetadata:40 - columns: [nombre, id, id_ficha, mimetype, data, descripcion]
+08:49:37,317  INFO TableMetadata:42 - foreign keys: [fkb29e58756c35479c]
+08:49:37,317  INFO TableMetadata:43 - indexes: [primary, fkb29e58756c35479c]
+08:49:37,329  INFO TableMetadata:39 - table found: cail.sira_persona
+08:49:37,329  INFO TableMetadata:40 - columns: [direccion, auditcreateuser, parentesco, estado_civil, id_canton_nacimiento, apellidos, auditupdateuser, telefono, fecha_registro, sexo, auditupdatedate, cargo, id_parroquia_nacimiento, fecha_nacimiento, id, ocupacion, id_madre, nombres, email, auditcreatedate, id_provincia_nacimiento, roles, id_padre, cedula, celular]
+08:49:37,330  INFO TableMetadata:42 - foreign keys: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, fke15c807296e33551, fke15c8072627e6f52]
+08:49:37,330  INFO TableMetadata:43 - indexes: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, primary, fke15c8072627e6f52, fke15c807296e33551]
+08:49:37,331  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:49:37,339  INFO TableMetadata:39 - table found: cail.vw_informe_psicologico
+08:49:37,339  INFO TableMetadata:40 - columns: [id, motivoingreso, nivelinstruccion, fechainforme, estadocivil, evaluador, adolescente, edad, lugar, resultadotest, cedula, fechatest]
+08:49:37,340  INFO TableMetadata:42 - foreign keys: []
+08:49:37,340  INFO TableMetadata:43 - indexes: [primary]
+08:49:37,340  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:49:37,341  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:49:37,349  INFO TableMetadata:39 - table found: cail.web_articulo
+08:49:37,349  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, descripcion, auditupdatedate, paginaprincipal, resumen, activo]
+08:49:37,349  INFO TableMetadata:42 - foreign keys: []
+08:49:37,350  INFO TableMetadata:43 - indexes: [primary]
+08:49:37,357  INFO TableMetadata:39 - table found: cail.web_imagen
+08:49:37,357  INFO TableMetadata:40 - columns: [orden, nombre, id, mimetype, estado, tipo, data, descripcion, rutaabsoluta]
+08:49:37,357  INFO TableMetadata:42 - foreign keys: []
+08:49:37,358  INFO TableMetadata:43 - indexes: [primary]
+08:49:37,359  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:49:37,360  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:49:37,361  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:49:37,378 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ficha_ingreso (id bigint not null, cedula varchar(45), nombres varchar(45), apellidos varchar(45), lugar varchar(80), fecha datetime, razonIngreso varchar(255), edad integer, primary key (id)) ENGINE=InnoDB
+08:49:37,378 ERROR SchemaUpdate:156 - Table 'vw_ficha_ingreso' already exists
+08:49:37,379 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ingreso_salida (id bigint not null, fechaIngreso datetime, fechaEgreso datetime, nombres varchar(45), apellidos varchar(45), razonIngreso varchar(255), primary key (id)) ENGINE=InnoDB
+08:49:37,380 ERROR SchemaUpdate:156 - Table 'vw_ingreso_salida' already exists
+08:49:37,381 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_opcion (id bigint not null, id_padre bigint, id_perfil bigint, etiqueta varchar(45), url varchar(80), titulo varchar(80), icono varchar(80), primary key (id)) ENGINE=InnoDB
+08:49:37,382 ERROR SchemaUpdate:156 - Table 'vw_opcion' already exists
+08:49:37,382  INFO SchemaUpdate:160 - schema update complete
+08:49:37,631  INFO BooleanType:140 - could not bind value '%true%' to parameter: 2; java.lang.String cannot be cast to java.lang.Boolean
+08:50:22,812  INFO Environment:514 - Hibernate 3.2.5
+08:50:22,817  INFO Environment:532 - loaded properties from resource hibernate.properties: {hibernate.c3p0.acquire_increment=1, hibernate.c3p0.timeout=100, hibernate.c3p0.min_size=10, hibernate.c3p0.max_size=100, hibernate.bytecode.use_reflection_optimizer=false, hibernate.c3p0.max_statements=0, hibernate.c3p0.idle_test_period=100}
+08:50:22,820  INFO Environment:681 - Bytecode provider name : cglib
+08:50:22,824  INFO Environment:598 - using JDK 1.4 java.sql.Timestamp handling
+08:50:22,873  INFO Configuration:1426 - configuring from resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:50:22,873  INFO Configuration:1403 - Configuration resource: org/cmail/rehabilitacion/dao/mapeo/hibernate.cfg.xml
+08:50:22,957  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Usuario.hbm.xml
+08:50:23,081  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Usuario -> seg_usuario
+08:50:23,104  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Usuario.perfiles -> seg_usuario_perfil
+08:50:23,112  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Perfil.hbm.xml
+08:50:23,151  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Perfil -> seg_perfil
+08:50:23,152  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Opcion.hbm.xml
+08:50:23,185  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Opcion -> seg_opcion
+08:50:23,241  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Opcion.perfiles -> seg_opcion_perfil
+08:50:23,244  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Permiso.hbm.xml
+08:50:23,268  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Permiso -> seg_permiso
+08:50:23,272  INFO HbmBinder:1422 - Mapping collection: org.cmail.rehabilitacion.modelo.seguridad.Permiso.perfiles -> seg_permiso_perfil
+08:50:23,274  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Persona.hbm.xml
+08:50:23,324  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.Persona -> sira_persona
+08:50:23,328  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parametro.hbm.xml
+08:50:23,354  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.Parametro -> seg_parametro
+08:50:23,357  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngreso.hbm.xml
+08:50:23,446  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngreso -> sira_fichaingreso
+08:50:23,471  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaIngresoDocumento.hbm.xml
+08:50:23,492  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento -> sira_fiching_documento
+08:50:23,494  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/FichaEgreso.hbm.xml
+08:50:23,524  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.FichaEgreso -> sira_fichaegreso
+08:50:23,532  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Agenda.hbm.xml
+08:50:23,565  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Agenda -> sira_agenda
+08:50:23,568  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Evento.hbm.xml
+08:50:23,607  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Evento -> sira_actividad
+08:50:23,610  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Provincia.hbm.xml
+08:50:23,629  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Provincia -> loc_provincia
+08:50:23,632  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Canton.hbm.xml
+08:50:23,651  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Canton -> loc_canton
+08:50:23,652  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Parroquia.hbm.xml
+08:50:23,671  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.localizacion.Parroquia -> loc_parroquia
+08:50:23,674  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ArticuloWeb.hbm.xml
+08:50:23,706  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ArticuloWeb -> web_articulo
+08:50:23,710  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/ImagenWeb.hbm.xml
+08:50:23,741  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.ImagenWeb -> web_imagen
+08:50:23,744  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaEntidad.hbm.xml
+08:50:23,774  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaEntidad -> aud_entidad
+08:50:23,777  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/AuditoriaPropiedad.hbm.xml
+08:50:23,804  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.AuditoriaPropiedad -> aud_propiedad
+08:50:23,807  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Esquema.hbm.xml
+08:50:23,835  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.Esquema -> sira_esquema
+08:50:23,838  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/EsquemaPregunta.hbm.xml
+08:50:23,865  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.EsquemaPregunta -> sira_esquema_pregunta
+08:50:23,868  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtp.hbm.xml
+08:50:23,901  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtp -> htp_test
+08:50:23,904  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/TestHtpRespuesta.hbm.xml
+08:50:23,928  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.TestHtpRespuesta -> htp_test_respuesta
+08:50:23,929  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InformePsicologico.hbm.xml
+08:50:23,966  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InformePsicologico -> htp_inf_psicologico
+08:50:23,972  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/InterpretacionTestHtp.hbm.xml
+08:50:24,008  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp -> htp_interpretacion_test
+08:50:24,013  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Categoria.hbm.xml
+08:50:24,042  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Categoria -> htp_catgeoria
+08:50:24,044  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/Indicador.hbm.xml
+08:50:24,068  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.Indicador -> htp_indicador
+08:50:24,072  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwOpcion.hbm.xml
+08:50:24,094  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.seguridad.VwOpcion -> vw_opcion
+08:50:24,098  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwFichaIngreso.hbm.xml
+08:50:24,120  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwFichaIngreso -> vw_ficha_ingreso
+08:50:24,123  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwIngresoSalida.hbm.xml
+08:50:24,147  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.sira.VwIngresoSalida -> vw_ingreso_salida
+08:50:24,150  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/VwInformePsicologico.hbm.xml
+08:50:24,166  INFO HbmBinder:300 - Mapping class: org.cmail.rehabilitacion.modelo.htp.VwInformePsicologico -> vw_informe_psicologico
+08:50:24,170  INFO Configuration:553 - Reading mappings from resource : org/cmail/rehabilitacion/dao/mapeo/hibernate.mapping.xml
+08:50:24,190  INFO Configuration:1541 - Configured SessionFactory: null
+08:50:24,195  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.FichaIngreso.documentos -> sira_fiching_documento
+08:50:24,203  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Agenda.eventos -> sira_actividad
+08:50:24,206  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Provincia.cantones -> loc_canton
+08:50:24,209  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.localizacion.Canton.parroquias -> loc_parroquia
+08:50:24,220  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.AuditoriaEntidad.propiedades -> aud_propiedad
+08:50:24,224  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.sira.Esquema.preguntas -> sira_esquema_pregunta
+08:50:24,225  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.TestHtp.respuestas -> htp_test_respuesta
+08:50:24,225  INFO HbmBinder:2385 - Mapping collection: org.cmail.rehabilitacion.modelo.htp.Categoria.indicadores -> htp_indicador
+08:50:24,262  INFO C3P0ConnectionProvider:81 - C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/cail
+08:50:24,263  INFO C3P0ConnectionProvider:82 - Connection properties: {user=root, password=****}
+08:50:24,263  INFO C3P0ConnectionProvider:85 - autocommit mode: false
+08:50:24,313  INFO MLog:80 - MLog clients using log4j logging.
+08:50:24,498  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.2 [built 21-May-2007 15:05:05; debug? true; trace: 10]
+08:50:24,615  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@f7c65b59 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@fd8734ec [ acquireIncrement -> 1, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> z8kfsx8w104y1ygh06u4j|783a69, idleConnectionTestPeriod -> 100, initialPoolSize -> 10, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 100, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 100, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 10, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@aae71fe3 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104y1ygh06u4j|fd54ec, jdbcUrl -> jdbc:mysql://localhost:3306/cail, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> z8kfsx8w104y1ygh06u4j|9abc40, numHelperThreads -> 3 ]
+08:50:25,008  INFO SettingsFactory:89 - RDBMS: MySQL, version: 5.5.32-0ubuntu0.13.04.1
+08:50:25,018  INFO SettingsFactory:90 - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.23 ( Revision: ${bzr.revision-id} )
+08:50:25,054  INFO Dialect:152 - Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+08:50:25,060  INFO TransactionFactoryFactory:31 - Using default transaction strategy (direct JDBC transactions)
+08:50:25,064  INFO TransactionManagerLookupFactory:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+08:50:25,066  INFO SettingsFactory:143 - Automatic flush during beforeCompletion(): disabled
+08:50:25,067  INFO SettingsFactory:147 - Automatic session close at end of transaction: disabled
+08:50:25,069  INFO SettingsFactory:154 - JDBC batch size: 15
+08:50:25,070  INFO SettingsFactory:157 - JDBC batch updates for versioned data: disabled
+08:50:25,072  INFO SettingsFactory:162 - Scrollable result sets: enabled
+08:50:25,073  INFO SettingsFactory:170 - JDBC3 getGeneratedKeys(): enabled
+08:50:25,074  INFO SettingsFactory:178 - Connection release mode: auto
+08:50:25,076  INFO SettingsFactory:202 - Maximum outer join fetch depth: 2
+08:50:25,077  INFO SettingsFactory:205 - Default batch fetch size: 1
+08:50:25,078  INFO SettingsFactory:209 - Generate SQL with comments: enabled
+08:50:25,079  INFO SettingsFactory:213 - Order SQL updates by primary key: disabled
+08:50:25,080  INFO SettingsFactory:217 - Order SQL inserts for batching: disabled
+08:50:25,081  INFO SettingsFactory:386 - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+08:50:25,092  INFO ASTQueryTranslatorFactory:24 - Using ASTQueryTranslatorFactory
+08:50:25,093  INFO SettingsFactory:225 - Query language substitutions: {}
+08:50:25,097  INFO SettingsFactory:230 - JPA-QL strict compliance: disabled
+08:50:25,098  INFO SettingsFactory:235 - Second-level cache: enabled
+08:50:25,099  INFO SettingsFactory:239 - Query cache: disabled
+08:50:25,100  INFO SettingsFactory:373 - Cache provider: org.hibernate.cache.NoCacheProvider
+08:50:25,101  INFO SettingsFactory:254 - Optimize cache for minimal puts: disabled
+08:50:25,101  INFO SettingsFactory:263 - Structured second-level cache entries: disabled
+08:50:25,108  INFO SettingsFactory:283 - Echoing all SQL to stdout
+08:50:25,108  INFO SettingsFactory:290 - Statistics: disabled
+08:50:25,108  INFO SettingsFactory:294 - Deleted entity synthetic identifier rollback: disabled
+08:50:25,109  INFO SettingsFactory:309 - Default entity-mode: pojo
+08:50:25,109  INFO SettingsFactory:313 - Named query checking : enabled
+08:50:25,133  INFO SessionFactoryImpl:161 - building session factory
+08:50:25,909  INFO SessionFactoryObjectFactory:82 - Not binding factory to JNDI, no JNDI name configured
+08:50:25,911  INFO SchemaUpdate:115 - Running hbm2ddl schema update
+08:50:25,911  INFO SchemaUpdate:126 - fetching database metadata
+08:50:25,915  INFO SchemaUpdate:138 - updating schema
+08:50:25,944  INFO TableMetadata:39 - table found: cail.aud_entidad
+08:50:25,945  INFO TableMetadata:40 - columns: [id, entidadnombre, fecha, entidadid, usuario, entidadclase, accion]
+08:50:25,945  INFO TableMetadata:42 - foreign keys: []
+08:50:25,945  INFO TableMetadata:43 - indexes: [primary]
+08:50:25,957  INFO TableMetadata:39 - table found: cail.aud_propiedad
+08:50:25,958  INFO TableMetadata:40 - columns: [nombre, id, estado, id_auditoria, valor]
+08:50:25,958  INFO TableMetadata:42 - foreign keys: [fk898cec9915a9375f]
+08:50:25,958  INFO TableMetadata:43 - indexes: [fk898cec9915a9375f, primary]
+08:50:25,964  INFO TableMetadata:39 - table found: cail.htp_catgeoria
+08:50:25,965  INFO TableMetadata:40 - columns: [nombre, id, definicion, tipo]
+08:50:25,965  INFO TableMetadata:42 - foreign keys: []
+08:50:25,965  INFO TableMetadata:43 - indexes: [primary]
+08:50:25,975  INFO TableMetadata:39 - table found: cail.htp_indicador
+08:50:25,976  INFO TableMetadata:40 - columns: [orden, nombre, id, imagen, id_categoria, valor, tipo, definicion, significaciones]
+08:50:25,976  INFO TableMetadata:42 - foreign keys: [fk29844645da4f97e]
+08:50:25,976  INFO TableMetadata:43 - indexes: [fk29844645da4f97e, primary]
+08:50:25,993  INFO TableMetadata:39 - table found: cail.htp_inf_psicologico
+08:50:25,994  INFO TableMetadata:40 - columns: [condicionessaluddebilidades, id_adolescente, id_ficha, fecha, condicionesvinculosfamiliaresdebilidades, anamnesisantecedentes, condicioneseducaciondebilidades, planacompaniamiento, id, condicionesformaciontrabajodebilidades, informacionreactivostest, examenfunciones, historiasalud, informacionpuebaspsicologicas, historialaboral, condicionesidentidaddebilidades, impresioesdiagnosticaspsicologo, condicionesidentidadfortalezas, condicionessaludfortalezas, situacionpresente, condicionesformaciontrabajofortalezas, condicioneseducacionfortalezas, condicionesvinvulosfamiliaresfortalezas]
+08:50:25,994  INFO TableMetadata:42 - foreign keys: [fkf5ce644a6c35479c, fkf5ce644af019975d]
+08:50:25,994  INFO TableMetadata:43 - indexes: [fkf5ce644a6c35479c, fkf5ce644af019975d, primary]
+08:50:26,010  INFO TableMetadata:39 - table found: cail.htp_interpretacion_test
+08:50:26,011  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, porcenjaterehabilitacionsistema, id_evaluador, porcenjaterehabilitacion, fecha, comentarioconducta, auditupdateuser, interrogativoposterior, auditupdatedate, resumenpsicologo, porcenjaterehabilitacionevaluador, id, graficoperspectiva, graficoproporcion, auditcreatedate, nivelrehabilitacion, nivelrehabilitacionnombre, id_test, graficodetalle, historiaadolescente]
+08:50:26,011  INFO TableMetadata:42 - foreign keys: [fkac3cc97dfd32cf31, fkac3cc97df019975d, fkac3cc97d525e5464, fkac3cc97d6c35479c]
+08:50:26,011  INFO TableMetadata:43 - indexes: [fkac3cc97df019975d, fkac3cc97dfd32cf31, fkac3cc97d525e5464, primary, fkac3cc97d6c35479c]
+08:50:26,029  INFO TableMetadata:39 - table found: cail.htp_test
+08:50:26,029  INFO TableMetadata:40 - columns: [id_adolescente, id_ficha, auditcreateuser, id_evaluador, fecha, horainicio, auditupdateuser, dibujopersona, dibujoarbol, tiempoduracioncasa, edadadolescente, auditupdatedate, tiempolatenciaarbol, dibujocasa, tiempoduracionarbol, duracionminutos, id, tiempolatenciacasa, tiempoduracionpersona, id_esquema, auditcreatedate, horafin, tiempolatenciapersona]
+08:50:26,030  INFO TableMetadata:42 - foreign keys: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:50:26,030  INFO TableMetadata:43 - indexes: [fkf05cd70db7187c7b, fkf05cd70d6c35479c, primary, fkf05cd70df019975d, fkf05cd70dfd32cf31]
+08:50:26,041  INFO TableMetadata:39 - table found: cail.htp_test_respuesta
+08:50:26,042  INFO TableMetadata:40 - columns: [id, respuesta, id_esq_preg, id_test]
+08:50:26,042  INFO TableMetadata:42 - foreign keys: [fk1d6110ec54e8086, fk1d6110e525e5464]
+08:50:26,042  INFO TableMetadata:43 - indexes: [fk1d6110ec54e8086, primary, fk1d6110e525e5464]
+08:50:26,050  INFO TableMetadata:39 - table found: cail.loc_canton
+08:50:26,050  INFO TableMetadata:40 - columns: [nombre, id, id_provincia, activo]
+08:50:26,050  INFO TableMetadata:42 - foreign keys: [fkd4a6a162fffdad4c]
+08:50:26,050  INFO TableMetadata:43 - indexes: [fkd4a6a162fffdad4c, primary]
+08:50:26,062  INFO TableMetadata:39 - table found: cail.loc_parroquia
+08:50:26,063  INFO TableMetadata:40 - columns: [nombre, id, id_canton, zona, activa]
+08:50:26,064  INFO TableMetadata:42 - foreign keys: [fkc2a24b9bc3dcbe54]
+08:50:26,064  INFO TableMetadata:43 - indexes: [fkc2a24b9bc3dcbe54, primary]
+08:50:26,075  INFO TableMetadata:39 - table found: cail.loc_provincia
+08:50:26,076  INFO TableMetadata:40 - columns: [nombre, id, cod_region, activa, capital]
+08:50:26,077  INFO TableMetadata:42 - foreign keys: []
+08:50:26,078  INFO TableMetadata:43 - indexes: [nombre, primary, capital]
+08:50:26,101  INFO TableMetadata:39 - table found: cail.seg_opcion
+08:50:26,102  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, icono, id_padre, auditupdatedate, etiqueta, url]
+08:50:26,102  INFO TableMetadata:42 - foreign keys: [fk6cc97550fada3500]
+08:50:26,103  INFO TableMetadata:43 - indexes: [fk6cc97550fada3500, primary]
+08:50:26,115  INFO TableMetadata:39 - table found: cail.seg_opcion_perfil
+08:50:26,116  INFO TableMetadata:40 - columns: [id_opcion, id_perfil]
+08:50:26,116  INFO TableMetadata:42 - foreign keys: [fk154a579bd65538e8, fk154a579bd8967034]
+08:50:26,116  INFO TableMetadata:43 - indexes: [fk154a579bd65538e8, primary, fk154a579bd8967034]
+08:50:26,129  INFO TableMetadata:39 - table found: cail.seg_parametro
+08:50:26,130  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, valor, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate]
+08:50:26,130  INFO TableMetadata:42 - foreign keys: []
+08:50:26,130  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:50:26,141  INFO TableMetadata:39 - table found: cail.seg_perfil
+08:50:26,142  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:50:26,143  INFO TableMetadata:42 - foreign keys: []
+08:50:26,144  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:50:26,156  INFO TableMetadata:39 - table found: cail.seg_permiso
+08:50:26,157  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, descripcion, auditupdatedate]
+08:50:26,158  INFO TableMetadata:42 - foreign keys: []
+08:50:26,159  INFO TableMetadata:43 - indexes: [nombre, primary]
+08:50:26,167  INFO TableMetadata:39 - table found: cail.seg_permiso_perfil
+08:50:26,167  INFO TableMetadata:40 - columns: [id_permiso, id_perfil]
+08:50:26,167  INFO TableMetadata:42 - foreign keys: [fk35b282e03a3df60e, fk35b282e0d8967034]
+08:50:26,167  INFO TableMetadata:43 - indexes: [fk35b282e03a3df60e, primary, fk35b282e0d8967034]
+08:50:26,180  INFO TableMetadata:39 - table found: cail.seg_usuario
+08:50:26,180  INFO TableMetadata:40 - columns: [localidad, auditcreateuser, apellidos, auditupdateuser, fecha_registro, auditupdatedate, activo, temaui, id, nombres, auditcreatedate, login, clave, cedula]
+08:50:26,181  INFO TableMetadata:42 - foreign keys: []
+08:50:26,181  INFO TableMetadata:43 - indexes: [primary, login, cedula]
+08:50:26,189  INFO TableMetadata:39 - table found: cail.seg_usuario_perfil
+08:50:26,190  INFO TableMetadata:40 - columns: [id_usuario, id_perfil]
+08:50:26,191  INFO TableMetadata:42 - foreign keys: [fk92770127d8967034, fk927701277b4ddd40]
+08:50:26,191  INFO TableMetadata:43 - indexes: [primary, fk92770127d8967034, fk927701277b4ddd40]
+08:50:26,203  INFO TableMetadata:39 - table found: cail.sira_actividad
+08:50:26,204  INFO TableMetadata:40 - columns: [id, porcentaje_ejecucion, auditcreateuser, id_planificacion, auditupdateuser, auditcreatedate, lugar, descripcion, auditupdatedate, fecha_ejecucion, id_agenda]
+08:50:26,204  INFO TableMetadata:42 - foreign keys: [fkd595c783979fad7d, fk_evento_agenda]
+08:50:26,204  INFO TableMetadata:43 - indexes: [fkd595c783979fad7d, primary, fk_evento_agenda]
+08:50:26,219  INFO TableMetadata:39 - table found: cail.sira_agenda
+08:50:26,219  INFO TableMetadata:40 - columns: [auditcreateuser, objetivo, auditupdateuser, id_responsable, descripcion, auditupdatedate, observaciones, reportefinal, id, fecha_fin, estado, id_usuario, auditcreatedate, participantes, fecha_inicio]
+08:50:26,220  INFO TableMetadata:42 - foreign keys: [fk_agenda_responsable, fk_agenda_usuario]
+08:50:26,220  INFO TableMetadata:43 - indexes: [fk_agenda_responsable, fk_agenda_usuario, primary]
+08:50:26,231  INFO TableMetadata:39 - table found: cail.sira_esquema
+08:50:26,231  INFO TableMetadata:40 - columns: [nombre, id, auditcreateuser, auditupdateuser, auditcreatedate, tipo, descripcion, auditupdatedate, activo]
+08:50:26,231  INFO TableMetadata:42 - foreign keys: []
+08:50:26,232  INFO TableMetadata:43 - indexes: [primary]
+08:50:26,251  INFO TableMetadata:39 - table found: cail.sira_esquema_pregunta
+08:50:26,251  INFO TableMetadata:40 - columns: [id, grupo, enunciado, id_esquema, tipo, requerida, numero]
+08:50:26,251  INFO TableMetadata:42 - foreign keys: [fk72213dfcb7187c7b]
+08:50:26,252  INFO TableMetadata:43 - indexes: [fk72213dfcb7187c7b, primary]
+08:50:26,277  INFO TableMetadata:39 - table found: cail.sira_fichaegreso
+08:50:26,277  INFO TableMetadata:40 - columns: [raz_eg_fuga, id_adolescente, auditcreateuser, auditupdateuser, eg_solo, auditupdatedate, raz_eg_term_medida, eg_respresentante, id_res_egreso, raz_eg_cad_retinvestiacion, relacion_eg_otros, cond_emo_eg_agresivo, raz_eg_cad_retcomparecencia, exp_aceptacion_persalida, cond_salud_medicinas, eg_tios, cond_salud_eg_enfermedad, raz_eg_cad_intpreventivo, raz_eg_trasferencia, id_aut_egreso, eg_madre, id_com_egreso, cond_emo_eg_tranquilo, eg_abuela, raz_eg_resjudicial, eg_pareja, aceptacion_persalida, raz_eg_defuncion, eg_ambos_progenitores, eg_hermano, eg_abuelo, eg_padre, cond_emo_eg_asustado, exp_aceptacion_salida, cond_emo_eg_alegre, eg_hermana, aceptacion_salida, cond_fis_eg_perfectas, cond_emo_otro_nombre, id, docs_egreso, eg_otros, raz_eg_embarazo, desc_pertenencias, eg_fis_eg_lastimados, cond_fis_eg_moretones, cond_emo_eg_extrovertido, raz_eg_cad_retencion, id_ingreso, cond_emo_eg_introvertido, persona_vivira, fecha, parentesco_companero_egreso, dir_telf_referencia, eg_ambosabuelos, auditcreatedate, cond_emo_eg_confinado, lugar, cond_emo_eg_otro, tiempo_permanencia]
+08:50:26,277  INFO TableMetadata:42 - foreign keys: [fkcb815f70fec7f85, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:50:26,278  INFO TableMetadata:43 - indexes: [fkcb815f70fec7f85, primary, fkcb815f704d4d786, fkcb815f70f019975d, fkcb815f70781c7166, fkcb815f709c6e5a54]
+08:50:26,332  INFO TableMetadata:39 - table found: cail.sira_fichaingreso
+08:50:26,333  INFO TableMetadata:40 - columns: [id_adolescente, causal_v_hurto, auditcreateuser, cond_fis_ing_lastimados, estado_civil, id_can_detencion, id_egreso, causal_inf_trafico, id_res_traslado, raz_in_mc_comparecencia, cond_emo_ing_extrovertido, comunidad_residencia, causal_inf_atentpudor, barrio_residencia, id_representante, nivel_educativo_tipo, raz_in_reingreso, otro_lenguaje_nombre, causal_inf_estafa, medidas_cautelares, ingresa_hijos, raz_in_ms_servcomunidad, causal_inf_intplagio, raz_in_medidacautelar, id_par_residencia, petenencias_descripcion, nombre_persona1, cond_emo_ing_agresivo, razoningreso, nombre_persona2, raz_in_ri_medidasocioeducativa, raz_in_mc_intpreventivo, edad_hijos_mujeres, cedulado, causal_v_recaptura, causal_inf_venta, causal_inf_consumo, id_par_detencion, cond_emo_ing_tranquilo, causal_inf_intviolacion, causal_inf_robo, raz_in_mc_retencion, delito_flagrante, raz_in_ms_amonestimposicion, causal_inf_lesiones, causal_inf_abigeato, idioma_ingles, comunidad_detencion, cond_salud_sintoma_droga, causal_inf_acososexual, raz_in_ms_libasistida, causal_inf_asesinato, id_pro_residencia, fecha, causal_v_falsificaciondoc, causal_inf_trata, num_hijos_hombres, cond_emo_otros_nombre, num_hijos_mujeres, edad_hijos_hombres, telefono_residencia, auditcreatedate, lugar, causal_inf_extorcion, id_res_ingreso, raz_in_ms_intinstitucional, raz_in_ms_semilibertad, tiempo_medida, raz_in_ri_medidacautelar, auditupdateuser, causal_inf_violacion, auditupdatedate, observaciones, idioma_castellano, causal_v_posesionarmas, cond_emo_ing_otros, id_pro_detencion, tipo_ocupacion, lengua_nativa_nombre, nacionalidad, autoidentificacion, causal_inf_otros, raz_in_medidasocioeducativa, telefono_persona1, telefono_persona2, juez, causal_inf_plagio, causal_inf_tratapersonas, cond_emo_ing_asustado, cond_fis_ing_otros, num_hijos_edades, otro_lenguaje, parentesco_persona1, causal_inf_homicidio, parentesco_persona2, id_res_pertenencia, raz_in_ms_amonestacion, medidas_socioeducativas, causal_v_manejaralcoholizado, causal_inf_trataexplotsexual, id, raz_in_ri_otrotipo, id_can_residencia, edad, cond_salud_medicina, raz_in_ms_finsemana, cond_fis_ing_moretones, raz_in_mc_investigacion, raz_in_ms_repdanocausado, raz_in_ms_apoyofamiliar, lengua_nativa, cond_salud_enfermedad, causal_inf_inthomicidio, barrio_detencion, raz_in_ri_otrotipo_nombre, causal_inf_destruccion, cond_emo_ing_introvertido, cond_fis_otros_nombre, causal_inf_intentorobo, nivel_educativo_nombre, tiempo_ocupacion_actual, causal_inf_estupro, tiempo_residencia_actual, causal_inf_asalto]
+08:50:26,333  INFO TableMetadata:42 - foreign keys: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a92f998454, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a92f019975d, fk83a01a9298d62689, fk83a01a921477ce6f, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:50:26,333  INFO TableMetadata:43 - indexes: [fk83a01a927be47f45, fk83a01a92374d4537, fk83a01a92a63322d0, fk83a01a929d8432e0, fk83a01a9226542f4e, fk83a01a92dde333b0, fk83a01a9298d62689, fk83a01a921477ce6f, primary, fk83a01a92f998454, fk83a01a92f019975d, fk83a01a92de756f41, fk83a01a92d9bea01b]
+08:50:26,343  INFO TableMetadata:39 - table found: cail.sira_fiching_documento
+08:50:26,343  INFO TableMetadata:40 - columns: [nombre, id, id_ficha, mimetype, data, descripcion]
+08:50:26,343  INFO TableMetadata:42 - foreign keys: [fkb29e58756c35479c]
+08:50:26,344  INFO TableMetadata:43 - indexes: [primary, fkb29e58756c35479c]
+08:50:26,359  INFO TableMetadata:39 - table found: cail.sira_persona
+08:50:26,360  INFO TableMetadata:40 - columns: [direccion, auditcreateuser, parentesco, estado_civil, id_canton_nacimiento, apellidos, auditupdateuser, telefono, fecha_registro, sexo, auditupdatedate, cargo, id_parroquia_nacimiento, fecha_nacimiento, id, ocupacion, id_madre, nombres, email, auditcreatedate, id_provincia_nacimiento, roles, id_padre, cedula, celular]
+08:50:26,360  INFO TableMetadata:42 - foreign keys: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, fke15c807296e33551, fke15c8072627e6f52]
+08:50:26,360  INFO TableMetadata:43 - indexes: [fke15c8072b0134132, fke15c8072b6b4365e, fke15c8072970d7bd4, primary, fke15c8072627e6f52, fke15c807296e33551]
+08:50:26,361  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:50:26,369  INFO TableMetadata:39 - table found: cail.vw_informe_psicologico
+08:50:26,370  INFO TableMetadata:40 - columns: [id, motivoingreso, nivelinstruccion, fechainforme, estadocivil, evaluador, adolescente, edad, lugar, resultadotest, cedula, fechatest]
+08:50:26,370  INFO TableMetadata:42 - foreign keys: []
+08:50:26,370  INFO TableMetadata:43 - indexes: [primary]
+08:50:26,371  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:50:26,372  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:50:26,378  INFO TableMetadata:39 - table found: cail.web_articulo
+08:50:26,378  INFO TableMetadata:40 - columns: [id, auditcreateuser, titulo, auditupdateuser, auditcreatedate, descripcion, auditupdatedate, paginaprincipal, resumen, activo]
+08:50:26,378  INFO TableMetadata:42 - foreign keys: []
+08:50:26,378  INFO TableMetadata:43 - indexes: [primary]
+08:50:26,385  INFO TableMetadata:39 - table found: cail.web_imagen
+08:50:26,385  INFO TableMetadata:40 - columns: [orden, nombre, id, mimetype, estado, tipo, data, descripcion, rutaabsoluta]
+08:50:26,385  INFO TableMetadata:42 - foreign keys: []
+08:50:26,385  INFO TableMetadata:43 - indexes: [primary]
+08:50:26,388  INFO DatabaseMetadata:96 - table not found: vw_ficha_ingreso
+08:50:26,389  INFO DatabaseMetadata:96 - table not found: vw_ingreso_salida
+08:50:26,390  INFO DatabaseMetadata:96 - table not found: vw_opcion
+08:50:26,404 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ficha_ingreso (id bigint not null, cedula varchar(45), nombres varchar(45), apellidos varchar(45), lugar varchar(80), fecha datetime, razonIngreso varchar(255), edad integer, primary key (id)) ENGINE=InnoDB
+08:50:26,405 ERROR SchemaUpdate:156 - Table 'vw_ficha_ingreso' already exists
+08:50:26,406 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_ingreso_salida (id bigint not null, fechaIngreso datetime, fechaEgreso datetime, nombres varchar(45), apellidos varchar(45), razonIngreso varchar(255), primary key (id)) ENGINE=InnoDB
+08:50:26,406 ERROR SchemaUpdate:156 - Table 'vw_ingreso_salida' already exists
+08:50:26,407 ERROR SchemaUpdate:155 - Unsuccessful: create table vw_opcion (id bigint not null, id_padre bigint, id_perfil bigint, etiqueta varchar(45), url varchar(80), titulo varchar(80), icono varchar(80), primary key (id)) ENGINE=InnoDB
+08:50:26,407 ERROR SchemaUpdate:156 - Table 'vw_opcion' already exists
+08:50:26,407  INFO SchemaUpdate:160 - schema update complete
