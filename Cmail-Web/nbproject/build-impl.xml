@@ -844,9 +844,6 @@ exists or setup the property manually. For example like this:
         <ant antfile="${project.Cmail-Dao}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
-        <ant antfile="${project.Cmail-Documentos}/build.xml" inheritall="false" target="jar">
-            <property name="deploy.on.save" value="false"/>
-        </ant>
         <ant antfile="${project.Cmail-Modelo}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
@@ -859,9 +856,6 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="init" if="dist.ear.dir" name="deps-ear-jar" unless="no.deps">
         <ant antfile="${project.Cmail-Dao}/build.xml" inheritall="false" target="jar">
-            <property name="deploy.on.save" value="false"/>
-        </ant>
-        <ant antfile="${project.Cmail-Documentos}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.Cmail-Modelo}/build.xml" inheritall="false" target="jar">
@@ -1028,7 +1022,6 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.Cmail-Modelo.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.Cmail-Dao.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.Cmail-Servicio.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${reference.Cmail-Documentos.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.c3p0-0.9.1.2-jdk1.3.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.c3p0-0.9.1.2.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.c3p0-oracle-thin-extras-0.9.1.2.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
@@ -1067,7 +1060,6 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.Cmail-Modelo.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${reference.Cmail-Dao.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${reference.Cmail-Servicio.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${reference.Cmail-Documentos.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.c3p0-0.9.1.2-jdk1.3.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.c3p0-0.9.1.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.c3p0-oracle-thin-extras-0.9.1.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
@@ -1486,7 +1478,6 @@ exists or setup the property manually. For example like this:
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
         <ant antfile="${project.Cmail-Dao}/build.xml" inheritall="false" target="clean"/>
-        <ant antfile="${project.Cmail-Documentos}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Cmail-Modelo}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Cmail-Resources}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Cmail-Servicio}/build.xml" inheritall="false" target="clean"/>
