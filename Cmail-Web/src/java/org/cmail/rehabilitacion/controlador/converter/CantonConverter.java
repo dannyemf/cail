@@ -13,7 +13,8 @@ import org.cmail.rehabilitacion.modelo.localizacion.Canton;
 import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 
 /**
- *
+ * Convertidor de cantones usado para los controles de Java Server Faces.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

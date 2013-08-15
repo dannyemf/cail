@@ -24,8 +24,8 @@ import org.icefaces.ace.event.CloseEvent;
 
 
 /**
- * <p>The NavigationBean class is responsible for storing the state of the
- * included dynamic content for display.  </p>
+ * Controlador de las imagenes para los artículos.
+ * Permite subir imagenes al servidor y seleccionarlas para agregarlas al texto de los artículos.
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -48,6 +48,7 @@ public class WucMultimediaController extends Controller{
     private String titulo;
     private String richText;
     
+    /**Constructor por defecto*/
     public WucMultimediaController() {
     }
     

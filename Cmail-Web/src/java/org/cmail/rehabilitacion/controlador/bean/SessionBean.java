@@ -37,8 +37,9 @@ import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
-/**
- *
+/**  
+ * Bean manejado que permite guardar en sesión los elemntos que deben permanecer en más de una página o por un buen tiempo de vida.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -76,7 +77,7 @@ public class SessionBean implements Serializable {
     private String tipoNotificacion = TipoNotificacion.Aviso.toString();
     private List<Permiso> permisosUsuario = new ArrayList<Permiso>();
 
-    /** Creates a new instance of SessionBean */
+    /**Constructor por defecto*/
     public SessionBean() {
         sessionMap = new HashMap<String, Object>();
     }

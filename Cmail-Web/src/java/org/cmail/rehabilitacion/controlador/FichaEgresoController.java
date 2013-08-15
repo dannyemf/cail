@@ -33,7 +33,9 @@ import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de fichas de egreso, es decir la salida del adolescente de éste centro.
+ * Permite hacer las búsquedas, crear, editar, eliminar las fichas de egreso.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -50,16 +52,9 @@ public class FichaEgresoController extends Controller {
     private ItemFichaEgreso itemFicha;
     private CmailListDataModel<ItemFichaEgreso> modelFichasEgreso = new CmailListDataModel<ItemFichaEgreso>();
 
+    /**Constructor por defecto*/
     public FichaEgresoController() {
     }
-
-//    public void eventoNuevo(ActionEvent evt) {        
-//        
-//        FichaEgreso fi = new FichaEgresoServicio().crearNueva();
-//        initAudit(fi);
-//        FacesUtils.getSessionBean().setFichaEgresoEdicion(fi);
-//        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_FICHAEGRESO);
-//    }
 
     public void eventoEditar(ActionEvent evt, FichaEgreso item, String returnUrl) {
         addRoute("editar");

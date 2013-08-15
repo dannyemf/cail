@@ -14,7 +14,8 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- *
+ * Validador Java Server Faces de números de teléfono celular.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

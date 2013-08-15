@@ -29,7 +29,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
 
 /**
- *
+ * Controlador de artículos o noticias.
+ * Permite hacer las búsquedas, crear, editar, eliminar los artículos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -46,7 +48,7 @@ public class ArticuloWebController extends Controller {
     private Date fechaFinal = new Date();    
     
 
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public ArticuloWebController() {        
     }
     

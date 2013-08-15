@@ -15,7 +15,9 @@ import org.cmail.rehabilitacion.servicio.InformePsicologicoServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de informes psicológicos.
+ * Permite generar y editar un informe psicológico a partir de una ficha de ingreso.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -26,6 +28,7 @@ public class InformePsicologicoController extends Controller {
     
     private InformePsicologico informeEdicion;
 
+    /**Constructor por defecto*/
     public InformePsicologicoController() {
     }
     

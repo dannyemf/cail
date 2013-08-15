@@ -13,8 +13,7 @@ import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- * <p>The NavigationBean class is responsible for storing the state of the
- * included dynamic content for display.  </p>
+ * Controlador de inicio y cierre de sesión de un usuario.
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -28,6 +27,7 @@ public class LoginController extends Controller{
     private String clave;
     private ThreadLocal<Usuario> threadLocal;
 
+    /**Constructor por defecto*/
     public LoginController() {
     }
 

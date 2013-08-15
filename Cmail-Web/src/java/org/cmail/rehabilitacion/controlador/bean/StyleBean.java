@@ -14,6 +14,7 @@ import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
+ * Bean manejado para fijar el tema del usuario y cambiar el mismo cuando éste seleccione otro de la lista.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -25,9 +26,7 @@ public class StyleBean implements Serializable {
 
     private String aceTheme = null;
     
-    /**
-     * Creates a new instance of the StyleBean.
-     */
+    /**Constructor por defecto*/
     public StyleBean() {
         
     }

@@ -19,7 +19,9 @@ import org.cmail.rehabilitacion.modelo.sira.ImagenWeb;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Clase que representa un archivo de imagen.
+ * Permite crear imágenes en miniatura, copiar los archivos desde la base de datos a una carpeta más cómoda para presentarlos en las vistas y en los artículos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

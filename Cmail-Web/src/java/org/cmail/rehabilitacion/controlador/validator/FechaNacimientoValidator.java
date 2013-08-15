@@ -21,7 +21,8 @@ import org.cmail.rehabilitacion.servicio.ParametroServicio;
 import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 
 /**
- *
+ * Validador Java Server Faces de fechas de nacimiento para los adolescentes.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -32,7 +33,7 @@ public class FechaNacimientoValidator implements Validator, Serializable{
 
     private int añosAtras = 0;
     
-    
+    /**Constructor por defecto*/
     public FechaNacimientoValidator() {
         añosAtras = new ParametroServicio().obtenerParametro(Constantes.PRM_MIN_ANIOS_FECHA_NAC, TipoParametro.Entero).toInt();
     }

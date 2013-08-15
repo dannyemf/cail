@@ -11,7 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 /**
- *
+ * Componente personalizado de prueba, creado con la finalidad de posibles creaciones de componetes en el futuro.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

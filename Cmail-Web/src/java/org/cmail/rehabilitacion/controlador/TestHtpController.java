@@ -59,7 +59,9 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 
 /**
- *
+ * Controlador de test htp
+ * Permite realizar las búsquedas de los test, crear un nuevo test y realizar la interpretación de los mismos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -75,8 +77,7 @@ public class TestHtpController extends Controller {
     private List<Categoria> categorias = new ArrayList<Categoria>();
     private InterpretacionTestHtp interpretacion;
     
-    /** Creates a new instance of PerfilController */
-
+    /**Constructor por defecto*/
     public TestHtpController() {
     }
 

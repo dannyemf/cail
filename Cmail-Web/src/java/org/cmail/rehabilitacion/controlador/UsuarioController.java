@@ -22,7 +22,9 @@ import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de cuentas de usuario.
+ * Permite crear, editar, eliminar y desactivar las cuentas de usuario.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -34,7 +36,7 @@ public class UsuarioController  extends Controller{
     private CmailListDataModel<Usuario> modelUsuarios;
     private boolean testCailDisables = true;
     
-    /** Creates a new instance of AdminUsuariosController */
+    /**Constructor por defecto*/
     public UsuarioController() {
     }
 

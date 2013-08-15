@@ -8,7 +8,8 @@ import java.io.Serializable;
 import org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp;
 
 /**
- *
+ * Clase de modelo para la vista para presentar las interpretaciones de los test htp.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

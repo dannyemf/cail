@@ -6,6 +6,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import org.cmail.rehabilitacion.modelo.seguridad.Opcion;
 
 /**
+ * Clase de modelo para la vista para presentar las opciones de menú.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua

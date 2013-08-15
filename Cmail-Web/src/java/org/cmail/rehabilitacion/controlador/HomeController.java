@@ -33,7 +33,10 @@ import org.cmail.rehabilitacion.vista.model.ImageFile;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de la página de incio.
+ * Este controlador permite cargar las imagenes que se presentan en el banner y los artículos.
+ * También carga los artículos en la sección de noticias y los artículos que deben salir con un menú en la página principal.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -48,6 +51,7 @@ public class HomeController extends Controller implements Serializable{
     private CmailList<ArticuloWeb> entradasMenu = new CmailList<ArticuloWeb>();
     private Parametro parametroSize;
 
+    /**Constructor por defecto*/
     public HomeController() {
     }
     

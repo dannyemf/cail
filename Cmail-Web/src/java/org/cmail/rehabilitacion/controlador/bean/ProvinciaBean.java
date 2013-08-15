@@ -18,7 +18,8 @@ import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 
 /**
- *
+ * Bean manejado usado para el control de selección de pronvincias, cantón y parroquia.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -30,6 +31,7 @@ public class ProvinciaBean extends Controller implements Serializable{
 
     private List<Provincia> lista = new ArrayList<Provincia>();
     
+    /**Constructor por defecto*/
     public ProvinciaBean() {
         lista = new DivisionPoliticaServicio().listarProvincias();        
     }                

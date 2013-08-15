@@ -18,7 +18,9 @@ import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de provincias, cantones y parroquias.
+ * Permite hacer las búsquedas, crear, editar, eliminar las provincias, cantones y parroquias.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -31,12 +33,10 @@ public class DivisionPoliticalController  extends Controller{
     private CmailListDataModel<Canton> modelCantones = new CmailListDataModel<Canton>();    
     private CmailListDataModel<Parroquia> modelParroquias = new CmailListDataModel<Parroquia>();    
 
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public DivisionPoliticalController() {
     }
-
-    
-    
+        
     public void eventoNuevaProvincia(ActionEvent evt) {
         Provincia p = new Provincia();
         initAudit(p); 

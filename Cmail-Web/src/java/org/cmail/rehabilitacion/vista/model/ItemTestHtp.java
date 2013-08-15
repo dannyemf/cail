@@ -10,7 +10,8 @@ import org.cmail.rehabilitacion.modelo.htp.InterpretacionTestHtp;
 import org.cmail.rehabilitacion.modelo.htp.TestHtp;
 
 /**
- *
+ * Clase de modelo para la vista para presentar los test htp.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

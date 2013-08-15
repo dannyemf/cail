@@ -26,7 +26,9 @@ import org.icefaces.ace.component.fileentry.FileEntryEvent;
 import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 /**
- *
+ * Controlador de las imagenes que deben presentarse en el banner de la página web.
+ * Permite hacer las búsquedas, crear, editar, eliminar las imagenes.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -39,7 +41,7 @@ public class GaleriaController extends Controller {
     private String texto;
     private Parametro parametroSize;
    
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public GaleriaController() {        
     }
     

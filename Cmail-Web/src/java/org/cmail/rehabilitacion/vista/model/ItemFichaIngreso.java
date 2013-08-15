@@ -9,7 +9,8 @@ import java.text.SimpleDateFormat;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 
 /**
- *
+ * Clase de modelo para la vista para presentar las fichas de egreso.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

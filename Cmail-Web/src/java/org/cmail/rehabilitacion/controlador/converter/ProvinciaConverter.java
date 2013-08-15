@@ -13,7 +13,8 @@ import org.cmail.rehabilitacion.modelo.localizacion.Provincia;
 import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 
 /**
- *
+ * Convertidor de provincias usado para los controles de Java Server Faces.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -26,10 +27,9 @@ public class ProvinciaConverter implements Converter {
         return Logger.getLogger(this.getClass());
     }
     
+    /**Constructor por defecto*/
     public ProvinciaConverter() {
-    }
-    
-    
+    }        
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String value) {

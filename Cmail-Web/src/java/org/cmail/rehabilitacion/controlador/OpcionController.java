@@ -17,8 +17,8 @@ import org.cmail.rehabilitacion.vista.model.OpcionUserObject;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- * <p>The NavigationBean class is responsible for storing the state of the
- * included dynamic content for display.  </p>
+ * Controlador de las opciones de menú.
+ * Permite crear, editar, eliminar y asignar los perfiles a las opciones de menú.
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -39,6 +39,7 @@ public class OpcionController  extends Controller {
     private boolean dialogoConfirmPerfiles;
     private Set<Perfil> perfilesHijos = new HashSet<Perfil>();
     
+    /**Constructor por defecto*/
     public OpcionController() {          
         log().info("Iniciar opcion controller..");                
         valueChangeEffect = new Highlight("#fda505");

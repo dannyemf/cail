@@ -10,6 +10,7 @@ import javax.faces.event.ActionEvent;
 import org.cmail.rehabilitacion.controlador.WucMultimediaController;
 
 /**
+ * Listener que sirve para manejar las acciones en el control multimedia.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -21,6 +22,7 @@ public class ActionListenerWucMultimedia implements javax.faces.event.ActionList
     private WucMultimediaController wuc;
     private String rutaAbsoluta;
 
+    /**Constructor por defecto*/
     public ActionListenerWucMultimedia() {
     }
     

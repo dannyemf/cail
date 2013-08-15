@@ -12,7 +12,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 /**
- *
+ * Convertidor de fecha usado para el control DateTimeEntry.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

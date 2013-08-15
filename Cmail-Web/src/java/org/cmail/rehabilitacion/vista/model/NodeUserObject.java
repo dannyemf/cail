@@ -5,6 +5,7 @@ import com.icesoft.faces.component.tree.IceUserObject;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
+ *  Clase de modelo para la vista para presentar las opciones de menú que contengan sub opciones.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua

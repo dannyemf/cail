@@ -13,7 +13,8 @@ import javax.faces.validator.ValidatorException;
 import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 
 /**
- *
+ * Validador Java Server Faces de porcentajes.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

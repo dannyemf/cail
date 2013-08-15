@@ -45,7 +45,8 @@ import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.bean.SessionBean;
 
 /**
- * JSF utilities.
+ * Clase de utilidades para Java Server Faces de tal manera que se puede usarla de una manera más directa.
+ * Permite obtener los contextos Java Server Faces, agregar mensajes de error en las vistas, obtener beans manejados, etc.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua

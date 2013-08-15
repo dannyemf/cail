@@ -14,7 +14,8 @@ import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Modelo de datos personalizado para la presentación de resultado en tablas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -23,6 +24,7 @@ public class CmailListDataModel<E> extends ListDataModel<E> implements Serializa
 
     private List<E> lista = new ArrayList<E>();
     
+    /**Constructor por defecto*/
     public CmailListDataModel() {
         super();
     }

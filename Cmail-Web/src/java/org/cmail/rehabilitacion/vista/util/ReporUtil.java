@@ -36,7 +36,8 @@ import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.modelo.sira.VwFichaIngreso;
 
 /**
- *
+ * Clase de utilidad para crear los reportes pdf con la librería de JasperReports.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

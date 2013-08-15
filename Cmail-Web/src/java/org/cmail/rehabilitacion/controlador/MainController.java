@@ -20,7 +20,10 @@ import org.cmail.rehabilitacion.servicio.ParametroServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador que maneja la configuración del sistema.
+ * Este controlador almacena la configuración regional y la zona horaria; 
+ * también guarda el valor de los parámetros comunes para presentarlos en múltiples páginas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -37,6 +40,7 @@ public class MainController  extends Controller{
     private String prmSlogan;
     private String prmSiglas;
 
+    /**Constructor por defecto*/
     public MainController() {
         String tema = FacesUtils.getStyleBean().getAceTheme();        
     }

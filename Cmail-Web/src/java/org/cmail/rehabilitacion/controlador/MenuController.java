@@ -22,8 +22,8 @@ import org.icefaces.ace.model.DefaultMenuModel;
 
 
 /**
- * <p>The NavigationBean class is responsible for storing the state of the
- * included dynamic content for display.  </p>
+ * Controlador del menú de usuario.
+ * Se encarga de crear el menú del usuario según sean sus perfiles, así como el control de la navegación entre páginas.
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -46,7 +46,7 @@ public class MenuController  extends Controller{
     private String currentPath = "";    
     private List<String> currentActionList = new ArrayList<String>();
     
-    
+    /**Constructor por defecto*/
     public MenuController() {
     }            
     

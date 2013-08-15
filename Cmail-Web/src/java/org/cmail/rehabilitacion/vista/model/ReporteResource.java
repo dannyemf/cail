@@ -24,7 +24,8 @@ import org.cmail.rehabilitacion.vista.util.ReporUtil;
 
 
 /**
- *
+ * Clase de recurso usada para crear los reportes pdf y descargarlos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

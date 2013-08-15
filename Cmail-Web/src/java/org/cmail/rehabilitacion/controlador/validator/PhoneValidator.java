@@ -14,7 +14,8 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- *
+ * Validador Java Server Faces de de números de teléfono fijo en el formato 999-999999.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

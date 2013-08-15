@@ -27,20 +27,21 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de agendas.
+ * Permite hacer las búsquedas, crear, editar, finalizar y ver las agendas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_AGENDA)
 @ViewScoped
-public class AgendaController extends Controller {
-
-    /** Creates a new instance of PlanificacionController */
+public class AgendaController extends Controller {   
     
     private Date fechaDesde = new Date();
     private Date fechaHasta = new Date();
 
+    /**Constructor por defecto*/
     public AgendaController() {
     }
 

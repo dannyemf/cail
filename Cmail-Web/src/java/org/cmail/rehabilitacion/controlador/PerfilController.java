@@ -20,7 +20,9 @@ import org.cmail.rehabilitacion.servicio.UsuarioServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de los perfiles de usuario.
+ * Permite crear, editar, eliminar y asignar los permisos a los perfiles de usuario.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -31,7 +33,7 @@ public class PerfilController  extends Controller{
     
     private CmailListDataModel<Perfil> modelPerfiles;
 
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public PerfilController() {
     }
 

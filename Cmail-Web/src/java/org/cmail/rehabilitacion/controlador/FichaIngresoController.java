@@ -35,7 +35,9 @@ import org.icefaces.ace.component.fileentry.FileEntryEvent;
 import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 /**
- *
+ * Controlador de fichas de ingreso, es decir los registro de cuando ingresa un adolescente al centro de rehabilitación.
+ * Permite hacer las búsquedas, crear, editar, eliminar las fichas de ingreso.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -53,6 +55,7 @@ public class FichaIngresoController extends Controller {
     private ItemFichaIngreso itemFicha;
     private CmailListDataModel<ItemFichaIngreso> modelFichasIngreso = new CmailListDataModel<ItemFichaIngreso>();        
 
+    /**Constructor por defecto*/
     public FichaIngresoController() {
     }
     

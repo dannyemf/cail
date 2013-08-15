@@ -24,7 +24,9 @@ import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de esquemas de pregiuntas para el test htp.
+ * Permite hacer las búsquedas, crear, editar, eliminar los esquemas.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -35,8 +37,7 @@ public class EsquemaController extends Controller {
 
     private EsquemaPregunta preguntaSeleccionada;
     
-    /** Creates a new instance of PerfilController */
-
+    /**Constructor por defecto*/
     public EsquemaController() {
     }
 

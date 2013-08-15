@@ -20,7 +20,9 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de los parámetros del sistema.
+ * Permite crear, editar, eliminar los parámetros.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -31,7 +33,7 @@ public class ParametroController  extends Controller{
     
     private CmailListDataModel<Parametro> model;
 
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public ParametroController() {
     }
 

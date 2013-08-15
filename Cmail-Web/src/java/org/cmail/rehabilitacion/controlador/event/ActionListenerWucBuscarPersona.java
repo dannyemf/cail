@@ -12,6 +12,7 @@ import org.cmail.rehabilitacion.controlador.WucBuscarPersonaController;
 import org.cmail.rehabilitacion.modelo.Persona;
 
 /**
+ * Listener que sirve para manejar las acciones en el control de personas.
  * 
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -23,6 +24,7 @@ public class ActionListenerWucBuscarPersona implements javax.faces.event.ActionL
     private WucBuscarPersonaController wuc;
     private Tipo tipo;
 
+    /**Constructor por defecto*/
     public ActionListenerWucBuscarPersona() {
     }
     

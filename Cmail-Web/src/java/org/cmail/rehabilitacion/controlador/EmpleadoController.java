@@ -23,7 +23,9 @@ import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de empleados.
+ * Permite hacer las búsquedas, crear, editar, eliminar los empleados.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -42,6 +44,7 @@ public class EmpleadoController extends Controller {
     private Persona empleado;
     private boolean incluirOtrosRoles;
 
+    /**Constructor por defecto*/
     public EmpleadoController() {
     }   
     

@@ -26,7 +26,9 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de los permisos de usuario para acceder a lás páginas y los controles.
+ * Permite crear, editar, eliminar los permisos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -42,7 +44,7 @@ public class PermisoController  extends Controller{
     private CmailListDataModel<Permiso> model;
     private Permiso permisoEdicion;
     
-    /** Creates a new instance of PermisoController */
+    /**Constructor por defecto*/
     public PermisoController() {
     }
 

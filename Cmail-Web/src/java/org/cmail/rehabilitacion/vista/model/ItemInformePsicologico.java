@@ -10,7 +10,8 @@ import org.cmail.rehabilitacion.modelo.htp.InformePsicologico;
 import org.cmail.rehabilitacion.modelo.seguridad.Usuario;
 
 /**
- *
+ * Clase de modelo para la vista para presentar los informes psicológicos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

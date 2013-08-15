@@ -21,7 +21,9 @@ import org.cmail.rehabilitacion.vista.model.ItemInformePsicologico;
 import org.cmail.rehabilitacion.vista.model.ReporteResource;
 
 /**
- *
+ * Controlador para la generación de reportes.
+ * Permite generar los reportes y renderizarlos en un archivo pdf para que el usuario pueda descargarlos.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -41,7 +43,7 @@ public class ReporteController  extends Controller{
     private List<ItemInformePsicologico> listaInformes = new ArrayList<ItemInformePsicologico> ();
     private List<VwIngresoSalida> listaIngresosSalidas = new ArrayList<VwIngresoSalida> ();
     
-    /** Creates a new instance of ReporteController */
+    /**Constructor por defecto*/
     public ReporteController() {
     }
 

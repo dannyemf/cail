@@ -33,7 +33,10 @@ import org.cmail.rehabilitacion.vista.model.ItemTestHtp;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de la bandeja de un adolescente.
+ * Muestra las fichas de ingreso, egreso, informes psícológicos, test htp, etc.
+ * Tambíen puede crear o editar tests, fichas de ingreso, informes, etc.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -65,6 +68,7 @@ public class BandejaAdolescenteController extends Controller{
     @ManagedProperty(value="#{"+ Constantes.MB_INFORME +"}")
     private InformePsicologicoController informeController;
 
+    /**Constructor por defecto*/
     public BandejaAdolescenteController() {
     }    
     

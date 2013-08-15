@@ -15,7 +15,8 @@ import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 import org.cmail.rehabilitacion.vista.util.MensajeBundleUtil;
 
 /**
- *
+ * Validador Java Server Faces para el valor ingresado de un parámtro según sea el tipo de dato del mismo.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

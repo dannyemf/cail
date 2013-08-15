@@ -21,38 +21,52 @@ import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
 /**
- *
+ * Controlador de adolescentes.
+ * Permite hacer las búsquedas, crear, editar, eliminar e ingresar a la bandeja de los adolescentes.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
- * @version 1.0Usuario
+ * @version 1.0
  */
 @ManagedBean(name = Constantes.MB_ADOLESCENTES)
 @SessionScoped
 public class AdolescenteController extends Controller {
-
-    /** Creates a new instance of PerfilController */
-    //para la busqueda
-    private String nombres;
-    private String apellidos;
-    private String cedula;
     
-    private CmailListDataModel<Persona> modelList = new CmailListDataModel<Persona>();    
-    private Persona adolescente;
+    /**Nombres del adolescente para realizar la búsqueda*/
+    private String nombres;
+    /**Apellidos del adolescente para realizar la búsqueda*/
+    private String apellidos;
+    /**Cédula del adolescente para realizar la búsqueda*/
+    private String cedula;
+    /**Expresa si se deben incluir en la búsqueda personas que no sean adolescentes*/
     private boolean incluirOtrosRoles;
+    /**Lista de personas encontradas en la búsqueda*/
+    private CmailListDataModel<Persona> modelList = new CmailListDataModel<Persona>();    
+    /**Adolescente en edicón*/
+    private Persona adolescente;    
 
+    /**Constructor por defecto*/
     public AdolescenteController() {
     }   
     
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {        
         if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
             showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
         }else{
             List<Persona> lista = new PersonaServicio().listarAdolescentes(cedula, nombres, apellidos, incluirOtrosRoles);
-            setModelList(new CmailListDataModel<Persona>(lista));
+            modelList = new CmailListDataModel<Persona>(lista);
             showMessageResultList(lista);
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         //crear aqui todo lo nuevo o inicializar en el SessionBean? o en FichaServicioS
         Persona p = new PersonaServicio().crearPersona();
@@ -63,6 +77,10 @@ public class AdolescenteController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ADOLESCENTE);
     }        
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         Persona p = modelList.getRowData();        
         p.addRol(PersonaRol.ADOLESCENTE);
@@ -72,6 +90,10 @@ public class AdolescenteController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ADOLESCENTE);        
     }        
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Persona persona = modelList.getRowData();        
         boolean b = new PersonaServicio().eliminar(persona);
@@ -82,12 +104,20 @@ public class AdolescenteController extends Controller {
         }
     }
     
+    /**
+     * Evento invocado al presionar el vínculo bandeja.
+     * @param evt el evento
+     */
     public void eventoBandeja(ActionEvent evt) {
         Persona p = modelList.getRowData();        
         setAdolescente(p);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_BANDEJA);        
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un adolescente.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getAdolescente() != null && getAdolescente().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getAdolescente());
@@ -95,6 +125,10 @@ public class AdolescenteController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_ADOLESCENTE);
     }   
 
+    /**
+     * Evento invocado al presionar el botón guardar en la edición de un adolescente.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         //falta controlar que el padre y la madre no sean los mismosss
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)                                       
@@ -134,7 +168,10 @@ public class AdolescenteController extends Controller {
         }
     }    
                                  
-    //revisar si van declaradas las instancias
+    /**
+     * Evento invocado al presionar el botón seleccionar padre.
+     * @param evt el evento
+     */
     public void accionBuscarPadre(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
             @Override
@@ -148,6 +185,10 @@ public class AdolescenteController extends Controller {
         }, PersonaRol.GENERAL, PersonaRol.ADOLESCENTE, getAdolescente().getMadre());
     }
 
+    /**
+     * Evento invocado al presionar el botón seleccionar madre.
+     * @param evt el evento
+     */
     public void accionBuscarMadre(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
             @Override
@@ -161,6 +202,10 @@ public class AdolescenteController extends Controller {
         }, PersonaRol.GENERAL,PersonaRol.ADOLESCENTE, this.getAdolescente().getPadre());
     }       
 
+    /**
+     * Evento invocado al presionar el botón editar padre.
+     * @param evt el evento
+     */
     public void accionEditarPadre(ActionEvent evt) {
         Persona p = getAdolescente().getPadre();
         if (p != null) {
@@ -173,6 +218,10 @@ public class AdolescenteController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón editar madre.
+     * @param evt el evento
+     */
     public void accionEditarMadre(ActionEvent evt) {
         Persona p = getAdolescente().getMadre();
         if (p != null) {
@@ -185,27 +234,30 @@ public class AdolescenteController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón limpiar padre.
+     * @param evt el evento
+     */
     public void accionLimpiarPadre(ActionEvent evt) {
         getAdolescente().setPadre(null);
     }
 
+    /**
+     * Evento invocado al presionar el botón limpiar madre.
+     * @param evt el evento
+     */
     public void accionLimpiarMadre(ActionEvent evt) {
         getAdolescente().setMadre(null);
     }       
     
+    /**
+     * Obtiene el control de usuario para buscar personas (padre, madre, etc.).
+     * @return el control
+     */
     public WucBuscarPersonaController getWucBuscarPersona() {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
-    }
-               
-
-    public CmailListDataModel<Persona> getModelList() {
-        return modelList;
-    }
-
-    public void setModelList(CmailListDataModel<Persona> model) {
-        this.modelList = model;
-    }   
-    
+    }               
+           
     /**
      * @return the nombres
      */
@@ -269,6 +321,21 @@ public class AdolescenteController extends Controller {
     public void setIncluirOtrosRoles(boolean incluirOtrosRoles) {
         this.incluirOtrosRoles = incluirOtrosRoles;
     }
+
+    /**
+     * @return the modelList
+     */
+    public CmailListDataModel<Persona> getModelList() {
+        return modelList;
+    }
+
+    /**
+     * @param modelList the modelList to set
+     */
+    public void setModelList(CmailListDataModel<Persona> modelList) {
+        this.modelList = modelList;
+    }
+    
     
    
 }

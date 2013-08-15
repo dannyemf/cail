@@ -2,10 +2,8 @@ package org.cmail.rehabilitacion.controlador;
 
 import com.icesoft.faces.component.ext.HtmlInputText;
 import com.icesoft.faces.component.ext.HtmlInputTextarea;
-import com.icesoft.faces.util.ArrayUtils;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,8 +24,9 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.icefaces.ace.component.datetimeentry.DateTimeEntry;
 
 /**
- * <p>The NavigationBean class is responsible for storing the state of the
- * included dynamic content for display.  </p>
+ * Controlador de personas que permite realizar acciones sencillas como buscar, crear, editar y la función principal el de permitir seleccionar una persona.
+ * Este controlador es usado por el control de usuario que se muestra como una venta de diálogo y es invocado 
+ * para seleccionar el padre, la madre y el representante de un adolescente, asi como también otra persona según sea el caso.
  *
  * @author Noralma Vera
  * @author Doris Viñamagua
@@ -54,8 +53,8 @@ public class WucBuscarPersonaController extends Controller{
     private List<Persona> notIn = new ArrayList<Persona>();
     private PersonaRol notRol = null;
     
-    public WucBuscarPersonaController() {    
-        
+    /**Constructor por defecto*/
+    public WucBuscarPersonaController() {            
     }    
     
     public String getPopupTitle(){

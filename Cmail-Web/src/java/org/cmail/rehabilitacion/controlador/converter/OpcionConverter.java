@@ -11,7 +11,8 @@ import org.cmail.rehabilitacion.modelo.seguridad.Opcion;
 import org.cmail.rehabilitacion.servicio.OpcionServicio;
 
 /**
- *
+ * Convertidor de una opción (menú) usada para los controles de Java Server Faces.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0

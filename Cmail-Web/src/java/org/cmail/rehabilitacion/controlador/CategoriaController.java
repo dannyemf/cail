@@ -35,7 +35,9 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 
 /**
- *
+ * Controlador de categorías de indicadores.
+ * Permite hacer las búsquedas, crear, editar, eliminar las categorías.
+ * 
  * @author Noralma Vera
  * @author Doris Viñamagua
  * @version 1.0
@@ -59,7 +61,7 @@ public class CategoriaController  extends Controller{
     private List<SelectItem> valoresIndicadores = new ArrayList<SelectItem>();
     private TipoIndicador[] tiposIndicadorSeleccionados = new TipoIndicador[0];
 
-    /** Creates a new instance of PerfilController */
+    /**Constructor por defecto*/
     public CategoriaController() {
         valoresIndicadores.add(new SelectItem(3, "3-"+etiquetaBundle("nivelPsicologicoAceptable")));
         valoresIndicadores.add(new SelectItem(2, "2-"+etiquetaBundle("nivelPsicologicoMedio")));
