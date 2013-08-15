@@ -4,17 +4,14 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
-import com.icesoft.faces.component.ext.HtmlDataTable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TimeZone;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-import javax.faces.validator.ValidatorException;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.sira.Esquema;
@@ -55,16 +52,31 @@ public class EsquemaController extends Controller {
         FacesUtils.getMenuController().addRoute("Nuevo");
     }
 
+    /**
+     * Evento invocado por el botón nueva pregunta.
+     * @param evt el evento
+     */
     public void eventoNuevaPregunta(ActionEvent evt) {        
         Esquema esq = getEsquemaEdicion();
         esq.addPregunta(new EsquemaPregunta());
     }
     
+    /**
+     * Evento invocado el vínculo remover pregunta.
+     * Muestra un mensaje de confirmación.
+     * 
+     * @param esquemaPregunta la pregunta
+     */
     public void eventoRemoverPreguntaSelect(EsquemaPregunta esquemaPregunta) {        
         preguntaSeleccionada = esquemaPregunta;
         runScript("pnlConfEliminar.show();");
     }
     
+    /**
+     * Evento invocada para confirmar que se debe remover la pregunta.
+     * Cierra el mensaje de confirmación.
+     * @param evt el evento
+     */
     public void eventoRemoverPreguntaOk(ActionEvent evt) {        
         Esquema esq = getEsquemaEdicion();        
         if(preguntaSeleccionada != null){
@@ -86,6 +98,10 @@ public class EsquemaController extends Controller {
         FacesUtils.getMenuController().addRoute("Editar");
     }
     
+    /**
+     * Obtiene las preguntas del esquema actual ordenadas por número.
+     * @return lista de preguntas
+     */
     public List<EsquemaPregunta> getPreguntas(){
         List<EsquemaPregunta> lst = new ArrayList<EsquemaPregunta>(getEsquemaEdicion().getPreguntas());
         
@@ -125,11 +141,7 @@ public class EsquemaController extends Controller {
             FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_ESQUEMA);
             FacesUtils.getMenuController().clearLastRoute();
         }
-    }
-
-    public WucBuscarPersonaController getWucBuscarPersona() {
-        return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
-    }
+    }   
 
     /**
      * Evento invocado al presionar el botón cancelar en la edición de un esquema.
@@ -151,6 +163,10 @@ public class EsquemaController extends Controller {
         List<Esquema> listaFichas = new EsquemaServicio().listarTodos();        
         setModelEsquema(new CmailListDataModel<Esquema>(listaFichas));
     }
+    
+    public WucBuscarPersonaController getWucBuscarPersona() {
+        return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
+    }
 
     public Esquema getEsquemaEdicion() {
         return FacesUtils.getSessionBean().getEsquemaEdicion();
@@ -170,28 +186,6 @@ public class EsquemaController extends Controller {
         
     public void setModelEsquema(CmailListDataModel<Esquema> model) {
         FacesUtils.getSessionBean().addSessionMap("modelEsquema", model);
-    }
-
-    public void setFacesMessage(String facesMessage) {
-        FacesMessage m = new FacesMessage(facesMessage);
-        m.setSeverity(FacesMessage.SEVERITY_FATAL);
-        throw new ValidatorException(m);
-    }
-
-    private HtmlDataTable table = new HtmlDataTable();
-
-    /**
-     * @return the table
-     */
-    public HtmlDataTable getTable() {
-        return table;
-    }
-
-    /**
-     * @param table the table to set
-     */
-    public void setTable(HtmlDataTable table) {
-        this.table = table;
     }
 
     /**

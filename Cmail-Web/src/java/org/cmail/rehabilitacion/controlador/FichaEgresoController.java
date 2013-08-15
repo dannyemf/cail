@@ -11,24 +11,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TimeZone;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
-import javax.faces.validator.ValidatorException;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
-import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.sira.FichaEgreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.servicio.FichaEgresoServicio;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
-import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
 import org.cmail.rehabilitacion.vista.util.FacesUtils;
 
@@ -43,8 +37,7 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @ManagedBean(name = Constantes.MB_FICHAEGRESO)
 @SessionScoped
 public class FichaEgresoController extends Controller {
-
-    /** Creates a new instance of PerfilController */
+    
     //para la busqueda
     private String nombres;
     private String apellidos;
@@ -56,6 +49,12 @@ public class FichaEgresoController extends Controller {
     public FichaEgresoController() {
     }
     
+    /**
+     * Evento invocada desde la bandeja de entrada para editar una ficha de egreso.
+     * @param evt el evento
+     * @param item el item de la ficha
+     * @param returnUrl ruta a volver despues de editar
+     */
     public void eventoEditar(ActionEvent evt, FichaEgreso item, String returnUrl) {
         addRoute("editar");
         setReturnUrl(Constantes.VW_LISTA_FICHAEGRESO, returnUrl);
@@ -63,7 +62,33 @@ public class FichaEgresoController extends Controller {
         FacesUtils.getSessionBean().setFichaEgresoEdicion(item);        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_FICHAEGRESO);
     }
+    
+    /**
+     * Evento invocada por la bandeja de entrada para generar una ficha de egreso a partir de una ficha de ingreso.
+     * @param evt el evento
+     * @param fichaIngreso la ficha de ingreso
+     * @param returnUrl a donde volver después de guardar
+     */
+    public void eventoGenerarEgreso(ActionEvent evt, FichaIngreso fichaIngreso, String returnUrl) {
+        addRoute("nueva");
+        setReturnUrl(Constantes.VW_LISTA_FICHAEGRESO, returnUrl);
+        
+        FichaEgreso fe = new FichaEgresoServicio().crearNueva();
+        fe.setAdolescente(fichaIngreso.getAdolescente());
+        fe.setFichaIngreso(fichaIngreso);
+        fe.setLugar(fichaIngreso.getLugar());        
+        
+//        fichaIngreso.setIdFichaEgreso(fichaEgreso.getIdFichaIngreso());
+        initAudit(fe);
+        FacesUtils.getSessionBean().setFichaEgresoEdicion(fe);        
+        
+        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_FICHAEGRESO);        
+    }
 
+    /**
+     * Valida que la información esté completa
+     * @return true si es correcta
+     */
     private boolean validar() {
         FichaEgreso f = getFichaEgresoEdicion();
         boolean v = true;
@@ -114,26 +139,14 @@ public class FichaEgresoController extends Controller {
         clearRoute(2);
     }
     
+    /**
+     * Evento invocada por el botón cancelar en la página de descargar la ficha de egreso después de haberla guardado.
+     * @param evt el evento
+     */
     public void eventoCancelarDescargar(ActionEvent evt) {        
         FacesUtils.getMenuController().redirectApp(getReturnUrl());
         clearRoute(3);
-    }
-
-    public void eventoGenerarEgreso(ActionEvent evt, FichaIngreso fichaIngreso, String returnUrl) {
-        addRoute("nueva");
-        setReturnUrl(Constantes.VW_LISTA_FICHAEGRESO, returnUrl);
-        
-        FichaEgreso fe = new FichaEgresoServicio().crearNueva();
-        fe.setAdolescente(fichaIngreso.getAdolescente());
-        fe.setFichaIngreso(fichaIngreso);
-        fe.setLugar(fichaIngreso.getLugar());        
-        
-//        fichaIngreso.setIdFichaEgreso(fichaEgreso.getIdFichaIngreso());
-        initAudit(fe);
-        FacesUtils.getSessionBean().setFichaEgresoEdicion(fe);        
-        
-        FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_FICHAEGRESO);        
-    }
+    }   
 
     /**
      * Evento invocado al presionar el botón buscar.
@@ -154,12 +167,12 @@ public class FichaEgresoController extends Controller {
             setModelFichasEgreso(new CmailListDataModel<ItemFichaEgreso>(datos));
             showMessageResultList(lst);
         }
-    }
+    }    
 
-    public FichaEgreso getFichaEgresoEdicion() {
-        return FacesUtils.getSessionBean().getFichaEgresoEdicion();
-    }
-
+    /**
+     * Evento para presentar la ventana de búsqueda y selección del resposnable de egreso
+     * @param evt el evento
+     */
     public void accionBuscarResponsableEgreso(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
 
@@ -173,6 +186,11 @@ public class FichaEgresoController extends Controller {
             }
         }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
+    
+    /**
+     * Evento para presentar la ventana de búsqueda y selección de la persona que autoriza el egreso.
+     * @param evt el evento
+     */
     public void accionBuscarAutorizaEgreso(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
 
@@ -186,6 +204,11 @@ public class FichaEgresoController extends Controller {
             }
         }, PersonaRol.EMPLEADO, PersonaRol.ADOLESCENTE);
     }
+    
+    /**
+     * Evento para presentar la ventana de búsqueda y selección del compañero de egreso
+     * @param evt el evento
+     */
     public void accionBuscarCompaneroEgreso(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
             
@@ -200,6 +223,10 @@ public class FichaEgresoController extends Controller {
         }, PersonaRol.GENERAL, PersonaRol.ADOLESCENTE);
     }
 
+    /**
+     * Evento para presentar la ventana de edición del responasble de egreso
+     * @param evt el evento
+     */
     public void accionEditarResponsableEgreso(ActionEvent evt) {
         Persona p = getFichaEgresoEdicion().getResponsableEgreso();
         if (p != null) {
@@ -212,6 +239,11 @@ public class FichaEgresoController extends Controller {
             });
         }
     }
+    
+    /**
+     * Evento para presentar la ventana de edición de la persona que autoriza el egreso
+     * @param evt el evento
+     */
     public void accionEditarAutorizaEgreso(ActionEvent evt) {
         Persona p = getFichaEgresoEdicion().getAutorizaEgreso();
         if (p != null) {
@@ -223,6 +255,11 @@ public class FichaEgresoController extends Controller {
             });
         }
     }
+    
+    /**
+     * Evento para presentar la ventana de edición del compañero de egreso
+     * @param evt el evento
+     */
     public void accionEditarCompaneroEgreso(ActionEvent evt) {
         Persona p = getFichaEgresoEdicion().getCompaneroEgreso();
         if (p != null) {
@@ -236,14 +273,32 @@ public class FichaEgresoController extends Controller {
         }
     }
 
+    /**
+     * Evento para limpiar el responsable de egreso (pone como null)
+     * @param evt el evento
+     */
     public void accionLimpiarResponsableEgreso(ActionEvent evt) {
         getFichaEgresoEdicion().setResponsableEgreso(null);
     }
+    
+    /**
+     * Evento para limpiar la persona que autoriza el egreso (pone como null)
+     * @param evt el evento
+     */
     public void accionLimpiarAutorizaEgreso(ActionEvent evt) {
         getFichaEgresoEdicion().setAutorizaEgreso(null);
     }
+    
+    /**
+     * Evento para limpiar el compañero de egreso (pone como null)
+     * @param evt el evento
+     */
     public void accionLimpiarCompaneroEgreso(ActionEvent evt) {
         getFichaEgresoEdicion().setCompaneroEgreso(null);
+    }
+    
+    public FichaEgreso getFichaEgresoEdicion() {
+        return FacesUtils.getSessionBean().getFichaEgresoEdicion();
     }
 
     public WucBuscarPersonaController getWucBuscarPersona() {
@@ -254,22 +309,14 @@ public class FichaEgresoController extends Controller {
         return java.util.TimeZone.getDefault();
     }
 
-    public CmailListDataModel<ItemFichaEgreso> getModelFichasEgreso() {
-        /*CmailListDataModel<ItemFichaEgreso> lm = (CmailListDataModel<ItemFichaEgreso>) FacesUtils.getSessionBean().getSessionMap("modelFichasEgreso");
-        if (lm == null) {
-            lm = new CmailListDataModel<ItemFichaEgreso>();
-        }
-        return lm;
-        */
+    public CmailListDataModel<ItemFichaEgreso> getModelFichasEgreso() {        
         return modelFichasEgreso;
     }
 
     public void setModelFichasEgreso(CmailListDataModel<ItemFichaEgreso> model) {
-        //FacesUtils.getSessionBean().addSessionMap("modelFichasEgreso", model);
         modelFichasEgreso=model;
     }
-
-    //revisar si va en los servicios
+    
     /**
      * 
      * @param cont
@@ -281,12 +328,12 @@ public class FichaEgresoController extends Controller {
      * porque la persona registrada pueder ser el padre,madre o
      * representante de varios detenidos
      */
-    public void validarCedulaPersona(FacesContext cont, UIComponent cmp, Object value, Persona persona) {
-        boolean b = CedulaUtil.validar(value.toString());
-        if (b == false) {
-            setFacesMessage("Cédula Incorrecta");
-        }
-    }
+//    public void validarCedulaPersona(FacesContext cont, UIComponent cmp, Object value, Persona persona) {
+//        boolean b = CedulaUtil.validar(value.toString());
+//        if (b == false) {
+//            validationMessage("Cédula Incorrecta");            
+//        }
+//    }
 
     //validadores de cedula
     /**
@@ -294,31 +341,25 @@ public class FichaEgresoController extends Controller {
      * no se le permite. porque cada detenido solo tiene una sola
      * ficha de detenciones..     
      */
-    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
-        boolean b = CedulaUtil.validar(value.toString());
-        if (b) {
-            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaEgresoEdicion().getAdolescente());
-            if (bi) {
-                setFacesMessage("Cedula ya registrada");
-            }
-        } else {
-            setFacesMessage("Cédula Incorrecta");
-        }
-    }
+//    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
+//        boolean b = CedulaUtil.validar(value.toString());
+//        if (b) {
+//            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaEgresoEdicion().getAdolescente());
+//            if (bi) {
+//                validationMessage("Cedula ya registrada");
+//            }
+//        } else {
+//            validationMessage("Cédula Incorrecta");
+//        }
+//    }
 
-    public void validarCedulaPadre(FacesContext cont, UIComponent cmp, Object value) {
-        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getPadre());
-    }
+//    public void validarCedulaPadre(FacesContext cont, UIComponent cmp, Object value) {
+//        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getPadre());
+//    }
 
-    public void validarCedulaMadre(FacesContext cont, UIComponent cmp, Object value) {
-        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getMadre());
-    }
-
-    public void setFacesMessage(String facesMessage) {
-        FacesMessage m = new FacesMessage(facesMessage);
-        m.setSeverity(FacesMessage.SEVERITY_FATAL);
-        throw new ValidatorException(m);
-    }
+//    public void validarCedulaMadre(FacesContext cont, UIComponent cmp, Object value) {
+//        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getMadre());
+//    }    
 
     /**
      * @return the nombres

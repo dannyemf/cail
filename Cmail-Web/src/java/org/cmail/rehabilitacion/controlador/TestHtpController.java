@@ -529,6 +529,12 @@ public class TestHtpController extends Controller {
         }
     }*/
     
+    /**
+     * Valida que se haya seleccionado un adolescente
+     * @param cont
+     * @param cmp
+     * @param value 
+     */
     public void validarAdolescente(FacesContext cont, UIComponent cmp, Object value) {        
         if(value == null || value.toString().equals("-1")){
             setFacesMessage("Seleccione el adolescente");

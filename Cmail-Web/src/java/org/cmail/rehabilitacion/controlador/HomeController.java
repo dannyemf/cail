@@ -57,6 +57,9 @@ public class HomeController extends Controller implements Serializable{
     
     final String CARPETA_THUMBAILS = "/" + "documentos" + "/" + "galeria" + "/";
     
+    /**
+     * Inicializa los parámetros y las imaganes
+     */
     @PostConstruct
     public void init(){
         parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Dimension);
@@ -73,6 +76,9 @@ public class HomeController extends Controller implements Serializable{
         initImages();
     }
     
+    /**
+     * Inicializa las imagenes
+     */
     private void initImages(){        
         List<ImagenWeb> lista = new ImagenWebServicio().listarImagenesWeb();
         for (Iterator<ImagenWeb> it = lista.iterator(); it.hasNext();) {
@@ -81,6 +87,10 @@ public class HomeController extends Controller implements Serializable{
         }
     }   
     
+    /**
+     * Redimensiona las imagenes para la galería de fotos
+     * @param img 
+     */
     public void imageResized(ImagenWeb img){        
                
         String folder = FacesUtils.getExternalContext().getRealPath("/") + CARPETA_THUMBAILS;
@@ -138,6 +148,10 @@ public class HomeController extends Controller implements Serializable{
         }
     }
     
+    /**
+     * Evento que muestra la página para leer o ver un artículo.
+     * @param evt el evento
+     */
     public void eventoLeerEntrada(ActionEvent evt) {        
         String pr = FacesUtils.getRequestParameter("contenidoId");
         log().info("Parametro: " + pr);
@@ -147,6 +161,10 @@ public class HomeController extends Controller implements Serializable{
         FacesUtils.getMenuController().redirectHome(Constantes.VW_LEE_ARTICULO);
     }
     
+    /**
+     * Evento que retorna a la página principal (inicio) después de leer el artículo.
+     * @param evt 
+     */
     public void eventoCancelarLeerEntrada(ActionEvent evt) {
         FacesUtils.getMenuController().redirectHome();
     }

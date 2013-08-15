@@ -7,25 +7,21 @@ package org.cmail.rehabilitacion.controlador;
 import com.icesoft.faces.component.ext.HtmlDataTable;
 import java.util.Iterator;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
-import javax.faces.validator.ValidatorException;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
-import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.CmailList;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngreso;
 import org.cmail.rehabilitacion.modelo.sira.FichaIngresoDocumento;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
-import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.model.ItemFichaIngreso;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
@@ -487,6 +483,20 @@ public class FichaIngresoController extends Controller {
     public void setModelFichasIngreso(CmailListDataModel<ItemFichaIngreso> model) {
         this.modelFichasIngreso = model;
     }
+    
+    /**
+     * Valida que se haya seleccionado un adolescente para ficha de ingreso
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el valor
+     */
+    public void validarAdolescente(FacesContext cont, UIComponent cmp, Object value) {
+        Persona a = getAdolescente();
+        boolean b = a == null || (a != null && a.getId().longValue() <= 0);
+        if (b) {                        
+            validationMessage("Seleccione el adolescente");
+        }
+    }
 
     //revisar si va en los servicios
     /**
@@ -500,56 +510,24 @@ public class FichaIngresoController extends Controller {
      * porque la persona registrada pueder ser el padre,madre o
      * representante de varios detenidos
      */
-    public void validarCedulaPersona(FacesContext cont, UIComponent cmp, Object value, Persona persona) {
-        boolean b = CedulaUtil.validar(value.toString());
-        if (b == false) {
-            setFacesMessage("Cédula Incorrecta");
-        }
-    }
-    
-    public void validarAdolescente(FacesContext cont, UIComponent cmp, Object value) {
-        Persona a = getAdolescente();
-        boolean b = a == null || (a != null && a.getId().longValue() <= 0);
-        if (b) {                        
-            setFacesMessage("Seleccione el adolescente");
-        }
-    }
+//    public void validarCedulaPersona(FacesContext cont, UIComponent cmp, Object value, Persona persona) {
+//        boolean b = CedulaUtil.validar(value.toString());
+//        if (b == false) {
+//            validationMessage("Cédula Incorrecta");
+//        }
+//    }            
 
-    //validadores de cedula
-    /**
-     * al intentar guardar un adolescente con la misma cedula 
-     * no se le permite. porque cada detenido solo tiene una sola
-     * ficha de detenciones..     
-     */
-    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
-        boolean b = CedulaUtil.validar(value.toString());
-        if (b) {
-            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaIngresoEdicion().getAdolescente());
-            if (bi) {
-                setFacesMessage("Cedula ya registrada");
-            }
-        } else {
-            setFacesMessage("Cédula Incorrecta");
-        }
-    }
+//    public void validarCedulaPadre(FacesContext cont, UIComponent cmp, Object value) {
+//        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getAdolescente().getPadre());
+//    }
 
-    public void validarCedulaPadre(FacesContext cont, UIComponent cmp, Object value) {
-        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getAdolescente().getPadre());
-    }
+//    public void validarCedulaMadre(FacesContext cont, UIComponent cmp, Object value) {
+//        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getAdolescente().getMadre());
+//    }
 
-    public void validarCedulaMadre(FacesContext cont, UIComponent cmp, Object value) {
-        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getAdolescente().getMadre());
-    }
-
-    public void validarCedulaRepresentante(FacesContext cont, UIComponent cmp, Object value) {
-        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getRepresentante());
-    }
-
-    public void setFacesMessage(String facesMessage) {
-        FacesMessage m = new FacesMessage(facesMessage);
-        m.setSeverity(FacesMessage.SEVERITY_FATAL);
-        throw new ValidatorException(m);
-    }      
+//    public void validarCedulaRepresentante(FacesContext cont, UIComponent cmp, Object value) {
+//        validarCedulaPersona(cont, cmp, value, getFichaIngresoEdicion().getRepresentante());
+//    }
 
     /**
      * @return the nombres

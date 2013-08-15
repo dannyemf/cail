@@ -127,6 +127,10 @@ public class GaleriaController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_GALERIA);
     }     
     
+    /**
+     * Evento para subir una imagen desde el navegador.
+     * @param event el evento
+     */
     public void listenerUpload(FileEntryEvent event) {
         log().info("Listener invocado...");
         FileEntry fileEntry = (FileEntry) event.getComponent();

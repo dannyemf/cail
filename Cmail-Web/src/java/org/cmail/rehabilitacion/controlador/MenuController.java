@@ -22,7 +22,7 @@ import org.icefaces.ace.model.DefaultMenuModel;
 
 
 /**
- * Controlador del menú de usuario.
+ * Controlador del menú de usuario (barra de menú superior).
  * Se encarga de crear el menú del usuario según sean sus perfiles, así como el control de la navegación entre páginas.
  *
  * @author Noralma Vera
@@ -39,7 +39,6 @@ public class MenuController  extends Controller{
     private String pageInclude = "/WEB-INF/include/cmail/content/index.xhtml";
     private String homeInclude = "/WEB-INF/include/home/content/home.xhtml";
     
-    //private String template = "/WEB-INF/includes/template/home.xhtml";    
     private String titulo = TITULO_HOME;    
     private DefaultMenuModel  menuesAplicacion = null;
     
@@ -50,12 +49,22 @@ public class MenuController  extends Controller{
     public MenuController() {
     }            
     
+    /**
+     * Crea una expresión de método para el oyente de los menús (ActionListener)
+     * @param name la expresión. Ejemplo: {bean.nombreListener()}
+     * @return el objeto
+     */
     public MethodExpressionActionListener createMethodExpressionForMenuActionListener(String name){
         MethodExpression actionListenerExpression = createMethodExpresionForMenuActionListener(name);
         MethodExpressionActionListener meActionListener = new MethodExpressionActionListener(actionListenerExpression);
         return meActionListener;
     }
     
+    /**
+     * Crea una expresión de método con tres parámetros para el oyente de los menús
+     * @param name la expresión. Ejemplo: {bean.nombreListener(evento, url, titulo)}
+     * @return el objeto
+     */
     public MethodExpression createMethodExpresionForMenuActionListener(String name)
     {
        Class[] argtypes = new Class[3];
@@ -68,7 +77,11 @@ public class MenuController  extends Controller{
        return facesCtx.getApplication().getExpressionFactory().createMethodExpression(elContext, name, null, argtypes);
     }
     
-    public void crearMenu(Usuario usuario) {                     
+    /**
+     * Crea el modelo de menú para el usuario logeado considerando los perfiles del mismo.
+     * @param usuario el usuario logeado
+     */
+    public void crearModeloMenu(Usuario usuario) {                     
         
         
         //mia.addActionListener(meActionListener);     
@@ -121,7 +134,14 @@ public class MenuController  extends Controller{
             crearSubmenu(usuario, opp, mi, subopciones);            
         }
     }
-
+    
+    /**
+     * Método recursivo que crea los submenús dentro de otro menú, considerando los perfiles del usuario.
+     * @param usuario el usuario logeado
+     * @param opcion la entidad opción (padre)
+     * @param summenu un modelo de vista sobre la que deben agregarse los submenús.
+     * @param opciones las subopciones
+     */
     public void crearSubmenu(Usuario usuario, VwOpcion opcion, Submenu summenu, List<VwOpcion> opciones) {        
                 
         
@@ -161,7 +181,13 @@ public class MenuController  extends Controller{
         }
     }   
     
-    
+    /**
+     * Evento invocado al hacer click sobre un control de menú.
+     * 
+     * @param evt el evento lanzado por el control
+     * @param url la url que debe presentar
+     * @param tit el titulo de la página
+     */
     public void menuActionListener(ActionEvent evt, String url, String tit) {        
         log().info("Listener url llamado: " + url + ", titulo: " + tit);
 
@@ -173,16 +199,21 @@ public class MenuController  extends Controller{
         clearRoute();
     }    
 
-    public void pageIncludeChange(ActionEvent event) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        Map map = context.getExternalContext().getRequestParameterMap();
-        String include = (String) map.get("includePath");
-        String tit = FacesUtils.getRequestParameter("titulo");
-        
-        redirectApp(include);
-        setTitulo(tit);
-    }
+////    public void pageIncludeChange(ActionEvent event) {
+////        FacesContext context = FacesContext.getCurrentInstance();
+////        Map map = context.getExternalContext().getRequestParameterMap();
+////        String include = (String) map.get("includePath");
+////        String tit = FacesUtils.getRequestParameter("titulo");
+////        
+////        redirectApp(include);
+////        setTitulo(tit);
+////    }
     
+    /**
+     * Obtiene el estilo que debe tener un control de menú de la página principal.
+     * @param page la página
+     * @return el estilo
+     */
     public String estilo(String page){
         if(homeInclude.endsWith(page)){
             return "selected";
@@ -190,6 +221,12 @@ public class MenuController  extends Controller{
         return "";
     }
     
+    /**
+     * Acción invocada por los menús de la página de inicio (páginas de información al usuario: misión, visión, etc.)
+     * @param include la página a cargar
+     * @param tit el título de la página
+     * @return null, es decir recarga la misma página
+     */
     public String homeChangeEvent(String include, String tit) {
         //redirectHome();
         FacesContext context = FacesContext.getCurrentInstance();
@@ -199,13 +236,12 @@ public class MenuController  extends Controller{
         redirectHome(include);
         setTitulo(tit);
         return null;
-    }
-    
-    public String mainAppChangeEvent() {
-        redirectMainApp();
-        return null;
-    }
+    }        
 
+    /**
+     * Redirecciona la página cmail.jsf a una nueva url
+     * @param ruta la url
+     */
     public void redirectApp(String ruta) {
         pageInclude = "/WEB-INF/include/cmail/content/" + ruta; 
         
@@ -213,39 +249,20 @@ public class MenuController  extends Controller{
             FacesContext.getCurrentInstance().getExternalContext().redirect("cmail.jsf");
         } catch (Exception e) {
         }
-    }        
-    
-    public void clearLastRoute() {
-        if(currentActionList.size() > 0){
-            currentActionList.remove(currentActionList.size() - 1);
-        }
     }
     
-    
-    public void clearRoute() {
-        currentActionList.clear();
-    }
-    
-    public void clearRoute(int nLastRoutes) {
-        while(nLastRoutes > 0){
-            try {
-                currentActionList.remove(currentActionList.size() - 1);
-                nLastRoutes --;
-            } catch (Exception e) {
-                nLastRoutes = 0;
-            }            
-        }
-    }
-    
-    public void addRoute(String ruta) {
-        currentActionList.add(ruta);
-    }
-    
+    /**
+     * Redirecciona la página home.jsf a una nueva url
+     * @param ruta la url
+     */
     public void redirectHome(String ruta) {
         homeInclude = "/WEB-INF/include/home/content/" + ruta;
         currentActionList.clear();
     }
     
+    /**
+     * Redirecciona la página cmail.jsf a la página de bienvenida.
+     */
     public void redirectMainApp() {
         pageInclude = "/WEB-INF/include/cmail/content/index.xhtml";
         //template = "/WEB-INF/include/template/cmail.xhtml";
@@ -259,6 +276,9 @@ public class MenuController  extends Controller{
         
     }
     
+    /**
+     * Redirecciona la página home.jsf a la página de artículos.
+     */
     public void redirectHome() {
         homeInclude = "/WEB-INF/include/home/content/home.xhtml";
         //template = "/WEB-INF/include/template/home.xhtml";
@@ -266,11 +286,19 @@ public class MenuController  extends Controller{
         currentActionList.clear();
     }
     
+    /**
+     * Redirecciona la página home.jsf a la página de artículos.
+     * @return home
+     */
     public String actionHomePage() {
         homeInclude = "/WEB-INF/include/home/content/home.xhtml";  
         return "home";
     }
     
+    /**
+     * Redirecciona la página cmail.jsf a la página de bienvenida.
+     * @return cmail
+     */
     public String actionCamilPage() {
        pageInclude = "/WEB-INF/include/cmail/content/index.xhtml";  
        currentPath = "";
@@ -278,12 +306,54 @@ public class MenuController  extends Controller{
         return "cmail";
     }
     
+    /**
+     * Cierra la sesión y redirecciona a home
+     * @return 
+     */
     public String actionSalir() {
        pageInclude = "/WEB-INF/include/cmail/content/index.xhtml";                
        return FacesUtils.getLoginController().logOff();
     }
     
+    /**
+     * Limpia la última ruta del mapa de navegación (Usted está aquí)
+     */
+    public void clearLastRoute() {
+        if(currentActionList.size() > 0){
+            currentActionList.remove(currentActionList.size() - 1);
+        }
+    }
     
+    
+    /**
+     * Limpia todas las rutas del mapa de navegación (Usted está aquí)
+     */
+    public void clearRoute() {
+        currentActionList.clear();
+    }
+    
+    /**
+     * Limpia las n últimas rutas del mapa de navegación (Usted está aquí)
+     * @param nLastRutas el número de rutas
+     */
+    public void clearRoute(int nLastRoutes) {
+        while(nLastRoutes > 0){
+            try {
+                currentActionList.remove(currentActionList.size() - 1);
+                nLastRoutes --;
+            } catch (Exception e) {
+                nLastRoutes = 0;
+            }            
+        }
+    }
+    
+    /**
+     * Agrega la ruta al mapa de navegación (Usted está aquí)
+     * @param ruta la ruta
+     */
+    public void addRoute(String ruta) {
+        currentActionList.add(ruta);
+    }
     
     public String getPageInclude() {
         return pageInclude;

@@ -7,11 +7,14 @@ package org.cmail.rehabilitacion.controlador;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
+import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.StringUtil;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
@@ -248,7 +251,25 @@ public class AdolescenteController extends Controller {
      */
     public void accionLimpiarMadre(ActionEvent evt) {
         getAdolescente().setMadre(null);
-    }       
+    }    
+    
+    //validadores de cedula
+    /**
+     * al intentar guardar un adolescente con la misma cedula 
+     * no se le permite. porque cada detenido solo tiene una sola
+     * ficha de detenciones..     
+     */
+    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
+        boolean b = CedulaUtil.validar(value.toString());
+        if (b) {
+            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getAdolescente());
+            if (bi) {
+                validationMessage("Cedula ya registrada");
+            }
+        } else {
+            validationMessage("Cédula Incorrecta");
+        }
+    }
     
     /**
      * Obtiene el control de usuario para buscar personas (padre, madre, etc.).

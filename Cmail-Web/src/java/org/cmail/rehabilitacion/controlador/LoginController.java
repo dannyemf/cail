@@ -31,6 +31,10 @@ public class LoginController extends Controller{
     public LoginController() {
     }
 
+    /**
+     * Evento invocado al presionar el botón iniciar sesión
+     * @param eve el evento
+     */
     public void login(ActionEvent eve) {
         Usuario us = null;
         try {
@@ -51,13 +55,16 @@ public class LoginController extends Controller{
         MenuController menu = FacesUtils.getMenuController();
         if (us != null) {            
             FacesUtils.getSessionBean().setUsuarioLogeado(us);            
-            menu.crearMenu(us);
+            menu.crearModeloMenu(us);
             menu.redirectMainApp();                        
         }
         
     }
 
-    //cerrar sesion
+    /**
+     * Acción invocada para cerrar la sesión actaul y redireccionar a la página de inicio.
+     * @return la accion "home"
+     */
     public String logOff() {
         MenuController menu = FacesUtils.getMenuController();
         HttpSession ss = FacesUtils.getHttpSession(true);

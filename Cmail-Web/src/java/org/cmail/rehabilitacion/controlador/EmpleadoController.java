@@ -91,6 +91,10 @@ public class EmpleadoController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_EMPLEADO);        
     } 
     
+    /**
+     * Evento invocado por el vínculo enrrolar que permite poner a cualquier persona como empleado.
+     * @param evt 
+     */
     public void eventoEnrrolar(ActionEvent evt) {
         Persona p = modelList.getRowData();        
         p.addRol(PersonaRol.EMPLEADO);        
@@ -143,12 +147,13 @@ public class EmpleadoController extends Controller {
             FacesUtils.getMenuController().redirectApp(getReturnUrl());
         }        
     }    
-       
-    //validadores de cedula
+           
     /**
-     * al intentar guardar un adolescente con la misma cedula 
-     * no se le permite. porque cada detenido solo tiene una sola
-     * ficha de detenciones..     
+     * Valida que la cédula del empleado sea correcta y no esté repetida.
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el valor actual
+     * @throws ValidatorException 
      */
     public void validarCedulaEmpleado(FacesContext cont, UIComponent cmp, Object value) throws ValidatorException{
         boolean b = CedulaUtil.validar(value.toString());
