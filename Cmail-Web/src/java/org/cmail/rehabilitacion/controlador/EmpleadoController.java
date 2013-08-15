@@ -48,6 +48,10 @@ public class EmpleadoController extends Controller {
     public EmpleadoController() {
     }   
     
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
             showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));
@@ -58,6 +62,10 @@ public class EmpleadoController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         //crear aqui todo lo nuevo o inicializar en el SessionBean? o en FichaServicioS
         Persona p = new PersonaServicio().crearPersona();
@@ -69,6 +77,10 @@ public class EmpleadoController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_EMPLEADO);
     }        
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         Persona p = modelList.getRowData();        
         p.addRol(PersonaRol.EMPLEADO);
@@ -89,6 +101,10 @@ public class EmpleadoController extends Controller {
         showMensaje(TipoNotificacion.Aviso, b ? mensajeBundle("enrrolar_aviso") : mensajeBundle("enrrolar_error"));
     }
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Persona persona = modelList.getRowData();        
         boolean b = new PersonaServicio().eliminar(persona);
@@ -99,6 +115,10 @@ public class EmpleadoController extends Controller {
         }
     }       
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un empleado.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         
         if (getEmpleado() != null && getEmpleado().getId().longValue() != -1L) {
@@ -108,6 +128,10 @@ public class EmpleadoController extends Controller {
         FacesUtils.getMenuController().redirectApp(getReturnUrl());
     }   
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         //falta controlar que el padre y la madre no sean los mismosss
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)                                       

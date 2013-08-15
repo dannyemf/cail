@@ -50,6 +50,10 @@ public class GaleriaController extends Controller {
         parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Dimension);
     }
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         ImagenWeb e = model.getRowData();
         setImagenEdicion(e); 
@@ -58,6 +62,10 @@ public class GaleriaController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_IMAGEN);
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         ImagenWeb e = new ImagenWeb();
         e.setTipo(TipoImagenWeb.GALERIA);        
@@ -68,12 +76,20 @@ public class GaleriaController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_IMAGEN);        
     }
     
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {        
         List<ImagenWeb> lst = new ImagenWebServicio().listarPorTexto(texto, TipoImagenWeb.GALERIA);        
         this.model = new CmailListDataModel<ImagenWeb>(lst);
         showMessageResultList(lst);
     }
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         ImagenWeb p = model.getRowData();
         initAudit(p);        
@@ -81,6 +97,10 @@ public class GaleriaController extends Controller {
         showMessageDeleted(bs.eliminar(p));
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de la imagen de galería.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         boolean v = true;
         if(getImagenEdicion().getData() == null){
@@ -98,6 +118,10 @@ public class GaleriaController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una imagen.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new PerfilServicio().refrescar(getImagenEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_GALERIA);

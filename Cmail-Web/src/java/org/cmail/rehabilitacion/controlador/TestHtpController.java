@@ -235,6 +235,10 @@ public class TestHtpController extends Controller {
         return b;
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición del test.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         //falta controlar que el padre y la madre no sean los mismosss
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)        
@@ -359,6 +363,10 @@ public class TestHtpController extends Controller {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un test.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getFormEdicion() != null && getFormEdicion().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getFormEdicion());
@@ -369,6 +377,10 @@ public class TestHtpController extends Controller {
         clearRoute(2);
     }
 
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
             showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));

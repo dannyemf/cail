@@ -74,6 +74,10 @@ public class ArticuloWebController extends Controller {
         cf2.setSubmittedValue(df.format(fechaFinal));
     }
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         ArticuloWeb e = model.getRowData();
         initAudit(e);        
@@ -82,6 +86,10 @@ public class ArticuloWebController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_ARTICULO);
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         ArticuloWeb e = new ArticuloWeb();
         super.initAudit(e);
@@ -92,6 +100,10 @@ public class ArticuloWebController extends Controller {
         FacesUtils.getMenuController().addRoute("Nuevo");
     }
     
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         
         List<ArticuloWeb> lst = new ArrayList<ArticuloWeb>();
@@ -108,6 +120,10 @@ public class ArticuloWebController extends Controller {
         showMessageResultList(lst);
     }
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         ArticuloWeb p = model.getRowData();
         initAudit(p);
@@ -116,6 +132,10 @@ public class ArticuloWebController extends Controller {
         showMessageDeleted(bs.eliminar(p));
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         
         if(getArticuloEdicion().isPaginaPrincipal() == false){
@@ -140,6 +160,10 @@ public class ArticuloWebController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un artículo.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new PerfilServicio().refrescar(getArticuloEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_ARTICULOS);

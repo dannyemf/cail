@@ -68,13 +68,20 @@ public class PermisoController  extends Controller{
         this.model = model;
     }      
         
-    
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         List<Permiso> lst = new PermisoServicio().from().where(K.like("nombre", nombre)).orderBy(K.asc("nombre")).list();
         showMessageResultList(lst);
         model = new CmailListDataModel<Permiso>(lst);
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {        
         Permiso permiso = model.getRowData();        
         editar(permiso);
@@ -83,6 +90,10 @@ public class PermisoController  extends Controller{
         runScript("dlgEditarPermiso.show();");
     }
     
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {        
         Permiso permiso = new Permiso();
         editar(permiso);
@@ -92,6 +103,10 @@ public class PermisoController  extends Controller{
         runScript("dlgEditarPermiso.show();");
     }
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Permiso permiso = model.getRowData();
         boolean e = new PermisoServicio().eliminar(permiso);
@@ -118,6 +133,10 @@ public class PermisoController  extends Controller{
         }        
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición del permiso.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         
         boolean tienePerfil = false;
@@ -150,6 +169,10 @@ public class PermisoController  extends Controller{
         }
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un permiso.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new UsuarioServicio().refrescar(getPermisoEdicion());        
         //FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERMISO);        

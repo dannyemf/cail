@@ -41,6 +41,10 @@ public class EsquemaController extends Controller {
     public EsquemaController() {
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         //crear aqui todo lo nuevo o inicializar en el SessionBean? o en FichaServicioS
         Esquema fi = new Esquema();
@@ -69,6 +73,10 @@ public class EsquemaController extends Controller {
         runScript("pnlConfEliminar.hide();");
     }
    
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         Esquema fichaIngreso = getModelEsquema().getRowData();
         initAudit(fichaIngreso);
@@ -105,6 +113,10 @@ public class EsquemaController extends Controller {
         return lst;
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         boolean b = new EsquemaServicio().guardarEsquema(getEsquemaEdicion());
         showMessageSaved(b);
@@ -119,6 +131,10 @@ public class EsquemaController extends Controller {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un esquema.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getEsquemaEdicion() != null && getEsquemaEdicion().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getEsquemaEdicion());
@@ -127,6 +143,10 @@ public class EsquemaController extends Controller {
         FacesUtils.getMenuController().clearLastRoute();
     }
 
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         List<Esquema> listaFichas = new EsquemaServicio().listarTodos();        
         setModelEsquema(new CmailListDataModel<Esquema>(listaFichas));

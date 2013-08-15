@@ -19,7 +19,6 @@ import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.controlador.event.ActionListenerWucBuscarPersona;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
-import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.sira.Agenda;
 import org.cmail.rehabilitacion.modelo.sira.Evento;
 import org.cmail.rehabilitacion.servicio.AgendaServicio;
@@ -45,23 +44,39 @@ public class AgendaController extends Controller {
     public AgendaController() {
     }
 
+    /**
+     * Evento invocado por el botón nuevo evento.
+     * @param evt el evento
+     */
     public void eventoNuevaEvento(ActionEvent evt) {
         Evento act = new Evento();
         initAudit(act);
         getAgendaEdicion().addEvento(act);
     }
 
+    /**
+     * Evento invocado por el botón remover los eventos seleccionados.
+     * @param evt el evento
+     */
     public void eventoRemoverEvento(ActionEvent evt) {
         HtmlDataTable tableActividades = getComponent(HtmlDataTable.class, "frmEditActividad:tablaActividades");
         Evento ac = (Evento)tableActividades.getRowData();
         getAgendaEdicion().removeEvento(ac);        
     }
 
+    /**
+     * Evento invocado por el botón remover todos los eventos
+     * @param evt el evento
+     */
     public void eventoRemoverEventos(ActionEvent evt) {
         getAgendaEdicion().getEventos().clear();
     }
 
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         Agenda p = new Agenda();
         p.setResponsable(new Persona());
@@ -70,16 +85,28 @@ public class AgendaController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_AGENDA);
     }
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         FacesUtils.getSessionBean().setAgendaEdicion(getModelAgendas().getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_AGENDA);
     }
     
+    /**
+     * Evento invocado al presionar el vínculo ver.
+     * @param evt el evento
+     */
     public void eventoVer(ActionEvent evt) {
         FacesUtils.getSessionBean().setAgendaEdicion(getModelAgendas().getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_VER_AGENDA);
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         boolean b = new AgendaServicio().guardar(getAgendaEdicion());
         showMessageSaved(b);
@@ -89,6 +116,10 @@ public class AgendaController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una agenda.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getAgendaEdicion() != null && getAgendaEdicion().getId().longValue() != -1L) {
             new AgendaServicio().refrescar(getAgendaEdicion());
@@ -96,6 +127,10 @@ public class AgendaController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_AGENDAS);
     }
 
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         if (fechaDesde != null && fechaHasta != null) {
             List<Agenda> lst = new AgendaServicio().listarAgendasByFecha(fechaDesde, fechaHasta);
@@ -104,16 +139,28 @@ public class AgendaController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presiona el vínculo finalizar agenda
+     * @param evt el evento
+     */
     public void eventoFinalizar(ActionEvent evt) {
         FacesUtils.getSessionBean().setAgendaEdicion(getModelAgendas().getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_FLZ_AGENDA);
     }
 
+    /**
+     * Evento invocado al presional el botón finalizar en la ventana de finalización de una agenda.
+     * @param evt el evento
+     */
     public void eventoGuardarFinalizado(ActionEvent evt) {
         getAgendaEdicion().setEstado(Agenda.ESTADO_FINALIZADO);
         eventoGuardar(evt);
     }
     
+    /**
+     * Evento para buscar el empleado responsable de la ejecución de la agenda.
+     * @param evt el evento
+     */
     public void accionBuscarResponsable(ActionEvent evt) {
         getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
 
@@ -128,6 +175,10 @@ public class AgendaController extends Controller {
         }, PersonaRol.GENERAL, null);
     }
 
+    /**
+     * Evento invocado en el control del responsable para editar la información
+     * @param evt el evento
+     */
     public void accionEditarResponsable(ActionEvent evt) {
         Persona p = getAgendaEdicion().getResponsable();
         if (p != null) {
@@ -141,21 +192,54 @@ public class AgendaController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón limpiar del control del resposnable.
+     * @param evt el evento
+     */
     public void accionLimpiarResponsable(ActionEvent evt) {
         getAgendaEdicion().setResponsable(new Persona());
     }
 
+    /**
+     * Valida que se haya seleccionado un responsable
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el valor actual
+     */
     public void validarResponsable(FacesContext cont, UIComponent cmp, Object value) {        
         if(value == null || value.toString().equals("-1")){
             validationMessage("Seleccione el responsable");
         }        
+    }       
+    
+    /**
+     * Verifica si debe desabilitarse el botón remover todos los eventos
+     * @return true si existe por lo menos un evento
+     */
+    public boolean isDisabledTodas() {
+        if (getAgendaEdicion().getEventos().isEmpty()) {
+            return true;
+        }
+        return false;
     }
     
-    public void validarCedula(FacesContext cont, UIComponent cmp, Object value) {
-        boolean b = CedulaUtil.validar(value.toString());
-        if (!b) {
-            validationMessage(mensajeBundle("val_cedula_incorrecta"));
+    /**
+     * Verifica si debe desabilitarse el botón remover los eventos seleccionados
+     * @return true si existe por lo menos un evento seleccionado
+     */
+    public boolean isDisabledSeleccionadas() {
+        boolean selected=true;
+        if (getAgendaEdicion().getEventos().isEmpty()) {
+            return true;
         }
+        for (Iterator<Evento> it = getAgendaEdicion().getEventos().iterator(); it.hasNext();) {
+            Evento ac = it.next();
+            if(ac.isSelected()){
+                selected =false;
+                break;
+            }
+        }        
+        return selected;
     }
 
     public Agenda getAgendaEdicion() {
@@ -204,28 +288,6 @@ public class AgendaController extends Controller {
      */
     public void setFechaHasta(Date fechaHasta) {
         this.fechaHasta = fechaHasta;
-    }
-
-    public boolean isDisabledTodas() {
-        if (getAgendaEdicion().getEventos().isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-    public boolean isDisabledSeleccionadas() {
-        boolean selected=true;
-        if (getAgendaEdicion().getEventos().isEmpty()) {
-            return true;
-        }
-        for (Iterator<Evento> it = getAgendaEdicion().getEventos().iterator(); it.hasNext();) {
-            Evento ac = it.next();
-            if(ac.isSelected()){
-                selected =false;
-                break;
-            }
-        }        
-        return selected;
-    }
-    
+    }    
 
 }

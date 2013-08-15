@@ -65,6 +65,10 @@ public class InformePsicologicoController extends Controller {
         }        
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un informe psicológico.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getInformeEdicion() != null && getInformeEdicion().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getInformeEdicion());            

@@ -68,6 +68,10 @@ public class CategoriaController  extends Controller{
         valoresIndicadores.add(new SelectItem(1, "1-"+etiquetaBundle("nivelPsicologicoBajo")));
     }
     
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         listaCategorias = new CategoriaServicio().from().where(
                 K.or(
@@ -78,18 +82,30 @@ public class CategoriaController  extends Controller{
         ).list();
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         setCategoriaEdicion(new Categoria());
         initAudit(getCategoriaEdicion());        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CATEGORIA);
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         setCategoriaEdicion(model.getRowData());
         initAudit(getCategoriaEdicion());        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CATEGORIA);
     }
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Categoria cat = model.getRowData();
         CategoriaServicio bs = new CategoriaServicio();
@@ -97,6 +113,10 @@ public class CategoriaController  extends Controller{
         showMessageDeleted(b);
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         boolean b = new BaseServicio().guardar(getCategoriaEdicion());
         showMessageSaved(b);        
@@ -105,6 +125,10 @@ public class CategoriaController  extends Controller{
         } 
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una categoría.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new BaseServicio().refrescar(getCategoriaEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_CATEGORIAS);

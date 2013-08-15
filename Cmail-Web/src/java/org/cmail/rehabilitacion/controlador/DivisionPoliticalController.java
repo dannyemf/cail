@@ -37,6 +37,10 @@ public class DivisionPoliticalController  extends Controller{
     public DivisionPoliticalController() {
     }
         
+    /**
+     * Evento invocado al presionar el botón nueva provincia.     
+     * @param evt el evento
+     */
     public void eventoNuevaProvincia(ActionEvent evt) {
         Provincia p = new Provincia();
         initAudit(p); 
@@ -46,6 +50,10 @@ public class DivisionPoliticalController  extends Controller{
         this.addRoute("nueva_provincia");
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar provincia.
+     * @param evt el evento
+     */
     public void eventoEditarProvincia(ActionEvent evt) {
         Provincia p = modelProvincias.getRowData();           
         FacesUtils.getSessionBean().setProvinciaEdicion(p);
@@ -53,18 +61,30 @@ public class DivisionPoliticalController  extends Controller{
         this.addRoute("editar_provincia");
     }
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar provincia.
+     * @param evt el evento
+     */
     public void eventoEliminarProvincia(ActionEvent evt) {
         Provincia p = modelProvincias.getRowData();
         BaseServicio bs = new BaseServicio();
         showMessageDeleted(bs.eliminar(p));
     }    
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una provincia.
+     * @param evt el evento
+     */
     public void eventoCancelarProvincia(ActionEvent evt) {        
         new DivisionPoliticaServicio().refrescar(getProvinciaEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PROVINCIAS);
         FacesUtils.getMenuController().clearRoute();
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de provincia.
+     * @param evt el evento
+     */
     public void eventoGuardarProvincia(ActionEvent evt) {
         
         boolean b = new BaseServicio().guardar(getProvinciaEdicion());
@@ -76,10 +96,10 @@ public class DivisionPoliticalController  extends Controller{
         }
     }
     
-    
-    
-    
-
+    /**
+     * Evento invocado al presionar el botón nuevo cantón.
+     * @param evt el evento
+     */
     public void eventoNuevoCanton(ActionEvent evt) {
         Canton c = new Canton();
         c.setProvincia(getProvinciaEdicion());
@@ -90,12 +110,20 @@ public class DivisionPoliticalController  extends Controller{
         this.addRoute("nuevo_canton");
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar cantón.
+     * @param evt el evento
+     */
     public void eventoEditarCanton(ActionEvent evt) {
         FacesUtils.getSessionBean().setCantonEdicion(modelCantones.getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CANTON);
         this.addRoute("editar_canton");
     }
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar cantón.
+     * @param evt el evento
+     */
     public void eventoEliminarCanton(ActionEvent evt) {
         Canton c = modelCantones.getRowData();
         if(c.getId().longValue() == -1){
@@ -110,6 +138,10 @@ public class DivisionPoliticalController  extends Controller{
         getModelCantones();
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de cantón.
+     * @param evt el evento
+     */
     public void eventoGuardarCanton(ActionEvent evt) {
         Canton p = getCantonEdicion();
         BaseServicio bs = new BaseServicio();
@@ -127,14 +159,20 @@ public class DivisionPoliticalController  extends Controller{
         FacesUtils.getMenuController().clearLastRoute();
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un cantón.
+     * @param evt el evento
+     */
     public void eventoCancelarCanton(ActionEvent evt) {
         new DivisionPoliticaServicio().refrescar(getCantonEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PROVINCIA);
         FacesUtils.getMenuController().clearLastRoute();
     }
     
-    
-    
+    /**
+     * Evento invocado al presionar el botón nueva parroquia.     
+     * @param evt el evento
+     */
     public void eventoNuevaParroquia(ActionEvent evt) {
         Parroquia c = new Parroquia();
         c.setCanton(getCantonEdicion());
@@ -145,12 +183,20 @@ public class DivisionPoliticalController  extends Controller{
         this.addRoute("nueva_parroquia");
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar parroquia.
+     * @param evt el evento
+     */
     public void eventoEditarParroquia(ActionEvent evt) {
         FacesUtils.getSessionBean().setParroquiaEdicion(modelParroquias.getRowData());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PARROQUIA);
         this.addRoute("editar_parroquia");
     }
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar parroquia.
+     * @param evt el evento
+     */
     public void eventoEliminarParroquia(ActionEvent evt) {
         Parroquia c = modelParroquias.getRowData();
         if(c.getId().longValue() == -1){            
@@ -165,6 +211,10 @@ public class DivisionPoliticalController  extends Controller{
         getModelParroquias();
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de parroquia.
+     * @param evt el evento
+     */
     public void eventoGuardarParroquia(ActionEvent evt) {
         Parroquia p = getParroquiaEdicion();
         BaseServicio bs = new BaseServicio();
@@ -182,6 +232,10 @@ public class DivisionPoliticalController  extends Controller{
         FacesUtils.getMenuController().clearLastRoute();
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una parroquia.
+     * @param evt el evento
+     */
     public void eventoCancelarParroquia(ActionEvent evt) {
         new DivisionPoliticaServicio().refrescar(getParroquiaEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_CANTON);

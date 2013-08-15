@@ -162,6 +162,10 @@ public class FichaIngresoController extends Controller {
         return v;
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de la ficha de ingreso.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         //falta controlar que el padre y la madre no sean los mismosss
         //preguntar que datos se ingresan cuando el adolescente no es reconocido por el padre (Padre NN)
@@ -218,6 +222,10 @@ public class FichaIngresoController extends Controller {
         getFichaIngresoEdicion().getDocumentos().remove(fd);
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una ficha de ingreso.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getFichaIngresoEdicion() != null && getFichaIngresoEdicion().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getFichaIngresoEdicion());
@@ -240,6 +248,10 @@ public class FichaIngresoController extends Controller {
         
     }
 
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
             showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));

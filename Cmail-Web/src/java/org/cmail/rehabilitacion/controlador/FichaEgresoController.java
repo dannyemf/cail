@@ -55,7 +55,7 @@ public class FichaEgresoController extends Controller {
     /**Constructor por defecto*/
     public FichaEgresoController() {
     }
-
+    
     public void eventoEditar(ActionEvent evt, FichaEgreso item, String returnUrl) {
         addRoute("editar");
         setReturnUrl(Constantes.VW_LISTA_FICHAEGRESO, returnUrl);
@@ -83,6 +83,10 @@ public class FichaEgresoController extends Controller {
         return v;
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de la ficha de egreso.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         if (this.validar()) {
             
@@ -97,6 +101,10 @@ public class FichaEgresoController extends Controller {
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una ficha de egreso.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         if (getFichaEgresoEdicion() != null && getFichaEgresoEdicion().getId().longValue() != -1L) {
             new FichaIngresoServicio().refrescar(getFichaEgresoEdicion());            
@@ -127,6 +135,10 @@ public class FichaEgresoController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_FICHAEGRESO);        
     }
 
+    /**
+     * Evento invocado al presionar el botón buscar.
+     * @param evt el evento
+     */
     public void eventoBuscar(ActionEvent evt) {
         if(StringUtil.isNullOrEmpty(cedula, nombres, apellidos)){
             showMensaje(TipoNotificacion.Error, mensajeBundle("val_required_any"));

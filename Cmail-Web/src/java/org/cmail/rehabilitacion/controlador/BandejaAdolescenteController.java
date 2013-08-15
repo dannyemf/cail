@@ -217,6 +217,10 @@ public class BandejaAdolescenteController extends Controller{
         fichaEgresoController.eventoGenerarEgreso(evt, fichaIngreso.getFichaIngreso(), Constantes.VW_BANDEJA);        
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la bandeja de un adolescente.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_ADOLESCENTE);
         clearLastRoute();

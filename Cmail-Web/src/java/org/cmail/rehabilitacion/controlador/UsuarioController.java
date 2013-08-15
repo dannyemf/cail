@@ -46,18 +46,30 @@ public class UsuarioController  extends Controller{
         return modelUsuarios;
     }
     
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {        
         Usuario usuario = modelUsuarios.getRowData();        
         editar(usuario);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_USUARIO);        
     }
     
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {        
         Usuario usuario = new Usuario();
         editar(usuario);
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_USUARIO);        
     }
     
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Usuario usuario = modelUsuarios.getRowData();
         boolean e = new UsuarioServicio().eliminar(usuario);
@@ -84,6 +96,10 @@ public class UsuarioController  extends Controller{
         }        
     }
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición del usuario.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         
         boolean tienePerfil = false;
@@ -105,6 +121,10 @@ public class UsuarioController  extends Controller{
         }
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un usuario.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new UsuarioServicio().refrescar(getUsuarioEdicion());        
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_USUARIO);        

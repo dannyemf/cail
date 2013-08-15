@@ -37,6 +37,10 @@ public class ParametroController  extends Controller{
     public ParametroController() {
     }
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
         Parametro p = model.getRowData();
         initAudit(p);
@@ -44,6 +48,10 @@ public class ParametroController  extends Controller{
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PARAMETRO);
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.     
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {
         Parametro p = new Parametro();
         initAudit(p);
@@ -51,6 +59,10 @@ public class ParametroController  extends Controller{
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_PARAMETRO);
     }
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         Parametro parametro = model.getRowData();
         BaseServicio bs = new BaseServicio();
@@ -59,6 +71,10 @@ public class ParametroController  extends Controller{
         showMessageDeleted(b, parametro.getNombre());
     }
 
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición del parámetro.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         boolean b = new BaseServicio().guardar(getParametroEdicion());
         showMessageSaved(b);
@@ -68,6 +84,10 @@ public class ParametroController  extends Controller{
         }
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de un parámetro.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new PerfilServicio().refrescar(getParametroEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PARAMETRO);

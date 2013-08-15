@@ -137,6 +137,10 @@ public class OpcionController  extends Controller {
         valueChangeEffect.setFired(false);
     }   
 
+    /**
+     * Evento invocado al presionar el vínculo editar.
+     * @param evt el evento
+     */
     public void eventoEditar(ActionEvent evt) {
        if(selectedOpcionUserObject != null && selectedOpcionUserObject.isRoot() == false){
            Opcion opcion = selectedOpcionUserObject.getOpcion();    
@@ -146,6 +150,10 @@ public class OpcionController  extends Controller {
        }
     }
 
+    /**
+     * Evento invocado al presionar el botón nuevo.
+     * @param evt el evento
+     */
     public void eventoNuevo(ActionEvent evt) {        
         Opcion opcion = new Opcion();        
         if(selectedOpcionUserObject == null || (selectedOpcionUserObject != null && selectedOpcionUserObject.isRoot())){            
@@ -157,6 +165,10 @@ public class OpcionController  extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_OPCION);
     }   
 
+    /**
+     * Evento invocado al presionar el vínculo eliminar.
+     * @param evt el evento
+     */
     public void eventoEliminar(ActionEvent evt) {
         if(selectedOpcionUserObject != null && selectedOpcionUserObject.isRoot() == false){
             OpcionServicio opServicio = new OpcionServicio();
@@ -264,6 +276,10 @@ public class OpcionController  extends Controller {
         }
     }        
     
+    /**
+     * Evento invocado al presionar el botón guardar en la ventana de edición de la opción.
+     * @param evt el evento
+     */
     public void eventoGuardar(ActionEvent evt) {
         OpcionServicio srv = new OpcionServicio();
         perfilesHijos = srv.verificarPerfilesHijos(getOpcionEdicion());
@@ -284,6 +300,10 @@ public class OpcionController  extends Controller {
         dialogoConfirmPerfiles = false;
     }
 
+    /**
+     * Evento invocado al presionar el botón cancelar en la edición de una opción.
+     * @param evt el evento
+     */
     public void eventoCancelar(ActionEvent evt) {
         new OpcionServicio().refrescar(getOpcionEdicion());
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_OPCION);
