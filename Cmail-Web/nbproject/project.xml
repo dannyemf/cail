@@ -67,10 +67,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.lambdaj-2.3.3-with-dependencies.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.log4j-1.2.16.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
