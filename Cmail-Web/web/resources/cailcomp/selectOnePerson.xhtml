@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://java.sun.com/jsf/composite"
-      xmlns:ice="http://www.icesoft.com/icefaces/component"
-      
+      xmlns:ice="http://www.icesoft.com/icefaces/component"      
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core">
 
@@ -25,7 +24,7 @@
             <ice:outputLabel id="lblCedula" value="Cédula"/>
             <ice:panelGrid columns="3">
                 <ice:panelGrid columns="4" style="border: 1px solid #c0c0c0; background: #cccccc ">   
-                    <ice:inputText maxlength="10"  id="txtCedula" required="true" validator="#{fichaIngresoController.validarCedulaPadre}" value="#{cc.attrs.person eq null ? '--Seleccione--': cc.attrs.person.cedula}" disabled="true" style="height: 24px; margin: 0; padding: 0; height: 24px"/>                
+                    <ice:inputText maxlength="10"  id="txtCedula" required="true" value="#{cc.attrs.person eq null ? '--Seleccione--': cc.attrs.person.cedula}" disabled="true" style="height: 24px; margin: 0; padding: 0; height: 24px"/>                
                     <ice:commandButton rendered="#{cc.attrs.showControls}"  actionListener="#{cc.attrs.actionListenerSelect}" image="./resources/icono/btn/btn-buscar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="Buscar"/>
                     <ice:commandButton rendered="#{cc.attrs.showControls}" actionListener="#{cc.attrs.actionListenerEdit}" image="./resources/icono/btn/btn-editar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
                     <ice:commandButton rendered="#{cc.attrs.showControls}" actionListener="#{cc.attrs.actionListenerClean}" image="./resources/icono/btn/btn-limpiar-24-0.png" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-limpiar-24-0.png');" title="Limpiar"/>

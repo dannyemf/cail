@@ -45,16 +45,6 @@
             <ice:column id="column1">                                      
                 <ice:panelGrid columns="3">
 
-                    <!--
-                    <ice:commandLink actionListener="#{formHtpController.eventoEditar(evt, f.testHtp, null)}" id="btnEditar" title="#{accion.editar}">
-                        <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
-                    </ice:commandLink>
-
-                    <ice:commandLink rendered="#{!f.renderedReporte}" actionListener="#{formHtpController.eventoVerInterpretacion}" id="btnInforme" title="Crear informe psicológico">
-                        <ice:graphicImage value="/resources/icono/row/row_emitir.png" alt="#{accion.editar}"></ice:graphicImage>
-                    </ice:commandLink>
-                    -->
-
                     <ice:outputText title="#{mensaje.generarReporte}">
                     <ice:outputResource label="Pdf" 
                                         fileName="InformePsicologico-#{f.testHtp.id}.pdf" 

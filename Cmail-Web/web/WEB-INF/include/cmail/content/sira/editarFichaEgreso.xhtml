@@ -48,7 +48,7 @@
                     popupIconOnly="true"
                     locale="es"
                     pattern="dd/MM/yyyy">
-                    <f:convertDateTime timeZone="#{fichaEgresoController.timeZone}" pattern="dd/MM/yy hh:mm:ss" />
+                    <f:convertDateTime timeZone="#{mainController.timeZone}" pattern="dd/MM/yy hh:mm:ss" />
                 </ace:dateTimeEntry>
                 <ice:outputLabel value="#{etiqueta.tiempoPermanenciaCentro}" for="tiempoPermanencia" />
                 <ice:panelLayout layout="flow"> 

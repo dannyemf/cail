@@ -3,7 +3,6 @@ package org.cmail.rehabilitacion.controlador;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.el.ELContext;
 import javax.el.MethodExpression;
 import javax.faces.bean.ManagedBean;
@@ -197,17 +196,7 @@ public class MenuController  extends Controller{
             redirectApp(url);                            
         }
         clearRoute();
-    }    
-
-////    public void pageIncludeChange(ActionEvent event) {
-////        FacesContext context = FacesContext.getCurrentInstance();
-////        Map map = context.getExternalContext().getRequestParameterMap();
-////        String include = (String) map.get("includePath");
-////        String tit = FacesUtils.getRequestParameter("titulo");
-////        
-////        redirectApp(include);
-////        setTitulo(tit);
-////    }
+    }
     
     /**
      * Obtiene el estilo que debe tener un control de menú de la página principal.
@@ -355,22 +344,38 @@ public class MenuController  extends Controller{
         currentActionList.add(ruta);
     }
     
+    /**
+     * @return the pageInclude
+     */
     public String getPageInclude() {
         return pageInclude;
     }
     
+    /**
+     * Obtiene la ruta relativa de la página actual
+     * @return la ruta
+     */
     public String getSimplePageInclude() {
         return pageInclude.replace("/WEB-INF/include/home/content/", "").replace("/WEB-INF/includes/cmail/content/", "");
     }
     
+    /**
+     * @return the menuesAplicacion
+     */
     public DefaultMenuModel getMenuesAplicacion() {
         return menuesAplicacion;
     }
 
+    /**
+     * @return the titulo
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     * @param titulo the titulo to set
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

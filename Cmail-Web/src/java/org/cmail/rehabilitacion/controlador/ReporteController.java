@@ -32,38 +32,40 @@ import org.cmail.rehabilitacion.vista.model.ReporteResource;
 @ViewScoped
 public class ReporteController  extends Controller{
 
-    private String ruta = "";
+    //private String ruta = "";
     
+    /** Fecha inicial para reportes con filtros de fechas */
     private Date desde = new Date();
-    private Date hasta = new Date();    
+    /** Fecha final para reportes con filtros de fechas */
+    private Date hasta = new Date();
+    
+    /** Recurso para reporte de ingresos */
     private ReporteResource recursoIngreso;
+    /** Recurso para reporte de ingresos y salidas*/
     private ReporteResource recursoIngresoSalida;
     
+    /** Lista de fichas de ingreso encontradas */
     private List<VwFichaIngreso> listaIngresos = new ArrayList<VwFichaIngreso> ();
+    /** Lista de informes psicológicos encontrados */
     private List<ItemInformePsicologico> listaInformes = new ArrayList<ItemInformePsicologico> ();
+    /** Lista de ingresos y salidas */
     private List<VwIngresoSalida> listaIngresosSalidas = new ArrayList<VwIngresoSalida> ();
     
     /**Constructor por defecto*/
     public ReporteController() {
     }
-
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
     
-    
-    
-    public void eventoBuscarIngresos(ActionEvent e){
+    /**
+     * Evento invocado para generar el reporte de fichas de ingreo
+     * @param evt el evento 
+     */
+    public void eventoBuscarIngresos(ActionEvent evt){
         List<VwFichaIngreso> lst = new GenericServicio<VwFichaIngreso>(VwFichaIngreso.class).listarPorRangoFechas("fecha", desde, hasta);
         listaIngresos = lst;
         
-        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+        //SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
         
-        ruta = "NewServlet?desde="+ sd.format(desde) + "&hasta="+sd.format(hasta)+"&us="+getUsuarioLogeado().getId().longValue();
+        //ruta = "NewServlet?desde="+ sd.format(desde) + "&hasta="+sd.format(hasta)+"&us="+getUsuarioLogeado().getId().longValue();
         
         /*JavascriptContext.addJavascriptCall(
             FacesContext.getCurrentInstance(),
@@ -82,12 +84,20 @@ public class ReporteController  extends Controller{
         
     }
     
-    public void eventoBuscarIngresosSalidas(ActionEvent e){
+    /**
+     * Evento invocado para generar el reporte de ingresos y salidas
+     * @param evt el evento 
+     */
+    public void eventoBuscarIngresosSalidas(ActionEvent evt){
         List<VwIngresoSalida> lst = new GenericServicio<VwIngresoSalida>(VwIngresoSalida.class).listarPorRangoFechas("fechaIngreso", desde, hasta);
         listaIngresosSalidas = lst;
     }
     
-    public void eventoBuscarInformes(ActionEvent e){        
+    /**
+     * Evento invocado para generar el reporte de informes psicológicos
+     * @param evt el evento 
+     */
+    public void eventoBuscarInformes(ActionEvent evt){        
         
         List<InformePsicologico> lst = new GenericServicio<InformePsicologico>(InformePsicologico.class).listarPorRangoFechas("fecha", desde, hasta);
         List<ItemInformePsicologico> lista = new ArrayList<ItemInformePsicologico>();
@@ -212,8 +222,6 @@ public class ReporteController  extends Controller{
      */
     public void setRecursoIngresoSalida(ReporteResource recursoIngresoSalida) {
         this.recursoIngresoSalida = recursoIngresoSalida;
-    }
-
-    
+    }   
     
 }

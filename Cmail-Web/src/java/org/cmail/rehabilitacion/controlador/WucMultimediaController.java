@@ -54,18 +54,30 @@ public class WucMultimediaController extends Controller{
     
     /**======================ACCIONES=================================*/
     
+    /**
+     * Evento para cerrar el diálogo
+     * @param e el evento
+     */
     public void accionCerrar(ActionEvent e){
         renderWuc = false;
         log().info("Cerrando wuc...");
         runScript("wucMultimedia.hide();");
     }
     
+    /**
+     * Evento para cerrar el diálogo desde el botón close o la tecla escape
+     * @param e el evento
+     */
     public void accionCerrar(CloseEvent event) {
         renderWuc = false;
         log().info("Cerrando wuc...");
         runScript("wucMultimedia.hide();");
     }
     
+    /**
+     * Evento para seleccionar una imagen
+     * @param e el evento
+     */
     public void accionSeleccionar(ActionEvent e){
         
         accionRenombrarCancelar(e);
@@ -75,6 +87,12 @@ public class WucMultimediaController extends Controller{
         this.listenerSeleccionar.processAction(e, rt, this);
     }
     
+    /**
+     * Método que debe ser invocado para mostrar la ventana de selección de imágenes.
+     * @param listener el evento que debe invocar al selecionar
+     * @param richTextId el id del componente donde debe insertar la imagen
+     * @param titulo el título del componente
+     */
     public void mostar(ActionListenerWucMultimedia listener,String richTextId, String titulo){                         
         this.listenerSeleccionar = listener;
         renderWuc = true;
@@ -85,6 +103,10 @@ public class WucMultimediaController extends Controller{
         runScript("wucMultimedia.show();");
     }
     
+    /**
+     * Evento invocado para renombrar una imagen
+     * @param e el evento
+     */
     public void accionRenombrar(ActionEvent e){
         ImageFile im = imagenes.getRowData();
         imagenReombrar = im; 
@@ -92,6 +114,10 @@ public class WucMultimediaController extends Controller{
         nuevoNombre = FileUtil.getSimpleName(im.getFile());
     }
     
+    /**
+     * Evento invocado al confirmar la acción renombrar.
+     * @param e el evento
+     */
     public void accionRenombrarConfirmar(ActionEvent e){
         boolean b = imagenReombrar.renameTo(nuevoNombre);        
         if(b){
@@ -100,12 +126,20 @@ public class WucMultimediaController extends Controller{
         }
     }
     
+    /**
+     * Evento invocado al cancelar la acción renombrar.
+     * @param e el evento
+     */
     public void accionRenombrarCancelar(ActionEvent e){
         renderRenombrar = false;
         nuevoNombre = null;
         imagenReombrar = null;
     }
     
+    /**
+     * Evento invocado para eliminar una imagen.
+     * @param e el evento
+     */
     public void accionEliminar(ActionEvent e){        
         ImageFile im = imagenes.getRowData();
         boolean b = new GenericServicio<ImagenWeb>(ImagenWeb.class).eliminar(im.getImagenWeb());
@@ -119,6 +153,10 @@ public class WucMultimediaController extends Controller{
         accionRenombrarCancelar(e);
     }
     
+    /**
+     * Evento para subir una nueva imagen.
+     * @param event el evento
+     */
     public void listenerUpload(FileEntryEvent event) {
         log().info("Listener invocado...");
         FileEntry fileEntry = (FileEntry) event.getComponent();
@@ -277,9 +315,6 @@ public class WucMultimediaController extends Controller{
 
     public void setReemplazar(boolean reemplazar) {
         this.reemplazar = reemplazar;
-    }
-    
-    
-    
+    }            
     
 }

@@ -169,10 +169,16 @@ public class HomeController extends Controller implements Serializable{
         FacesUtils.getMenuController().redirectHome();
     }
 
+    /**
+     * @return the imagenesGaleria
+     */
     public List<ImagenWeb> getImagenesGaleria() {
         return imagenesGaleria;
     }
 
+    /**
+     * @param imagenesGaleria the imagenesGaleria to set
+     */
     public void setImagenesGaleria(List<ImagenWeb> imagenesGaleria) {
         this.imagenesGaleria = imagenesGaleria;
     }

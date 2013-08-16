@@ -25,7 +25,6 @@
                 <ice:panelGrid columns="4" style="border: 1px solid #c0c0c0; background: #cccccc; width: auto">
                     <ice:inputText id="txtCedulaAdolescente" value="#{formHtpController.formEdicion.adolescente.cedula}" style="height: 24px; margin: 0; padding: 0;" disabled="true">
                     </ice:inputText>
-                    <ice:commandButton  actionListener="#{formHtpController.accionBuscarAdolescente}" image="./resources/icono/btn/btn-buscar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-buscar-24-0.png');" title="#{accion.buscar}"/>                        
                 </ice:panelGrid>
                 <ice:outputLabel value="#{etiqueta.nombres}"/>
                 <ice:panelGrid>
@@ -45,12 +44,7 @@
             <ice:panelGrid columns="2" rowClasses="rowsPanelGrid"> 
                 <ice:outputLabel value="Estado Civil"/>
                 <cailcomp:selectOneMenuEstadoCivil id="selectEstadoCivil" value="#{formHtpController.formEdicion.adolescente.estadoCivil}" ice="false" disabled="true"></cailcomp:selectOneMenuEstadoCivil>                
-            </ice:panelGrid>
-
-            <ice:panelGrid columns="2">
-                <ice:inputHidden id="txtIdAdolescente" required="true" value="#{formHtpController.formEdicion.adolescente.id}" validator="#{formHtpController.validarAdolescente}"></ice:inputHidden>
-                <ice:message for="txtIdAdolescente"></ice:message>
-            </ice:panelGrid>
+            </ice:panelGrid>            
 
         </ice:panelGrid>   
         </ace:panel>

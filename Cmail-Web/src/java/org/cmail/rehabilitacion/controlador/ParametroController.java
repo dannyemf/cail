@@ -31,6 +31,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @ViewScoped
 public class ParametroController  extends Controller{
     
+    /**
+     * La lista de parámetros
+     */
     private CmailListDataModel<Parametro> model;
 
     /**Constructor por defecto*/
@@ -93,10 +96,16 @@ public class ParametroController  extends Controller{
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PARAMETRO);
     }   
 
+    /**
+     * @return the parametroEdicion
+     */
     public Parametro getParametroEdicion() {
         return FacesUtils.getSessionBean().getParametroEdicion();
     }
     
+    /**
+     * @return the model
+     */
     public ListDataModel<Parametro> getModel() {
         try {
             List<Parametro> lst = new GenericServicio<Parametro>(Parametro.class).listarTodos();
@@ -107,11 +116,19 @@ public class ParametroController  extends Controller{
         return model;
     }
 
+    /**
+     * @param modelPerfiles the model to set
+     */
     public void setModel(CmailListDataModel<Parametro> modelPerfiles) {
         this.model = modelPerfiles;
     }
     
-    
+    /**
+     * Valida que el nombre del parámetro no esté duplicado
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el nombre del parámetro
+     */
     public void validarNombre(FacesContext cont, UIComponent cmp, Object value) {
         
         boolean b = new GenericServicio<Parametro>(Parametro.class).existe(getParametroEdicion(), "nombre", value.toString());

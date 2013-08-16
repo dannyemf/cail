@@ -57,6 +57,10 @@ public class WucBuscarPersonaController extends Controller{
     public WucBuscarPersonaController() {            
     }    
     
+    /**
+     * Obtiene el título del diálogo según sea el caso
+     * @return buscar o editar
+     */
     public String getPopupTitle(){
         String t = "";
         
@@ -69,19 +73,31 @@ public class WucBuscarPersonaController extends Controller{
         return t;
     }
     
-    /**======================ACCIONES=================================*/
-    
+    /**
+     * Evento para cerrar el diálogo.
+     * @param e el evento
+     */
     public void accionCerrar(ActionEvent e){
         setRenderPopupBuscar(false);
         //FacesContext.getCurrentInstance().renderResponse();  
         runScript("wucBuscarPersona.hide();");
     }
     
+    /**
+     * Evento para seleccionar una persona. Se encarga de notificar al componente o controlador que lo invocó.
+     * @param e el evento
+     */
     public void accionSeleccionar(ActionEvent e){
         Persona p = listaPersonas.getRowData();
         accionNotificarEdicion(p,ActionListenerWucBuscarPersona.Tipo.BuscarSeleccionado, e);
     }    
     
+    /**
+     * Notifica que la edición ha finalizado al componente que lo invocó.
+     * @param p la persona en edición
+     * @param tipo el tipo acción
+     * @param e el evento 
+     */
     public void accionNotificarEdicion(Persona p, ActionListenerWucBuscarPersona.Tipo tipo, ActionEvent e){        
         if(tipo.equals(ActionListenerWucBuscarPersona.Tipo.EdicionCancelado)){
             restaurarEstado();
@@ -92,6 +108,10 @@ public class WucBuscarPersonaController extends Controller{
         }                
     }
     
+    /**
+     * Evento invocada para buscar las personas
+     * @param e el evento
+     */
     public void accionBuscar(ActionEvent e){        
         try {
             List<Persona> lst = new PersonaServicio().listarPersonas(textoPopupBuscar, rol, notRol);
@@ -102,6 +122,10 @@ public class WucBuscarPersonaController extends Controller{
         }                
     }
     
+    /**
+     * Evento invocada para editar ina persona desde la sección de búsqueda.
+     * @param e el evento
+     */
     public void accionEditar(ActionEvent e){    
         personaEdicion = listaPersonas.getRowData();        
         iniciarlizar(personaEdicion);        
@@ -111,11 +135,19 @@ public class WucBuscarPersonaController extends Controller{
         //FacesContext.getCurrentInstance().renderResponse();
     }        
     
+    /**
+     * Acción para mostrar el diálogo de confirmación para eliminar una persona.
+     * @param persona la persona
+     */
     public void accionEliminar(Persona persona){
         personaSeleccionada = persona;        
         runScript("pnlConfEliminar.show();");
     }
     
+    /**
+     * Evento invocada para eliminar una persona desde el diálogo de confirmación
+     * @param e el evento
+     */
     public void accionEliminarOk(ActionEvent e){        
         boolean b = new GenericServicio<Persona>(Persona.class).eliminar(personaSeleccionada);
         if(b){
@@ -128,6 +160,10 @@ public class WucBuscarPersonaController extends Controller{
         runScript("pnlConfEliminar.hide();");
     }    
     
+    /**
+     * Evento para crear una nueva persona.
+     * @param e el evento
+     */
     public void accionNueva(ActionEvent e){
         personaEdicion = new PersonaServicio().crearPersona();
         
@@ -140,6 +176,10 @@ public class WucBuscarPersonaController extends Controller{
         //FacesContext.getCurrentInstance().renderResponse();
     }
     
+    /**
+     * Evento invocado al presionar el botón cancelar desde la ficha de edición.
+     * @param e el evento
+     */
     public void accionCancelar(ActionEvent e){ 
         if(notificarBuscar){
             personaEdicion = null;
@@ -151,6 +191,10 @@ public class WucBuscarPersonaController extends Controller{
         }
     } 
     
+    /**
+     * Evento invocado al presionar el botón guardar desde la ficha de edición.
+     * @param e el evento
+     */
     public void accionGuardar(ActionEvent e){
         
         if(personaEdicion != null){
@@ -179,6 +223,10 @@ public class WucBuscarPersonaController extends Controller{
         }
     }
     
+    /**
+     * Inicializa los campos de edición de una persona, es decir setea los valores.
+     * @param p la persona
+     */
     public void iniciarlizar(Persona p){
         
         try {
@@ -215,6 +263,9 @@ public class WucBuscarPersonaController extends Controller{
         sompar.setSubmittedValue(p.getParroquiaNacimiento());
     }
     
+    /**
+     * Restaura el valor de los atributos de la persona en edición al cancelar la edición.
+     */
     public void restaurarEstado(){
         try {
             personaEdicion.setCedula(personaEdicionOldState.getCedula());
@@ -236,12 +287,24 @@ public class WucBuscarPersonaController extends Controller{
         }
     }
     
+    /**
+     * Remueve la persona de lista de resultados
+     * @param listaActual la lista de donde debe remover
+     * @return la misma lista
+     */
     private List<Persona> depurarLista(List<Persona> listaActual){                                        
         List<Persona> listaFinal = new ArrayList<Persona>(listaActual);
         listaFinal.removeAll(this.notIn);
         return listaFinal;
     }
     
+    /**
+     * Método que debe ser invocado para mostrar el buscador de personas y permitir seleccionar una de ellas.
+     * @param listener el evento que debe invocar al seleccionar la persona
+     * @param rol indica que solo debe buscar las personas con ese rol
+     * @param notRol indica que no debe buscar las personas con ese rol
+     * @param notIn indica que no debe incluir a esa persona en el listado
+     */
     public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol, PersonaRol notRol, Persona... notIn){        
         this.listenerSeleccionar = listener;        
         selectedIndex = 0;        
@@ -266,6 +329,13 @@ public class WucBuscarPersonaController extends Controller{
         runScript("wucBuscarPersona.show();"); 
     }        
     
+    /**
+     * Método que debe ser invocado para msotar el editor de una persona.
+     * 
+     * @param p la persona a editar
+     * @param rol el rol de la perona
+     * @param listener el evento que debe invocar al finalizar la edición
+     */
     public void mostrarEditor(Persona p, PersonaRol rol, ActionListenerWucBuscarPersona listener){
         this.personaEdicion = p;        
         this.listenerSeleccionar = listener;
@@ -278,10 +348,20 @@ public class WucBuscarPersonaController extends Controller{
         runScript("wucBuscarPersona.show();");
     }
     
+    /**
+     * Obtiene la persona seleccionada
+     * @return la persona
+     */
     public Persona getPersonaSeleccionada(){
         return personaSeleccionada;
     }
     
+    /**
+     * Valida que la cédula de la persona sea correcta y que no esté duplicada.
+     * @param contexto el contexto
+     * @param componente el componente
+     * @param valor la cédula ingresada
+     */
     public void validarCedula(FacesContext contexto, UIComponent componente, Object valor){
         String cedula = valor.toString().trim();
         
@@ -310,20 +390,17 @@ public class WucBuscarPersonaController extends Controller{
         }
     }   
     
+    /**
+     * Especifica si la cédula de la persona debe ser obligatoria en el campo de edición de la persona.
+     * @return false si la persona es un adolescente, de lo contrario true
+     */
     public boolean isCedulaRequired(){
         if(this.rol.equals(PersonaRol.ADOLESCENTE)){
             return false;
         }
         
         return true;
-    }
-    
-            
-    /**=======================================================*/
-    
-    
-    /**===========================GETTERS ============================*/
-    
+    }    
     
 
     /**

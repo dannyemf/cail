@@ -37,33 +37,55 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @SessionScoped
 public class PermisoController  extends Controller{
 
+    /** Bean de sesión */
     @ManagedProperty(value="#{"+ Constantes.MB_SESSION +"}")
     private SessionBean sessionBean;
+    
+    /** Nombre del permiso para realizar la búsqueda*/
     private String nombre = "";
     
+    /** Lista de permisos encontrador por nombre*/
     private CmailListDataModel<Permiso> model;
+    
+    /** El permiso en edición*/
     private Permiso permisoEdicion;
     
     /**Constructor por defecto*/
     public PermisoController() {
     }
 
+    /**
+     * El bean de sessión a inyectar con ManagedProperty
+     * @param sessionBean el bean
+     */
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
     } 
 
+    /**
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * @param nombre the nombre to set
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }        
 
+    /**
+     * @return the model
+     */
     public CmailListDataModel<Permiso> getModel() {        
         return model;
     }
 
+    /**
+     * @param model the model to set
+     */
     public void setModel(CmailListDataModel<Permiso> model) {
         this.model = model;
     }      
@@ -114,6 +136,10 @@ public class PermisoController  extends Controller{
         showMessageDeleted(e, permiso.getNombre());
     }
     
+    /**
+     * Método invocado por el evento nuevo y editar para inicializar el mdoelo de los perfiles.
+     * @param permiso el permiso
+     */
     public void editar(Permiso permiso) {
         initAudit(permiso);        
         
@@ -180,10 +206,10 @@ public class PermisoController  extends Controller{
     }   
 
     /**
-     * valida que no exista un usuario con el mismo login
-     * @param cont
-     * @param cmp
-     * @param value 
+     * Valida que el nombre del permiso no esté duplicado.
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el nombre del permiso
      */
     public void validarNombre(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = new PermisoServicio().existe(getPermisoEdicion(), "nombre", value.toString());
@@ -192,6 +218,12 @@ public class PermisoController  extends Controller{
         }
     }    
     
+    /**
+     * Verifica si un determinado control (botón, vínculo, etc.) tiene el permiso indicado.
+     * Es usado para habilitar o desabilitar controles. Ejemplo: disabled="#{permisoController.checkPermiso('usuario.editar')}".
+     * @param permiso el nombre del permiso.
+     * @return true si no tiene el permiso y false cuando tiene el permiso.
+     */
     public boolean checkPermiso(String permiso){
         Permiso objPermiso = null;
         List<Permiso> permisos = sessionBean.getPermisosUsuario();

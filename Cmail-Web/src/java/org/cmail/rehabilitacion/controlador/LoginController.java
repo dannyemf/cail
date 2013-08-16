@@ -23,9 +23,10 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @SessionScoped
 public class LoginController extends Controller{
 
+    /**  Almacena el nombre del usuario */
     private String usuario;
-    private String clave;
-    private ThreadLocal<Usuario> threadLocal;
+    /**  Almacena la clave del usuario */
+    private String clave;    
 
     /**Constructor por defecto*/
     public LoginController() {
@@ -74,18 +75,30 @@ public class LoginController extends Controller{
         return "home";
     }
 
+    /**
+     * @return the usuario 
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     * @param usuario the usuario to set
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * @return the clave
+     */
     public String getClave() {
         return clave;
     }
 
+    /**
+     * @param clave the clave to set
+     */
     public void setClave(String clave) {
         this.clave = clave;
     }

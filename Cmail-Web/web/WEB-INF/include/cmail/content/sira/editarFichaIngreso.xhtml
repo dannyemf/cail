@@ -65,13 +65,7 @@
                                     <td>
                                         <ice:commandButton  actionListener="#{fichaIngresoController.accionEditarAdolescente}" image="./resources/icono/btn/btn-editar-24-0.png" partialSubmit="true" immediate="true" style="margin: 0px; padding: 0px" onmousemove="$j(this).attr('src', './resources/icono/btn/btn-editar-24-1.png');" onmouseout="$j(this).attr('src', './resources/icono/btn/btn-editar-24-0.png');" title="#{accion.editar}"/>
                                     </td>                                    
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <ice:inputHidden id="txtIdAdolescente" validator="#{fichaIngresoController.validarAdolescente}" value="#{fichaIngresoController.fichaIngresoEdicion.adolescente.id}"></ice:inputHidden>
-                                        <ice:message showSummary="true" showDetail="false" for="txtIdAdolescente"></ice:message>                            
-                                    </td>
-                                </tr>
+                                </tr>                                
                             </table>
                         </ice:panelGroup>                                            
 

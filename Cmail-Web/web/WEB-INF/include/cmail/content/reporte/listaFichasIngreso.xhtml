@@ -45,17 +45,7 @@
         <ice:outputLabel value="#{mensaje.listaFichasIngreso}"></ice:outputLabel>
         <ice:dataTable id="dataTable1" value="#{fichaIngresoController.modelFichasIngreso}" var="f" rows="10" scrollHeight="250px" width="100%">
             <ice:column id="column1">
-                <ice:panelGrid columns="4">
-
-                    <!--
-                    <ice:commandLink actionListener="#{fichaIngresoController.eventoEditar(evt, f.fichaIngreso, null)}" id="btnEditar" title="#{accion.editar}">
-                        <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
-                    </ice:commandLink>                   
-
-                    <ice:commandLink actionListener="#{fichaIngresoController.eventoGenerarEgreso(evt, f.fichaIngreso)}" rendered="#{f.renderedFichaEgreso}" id="btnFichaEgreso" title="Generar ficha de egreso...">
-                        <ice:graphicImage value="/resources/icono/row/row_emitir.png" alt="FichaEgreso"></ice:graphicImage>
-                    </ice:commandLink>
-                    -->
+                <ice:panelGrid columns="4">                    
                     
                     <ice:outputText title="#{mensaje.generarReporte}">
                     <ice:outputResource label="Pdf" 

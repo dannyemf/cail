@@ -33,6 +33,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @ViewScoped
 public class UsuarioController  extends Controller{
 
+    /**
+     * Lista de usuarios
+     */
     private CmailListDataModel<Usuario> modelUsuarios;
     private boolean testCailDisables = true;
     
@@ -40,6 +43,9 @@ public class UsuarioController  extends Controller{
     public UsuarioController() {
     }
 
+    /**
+     * @return the modelUsuarios
+     */
     public CmailListDataModel<Usuario> getModelUsuarios() {
         List<Usuario> lst = new UsuarioServicio().listarTodos();
         modelUsuarios = new CmailListDataModel<Usuario>(lst);
@@ -77,7 +83,11 @@ public class UsuarioController  extends Controller{
         showMessageDeleted(e, usuario.getLogin());
     }
     
-    public void editar(Usuario usuario) {
+    /**
+     * Método invocado por el evento nuevo y editar para inicializar los perfiles y la auditoría.
+     * @param usuario el usaurio
+     */
+    private void editar(Usuario usuario) {
         initAudit(usuario);        
         
         FacesUtils.getSessionBean().setUsuarioEdicion(usuario);        
@@ -131,10 +141,10 @@ public class UsuarioController  extends Controller{
     }   
 
     /**
-     * valida que no exista un usuario con el mismo login
-     * @param cont
-     * @param cmp
-     * @param value 
+     * Verifica que el login del usaurio no esté duplicado.
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el login ingresado
      */
     public void validarLogin(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = new UsuarioServicio().existe(getUsuarioEdicion(), "login", value.toString());
@@ -142,6 +152,13 @@ public class UsuarioController  extends Controller{
             validationMessage(mensajeBundle("val_login_existe"));
         }
     }
+    
+    /**
+     * Valida que el número de cédula ingresado no esté duplicado y sea correcto.
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value la cédula ingresada
+     */
     public void validarCedula(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = CedulaUtil.validar(value.toString());
         if (b) {
@@ -154,6 +171,9 @@ public class UsuarioController  extends Controller{
         }        
     }
     
+    /**
+     * @return the usuarioEdicion
+     */
     public Usuario getUsuarioEdicion() {
         return FacesUtils.getSessionBean().getUsuarioEdicion();
     }

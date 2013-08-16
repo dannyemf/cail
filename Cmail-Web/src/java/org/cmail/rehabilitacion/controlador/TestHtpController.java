@@ -70,21 +70,32 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 @SessionScoped
 public class TestHtpController extends Controller {
 
+    /** Cédula del adolescente para el filtro de la búsqueda */
     private String cedula;
+    /** Nombres del adolescente para el filtro de la búsqueda */
     private String nombres;
+    /** Cédula del adolescente para el filtro de la búsqueda */
     private String apellidos;           
     
+    /**
+     * Lista de categorías
+     */
     private List<Categoria> categorias = new ArrayList<Categoria>();
+    
+    /** La interpretación del test htp */
     private InterpretacionTestHtp interpretacion;
     
     /**Constructor por defecto*/
     public TestHtpController() {
-    }
+    }  
 
-    public BandejaAdolescenteController getBandejaController() {
-        return FacesUtils.getBean(Constantes.MB_BANDEJA, BandejaAdolescenteController.class);
-    }        
-
+    /**
+     * Evento nuevo invocado desde la bandeja del adolescente para crear un test htp.
+     * @param evt el evento
+     * @param adolescente el adolescente
+     * @param fichaIngreso la ficha de ingreso
+     * @param returnUrl la página de retorno
+     */
     public void eventoNuevo(ActionEvent evt, Persona adolescente, FichaIngreso fichaIngreso, String returnUrl) {
         addRoute("nuevo");
         setReturnUrl(Constantes.VW_LISTA_TESTS_HTP, returnUrl);        
@@ -120,15 +131,12 @@ public class TestHtpController extends Controller {
         }else{
             showMensaje(TipoNotificacion.Error, "Datos no pasados");
         }
-    }
+    }         
     
-    
-    public void validarResponsable(FacesContext cont, UIComponent cmp, Object value) {        
-        if(value == null || value.toString().equals("-1")){
-            setFacesMessage("Seleccione el adolescente");
-        }        
-    }    
-    
+    /**
+     * Obtiene los bytes que representan a un dibujo aún no subido del test.
+     * @return los bytes
+     */
     public byte[] getDibujoNoSubido(){
         try {           
             return FileUtil.loadData(new File(FacesUtils.getExternalContext().getRealPath("/") + "/resources/icono/nosubido.png"));
@@ -137,6 +145,10 @@ public class TestHtpController extends Controller {
         }        
     }
     
+    /**
+     * Obtiene los bytes que representan al dibujo de la casa.
+     * @return los bytes
+     */
     public byte[] getDibujoCasa(){
         if(getFormEdicion().getDibujoCasa() == null){
             return getDibujoNoSubido();
@@ -144,6 +156,10 @@ public class TestHtpController extends Controller {
         return getFormEdicion().getDibujoCasa();
     }        
     
+    /**
+     * Obtiene los bytes que representan al dibujo del árbol.
+     * @return los bytes
+     */
     public byte[] getDibujoArbol(){
         if(getFormEdicion().getDibujoArbol() == null){
             return getDibujoNoSubido();
@@ -151,6 +167,10 @@ public class TestHtpController extends Controller {
         return getFormEdicion().getDibujoArbol();
     }
     
+    /**
+     * Obtiene los bytes que representan al dibujo de la persona.
+     * @return los bytes
+     */
     public byte[] getDibujoPersona(){
         if(getFormEdicion().getDibujoPersona() == null){
             return getDibujoNoSubido();
@@ -158,6 +178,12 @@ public class TestHtpController extends Controller {
         return getFormEdicion().getDibujoPersona();
     }
 
+    /**
+     * Evento invocado desde la bandeja del adolescente para editar un test htp.
+     * @param evt el evento
+     * @param form el test htp a editar
+     * @param returnUrl la página de retorno
+     */
     public void eventoEditar(ActionEvent evt, TestHtp form, String returnUrl) {
         addRoute("editar");
         setReturnUrl(Constantes.VW_LISTA_TESTS_HTP, returnUrl);
@@ -168,6 +194,11 @@ public class TestHtpController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_EDT_TEST_HTP);                 
     }
     
+    /**
+     * Obtiene las respuestas del test htp por grupo y ordenado por orden de pregunta.
+     * @param grp el grupo (CASA, ÁRBOL, PERSONA)
+     * @return las respuestas
+     */
     public List<TestHtpRespuesta> getRespuestas(String grp){
         
         List<TestHtpRespuesta> lst = new ArrayList<TestHtpRespuesta>();
@@ -202,18 +233,34 @@ public class TestHtpController extends Controller {
         return lst;
     }
     
+    /**
+     * Obtienen las respuestas de la casa
+     * @return las respuestas
+     */
     public List<TestHtpRespuesta> getRespuestasCasa(){
         return getRespuestas(EsquemaPregunta.GRUPO_CASA);
     }
     
+    /**
+     * Obtienen las respuestas del árbol
+     * @return las respuestas
+     */
     public List<TestHtpRespuesta> getRespuestasArbol(){
         return getRespuestas(EsquemaPregunta.GRUPO_ARBOL);
     }
     
+    /**
+     * Obtienen las respuestas de la persona
+     * @return las respuestas
+     */
     public List<TestHtpRespuesta> getRespuestasPersona(){
         return getRespuestas(EsquemaPregunta.GRUPO_PERSONA);
     }
     
+    /**
+     * Método para validar antes de guardar.
+     * @return true si todo es correcto
+     */
     public boolean validar(){
         boolean b = true;
         
@@ -252,6 +299,14 @@ public class TestHtpController extends Controller {
         }
     }
     
+    /**
+     * Evento invocado desde la bandeja del adolescente para ver la interpretación del test.
+     * En caso de que el test aún no tenga la interpretación la crear y muestra el formulario de interpretación.
+     * 
+     * @param evt el evento
+     * @param form el test htp
+     * @param returnUrl la página de retorno
+     */
     public void eventoVerInterpretacion(ActionEvent evt, TestHtp form, String returnUrl) {
                 
         setReturnUrl(Constantes.VW_LISTA_TESTS_HTP, returnUrl);
@@ -271,10 +326,13 @@ public class TestHtpController extends Controller {
     }
     
     /**
-     * Creacion del infome psicológico
-     * @param evt 
+     * Verifica que toda la información requerida para la interpretación esté ingresada.
+     * Su algún campo no está ingresado muestra el respectivo mensaje.
+     * 
+     * @param tipo el tipo de categoría (CASA, ARBOL, PERSONA)
+     * @param item el modelo de interpretación para del tipo indicado
+     * @return true si todo está bien
      */
-    
     public boolean validarIngresoInterpretacion(String tipo, ItemInterpretacion item){
         boolean v = true;
         List<ItemInterpretacionCategoria> cats = item.getCategroias();
@@ -299,6 +357,13 @@ public class TestHtpController extends Controller {
         return v;
     }
     
+    /**
+     * Evento invocado por el botón guardar desde la página de interpretación del test htp con la finalidad de crear el diagnóstico en base 
+     * El psicólogo selecciona los indicadores encontrados según los gráficos del test htp.
+     * a los indicadores seleccionados.
+     * 
+     * @param evt el evento
+     */
     public void eventoCrearInterpretacion(ActionEvent evt) {
         
         boolean v1 = validarIngresoInterpretacion("casa", getItemIntCasa());
@@ -323,6 +388,11 @@ public class TestHtpController extends Controller {
         }
     }
     
+    /**
+     * Evento invocado por el botón guaradr una vez que el diagnóstico ha sido generado y el psicólogo haya ingresado sus impresiones.
+     * El psicólogo puede editar los diagnósticos.
+     * @param evt el evento
+     */
     public void eventoGuardarInterpretacion(ActionEvent evt) {
         
         InterpretacionHtpServicio is = new InterpretacionHtpServicio();
@@ -346,6 +416,10 @@ public class TestHtpController extends Controller {
         }        
     }
     
+    /**
+     * Método invocado despues de guardar el test htp para iniciar la interpretación del mismo.
+     * Todo esto sucede si es que aún no se ha hecho la interpretación del test htp.
+     */
     public void interpretarTestHtp(){
         CategoriaServicio s = new CategoriaServicio();
         this.categorias = s.listarTodos();
@@ -359,6 +433,9 @@ public class TestHtpController extends Controller {
         FacesUtils.getMenuController().redirectApp(Constantes.VW_INTERPRETAR_TESTHTP);
     }
 
+    /**
+     * @return the wucBuscarPersona
+     */
     public WucBuscarPersonaController getWucBuscarPersona() {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
     }
@@ -397,23 +474,28 @@ public class TestHtpController extends Controller {
                 lst.add(new ItemTestHtp(test, inf));            
             }
 
-            setModelEsquema(new CmailListDataModel<ItemTestHtp>(lst));
+            setModelForm(new CmailListDataModel<ItemTestHtp>(lst));
             showMessageResultList(listaTest);
         }
     }
 
+    /**
+     * @return the formEdicion
+     */
     public TestHtp getFormEdicion() {
         return FacesUtils.getSessionBean().getFormHtpEdicion();
     }
     
+    /**
+     * @return the adolescente
+     */
     public Persona getAdolescente() {
         return FacesUtils.getSessionBean().getFormHtpEdicion().getAdolescente();
-    }
-
-    public TimeZone getTimeZone() {
-        return java.util.TimeZone.getDefault();
-    }
+    }   
     
+    /**
+     * @return the modelForm
+     */
     public CmailListDataModel<ItemTestHtp> getModelForm() {
         CmailListDataModel<ItemTestHtp> lm = (CmailListDataModel<ItemTestHtp>) FacesUtils.getSessionBean().getSessionMap("modelForm");
         if (lm == null) {
@@ -421,47 +503,19 @@ public class TestHtpController extends Controller {
         }
         return lm;
     }
-        
-    public void setModelEsquema(CmailListDataModel<ItemTestHtp> model) {
-        FacesUtils.getSessionBean().addSessionMap("modelForm", model);
-    }
 
-    public void setFacesMessage(String facesMessage) {
-        FacesMessage m = new FacesMessage(facesMessage);
-        m.setSeverity(FacesMessage.SEVERITY_FATAL);
-        throw new ValidatorException(m);
-    }
+    /**
+     * @param model the modelForm to set
+     */
+    public void setModelForm(CmailListDataModel<ItemTestHtp> model) {
+        FacesUtils.getSessionBean().addSessionMap("modelForm", model);
+    }            
     
-    public void accionBuscarAdolescente(ActionEvent evt) {
-        getWucBuscarPersona().mostrarBuscador(new ActionListenerWucBuscarPersona() {
-            @Override
-            public void processAction(ActionEvent ae) throws AbortProcessingException {
-                TestHtp f = TestHtpController.this.getFormEdicion();
-                if (this.getPersona() != null) {
-                                        
-                    List<FichaIngreso> lst = new FichaIngresoServicio().listarPorPropiedad("adolescente", this.getPersona());
-                    
-                    if(lst.size() > 0){
-                        for (Iterator<FichaIngreso> it = lst.iterator(); it.hasNext();) {
-                            FichaIngreso fi = it.next();
-                            f.setFichaIngreso(fi);
-                            
-                            if((f.getFichaIngreso().getFecha().before(fi.getFecha()))){
-                                f.setFichaIngreso(fi);
-                            }
-                            
-                        }
-                        
-                        f.setAdolescente(this.getPersona());
-                        this.getWuc().accionCerrar(ae);
-                    }
-                    
-                    
-                }
-            }
-        }, PersonaRol.ADOLESCENTE, null);
-    }
-    
+    /**
+     * Obtiene el contenido de archivo subido
+     * @param event el evento
+     * @return los bytes
+     */
     public byte[] getFileData(FileEntryEvent event){
         try {
             
@@ -492,6 +546,10 @@ public class TestHtpController extends Controller {
         return null;
     }
     
+    /**
+     * Evento para subir el dibujo de la casa
+     * @param event el evento
+     */
     public void listenerUploadCasa(FileEntryEvent event) {
         byte[] bt = getFileData(event);
         if(bt != null){
@@ -500,6 +558,10 @@ public class TestHtpController extends Controller {
         }
     }
     
+    /**
+     * Evento para subir el dibujo del árbol
+     * @param event el evento
+     */
     public void listenerUploadArbol(FileEntryEvent event) {
         byte[] bt = getFileData(event);
         if(bt != null){            
@@ -508,6 +570,10 @@ public class TestHtpController extends Controller {
         }
     }
     
+    /**
+     * Evento para subir el dibujo de la persona
+     * @param event el evento
+     */
     public void listenerUploadPersona(FileEntryEvent event) {
         byte[] bt = getFileData(event);
         if(bt != null){
@@ -516,30 +582,7 @@ public class TestHtpController extends Controller {
         }
     }
     
-    /*public void accionEditarAdolescente(ActionEvent evt) {
-        Persona p = getFormEdicion().getAdolescente();
-        if (p != null) {
-            getWucBuscarPersona().mostrarEditor(p, new ActionListenerWucBuscarPersona() {
-                @Override
-                public void processAction(ActionEvent ae) throws AbortProcessingException {
-                    getFormEdicion().setEdadAdolescente(getAdolescente().getEdad());
-                    this.getWuc().accionCerrar(ae);
-                }
-            });
-        }
-    }*/
-    
-    /**
-     * Valida que se haya seleccionado un adolescente
-     * @param cont
-     * @param cmp
-     * @param value 
-     */
-    public void validarAdolescente(FacesContext cont, UIComponent cmp, Object value) {        
-        if(value == null || value.toString().equals("-1")){
-            setFacesMessage("Seleccione el adolescente");
-        }        
-    }
+            
 
     /**
      * @return the cedula

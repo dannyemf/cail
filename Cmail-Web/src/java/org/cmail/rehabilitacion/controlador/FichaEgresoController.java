@@ -10,7 +10,6 @@ import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TimeZone;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AbortProcessingException;
@@ -38,11 +37,15 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @SessionScoped
 public class FichaEgresoController extends Controller {
     
-    //para la busqueda
+    /** Nombres del adolescente para el filtro de la búsqueda */
     private String nombres;
+    /** Apellidos del adolescente para el filtro de la búsqueda */
     private String apellidos;
+    /** Cédula del adolescente para el filtro de la búsqueda */
     private String cedula;
+    /**  La ficha de ingreso a exportar a pdf (después de guardar)*/
     private ItemFichaEgreso itemFicha;
+    /** La lista de fichas de egreso a mostrar (resultado de la búsqueda) */
     private CmailListDataModel<ItemFichaEgreso> modelFichasEgreso = new CmailListDataModel<ItemFichaEgreso>();
 
     /**Constructor por defecto*/
@@ -297,69 +300,33 @@ public class FichaEgresoController extends Controller {
         getFichaEgresoEdicion().setCompaneroEgreso(null);
     }
     
+    /*     
+     * @return the fichaIngresoEdicion
+     */
     public FichaEgreso getFichaEgresoEdicion() {
         return FacesUtils.getSessionBean().getFichaEgresoEdicion();
     }
 
+    /**
+     * @return the wucBuscarPersona
+     */
     public WucBuscarPersonaController getWucBuscarPersona() {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
     }
 
-    public TimeZone getTimeZone() {
-        return java.util.TimeZone.getDefault();
-    }
-
+    /**
+     * @return the modelFichasEgreso
+     */
     public CmailListDataModel<ItemFichaEgreso> getModelFichasEgreso() {        
         return modelFichasEgreso;
     }
 
+    /**
+     * @param model the modelFichasEgreso to set
+     */ 
     public void setModelFichasEgreso(CmailListDataModel<ItemFichaEgreso> model) {
         modelFichasEgreso=model;
-    }
-    
-    /**
-     * 
-     * @param cont
-     * @param cmp
-     * @param value
-     * @param persona 
-     * 
-     * solo validamos si la cedula es correcta o incorrectas..
-     * porque la persona registrada pueder ser el padre,madre o
-     * representante de varios detenidos
-     */
-//    public void validarCedulaPersona(FacesContext cont, UIComponent cmp, Object value, Persona persona) {
-//        boolean b = CedulaUtil.validar(value.toString());
-//        if (b == false) {
-//            validationMessage("Cédula Incorrecta");            
-//        }
-//    }
-
-    //validadores de cedula
-    /**
-     * al intentar guardar un adolescente con la misma cedula 
-     * no se le permite. porque cada detenido solo tiene una sola
-     * ficha de detenciones..     
-     */
-//    public void validarCedulaAdolescente(FacesContext cont, UIComponent cmp, Object value) {
-//        boolean b = CedulaUtil.validar(value.toString());
-//        if (b) {
-//            boolean bi = new PersonaServicio().existePersonaByCedula(value.toString(), getFichaEgresoEdicion().getAdolescente());
-//            if (bi) {
-//                validationMessage("Cedula ya registrada");
-//            }
-//        } else {
-//            validationMessage("Cédula Incorrecta");
-//        }
-//    }
-
-//    public void validarCedulaPadre(FacesContext cont, UIComponent cmp, Object value) {
-//        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getPadre());
-//    }
-
-//    public void validarCedulaMadre(FacesContext cont, UIComponent cmp, Object value) {
-//        validarCedulaPersona(cont, cmp, value, getFichaEgresoEdicion().getAdolescente().getMadre());
-//    }    
+    }    
 
     /**
      * @return the nombres

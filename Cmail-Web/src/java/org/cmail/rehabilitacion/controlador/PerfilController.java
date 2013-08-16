@@ -31,6 +31,9 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @ViewScoped
 public class PerfilController  extends Controller{
     
+    /**
+     * la lista de perfiles
+     */
     private CmailListDataModel<Perfil> modelPerfiles;
 
     /**Constructor por defecto*/
@@ -93,6 +96,12 @@ public class PerfilController  extends Controller{
         FacesUtils.getMenuController().redirectApp(Constantes.VW_ADM_PERFIL);
     }
     
+    /**
+     * Valida que el nombre del perfil no esté duplicado.
+     * @param cont el contexto
+     * @param cmp el componente
+     * @param value el nombre del perfil
+     */
     public void validarNombre(FacesContext cont, UIComponent cmp, Object value) {
         boolean b = new UsuarioServicio().existe(getPerfilEdicion(), "nombre", value.toString());
         if (b) {
@@ -100,11 +109,16 @@ public class PerfilController  extends Controller{
         }   
     }
     
-
+    /**
+     * @return the perfilEdicion
+     */
     public Perfil getPerfilEdicion() {
         return FacesUtils.getSessionBean().getPerfilEdicion();
     }
     
+    /**
+     * @return the modelPerfiles
+     */
     public ListDataModel<Perfil> getModelPerfiles() {
         try {
             List<Perfil> lst = new PerfilServicio().listarTodos();
@@ -115,6 +129,9 @@ public class PerfilController  extends Controller{
         return modelPerfiles;
     }
 
+    /**
+     * @param modelPerfiles the modelPerfiles to set
+     */
     public void setModelPerfiles(CmailListDataModel<Perfil> modelPerfiles) {
         this.modelPerfiles = modelPerfiles;
     }

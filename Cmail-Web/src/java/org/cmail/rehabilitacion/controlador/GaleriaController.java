@@ -37,14 +37,20 @@ import org.icefaces.ace.component.fileentry.FileEntryResults;
 @ViewScoped
 public class GaleriaController extends Controller {        
     
-    private CmailListDataModel<ImagenWeb> model;    
+    /** El resultado de la búsqueda */
+    private CmailListDataModel<ImagenWeb> model;
+    /** El texto para la búsqueda */
     private String texto;
+    /** Parámetro para mostrar el mensaje del tamaño */
     private Parametro parametroSize;
    
     /**Constructor por defecto*/
     public GaleriaController() {        
     }
     
+    /**
+     * Inicializa el parámetro
+     */
     @PostConstruct
     public void init(){
         parametroSize = new ParametroServicio().obtenerParametro(Constantes.PRM_SIZE_IMGANE_GALERIA, TipoParametro.Dimension);
@@ -155,37 +161,60 @@ public class GaleriaController extends Controller {
         }
     }
 
+    /**
+     * @return the imagenWebEdicion
+     */
     public ImagenWeb getImagenEdicion() {
         return (ImagenWeb)FacesUtils.getSessionBean().getSessionMap("ImagenWebEdicion");
     }
     
+    /**
+     * @param img the imagenWebEdicion to set
+     */
     public void setImagenEdicion(ImagenWeb img) {
         FacesUtils.getSessionBean().addSessionMap("ImagenWebEdicion", img);
     }
     
+    /**
+     * @return the model
+     */
     public ListDataModel<ImagenWeb> getModel() {
         return model;
     }      
 
+    /**
+     * @param model the model to set
+     */
     public void setModel(CmailListDataModel<ImagenWeb> model) {        
         this.model = model;
     }
 
+    /**
+     * @return the texto
+     */
     public String getTexto() {
         return texto;
     }
 
+    /**
+     * @param texto the texto to set
+     */
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
+    /**
+     * @return the parametroSize
+     */
     public Parametro getParametroSize() {
         return parametroSize;
     }
 
+    /**
+     * @param parametroSize the parametroSize to set
+     */
     public void setParametroSize(Parametro parametroSize) {
         this.parametroSize = parametroSize;
     }
-    
-    
+        
 }

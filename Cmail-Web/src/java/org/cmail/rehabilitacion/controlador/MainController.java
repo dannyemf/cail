@@ -32,12 +32,15 @@ import org.cmail.rehabilitacion.vista.util.FacesUtils;
 @SessionScoped
 public class MainController  extends Controller{
 
+    /** Configuración de la zona horaria */
     private TimeZone timeZone = null;
+    /** Configuración de la ubicación */
     private Locale locale;
-    
-    
+    /** Nombre de la institución cargada desde un parámetro */    
     private String prmInstitucion;
+    /** Slogan de la institución cargada desde un parámetro */    
     private String prmSlogan;
+    /** Siglas de la institución cargada desde un parámetro */    
     private String prmSiglas;
 
     /**Constructor por defecto*/
@@ -45,31 +48,44 @@ public class MainController  extends Controller{
         String tema = FacesUtils.getStyleBean().getAceTheme();        
     }
     
-    public List<Canton> cantones(Provincia p){        
-        if(p != null){
-            return new ArrayList(p.getCantones());        
+    /**
+     * Obtiene una lista de los cantones de la provincia indicada
+     * @param provincia la provincia
+     * @return lista de cantones
+     */
+    public List<Canton> cantones(Provincia provincia){        
+        if(provincia != null){
+            return new ArrayList(provincia.getCantones());        
         }
         return new ArrayList();        
     }
     
-    public List<Parroquia> parroqias(Canton p){        
-        if(p != null){
-            return new ArrayList(p.getParroquias());        
+    /**
+     * Obtiene una lista de los parroquias del cantón indicado
+     * @param canton el cantón
+     * @return lista de parroquias
+     */
+    public List<Parroquia> parroqias(Canton canton){        
+        if(canton != null){
+            return new ArrayList(canton.getParroquias());        
         }
         return new ArrayList();        
     }
     
-    
-    
-    public TimeZone getTimeZone() {
-        
+    /**
+     * @return the timeZone
+     */
+    public TimeZone getTimeZone() {        
         if(timeZone == null){
             timeZone = TimeZone.getDefault();
-        }
-        
+        }        
         return timeZone;
     }
     
+    /**
+     * Obtiene la ruta del contexto actual
+     * @return la ruta
+     */
     public String getContextPath(){        
         return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
     }
