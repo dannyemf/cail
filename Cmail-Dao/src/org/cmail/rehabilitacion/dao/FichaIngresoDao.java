@@ -39,7 +39,9 @@ public class FichaIngresoDao extends GanericDao<FichaIngreso> {
             tx = getSession().beginTransaction();
             
             //merge(instancia);
-            log.info("Madre: " + fichaIngreso.getAdolescente().getMadre().getNombres());
+            if (fichaIngreso.getAdolescente().getMadre() != null){
+                log.info("Madre: " + fichaIngreso.getAdolescente().getMadre().getNombres());
+            }
             
             getSession().saveOrUpdate(merge(fichaIngreso.getAdolescente()));
             getSession().saveOrUpdate(merge(fichaIngreso));
