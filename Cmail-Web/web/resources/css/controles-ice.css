@@ -46,6 +46,9 @@ color: red;
     padding: 3px;
     border: #dfdbdb solid 1px;
     margin-bottom: 10px;   
+    /*la viñeta más a la derecha*/
+    padding-left: 22px;
+    list-style-image: url(../icono/bullet.gif);
 }
 
 .iceMsgsFatal {
