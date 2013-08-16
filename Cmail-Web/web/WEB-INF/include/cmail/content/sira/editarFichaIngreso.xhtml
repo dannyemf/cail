@@ -666,7 +666,7 @@
                         <ice:panelGrid columns="3">
 
                             <ice:outputText value="#{etiqueta.documuento}"></ice:outputText>
-                            <ace:fileEntry id="fileDocumento" fileEntryListener="#{fichaIngresoController.listenerUploadDocumento}"></ace:fileEntry>
+                            <ace:fileEntry id="fileDocumento" label="#{etiqueta.documuento}" fileEntryListener="#{fichaIngresoController.listenerUploadDocumento}"></ace:fileEntry>
                             <h:commandButton value="#{accion.subir}"></h:commandButton>
 
                         </ice:panelGrid>
