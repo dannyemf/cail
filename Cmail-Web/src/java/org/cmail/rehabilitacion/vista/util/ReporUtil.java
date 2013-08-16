@@ -13,7 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,11 +105,19 @@ public class ReporUtil {
            ByteArrayOutputStream bo = new ByteArrayOutputStream();
            Document doc = new Document();
             try {
+                SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 PdfWriter.getInstance(doc, bo);
                 doc.open();
                 doc.add(new Paragraph("ERROR AL GENERAR EL REPORTE: " + nombrePlantilla));
-                doc.add(new Paragraph("-----------------------------"));
-                doc.add(new Paragraph("- " + e.getMessage()));                
+                doc.add(new Paragraph());
+                doc.add(new Paragraph("-----------------------------------------------------"));
+                doc.add(new Paragraph("Fecha: " + sf.format(new Date())));
+                doc.add(new Paragraph());
+                doc.add(new Paragraph("Estimado usuario.-"));
+                doc.add(new Paragraph());
+                doc.add(new Paragraph("Le comunicamos que ha ocurrido un error al generar el reporte, por tal motivo le pedimos mil disculpas y le solicitamos comunicarse con el administrador del sistema para informarle del inconveniente."));
+                doc.add(new Paragraph());
+                doc.add(new Paragraph("Mensaje del sistema: " + e.getMessage()));
                 doc.close();
                 return bo.toByteArray();
             } catch (Exception ex) {

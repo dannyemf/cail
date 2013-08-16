@@ -146,7 +146,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fecha de Ingreso]]></text>
+				<text><![CDATA[Fecha Ingreso]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="322" y="22" width="82" height="13"/>
@@ -156,7 +156,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fecha de Egreso]]></text>
+				<text><![CDATA[Fecha Egreso]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
