@@ -43,6 +43,10 @@ public class ImageFile implements Serializable{
     private ImagenWeb imagenWeb;
     private String mimeType;
     
+    /**
+     * Constructor mínimo
+     * @param image 
+     */
     public ImageFile(ImagenWeb image) {        
         this.imagenWeb = image;                
         String file = FacesUtils.getExternalContext().getRealPath("/") + ImageFile.CARPETA_IMAGENES + image.getNombre();        
@@ -52,13 +56,21 @@ public class ImageFile implements Serializable{
         this.crearThumbail(false);
     }        
         
-
+    /**
+     * Constructor mínimo
+     * @param f
+     * @param contentType 
+     */
     public ImageFile(File f, String contentType) {
         this.mimeType = contentType;
         this.init(f);
         this.crearThumbail(false);
     }
     
+    /**
+     * Inicaliza la imagen
+     * @param f el archivo
+     */
     public void init(File f){
         this.file = f;
         this.nombre = f.getName();
@@ -70,6 +82,10 @@ public class ImageFile implements Serializable{
         this.rutaThumbail =   this.contextPath + CARPETA_THUMBAILS + PREFIJO_THUMBAILS + f.getName();                
     }        
     
+    /**
+     * Crear un thumbail o imagen en miniatura
+     * @param force indica si se debe sobreescribir
+     */
     public void crearThumbail(boolean force){
         try {
             String realPathThum=  FacesUtils.getExternalContext().getRealPath("/") + CARPETA_THUMBAILS + PREFIJO_THUMBAILS + nombre;
@@ -111,6 +127,10 @@ public class ImageFile implements Serializable{
         }
     }
     
+    /**
+     * Crear el fichero con la data de la base de datos
+     * @param force Indica si se debe sobreescribir
+     */
     public void crearArchivo(boolean force){
         try {
             if(file.exists() == false || force){
@@ -122,6 +142,11 @@ public class ImageFile implements Serializable{
         }
     }
     
+    /**
+     * Renombra el archivo
+     * @param nombre el nuevo nombre
+     * @return true si se renombró
+     */
     public boolean renameTo(String nombre){                
         
         nombre = nombre.trim();
@@ -226,6 +251,11 @@ public class ImageFile implements Serializable{
         return imagenWeb;
     }
     
+    /**
+     * Obtiene un atg html para la imagen
+     * <p>Ejemplo: &lt;img src="..."/&gt;</p>
+     * @return 
+     */
     public String getImageTag(){
         return "<img src=\""+ this.rutaAbsoluta +"\"/>";
     }

@@ -31,6 +31,11 @@ public class StyleBean implements Serializable {
         
     }
     
+    /**
+     * Evento invocado cuando el usaurio cambia de tema.
+     * @param e el evento
+     * @throws java.io.IOException 
+     */
     public void changeTheme(ValueChangeEvent e) throws java.io.IOException{
         String th = (String)e.getNewValue();
         if (!aceTheme.equalsIgnoreCase(th)) {

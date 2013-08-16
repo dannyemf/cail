@@ -82,14 +82,27 @@ public class SessionBean implements Serializable {
         sessionMap = new HashMap<String, Object>();
     }
     
+    /**
+     * Limpia el último mensaje de notificación mostrado.
+     */
     public void clearMsjNotificacion(){
         mensajeNotificacion = "";
     }
 
+    /**
+     * Agrega un objeto a la sesión
+     * @param nombre nombre o clave del objeto
+     * @param instancia el objeto
+     */
     public void addSessionMap(String nombre, Object instancia) {
         sessionMap.put(nombre, instancia);
     }
 
+    /**
+     * Obtiene un objeto de sesión por su clave
+     * @param nombre el objeto
+     * @return el objeto
+     */
     public Object getSessionMap(String nombre) {
         if (sessionMap.containsKey(nombre)) {
             return sessionMap.get(nombre);
@@ -97,6 +110,10 @@ public class SessionBean implements Serializable {
         return null;
     }
 
+    /**
+     * Remueve de sesión un objeto por su clave
+     * @param nombre la clave
+     */
     public void remSessionMap(String nombre) {
         if (sessionMap.containsKey(nombre)) {
             sessionMap.remove(nombre);

@@ -54,29 +54,38 @@ import org.cmail.rehabilitacion.controlador.bean.SessionBean;
  */
 public class FacesUtils {
     /**
-     * Get servlet context.
+     * El servlet context.
      *
-     * @return the servlet context
+     * @return el contexto
      */
     public static ServletContext getServletContext() {
         return (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
     }
 
+    /**
+     * El contexto externo
+     * @return 
+     */
     public static ExternalContext getExternalContext() {
         FacesContext fc = FacesContext.getCurrentInstance();
         return fc.getExternalContext();
     }
 
+    /**
+     * La sesión http
+     * @param create si se debe crear cuando no existe
+     * @return la sesión
+     */
     public static HttpSession getHttpSession(boolean create) {
         return (HttpSession) FacesContext.getCurrentInstance().
                 getExternalContext().getSession(create);
     }
 
     /**
-     * Get managed bean based on the bean name.
+     * Obtiene un managed bean por su nombre
      *
-     * @param beanName the bean name
-     * @return the managed bean associated with the bean name
+     * @param beanName el nombre
+     * @return el bean
      */
     public static Object getManagedBean(String beanName) {
 
@@ -84,9 +93,10 @@ public class FacesUtils {
     }
 
     /**
-     * Remove the managed bean based on the bean name.
+     * Remueve un managed bean por su nombre
      *
-     * @param beanName the bean name of the managed bean to be removed
+     * @param beanName el nombre
+     * @return el bean
      */
     public static void resetManagedBean(String beanName) {
         try{
@@ -97,127 +107,202 @@ public class FacesUtils {
     }
 
     /**
-     * Store the managed bean inside the session scope.
+     * Agrega un managed bean a la sesión
      *
-     * @param beanName    the name of the managed bean to be stored
-     * @param managedBean the managed bean to be stored
+     * @param beanName el nombre del managed bean
+     * @param managedBean el bean
      */
     public static void setManagedBeanInSession(String beanName, Object managedBean) {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(beanName, managedBean);
     }
 
     /**
-     * Get parameter value from request scope.
+     * Obtiene el valor de parámetro del ámbito de petición.
      *
-     * @param name the name of the parameter
-     * @return the parameter value
+     * @param name el nombre
+     * @return el valor del parámetro
      */
     public static String getRequestParameter(String name) {
         return (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(name);
     }
 
     /**
-     * Add information message.
+     * Agrega un mensaje de información
      *
-     * @param msg the information message
+     * @param msg el mensaje
      */
     public static void addInfoMessage(String msg) {
         addInfoMessage(null, msg);
     }
 
     /**
-     * Add information message to a specific client.
+     * Agerag un mensaje de información a un componente en específico.
      *
-     * @param clientId the client id
-     * @param msg      the information message
+     * @param clientId el id del componente
+     * @param msg el mensaje
      */
     public static void addInfoMessage(String clientId, String msg) {
         FacesContext.getCurrentInstance().addMessage(clientId, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
     }
 
     /**
-     * Add error message.
+     * Agrega un mensaje de error
      *
-     * @param msg the error message
+     * @param msg el mesanje
      */
     public static void addErrorMessage(String msg) {
         addErrorMessage(null, msg);
     }
 
     /**
-     * Add error message to a specific client.
+     * Agrega un mensaje de error a un cliente en específico.
      *
-     * @param clientId the client id
-     * @param msg      the error message
+     * @param clientId el id del cliente
+     * @param msg el mensaje
      */
     public static void addErrorMessage(String clientId, String msg) {
         FacesContext.getCurrentInstance().addMessage(clientId, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
     }
 
+    /**
+     * Obtiene el contexto de la aplicación
+     * @return 
+     */
     private static Application getApplication() {
         ApplicationFactory appFactory = (ApplicationFactory) FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
         return appFactory.getApplication();
     }
 
+    /**
+     * Obtiene un binding para valores
+     * @param el la expresión
+     * @return el objeto
+     */
     private static ValueBinding getValueBinding(String el) {
         return getApplication().createValueBinding(el);
     }
 
+    /**
+     * Obtiene el servlet de petición
+     * @return el request
+     */
     private static HttpServletRequest getServletRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 
+    /**
+     * Obtiene un value binding para la expresión
+     * @param el la expresión
+     * @return el objeto
+     */
     private static Object getElValue(String el) {
         return getValueBinding(el).getValue(FacesContext.getCurrentInstance());
     }
 
+    /**
+     * Obtiene una expresión
+     * @param value el valor
+     * @return la expresion
+     */
     private static String getJsfEl(String value) {
         return "#{" + value + "}";
     }
     
+    /**
+     * Obtiene el controlador de login
+     * @return el objeto
+     */ 
     public static LoginController getLoginController(){
         return (LoginController)getManagedBean(Constantes.MB_LOGIN);
     }
     
+    /**
+     * Obtiene el bean de sesión
+     * @return el bean
+     */ 
     public static SessionBean getSessionBean(){
         return (SessionBean)getManagedBean(Constantes.MB_SESSION);
     }
     
+    /**
+     * Obtiene el controlador de menú
+     * @return el bean
+     */ 
     public static MenuController getMenuController(){
         return (MenuController)getManagedBean(Constantes.MB_MENU);
     }
         
-    
+    /**
+     * Obtiene el controlador de opciones
+     * @return el bean
+     */
     public static OpcionController getOpcionController(){
         return (OpcionController)getManagedBean(Constantes.MB_OPCION);
     }
     
+    /**
+     * Obtiene el bean de estilos
+     * @return el bean
+     */
     public static StyleBean getStyleBean(){
         return (StyleBean)getManagedBean("styleBean");
     }
     
+    /**
+     * Obtiene el controlador de usuarios
+     * @return el controlador
+     */
     public static UsuarioController getUsuarioController(){
         return (UsuarioController)getManagedBean(Constantes.MB_USUARIO);
     }   
     
+    /**
+     * Obtiene el controlador de personas
+     * @return el controlador
+     */
     public static WucBuscarPersonaController getPersonaController(){
         return (WucBuscarPersonaController)getManagedBean(Constantes.MB_WUC_BUSCAR_PERSONA);
     }
     
+    /**
+     * Obtiene el controlador de perfiles
+     * @return el controlador
+     */
     public static PerfilController getPerfilController(){
         return (PerfilController)getManagedBean(Constantes.MB_PERFIL);
     }
     
+    /**
+     * Obtiene el controlador de fichas de ingreso
+     * @return el controlador
+     */
     public static FichaIngresoController getFichaIngresoController(){
         return (FichaIngresoController)getManagedBean(Constantes.MB_FICHAINGRESO);
     }    
+    
+    /**
+     * Obtiene el controlador de fichas de egreso
+     * @return el controlador
+     */
     public static FichaEgresoController getFichaEgresoController(){
         return (FichaEgresoController)getManagedBean(Constantes.MB_FICHAEGRESO);
     }    
+    
+    /**
+     * Obtiene el controlador de agendas
+     * @return el controlador
+     */
     public static AgendaController getPlanificacionController(){
         return (AgendaController)getManagedBean(Constantes.MB_AGENDA);
     }    
     
+    /**
+     * Obtiene el managed bean por su nombre y clase
+     * @param <T>
+     * @param string el nombre
+     * @param type la clase
+     * @return el bean
+     */
     public static <T extends Object> T getBean(String string, Class<? extends T> type) {
         return (T)getManagedBean(string);
     }

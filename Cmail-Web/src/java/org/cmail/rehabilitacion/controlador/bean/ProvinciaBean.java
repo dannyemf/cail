@@ -29,6 +29,9 @@ import org.cmail.rehabilitacion.servicio.DivisionPoliticaServicio;
 @SessionScoped
 public class ProvinciaBean extends Controller implements Serializable{
 
+    /**
+     * Lista de provincias
+     */
     private List<Provincia> lista = new ArrayList<Provincia>();
     
     /**Constructor por defecto*/
@@ -36,6 +39,12 @@ public class ProvinciaBean extends Controller implements Serializable{
         lista = new DivisionPoliticaServicio().listarProvincias();        
     }                
     
+    /**
+     * Obtiene el nombre del método al que debe invocar sobre el objeto para fijar la provincia el cantón o la parroquia.
+     * @param base el prefijo del método (nacimiento, detencion, etc.)
+     * @param tipo la clase sobre la que debe invocar
+     * @return el nombre
+     */
     public String getMethodName(String base, Class tipo){
         
         String metodo = null;
@@ -47,6 +56,15 @@ public class ProvinciaBean extends Controller implements Serializable{
         return metodo;
     }
     
+    /**
+     * Obtiene el método al que debe invocar para fijar los valores.
+     * 
+     * @param bean el bean sobre el que se debe fijar
+     * @param base el prefijo del método (nacimiento, detención, etc.)
+     * @param tipo la clase
+     * @return
+     * @throws Exception 
+     */
     public Method getMethod(Object bean,String base, Class tipo)  throws Exception{                
         try {
             String methodName = getMethodName(base, tipo);
@@ -57,6 +75,14 @@ public class ProvinciaBean extends Controller implements Serializable{
         }                
     }
     
+    /**
+     * Invoca al método para fijar la provincia, cantón o parroquia.
+     * @param bean el bean donde se va a fijar
+     * @param valor el objecto provincia, cantón o parroquia
+     * @param base el prefijo del método
+     * @param tipo la clase
+     * @throws Exception 
+     */
     public void setValue(Object bean, Object valor, String base, Class tipo) throws Exception{
         try {
             Method m = getMethod(bean, base, tipo);
@@ -66,6 +92,10 @@ public class ProvinciaBean extends Controller implements Serializable{
         }
     }
     
+    /**
+     * Evento invocado al seleccionar una provincia
+     * @param event el evento
+     */
     public void changeProvincia(ValueChangeEvent event){    
         Object bean = event.getComponent().getAttributes().get("bean");
         String base = (String)event.getComponent().getAttributes().get("tipo");
@@ -82,6 +112,10 @@ public class ProvinciaBean extends Controller implements Serializable{
         }                
     }
     
+    /**
+     * Evento invocado al seleccionar un cantón.
+     * @param event el evento
+     */
     public void changeCanton(ValueChangeEvent event){    
         Object bean = event.getComponent().getAttributes().get("bean");
         String base = (String)event.getComponent().getAttributes().get("tipo");
@@ -97,6 +131,10 @@ public class ProvinciaBean extends Controller implements Serializable{
         }                
     }
     
+    /**
+     * Evento invocado al seleccionar una parroquia.
+     * @param event el evento
+     */
     public void changeParroquia(ValueChangeEvent event){    
         Object bean = event.getComponent().getAttributes().get("bean");
         String base = (String)event.getComponent().getAttributes().get("tipo");

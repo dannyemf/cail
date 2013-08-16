@@ -52,6 +52,12 @@ public class ReporUtil {
     public static final String SUFIJO_PLANTILLA = ".jrxml";
     public static final String SUFIJO_PLANTILLA_PRINT = ".jasper";
     
+    /**
+     * Muestra el reporte
+     * @param parametros los parámetros
+     * @param listaDatos los datos
+     * @param nombrePlantilla la plantilla
+     */
     public static void mostrarReporte(Map parametros, List listaDatos, String nombrePlantilla){
         try {
             JasperReport jasperReport = getJasperReport(nombrePlantilla);
@@ -62,6 +68,11 @@ public class ReporUtil {
         }                
     }
     
+    /**
+     * Muestra el reporte
+     * @param listaDatos los datos
+     * @param nombrePlantilla la plantilla
+     */
     public static void mostrarReporte(List listaDatos, String nombrePlantilla){
         //parametros.put("SOLICITANTE", user.getNombres() + " " + user.getApellidos());
         //parametros.put("ESCUDO", ServicioApplication.realPath + PATH_IMAGEN + "logo.jpg");
@@ -70,6 +81,13 @@ public class ReporUtil {
         mostrarReporte(parametros, listaDatos, nombrePlantilla);                     
     }
     
+    /**
+     * Genera el reporte
+     * @param parametros
+     * @param datos
+     * @param nombrePlantilla
+     * @return la data
+     */
     public static byte[] getReportData(Map parametros,List datos, String nombrePlantilla){
         try {            
             parametros = parametros != null ? parametros : new HashMap();            
@@ -100,7 +118,12 @@ public class ReporUtil {
     }
     
     
-    
+    /**
+     * Obtiene el jasper report compilado
+     * @param nombrePlantilla la plantilla
+     * @return el reporte
+     * @throws Exception 
+     */
     private static JasperReport getJasperReport(String nombrePlantilla) throws Exception{        
         InputStream inputStream = null;        
         
@@ -117,6 +140,11 @@ public class ReporUtil {
         }
     }
     
+    /**
+     * Precompila un reporte
+     * @param nombrePlantilla
+     * @throws Exception 
+     */
     private static void preCompileTemplate(String nombrePlantilla) throws Exception{        
         try {                        
             String ing = ReporUtil.class.getResource(PATH_PLANTILLA + nombrePlantilla + SUFIJO_PLANTILLA).getPath();
@@ -133,7 +161,14 @@ public class ReporUtil {
         }
     }
     
-    
+    /**
+     * Genera un reporte jasper con su datos llenados
+     * @param nombrePlantilla
+     * @param parametros
+     * @param listaDatos
+     * @return
+     * @throws Exception 
+     */
     private static JasperPrint getJasperPrint(String nombrePlantilla,  Map parametros, List listaDatos) throws Exception{        
         InputStream inputStream = null;
         
@@ -156,6 +191,14 @@ public class ReporUtil {
         }
     }
     
+    /**
+     * Genera un reporte jasper con su datos llenados
+     * @param jasperReport
+     * @param parametros
+     * @param listaDatos
+     * @return
+     * @throws Exception 
+     */
     private static JasperPrint getJasperPrint(JasperReport jasperReport, Map parametros, List listaDatos) throws Exception{
         try {      
             JRDataSource dataSource = null;
@@ -174,7 +217,10 @@ public class ReporUtil {
         }
     }
     
-    
+    /**
+     * Muestra el reporte en una ventaja swing
+     * @param print 
+     */
     private static void showJasperPrint(JasperPrint print){
         try {
             JasperViewer jw = new JasperViewer(print, false);                        
@@ -184,12 +230,19 @@ public class ReporUtil {
         }
     }    
     
+    /**
+     * Agrega parámetros de prueba
+     * @param map 
+     */
     public static void initMap(Map map){
         map.put("PRM_INSTITUCION", "cmail");        
         map.put("PRM_VISTO", getImage("visto.png"));
         map.put("PRM_LOGO", getImage("logo-reporte.png"));
     }
     
+    /**
+     * Método de prueba
+     */
     public static void reporteFichaIngreso(){
         Map map = new HashMap();
         initMap(map);
@@ -207,6 +260,9 @@ public class ReporUtil {
         mostrarReporte(map, null, "fichaIngreso");                     
     }
 
+    /**
+     * Método de prueba
+     */
     public static void reporteFichaEgreso(){
         Map map = new HashMap();   
         initMap(map);
@@ -225,6 +281,9 @@ public class ReporUtil {
         mostrarReporte(map, null, "fichaEgreso");                           
     }
     
+    /**
+     * Método de prueba
+     */
     public static void reporteIngresoAdolescentes(){
         Map map = new HashMap();     
         initMap(map);
@@ -254,6 +313,9 @@ public class ReporUtil {
         mostrarReporte(map, n, "ingresoAdolescentes");                           
     }
     
+    /**
+     * Método de prueba
+     */
     public static void reporteInformePsicologico(){
         Map map = new HashMap();   
         initMap(map);                
@@ -276,10 +338,16 @@ public class ReporUtil {
         mostrarReporte(map, null, "informePsicologico");                           
     }
     
+    /**
+     * Método de prueba
+     */
     public static String getImage(String img){
         return System.getProperty("user.dir") + FS + "web" + FS+"resources"+FS+"icono"+FS+"reporte"+FS+img;
     }
     
+    /**
+     * Método de prueba
+     */
     public static void main(String arg[]){
         //reporteInformePsicologico();
         try {
@@ -290,6 +358,9 @@ public class ReporUtil {
         System.out.println(String.format("%s es %s", "x","y"));
     }
     
+    /**
+     * Método de prueba
+     */
     public static BufferedImage getBufferedImage(byte[] data, int w, int h){
         BufferedImage bf = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D)bf.getGraphics();
