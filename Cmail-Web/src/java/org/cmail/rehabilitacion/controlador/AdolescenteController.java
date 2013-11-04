@@ -4,6 +4,9 @@
  */
 package org.cmail.rehabilitacion.controlador;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,7 +20,9 @@ import org.cmail.rehabilitacion.modelo.PersonaRol;
 import org.cmail.rehabilitacion.modelo.core.CedulaUtil;
 import org.cmail.rehabilitacion.modelo.core.Constantes;
 import org.cmail.rehabilitacion.modelo.core.StringUtil;
+import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 import org.cmail.rehabilitacion.servicio.FichaIngresoServicio;
+import org.cmail.rehabilitacion.servicio.ParametroServicio;
 import org.cmail.rehabilitacion.servicio.PersonaServicio;
 import org.cmail.rehabilitacion.vista.model.CmailListDataModel;
 import org.cmail.rehabilitacion.vista.model.TipoNotificacion;
@@ -46,8 +51,8 @@ public class AdolescenteController extends Controller {
     /**Lista de personas encontradas en la búsqueda*/
     private CmailListDataModel<Persona> modelList = new CmailListDataModel<Persona>();    
     /**Adolescente en edicón*/
-    private Persona adolescente;    
-
+    private Persona adolescente;
+        
     /**Constructor por defecto*/
     public AdolescenteController() {
     }   
@@ -277,7 +282,7 @@ public class AdolescenteController extends Controller {
      */
     public WucBuscarPersonaController getWucBuscarPersona() {
         return FacesUtils.getBean(Constantes.MB_WUC_BUSCAR_PERSONA, WucBuscarPersonaController.class);
-    }               
+    }              
            
     /**
      * @return the nombres
@@ -358,5 +363,5 @@ public class AdolescenteController extends Controller {
     }
     
     
-   
+       
 }

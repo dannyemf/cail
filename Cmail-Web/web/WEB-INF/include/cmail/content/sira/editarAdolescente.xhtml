@@ -35,13 +35,13 @@
 
                     <cail:outputLabel for="txtNombres" value="#{etiqueta.nombres}" info="(*)"></cail:outputLabel>
                     <h:panelGrid columns="2">
-                        <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{adolescenteController.adolescente.nombres}" />
+                        <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" partialSubmit="true" required="true"  value="#{adolescenteController.adolescente.nombres}" />
                         <ice:message for="txtNombres"></ice:message>                
                     </h:panelGrid>
 
                     <cail:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}" info="(*)"></cail:outputLabel>                
                     <h:panelGrid columns="2">
-                        <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{adolescenteController.adolescente.apellidos}"></ice:inputText>
+                        <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" partialSubmit="true" required="true" value="#{adolescenteController.adolescente.apellidos}"></ice:inputText>
                         <ice:message for="txtApellidos"></ice:message>                
                     </h:panelGrid>
                     
@@ -61,6 +61,8 @@
                     <h:panelGrid columns="2">
                         <ace:dateTimeEntry  
                             id="dtpFechaNac" 
+                            validator="fechaNacimientoValidator"
+                            converter="dateEntryConverter"
                             label="#{etiqueta.fechaNacimiento}"                                                         
                             requiredMessage="#{mensaje.seleccioneFecha}"                            
                             value="#{adolescenteController.adolescente.fechaNacimiento}" 
@@ -71,8 +73,10 @@
                             showOn="both"
                             popupIconOnly="true"
                             locale="es"
-                            pattern="dd/MM/yyyy">
-                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{mainController.timeZone}"></f:convertDateTime>
+                            yearRange="#{mainController.yearRange}"
+                            maxdate="#{mainController.maxFechaNacimiento}"
+                            pattern="#{mainController.datePattern}"
+                            timeZone="#{mainController.timeZone}">                            
                         </ace:dateTimeEntry>
                         <ice:message for="dtpFechaNac"></ice:message>
                     </h:panelGrid>

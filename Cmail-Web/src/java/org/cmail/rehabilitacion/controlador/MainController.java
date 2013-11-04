@@ -5,6 +5,9 @@
 package org.cmail.rehabilitacion.controlador;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -42,10 +45,14 @@ public class MainController  extends Controller{
     private String prmSlogan;
     /** Siglas de la institución cargada desde un parámetro */    
     private String prmSiglas;
+    
+    /** Años para el rango máximo de fecha de nacimiento*/
+    private int añosAtras;
 
     /**Constructor por defecto*/
     public MainController() {
         String tema = FacesUtils.getStyleBean().getAceTheme();        
+        añosAtras = new ParametroServicio().obtenerParametro(Constantes.PRM_MIN_ANIOS_FECHA_NAC, TipoParametro.Entero).toInt();
     }
     
     /**
@@ -160,6 +167,51 @@ public class MainController  extends Controller{
      */
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+    
+    /**
+     * Obtiene la máxima fecha de nacimiento que se puede seleccionar (para el dateEntry)
+     * @return maxdate
+     */
+    public Date getMaxFechaNacimiento(){
+        Calendar c = new GregorianCalendar();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, getAñosAtras() * -1);
+                
+        Date max = c.getTime();
+        
+        return max;
+    }
+    
+    /**
+     * @return the añosAtras
+     */
+    public Integer getAñosAtras() {        
+        return añosAtras;
+    }
+
+    /**
+     * @param añosAtras the añosAtras to set
+     */
+    public void setAñosAtras(Integer añosAtras) {        
+        this.añosAtras = añosAtras;
+    }
+    
+    /**
+     * Rango de años para el control de fechas
+     * @return c-50:c+50 por defecto
+     */
+    public String getYearRange(){
+        //current date - 50 años : current date + 50 años
+        return "c-50:c+50";
+    }
+    
+    /**
+     * Formato de fecha corta
+     * @return formato
+     */
+    public String getDatePattern(){
+        return "dd/MM/yyyy";
     }
 
     

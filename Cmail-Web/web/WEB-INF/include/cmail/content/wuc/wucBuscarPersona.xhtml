@@ -158,7 +158,9 @@
                                         singleSubmit="true"
                                         navigator="true"
                                         disableHoverStyling="true"
-                                        pattern="dd/MM/yyyy"
+                                        pattern="#{mainController.datePattern}"
+                                        yearRange="#{mainController.yearRange}"
+                                        maxdate="#{mainController.maxFechaNacimiento}"
                                         value="#{wucBuscarPersona.personaEdicion.fechaNacimiento}"
                                         requiredMessage="#{mensaje.seleccioneFecha}"
                                         timeZone="#{mainController.timeZone}">
@@ -171,14 +173,14 @@
                             <td><ice:outputLabel for="txtNombres" value="#{etiqueta.nombres}"></ice:outputLabel></td>
                             <td>                            
                                 <ice:panelGrid>                        
-                                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true"  value="#{wucBuscarPersona.personaEdicion.nombres}" />
+                                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.nombres}" />
                                     <ice:message for="txtNombres"></ice:message>
                                 </ice:panelGrid>
                             </td>
                             <td><ice:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}"></ice:outputLabel></td>
                             <td>
                                 <ice:panelGrid>
-                                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" value="#{wucBuscarPersona.personaEdicion.apellidos}"></ice:inputText>
+                                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.apellidos}"></ice:inputText>
                                     <ice:message for="txtApellidos"></ice:message>
                                 </ice:panelGrid>
                             </td>

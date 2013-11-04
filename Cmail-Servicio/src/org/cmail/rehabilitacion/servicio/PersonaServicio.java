@@ -4,6 +4,9 @@
  */
 package org.cmail.rehabilitacion.servicio;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.cmail.rehabilitacion.dao.HqlUtil;
 import org.cmail.rehabilitacion.dao.hql.K;
@@ -11,6 +14,8 @@ import org.cmail.rehabilitacion.dao.hql.KProperty;
 import org.cmail.rehabilitacion.dao.hql.KWhere;
 import org.cmail.rehabilitacion.modelo.Persona;
 import org.cmail.rehabilitacion.modelo.PersonaRol;
+import org.cmail.rehabilitacion.modelo.core.Constantes;
+import org.cmail.rehabilitacion.modelo.seguridad.TipoParametro;
 
 /**
  * Clase de lógica de negocio para manejar personas, empleados y adolescentes.
@@ -33,9 +38,28 @@ public class PersonaServicio extends GenericServicio<Persona> {
      * @return la persona
      */
     public Persona crearPersona(){
-        Persona p = new Persona();        
-        p.addRol(PersonaRol.GENERAL);        
+        Persona p = new Persona();
+        p.addRol(PersonaRol.GENERAL);  
+        p.setFechaNacimiento(getMaxFechaNacimiento());
+        
         return p;
+    }
+    
+    /**
+     * Obtiene la máxima fecha de nacimiento que se puede setear a una persona
+     * @return fecha
+     */
+    public Date getMaxFechaNacimiento(){
+        
+        int añosAtras = new ParametroServicio().obtenerParametro(Constantes.PRM_MIN_ANIOS_FECHA_NAC, TipoParametro.Entero).toInt();
+        
+        Calendar c = new GregorianCalendar();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, añosAtras * -1);
+                
+        Date max = c.getTime();
+        
+        return max;
     }
     
     /**
