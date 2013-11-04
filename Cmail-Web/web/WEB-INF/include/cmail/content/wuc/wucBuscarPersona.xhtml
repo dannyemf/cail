@@ -55,7 +55,7 @@
                     <ace:panel>
                         <ice:panelGrid columns="4">
                             <ice:outputText value="#{etiqueta.texto}"></ice:outputText>
-                            <ice:inputText value="#{wucBuscarPersona.textoPopupBuscar}" style="width: 250px"></ice:inputText>
+                            <ice:inputText id="txtBuscar" value="#{wucBuscarPersona.textoPopupBuscar}" style="width: 250px"></ice:inputText>
                             <ice:commandLink value="#{accion.buscar}" styleClass="ui-icon-search cail-button" actionListener="#{wucBuscarPersona.accionBuscar}"></ice:commandLink>
                             <ice:commandLink value="#{accion.nueva}" styleClass="ui-icon-document cail-button" actionListener="#{wucBuscarPersona.accionNueva}"></ice:commandLink>
                         </ice:panelGrid>

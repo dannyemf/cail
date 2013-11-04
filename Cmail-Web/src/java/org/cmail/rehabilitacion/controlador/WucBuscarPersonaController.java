@@ -308,12 +308,19 @@ public class WucBuscarPersonaController extends Controller{
     public void mostrarBuscador(ActionListenerWucBuscarPersona listener, PersonaRol rol, PersonaRol notRol, Persona... notIn){        
         this.listenerSeleccionar = listener;        
         selectedIndex = 0;        
-        renderPopupBuscar = true;
+        renderPopupBuscar = true;        
         
         //Limpia la lista cuando cambia de rol
-        if(this.rol != rol || this.notRol != notRol){
-            this.listaPersonas = new CmailListDataModel<Persona>();
-        }
+//        if(this.rol != rol || this.notRol != notRol){
+//            this.listaPersonas = new CmailListDataModel<Persona>();
+//        }
+        
+        //Limpia siempre la lista y el texto
+        this.listaPersonas = new CmailListDataModel<Persona>();
+        this.textoPopupBuscar = "";
+        HtmlInputText txtCedula = (HtmlInputText)FacesContext.getCurrentInstance().getViewRoot().findComponent("frmBuscar:txtBuscar");
+        txtCedula.setSubmittedValue("");
+        
         this.rol = rol;
         this.notRol = notRol;
                 
