@@ -68,10 +68,7 @@
             </ace:panel>        
 
             <div style="overflow: auto">
-            <ice:dataTable id="dataTablePreguntas" rows="10" value="#{esquemaController.preguntas}" var="pregunta" scrollHeight="250px"
-                            binding="#{esquemaController.table}"
-                            >
-
+            <ice:dataTable id="dataTablePreguntas" rows="10" value="#{esquemaController.preguntas}" var="pregunta" scrollHeight="250px">
                 <ice:column>
                     <ice:commandLink id="lnkRem" title="#{accion.eliminar}" immediate="true" actionListener="#{esquemaController.eventoRemoverPreguntaSelect(pregunta)}">
                         <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
