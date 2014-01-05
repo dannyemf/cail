@@ -141,11 +141,13 @@ function _GetIcon(button){
 
 function InitEvents(){
     try{
-        $j('.numeric').numeric('\b');
-        $j('.integer').numeric('\b');
-        $j('.decimal').numeric('.');
-        $j('.phone').numeric('-');                
-    }catch(e){}
+        $j('.numeric').numeric();
+        $j('.integer').numeric();
+        $j('.decimal').numeric({allow:'.'});
+        $j('.phone').numeric({allow:'-'});
+    }catch(e){
+        alert(e);
+    }
 };
 
 function InitPath(){
