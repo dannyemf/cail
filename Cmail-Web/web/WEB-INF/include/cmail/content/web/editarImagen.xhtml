@@ -25,7 +25,7 @@
             <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
             <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" 
                            style="width: 300px"
-                           value="#{galeriaController.imagenEdicion.nombre}" required="true" disabled="true">
+                           value="#{galeriaController.imagenEdicion.nombre}" required="true" disabled="true" styleClass="desc">
                 <f:validateLength minimum="1"></f:validateLength>
             </ice:inputText>                
             <ice:message for="txtNombre" showDetail="true"  ></ice:message>      
@@ -45,7 +45,7 @@
             <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>
             <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  
                                style="width: 300px"
-                               value="#{galeriaController.imagenEdicion.descripcion}" required="true" maxlength="80">
+                               value="#{galeriaController.imagenEdicion.descripcion}" required="true" maxlength="80" styleClass="desc">
                 <f:validateLength minimum="3"></f:validateLength>
             </ice:inputTextarea>
             <ice:message for="txtDescripcion" showDetail="true"></ice:message>

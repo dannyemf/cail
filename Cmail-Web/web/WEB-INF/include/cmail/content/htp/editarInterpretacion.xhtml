@@ -13,13 +13,13 @@
         <ace:panel header="#{etiqueta.datosGenerales}">
             <ice:panelGrid columns="3">
                 <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
-                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" value="#{interpreController.interpretacionEdicion.nombre}" required="true" maxlength="45">
+                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" value="#{interpreController.interpretacionEdicion.nombre}" required="true" maxlength="45" styleClass="name">
                     <f:validateLength minimum="3"></f:validateLength>
                 </ice:inputText>                
                 <ice:message for="txtNombre" showDetail="true"  ></ice:message>
 
                 <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>          
-                <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  value="#{interpreController.interpretacionEdicion.descripcion}" required="true" maxlength="500" cols="80">
+                <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  value="#{interpreController.interpretacionEdicion.descripcion}" required="true" maxlength="500" cols="80" styleClass="desc">
                     <f:validateLength minimum="5"></f:validateLength>
                 </ice:inputTextarea>                
                 <ice:message for="txtDescripcion" showDetail="true"></ice:message>

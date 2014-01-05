@@ -12,19 +12,19 @@
                 
                 <ice:outputLabel for="txtCodigo" value="#{etiqueta.codigoRegion}"></ice:outputLabel>
                 <ice:panelGrid>
-                    <ice:inputText id="txtCodigo" label="#{etiqueta.codigo}"  value="#{divisionController.provinciaEdicion.codigoRegion}" required="true" > </ice:inputText>
+                    <ice:inputText id="txtCodigo" label="#{etiqueta.codigo}"  value="#{divisionController.provinciaEdicion.codigoRegion}" required="true" styleClass="numeric"> </ice:inputText>
                     <ice:message for="txtCodigo" showDetail="true"  ></ice:message>
                 </ice:panelGrid>
                 
                 <ice:outputLabel for="txtNombre" value="#{etiqueta.nombre}"></ice:outputLabel>
                 <ice:panelGrid>
-                    <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{divisionController.provinciaEdicion.nombre}" required="true"> </ice:inputText>
+                    <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{divisionController.provinciaEdicion.nombre}" required="true" styleClass="name"> </ice:inputText>
                     <ice:message for="txtNombre" showDetail="true"  ></ice:message>
                 </ice:panelGrid>
                 
                 <ice:outputLabel for="txtCapital" value="#{etiqueta.capital}"></ice:outputLabel>
                 <ice:panelGrid>
-                    <ice:inputText id="txtCapital" label="#{etiqueta.capital}"  value="#{divisionController.provinciaEdicion.capital}" > </ice:inputText>
+                    <ice:inputText id="txtCapital" label="#{etiqueta.capital}"  value="#{divisionController.provinciaEdicion.capital}" styleClass="name"> </ice:inputText>
                     <ice:message for="txtCapital" showDetail="true"  ></ice:message>
                 </ice:panelGrid>
                 

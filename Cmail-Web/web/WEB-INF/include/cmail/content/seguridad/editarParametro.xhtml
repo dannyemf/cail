@@ -16,7 +16,7 @@
             <ice:inputText id="txtNombre" label="#{etiqueta.nombre}" 
                            disabled="#{parametroController.parametroEdicion.id > 0}"
                            style="width: 300px"
-                           value="#{parametroController.parametroEdicion.nombre}" required="true" maxlength="45" validator="#{parametroController.validarNombre}">
+                           value="#{parametroController.parametroEdicion.nombre}" required="true" maxlength="45" validator="#{parametroController.validarNombre}" styleClass="upper-code">
                 <f:validateLength minimum="5"></f:validateLength>
             </ice:inputText>                
             <ice:message for="txtNombre" showDetail="true"  ></ice:message>
@@ -52,7 +52,7 @@
             <ice:inputTextarea id="txtDescripcion" label="#{etiqueta.descripcion}"  
                                style="width: 300px"
                                value="#{parametroController.parametroEdicion.descripcion}" 
-                               required="true" maxlength="255">
+                               required="true" maxlength="255" styleClass="desc">
                 <f:validateLength minimum="5"></f:validateLength>
             </ice:inputTextarea>
             <ice:message for="txtDescripcion" showDetail="true"></ice:message>

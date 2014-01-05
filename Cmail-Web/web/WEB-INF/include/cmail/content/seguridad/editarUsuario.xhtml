@@ -27,19 +27,19 @@
             <ice:message id="msgCedula" for="txtCedula"></ice:message>
 
             <ice:outputLabel value="#{etiqueta.nombres}"></ice:outputLabel>
-            <ice:inputText id="txtNombres"  label="#{etiqueta.nombres}" value="#{usuarioController.usuarioEdicion.nombres}" required="true" > </ice:inputText>
+            <ice:inputText id="txtNombres"  label="#{etiqueta.nombres}" value="#{usuarioController.usuarioEdicion.nombres}" required="true" styleClass="name"> </ice:inputText>
             <ice:message id="msgNombres" for="txtNombres"></ice:message>
 
             <ice:outputLabel value="#{etiqueta.apellidos}"></ice:outputLabel>
-            <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" value="#{usuarioController.usuarioEdicion.apellidos}" required="true" > </ice:inputText>
+            <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" value="#{usuarioController.usuarioEdicion.apellidos}" required="true" styleClass="name"> </ice:inputText>
             <ice:message id="msgApellidos" for="txtApellidos"   ></ice:message>
 
             <ice:outputLabel value="#{etiqueta.localidad}"></ice:outputLabel>
-            <ice:inputText  id="txtLocalidad" label="#{etiqueta.localidad}" value="#{usuarioController.usuarioEdicion.localidad}" required="true" > </ice:inputText>
+            <ice:inputText  id="txtLocalidad" label="#{etiqueta.localidad}" value="#{usuarioController.usuarioEdicion.localidad}" required="true" styleClass="name"> </ice:inputText>
             <ice:message id="msgLocalidad" for="txtLocalidad"   ></ice:message>
 
             <ice:outputLabel value="#{etiqueta.login}"></ice:outputLabel>
-            <ice:inputText id="txtLogin" label="#{etiqueta.login}" value="#{usuarioController.usuarioEdicion.login}" validator="#{usuarioController.validarLogin}" required="true" >
+            <ice:inputText id="txtLogin" label="#{etiqueta.login}" value="#{usuarioController.usuarioEdicion.login}" validator="#{usuarioController.validarLogin}" required="true" styleClass="login">
                 <f:validateLength minimum="5"></f:validateLength>
             </ice:inputText>
             <ice:message id="msgLogin" for="txtLogin"></ice:message>

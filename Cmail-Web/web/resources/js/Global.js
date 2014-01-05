@@ -141,10 +141,17 @@ function _GetIcon(button){
 
 function InitEvents(){
     try{
-        $j('.numeric').numeric();
-        $j('.integer').numeric();
-        $j('.decimal').numeric({allow:'.'});
-        $j('.phone').numeric({allow:'-'});
+        $j('.numeric').numeric(); //Sólo numeros
+        $j('.integer').numeric(); //Sólo enteros
+        $j('.decimal').numeric({allow:'.'}); //Solo decimales
+        $j('.phone').numeric({allow:'-'}); //Números teléfonos
+        
+        $j('.name').alpha({allow:' '}); //Nombres propios
+        $j('.desc').alphanumeric({allow:' (),.;-_'}); //Descripciones, Observaciones, etc.
+        $j('.login').alpha({nocaps:true}); //Nombre de usuario
+        $j('.lower-code').alpha({nocaps:true, allow:'_'}); //Código en minúsculas: code_code
+        $j('.lower-code-punto').alpha({nocaps:true, allow:'.'}); //Códigos en minúscula con punto: code.code
+        $j('.upper-code').alpha({allcaps:true, allow:'_'}); //Código en mayúscula: CODE_CODE
     }catch(e){
         alert(e);
     }

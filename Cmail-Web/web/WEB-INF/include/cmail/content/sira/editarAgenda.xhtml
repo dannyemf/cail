@@ -56,25 +56,25 @@
                 
                 <ice:outputLabel value="Objetivo"></ice:outputLabel>
                 <h:panelGrid>
-                    <ice:inputTextarea id="txtObjetivo" style="width:250px;" rows="1" label="#{etiqueta.objetivo}" required="true" value="#{agendaController.agendaEdicion.objetivo}" > </ice:inputTextarea>
+                    <ice:inputTextarea id="txtObjetivo" style="width:250px;" rows="1" label="#{etiqueta.objetivo}" required="true" value="#{agendaController.agendaEdicion.objetivo}" styleClass="desc"> </ice:inputTextarea>
                     <ice:message for="txtObjetivo" showDetail="true"  ></ice:message>
                 </h:panelGrid>
                 
                 <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>
                 <h:panelGrid>
-                    <ice:inputTextarea id="txtDescripcion" style="width:250px;" rows="1" label="#{etiqueta.descripcion}" required="true" value="#{agendaController.agendaEdicion.descripcion}" > </ice:inputTextarea>
+                    <ice:inputTextarea id="txtDescripcion" style="width:250px;" rows="1" label="#{etiqueta.descripcion}" required="true" value="#{agendaController.agendaEdicion.descripcion}" styleClass="desc"> </ice:inputTextarea>
                     <ice:message for="txtDescripcion" showDetail="true"  ></ice:message>
                 </h:panelGrid>
                 
                 <ice:outputLabel value="#{etiqueta.participantes}"></ice:outputLabel>
                 <h:panelGrid>
-                    <ice:inputTextarea id="txtParticipantes" style="width:250px;" rows="1" label="#{etiqueta.participantes}" required="true" value="#{agendaController.agendaEdicion.participantes}" > </ice:inputTextarea>
+                    <ice:inputTextarea id="txtParticipantes" style="width:250px;" rows="1" label="#{etiqueta.participantes}" required="true" value="#{agendaController.agendaEdicion.participantes}" styleClass="desc"> </ice:inputTextarea>
                     <ice:message for="txtParticipantes" showDetail="true"  ></ice:message>                    
                 </h:panelGrid>
                 
                 <ice:outputLabel value="#{etiqueta.observaciones}"></ice:outputLabel>
                 <h:panelGrid>
-                    <ice:inputTextarea id="txtObservaciones"  label="#{etiqueta.observaciones}" style="width:250px;" rows="1" required="true" value="#{agendaController.agendaEdicion.observaciones}" > </ice:inputTextarea>
+                    <ice:inputTextarea id="txtObservaciones"  label="#{etiqueta.observaciones}" style="width:250px;" rows="1" required="true" value="#{agendaController.agendaEdicion.observaciones}" styleClass="desc"> </ice:inputTextarea>
                     <ice:message for="txtObservaciones" showDetail="true"  ></ice:message>
                 </h:panelGrid>
             </ice:panelGrid>
@@ -146,14 +146,14 @@
                     </f:facet>
                 </ice:column>
                 <ice:column>
-                    <ice:inputText value="#{actividad.descripcion}" id="txtDescrip" required="true" label="#{etiqueta.descripcion}" requiredMessage="(*)"  partialSubmit="true"/>
+                    <ice:inputText value="#{actividad.descripcion}" id="txtDescrip" required="true" label="#{etiqueta.descripcion}" requiredMessage="(*)"  partialSubmit="true" styleClass="desc"/>
                     <ice:message for="txtDescrip" ></ice:message>
                     <f:facet name="header">
                         <ice:outputText value="#{etiqueta.descripcion}"/>
                     </f:facet>
                 </ice:column >
                 <ice:column >
-                    <ice:inputText id="txtLugar" label="#{etiqueta.lugar}" requiredMessage="(*)" value="#{actividad.lugar}" partialSubmit="true" required="true"/>
+                    <ice:inputText id="txtLugar" label="#{etiqueta.lugar}" requiredMessage="(*)" value="#{actividad.lugar}" partialSubmit="true" required="true" styleClass="desc"/>
                     <ice:message for="txtLugar" ></ice:message>
                     <f:facet name="header">
                         <ice:outputText id="outputText6" value="#{etiqueta.lugar}"/>

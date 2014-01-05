@@ -21,6 +21,7 @@
                            maxlength="45"
                            partialSubmit="true"
                            style="width: 250px"
+                           styleClass="lower-code"
                            >
                 <f:validateLength minimum="5" maximum="45"></f:validateLength>
             </ice:inputText>                
@@ -29,7 +30,7 @@
             <ice:outputLabel value="#{etiqueta.descripcion}"></ice:outputLabel>          
             <ice:inputText id="txtDescripcion" label="#{etiqueta.descripcion}"  
                            style="width: 250px"
-                           value="#{perfilController.perfilEdicion.descripcion}" required="true" maxlength="80">
+                           value="#{perfilController.perfilEdicion.descripcion}" required="true" maxlength="80" styleClass="desc">
                 <f:validateLength minimum="5"></f:validateLength>
             </ice:inputText>
             <ice:message for="txtDescripcion" showDetail="true"></ice:message>

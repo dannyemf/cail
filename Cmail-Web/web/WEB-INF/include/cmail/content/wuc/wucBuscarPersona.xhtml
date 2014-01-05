@@ -173,14 +173,14 @@
                             <td><ice:outputLabel for="txtNombres" value="#{etiqueta.nombres}"></ice:outputLabel></td>
                             <td>                            
                                 <ice:panelGrid>                        
-                                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.nombres}" />
+                                    <ice:inputText id="txtNombres" label="#{etiqueta.nombres}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.nombres}" styleClass="name"/>
                                     <ice:message for="txtNombres"></ice:message>
                                 </ice:panelGrid>
                             </td>
                             <td><ice:outputLabel for="txtApellidos" value="#{etiqueta.apellidos}"></ice:outputLabel></td>
                             <td>
                                 <ice:panelGrid>
-                                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.apellidos}"></ice:inputText>
+                                    <ice:inputText  id="txtApellidos" label="#{etiqueta.apellidos}" required="true" partialSubmit="true" value="#{wucBuscarPersona.personaEdicion.apellidos}" styleClass="name"></ice:inputText>
                                     <ice:message for="txtApellidos"></ice:message>
                                 </ice:panelGrid>
                             </td>

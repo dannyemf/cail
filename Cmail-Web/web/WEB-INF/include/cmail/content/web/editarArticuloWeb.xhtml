@@ -21,7 +21,7 @@
             <ice:panelGrid id="pnlGridDatos" columns="3">
 
                 <ice:outputLabel value="#{etiqueta.nombre}"></ice:outputLabel>
-                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{articuloController.articuloEdicion.titulo}" required="true" maxlength="255">
+                <ice:inputText id="txtNombre" label="#{etiqueta.nombre}"  value="#{articuloController.articuloEdicion.titulo}" required="true" maxlength="255" styleClass="desc">
                     <f:validateLength minimum="5"></f:validateLength>
                 </ice:inputText>
                 <ice:message for="txtNombre"></ice:message>
