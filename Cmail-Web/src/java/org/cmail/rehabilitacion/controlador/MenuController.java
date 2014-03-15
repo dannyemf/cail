@@ -113,7 +113,19 @@ public class MenuController  extends Controller{
         mis.setValue("Salir");
         mis.setIcon("ui-icon ui-icon-close");
         si.getChildren().add(mis);
-        mis.setActionExpression(createMethodExpressionForAction("#{menuController.actionSalir}"));
+        mis.setActionExpression(createMethodExpressionForAction("#{menuController.actionSalir}"));                
+        
+        //================================================
+        Submenu sa = new Submenu();
+        sa.setId("sumenu-ayuda");
+        sa.setLabel("Ayuda");
+        menuesAplicacion.addSubmenu(sa);
+        
+        MenuItem mimu = new MenuItem();
+        mimu.setId("menuitem-manual-usuariario");
+        mimu.setValue("Manual de Usuario");
+        mimu.setIcon("ui-icon ui-icon-note");
+        sa.getChildren().add(mimu);        
         
         List<VwOpcion> opciones = new OpcionServicio().obtenerOpciones(usuario, null);        
         
