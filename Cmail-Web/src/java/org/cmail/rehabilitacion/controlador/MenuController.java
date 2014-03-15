@@ -113,19 +113,7 @@ public class MenuController  extends Controller{
         mis.setValue("Salir");
         mis.setIcon("ui-icon ui-icon-close");
         si.getChildren().add(mis);
-        mis.setActionExpression(createMethodExpressionForAction("#{menuController.actionSalir}"));                
-        
-        //================================================
-        Submenu sa = new Submenu();
-        sa.setId("sumenu-ayuda");
-        sa.setLabel("Ayuda");
-        menuesAplicacion.addSubmenu(sa);
-        
-        MenuItem mimu = new MenuItem();
-        mimu.setId("menuitem-manual-usuariario");
-        mimu.setValue("Manual de Usuario");
-        mimu.setIcon("ui-icon ui-icon-note");
-        sa.getChildren().add(mimu);        
+        mis.setActionExpression(createMethodExpressionForAction("#{menuController.actionSalir}"));                                
         
         List<VwOpcion> opciones = new OpcionServicio().obtenerOpciones(usuario, null);        
         
@@ -144,6 +132,21 @@ public class MenuController  extends Controller{
             List<VwOpcion> subopciones = new OpcionServicio().obtenerOpciones(usuario, opp);
             crearSubmenu(usuario, opp, mi, subopciones);            
         }
+        
+        //=======================MANU AYUDA=========================
+        Submenu sa = new Submenu();
+        sa.setId("sumenu-ayuda");
+        sa.setLabel("Ayuda");
+        menuesAplicacion.addSubmenu(sa);
+        
+        MenuItem mimu = new MenuItem();
+        mimu.setId("menuitem-manual-usuariario");
+        mimu.setValue("Manual de Usuario");
+        mimu.setIcon("ui-icon ui-icon-note");
+        mimu.setUrl("/documentos/manual/manual_usuario.pdf");
+        mimu.setTarget("_blank");        
+        
+        sa.getChildren().add(mimu);        
     }
     
     /**
