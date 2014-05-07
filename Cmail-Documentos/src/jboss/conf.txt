@@ -1,0 +1,9 @@
+1. Nombre del contexto
+==========================
+   - Se configura en el archivo jboss-web.xml en el tag context-root (Ejm: /, /Cail-Web, /MyApp, etc.)
+   - También en el archivo context.xml en la propiedad path (Ejm: /, /Cail-Web, /MyApp, etc.)
+
+2. Habilitar nuestra aplicación para que se ejecute en la raiz (/ o ROOT)
+==========================
+   En el archivo standalaone.xml colocar la propiedad
+   enable-welcome-root="false"
