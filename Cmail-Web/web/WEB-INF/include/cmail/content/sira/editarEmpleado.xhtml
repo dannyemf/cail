@@ -8,7 +8,7 @@
      xmlns:cail="http://java.sun.com/jsf/composite/cailcomp"
      >    
 
-    <input type="hidden" id="subpath" value='#{empleadoController.empleado.id > 0 ? accion.editar : accion.nuevo}'/>
+    <input type="hidden" id="subpath" name="subpath" value='#{empleadoController.empleado.id > 0 ? accion.editar : accion.nuevo}'/>
 
     <ice:form id="frmEditAdolescente">
 
