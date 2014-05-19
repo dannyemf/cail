@@ -60,8 +60,18 @@ function InitButtons(){
 };
 
 function InitPanelConfirmacion(){
+    
+    //JBoss 7.1.1 --> Pone nombre a cualquier hidden q no lo tenga para que no de error al procesar los parámetros
+    $j('input[type="hidden"]').each(function(){
+        var id = $j(this).attr('id');
+        var name = $j(this).attr('name');        
+        if(name == null || name == ''){
+            $j(this).attr('name',id);
+        }
+    });
+    
     //Reemplaza los input por button para poder aplicar los iconos
-    $j('.icePnlCnfBtns').each(function(){                     
+    $j('.icePnlCnfBtns').each(function(){
         var html = $j(this).html();
         html = html.replace('<input ', '<button ').replace('<input ', '<button ').replace('> ', '></button>').replace('> ', '></button>');
         $j(this).html(html);        
