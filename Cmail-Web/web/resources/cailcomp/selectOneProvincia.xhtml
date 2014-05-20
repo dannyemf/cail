@@ -20,7 +20,7 @@
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
-    <cc:implementation>
+    <cc:implementation xmlns:cail="http://java.sun.com/jsf/composite/cailcomp">
         <ice:panelGrid columns="3" styleClass="ui-state-#{cc.attrs.disabled ? 'disabled':'default'} ui-corner-all">
             <cail:outputLabel value="#{etiqueta.provincia}" info="#{cc.attrs.required ? '(*)':''}"></cail:outputLabel>
             <cail:outputLabel value="#{etiqueta.canton}" info="#{cc.attrs.required ? '(*)':''}"></cail:outputLabel>            
