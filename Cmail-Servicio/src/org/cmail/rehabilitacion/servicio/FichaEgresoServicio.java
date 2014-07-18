@@ -39,6 +39,11 @@ public class FichaEgresoServicio extends GenericServicio<FichaEgreso> {
         boolean b = false;
         try {
             dao.beginTransaction();
+            dao.merge(egreso.getAdolescente());
+            dao.merge(egreso.getAutorizaEgreso());
+            dao.merge(egreso.getCompaneroEgreso());
+            dao.merge(egreso.getResponsableEgreso());
+            dao.merge(egreso.getFichaIngreso());
                         
             dao.saveOnTx(egreso);
             
