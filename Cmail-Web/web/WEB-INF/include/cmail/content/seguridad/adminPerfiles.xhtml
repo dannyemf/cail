@@ -61,23 +61,11 @@
                 </ice:columnGroup>
             </f:facet>
 
-            <ice:column id="column1">                        
-                
-                <ice:panelConfirmation 
-                    title="#{mensaje.eliminar_perfil_title}" 
-                    acceptLabel="#{accion.eliminar}" autoCentre="true" 
-                    cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar"
-                    styleClass="icePnlCnfEliminar"
-                    message="#{mensaje.eliminar_perfil}"  rendered="true"/>
-                
+            <ice:column id="column1">
                 <ice:panelGrid columns="2">
                     <ice:commandLink actionListener="#{perfilController.eventoEditar}" id="btnEditar" disabled="#{permisoController.checkPermiso('perfil.editar')}" title="#{accion.editar}">
                         <ice:graphicImage value="/resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
-                    </ice:commandLink>                            
-
-                    <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{perfilController.eventoEliminar}" id="btnEliminar" disabled="#{permisoController.checkPermiso('perfil.eliminar')}" title="#{accion.eliminar}">
-                        <ice:graphicImage value="/resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
-                    </ice:commandLink>
+                    </ice:commandLink>                    
                 </ice:panelGrid>
             </ice:column>
 

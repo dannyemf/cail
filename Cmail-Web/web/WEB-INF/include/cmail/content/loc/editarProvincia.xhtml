@@ -49,18 +49,12 @@
             
             <ice:dataTable var="c" value="#{divisionController.modelCantones}">
                 
-                <ice:column>
-                    
-                    <ice:panelConfirmation acceptLabel="#{accion.eliminar}" autoCentre="true" cancelLabel="#{accion.cancelar}" draggable="false" id="pc_eliminar" styleClass="icePnlCnfEliminar" message="#{mensaje.eliminar_canton}" title="#{mensaje.eliminar_canton_title}"  rendered="true"/>
+                <ice:column>                                        
                     
                     <ice:panelLayout layout="flow">
                         <ice:commandLink actionListener="#{divisionController.eventoEditarCanton}" id="btnEditar" disabled="#{permisoController.checkPermiso('division_politica.editar')}" title="#{accion.editar}">
                             <ice:graphicImage value="./resources/icono/row/row_editar.png" alt="#{accion.editar}"></ice:graphicImage>
                         </ice:commandLink>                            
-
-                        <ice:commandLink panelConfirmation="pc_eliminar" actionListener="#{divisionController.eventoEliminarCanton}" id="btnEliminar" disabled="#{permisoController.checkPermiso('division_politica.eliminar')}" title="#{accion.eliminar}">
-                            <ice:graphicImage value="./resources/icono/row/row_eliminar.png" alt="#{accion.eliminar}"></ice:graphicImage>
-                        </ice:commandLink>
 
                     </ice:panelLayout>
                     
