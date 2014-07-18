@@ -21,7 +21,7 @@
           
     <set inverse="true" name="eventos"  cascade="all-delete-orphan" lazy="false">
       <key>
-        <column name="id_planificacion" />
+        <column name="id_agenda" />
       </key>
       <one-to-many class="org.cmail.rehabilitacion.modelo.sira.Evento"/>
     </set>
